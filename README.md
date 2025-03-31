@@ -1,12 +1,11 @@
 <div align="center">
-<img src="img/loguis-removebg-preview.png" alt="logo" width="200px">
-<h1 align="center"> Projeto de TCC </h1>
+<h1 align="center"> Pontualize </h1>
 
 <p>Este projeto tem como objetivo demonstrar os conhecimentos adquiridos ao longo dos três anos do curso técnico em Desenvolvimento de Sistemas <span style="color:#ffb301">  😉</span></p></div>
 
 <h3>Softwares utilizados</h3>
   <a href="https://www.construct.net/en">
-    <img src="https://github.com/Julia-Khristina/EscapEtec/blob/main/readme/logo.png " height="100px" />
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/Fotinhas/C%23.png" height="100px" />
   </a>
 
 <h2>💻 Desenvolvedores</h2>
