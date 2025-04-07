@@ -1,0 +1,300 @@
+﻿using DPFP;
+using DPFP.Capture;
+using Mysqlx.Expr;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace prjTCC
+{
+    public partial class captureForm : Form, DPFP.Capture.EventHandler
+    {
+        private DPFP.Capture.Capture Capturer;
+        public string Nome = "";
+        public string RM = "";
+        public string Turma = "";
+        public string Ano = "";
+        public string Email = "";
+
+
+        public captureForm()
+        {
+            InitializeComponent();
+        }
+
+        protected void SetPrompt(string prompt)
+        {
+            this.Invoke(new Function(delegate ()
+                {
+                    txtPrompt.Text = prompt;
+
+                }));
+        }
+
+        protected void SetStatus(string status)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                lblStatus.Text = status;
+
+            }));
+        }
+
+
+        private void DrawPicture(Bitmap bitmap)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                picDigital.Image = new Bitmap(bitmap, picDigital.Size);
+            }));
+        }
+
+        protected void SetFname(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtNome.Text = value;
+            }));
+        }
+
+        protected void SetRM(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtRM.Text = value;
+            }));
+        }
+
+        protected void SetEmail(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtEmail.Text = value;
+            }));
+        }
+
+        protected void SetAno(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtAno.Text = value;
+            }));
+        }
+
+        protected void SetTurma(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtTurma.Text = value;
+            }));
+        }
+
+        protected virtual void init()
+        {
+            try
+            {
+                Capturer = new DPFP.Capture.Capture();
+                if (null != Capturer)
+                {
+                    Capturer.EventHandler = this;
+                }
+
+                else
+                    SetPrompt("Não inicializou a captura de digital");
+            }
+            catch 
+            {
+                MessageBox.Show("Não inicializou a captura de digital");
+            }
+        }
+
+        // Processo
+
+        protected virtual void Process(DPFP.Sample Sample)
+        {
+            DrawPicture(ConvertSampleToBitmap(Sample));
+        }
+
+        
+
+        protected Bitmap ConvertSampleToBitmap(DPFP.Sample Sample)
+        {
+            DPFP.Capture.SampleConversion Converter = new DPFP.Capture.SampleConversion();
+            Bitmap bitmap = null;
+            Converter.ConvertToPicture(Sample, ref bitmap);
+            return bitmap;
+        }
+
+        protected void Start()
+        { 
+            if(null != Capturer)
+            {
+                try
+                {
+                    Capturer.StartCapture();
+                    SetPrompt("Usando o leitor, escaneando a sua digital");
+                }
+                catch
+                {
+                    SetPrompt("Não foi possivel iniciar");
+                }
+            }
+        }
+
+        protected void Stop()
+        {
+            if (Capturer != null)
+            {
+                try
+                {
+                    Capturer.StopCapture();
+                    if (timer1 != null) timer1.Stop(); 
+                }
+                catch
+                {
+                    SetPrompt("Não foi possível terminar a captura");
+                }
+            }
+        }
+
+
+
+
+        protected void MakeReport(string message)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                txtStatus.AppendText(message + "\r\n");
+
+            }));
+        }
+
+        protected DPFP.FeatureSet ExtractFeatures(DPFP.Sample Sample, DPFP.Processing.DataPurpose Purpose)
+        {
+            DPFP.Processing.FeatureExtraction Extractor = new DPFP.Processing.FeatureExtraction();
+            DPFP.Capture.CaptureFeedback feedback = DPFP.Capture.CaptureFeedback.None;
+            DPFP.FeatureSet feature = new DPFP.FeatureSet();
+
+            Extractor.CreateFeatureSet(Sample, Purpose, ref feedback, ref feature);
+
+            if (feedback == DPFP.Capture.CaptureFeedback.Good)
+            {
+                return feature;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        public void OnComplete(object Capture, string ReaderSerialNumber, DPFP.Sample Sample)
+        {
+            MakeReport("Captura concluída com sucesso.");
+            Process(Sample); // Processa a digital capturada
+        }
+
+        public void OnFingerGone(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("Dedo removido do sensor.");
+            SetPrompt("Posicione novamente o dedo para capturar.");
+        }
+
+        public void OnFingerTouch(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("Dedo detectado no sensor.");
+            SetPrompt("Capturando a digital...");
+        }
+
+        public void OnReaderConnect(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("Leitor biométrico conectado.");
+            SetPrompt("Leitor pronto para captura.");
+        }
+
+        public void OnReaderDisconnect(object Capture, string ReaderSerialNumber)
+        {
+            MakeReport("Leitor biométrico desconectado.");
+            SetPrompt("Reconecte o leitor para continuar.");
+        }
+
+        public void OnSampleQuality(object Capture, string ReaderSerialNumber, DPFP.Capture.CaptureFeedback CaptureFeedback)
+        {
+            if (CaptureFeedback == DPFP.Capture.CaptureFeedback.Good)
+            {
+                MakeReport("Qualidade da digital: Boa.");
+            }
+            else
+            {
+                MakeReport("Qualidade da digital: Ruim. Tente novamente.");
+            }
+        }
+
+
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void capture_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Stop();
+        }
+
+        private void capture_Load(object sender, EventArgs e)
+        {
+            init();
+        }
+
+        private void txtNome_TextChanged(object sender, EventArgs e)
+        {
+            Nome = txtNome.Text;
+        }
+
+        private void btnScan_Click(object sender, EventArgs e)
+        {
+            Start();
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtRM_TextChanged(object sender, EventArgs e)
+        {
+            RM = txtRM.Text;
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            Email = txtEmail.Text;
+        }
+
+        private void txtAno_TextChanged(object sender, EventArgs e)
+        {
+            Ano = txtAno.Text;  
+        }
+
+        private void txtTurma_TextChanged(object sender, EventArgs e)
+        {
+            Turma = txtTurma.Text;
+        }
+    }
+
+}
+

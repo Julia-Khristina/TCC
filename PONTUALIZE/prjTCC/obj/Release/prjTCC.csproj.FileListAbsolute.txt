@@ -1,0 +1,6 @@
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.csproj.AssemblyReference.cache
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.capture.resources
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.main.resources
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.Properties.Resources.resources
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.csproj.GenerateResource.cache
+C:\Users\Micro\Desktop\PONTUALIZE\prjTCC\obj\Release\prjTCC.csproj.CoreCompileInputs.cache
