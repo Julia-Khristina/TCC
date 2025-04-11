@@ -5,7 +5,7 @@
 
 <h3>Softwares utilizados</h3>
   <a href="https://www.construct.net/en">
-    <img src="https://github.com/Julia-Khristina/TCC/blob/main/Fotinhas/C%23.png" height="100px" />
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" height="100px" />
   </a>
 
 <h2>💻 Desenvolvedores</h2>
