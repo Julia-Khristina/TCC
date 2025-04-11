@@ -16,15 +16,15 @@
       <br /><a href="https://github.com/Hillary-Medeiros"><b>Hillary Medeiros</b></a>
     </td>
     <td align="center">
-      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Igor.jpeg" width="100px" style="border-radius: 50%;" alt="Foto de Igor Vinícius"/>
-      <br /><a href="https://github.com/Gigiovh"><b>Igor Vinícius</b></a>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Igor.jpeg" width="100px" height="105px" style="border-radius: 50%;" alt="Foto de Igor Vinícius"/>
+      <br /><a href="#"><b>Igor Vinícius</b></a>
     </td>
     <td align="center">
-      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Isac.png" width="100px" style="border-radius: 50%;" alt="Foto de Isac Euclides"/>
-      <br /><a href="https://github.com/Julia-Khristina"><b>Isac Euclides</b></a>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Isac.png" width="100px" height="105px" style="border-radius: 50%;" alt="Foto de Isac Euclides"/>
+      <br /><a href="#"><b>Isac Euclides</b></a>
     </td>
     <td align="center">
-      <img src="https://avatars.githubusercontent.com/u/132296366?v=4" width="100px" style="border-radius: 50%;" alt="Foto de Julia Khristina"/>
+      <img src="https://avatars.githubusercontent.com/u/132296366?v=4" width="100px" height="105px" style="border-radius: 50%;" alt="Foto de Julia Khristina"/>
       <br /><a href="https://github.com/Julia-Khristina"><b>Julia Khristina</b></a>
     </td>
   </tr>
