@@ -21,11 +21,11 @@
       <br /><a href="https://github.com/beaxx"><b>Hillary Medeiros</b></a>
     </td>
     <td align="center">
-      <img src="https://github.com/Gigiovh.png" width="100px;" style="border-radius:50%;" alt="Nome do Colaborador 2"/>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Igor.png" width="100px;" style="border-radius:50%;" alt="Nome do Colaborador 2"/>
       <br /><a href="https://github.com/Gigiovh"><b>Igor Vinícius</b></a>
     </td>
      <td align="center">
-      <img src="https://github.com/Julia-Khristina/EscapEtec/blob/main/readme/11.png" width="100px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Isac.png" width="100px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
       <br /><a href="https://github.com/Lale-Araujo"><b>Isac Euclides</b></a>
     </td>
     <td align="center">
