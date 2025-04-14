@@ -4,17 +4,17 @@
 <h1 align="center">Pontualize</h1>
 
 
-<p>Este jogo tem como objetivo consetizar as crianças sobre o ciclo do lixo de forma ética e sustentável <span style="color:#ffb301"> ♻️</span></p></div>
+<p>Controle de entrada de alunos atrasados na Etec de São José dos Campos </p></div>
 
 
 <h3  >Linguagens Utilizadas</h3>
 <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" width="200px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
 </td>
-<h2 >🧑‍💻 Desenvolvedores</h2>
+<h2 > Desenvolvedores</h2>
 <table>
   <tr>
     <td align="center">
-    <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Hillary.jpeg" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Hillary.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
       <br /><a href="https://github.com/beaxx"><b>Hillary Medeiros</b></a>
     </td>
     <td align="center">
