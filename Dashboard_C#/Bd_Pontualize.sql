@@ -31,6 +31,7 @@ CREATE TABLE Aluno (
 CREATE TABLE Administrador (
     cd_Administrador INT AUTO_INCREMENT PRIMARY KEY,
     nm_Administrador VARCHAR(100) NOT NULL,
+    telefone_Administrador VARCHAR(20) NOT NULL,
     email_Administrador VARCHAR(100) UNIQUE NOT NULL,
     senha_Administrador VARCHAR(255) NOT NULL
 );
@@ -131,3 +132,10 @@ INSERT INTO Curso (nm_Curso) VALUES
 ('Automação Industrial'),
 ('Administração'),
 ('Desenvolvimento de Sistemas');
+
+INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Administrador, senha_Administrador)
+VALUES
+('Regiane Moraes Silva', '12 999999999', 'etec@gmail.com', '1234#');
+
+-- Select
+SELECT * FROM Administrador;
