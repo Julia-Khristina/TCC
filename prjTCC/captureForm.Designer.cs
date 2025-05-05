@@ -40,58 +40,67 @@
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtAno = new System.Windows.Forms.TextBox();
             this.txtTurma = new System.Windows.Forms.TextBox();
+            this.btnSair = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picDigital)).BeginInit();
             this.SuspendLayout();
             // 
             // picDigital
             // 
-            this.picDigital.Location = new System.Drawing.Point(12, 36);
+            this.picDigital.Location = new System.Drawing.Point(18, 55);
+            this.picDigital.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picDigital.Name = "picDigital";
-            this.picDigital.Size = new System.Drawing.Size(243, 386);
+            this.picDigital.Size = new System.Drawing.Size(364, 594);
             this.picDigital.TabIndex = 0;
             this.picDigital.TabStop = false;
             // 
             // txtPrompt
             // 
             this.txtPrompt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPrompt.Location = new System.Drawing.Point(12, 428);
+            this.txtPrompt.Location = new System.Drawing.Point(18, 658);
+            this.txtPrompt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrompt.Name = "txtPrompt";
-            this.txtPrompt.Size = new System.Drawing.Size(243, 20);
+            this.txtPrompt.Size = new System.Drawing.Size(362, 26);
             this.txtPrompt.TabIndex = 1;
             // 
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
-            this.txtStatus.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txtStatus.Location = new System.Drawing.Point(0, 0);
+            this.txtStatus.ImeMode = System.Windows.Forms.ImeMode.Off;
+            this.txtStatus.Location = new System.Drawing.Point(3, 766);
+            this.txtStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(800, 20);
+            this.txtStatus.Size = new System.Drawing.Size(1198, 45);
             this.txtStatus.TabIndex = 2;
+            this.txtStatus.TextChanged += new System.EventHandler(this.txtStatus_TextChanged);
             // 
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(12, 491);
+            this.lblStatus.Location = new System.Drawing.Point(13, 724);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(73, 25);
+            this.lblStatus.Size = new System.Drawing.Size(108, 37);
             this.lblStatus.TabIndex = 3;
             this.lblStatus.Text = "Status";
             // 
             // txtNome
             // 
-            this.txtNome.Location = new System.Drawing.Point(307, 64);
+            this.txtNome.Location = new System.Drawing.Point(460, 98);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNome.Name = "txtNome";
-            this.txtNome.Size = new System.Drawing.Size(356, 20);
+            this.txtNome.Size = new System.Drawing.Size(532, 26);
             this.txtNome.TabIndex = 4;
             this.txtNome.Text = "Nome do Aluno";
             this.txtNome.TextChanged += new System.EventHandler(this.txtNome_TextChanged);
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(653, 475);
+            this.btnScan.Location = new System.Drawing.Point(1019, 682);
+            this.btnScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnScan.Name = "btnScan";
-            this.btnScan.Size = new System.Drawing.Size(112, 41);
+            this.btnScan.Size = new System.Drawing.Size(168, 63);
             this.btnScan.TabIndex = 5;
             this.btnScan.Text = "Escanear";
             this.btnScan.UseVisualStyleBackColor = true;
@@ -103,46 +112,62 @@
             // 
             // txtRM
             // 
-            this.txtRM.Location = new System.Drawing.Point(307, 100);
+            this.txtRM.Location = new System.Drawing.Point(460, 154);
+            this.txtRM.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtRM.Name = "txtRM";
-            this.txtRM.Size = new System.Drawing.Size(356, 20);
+            this.txtRM.Size = new System.Drawing.Size(532, 26);
             this.txtRM.TabIndex = 6;
             this.txtRM.Text = "RM";
             this.txtRM.TextChanged += new System.EventHandler(this.txtRM_TextChanged);
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(307, 141);
+            this.txtEmail.Location = new System.Drawing.Point(460, 217);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(356, 20);
+            this.txtEmail.Size = new System.Drawing.Size(532, 26);
             this.txtEmail.TabIndex = 7;
             this.txtEmail.Text = "Email";
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // txtAno
             // 
-            this.txtAno.Location = new System.Drawing.Point(307, 183);
+            this.txtAno.Location = new System.Drawing.Point(460, 282);
+            this.txtAno.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtAno.Name = "txtAno";
-            this.txtAno.Size = new System.Drawing.Size(356, 20);
+            this.txtAno.Size = new System.Drawing.Size(532, 26);
             this.txtAno.TabIndex = 8;
             this.txtAno.Text = "Ano";
             this.txtAno.TextChanged += new System.EventHandler(this.txtAno_TextChanged);
             // 
             // txtTurma
             // 
-            this.txtTurma.Location = new System.Drawing.Point(307, 225);
+            this.txtTurma.Location = new System.Drawing.Point(460, 354);
+            this.txtTurma.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtTurma.Name = "txtTurma";
-            this.txtTurma.Size = new System.Drawing.Size(356, 20);
+            this.txtTurma.Size = new System.Drawing.Size(532, 26);
             this.txtTurma.TabIndex = 9;
             this.txtTurma.Text = "Turma";
             this.txtTurma.TextChanged += new System.EventHandler(this.txtTurma_TextChanged);
             // 
+            // btnSair
+            // 
+            this.btnSair.BackColor = System.Drawing.Color.Transparent;
+            this.btnSair.Location = new System.Drawing.Point(1132, 34);
+            this.btnSair.Name = "btnSair";
+            this.btnSair.Size = new System.Drawing.Size(56, 50);
+            this.btnSair.TabIndex = 10;
+            this.btnSair.Text = "X";
+            this.btnSair.UseVisualStyleBackColor = false;
+            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
+            // 
             // captureForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 525);
+            this.ClientSize = new System.Drawing.Size(1200, 808);
+            this.Controls.Add(this.btnSair);
             this.Controls.Add(this.txtTurma);
             this.Controls.Add(this.txtAno);
             this.Controls.Add(this.txtEmail);
@@ -154,6 +179,7 @@
             this.Controls.Add(this.txtPrompt);
             this.Controls.Add(this.picDigital);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "captureForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "capture";
@@ -178,5 +204,6 @@
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtAno;
         private System.Windows.Forms.TextBox txtTurma;
+        private System.Windows.Forms.Button btnSair;
     }
 }

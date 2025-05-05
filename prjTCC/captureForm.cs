@@ -294,6 +294,16 @@ namespace prjTCC
         {
             Turma = txtTurma.Text;
         }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void txtStatus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
