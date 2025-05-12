@@ -138,4 +138,8 @@ VALUES
 ('Regiane Moraes Silva', '12 999999999', 'etec@gmail.com', '1234#');
 
 -- Select
+<<<<<<< HEAD
 SELECT * FROM Administrador;
+=======
+SELECT * FROM Administrador;
+>>>>>>> 207a820 (Atualizando arquivos e adicionando novos na pasta Dashboard)

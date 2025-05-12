@@ -28,9 +28,8 @@ namespace Dashboard
             // Estilizar o botão sem borda
             btnEntrar.FlatStyle = FlatStyle.Flat;
             btnEntrar.FlatAppearance.BorderSize = 0;
-            btnEntrar.BackColor = ColorTranslator.FromHtml("#41436A");
-            btnEntrar.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#606EFD");
-
+            btnEntrar.BackColor = ColorTranslator.FromHtml("#606EFD");
+            btnEntrar.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#41436A");
             btnBarra.FlatStyle = FlatStyle.Flat;
             btnBarra.FlatAppearance.BorderSize = 0;
 
@@ -52,6 +51,35 @@ namespace Dashboard
 
         }
 
+
+        private void lblEsqueciSenha_Click(object sender, EventArgs e)
+        {
+            this.Visible = false; // Oculta o formulário atual
+            frmEsqueciSenha objfEsqueciSenha = new frmEsqueciSenha();
+            objfEsqueciSenha.ShowDialog(); // Abre o novo formulário como modal
+            this.Close();
+        }
+
+        private void frmLogin_Activated(object sender, EventArgs e)
+        {
+            txtUsuario.Focus();
+        }
+
+        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                txtSenha.Focus();
+            }
+        }
+
+        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                btnEntrar.Focus();
+            }
+        }
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
@@ -77,68 +105,37 @@ namespace Dashboard
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@parUsuario", txtUsuario.Text);
                 conexao.Open();
-                comando.ExecuteScalar(); // uma info que retorna
-            }
-            catch (MySqlException Erro)
-            {
-                MessageBox.Show("Erro ==>" + Erro.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
-            finally
-            {
-                if (comando.ExecuteScalar() == null)
+                var resultado = comando.ExecuteScalar();
+
+                if (resultado == null)
                 {
                     lblStatusEmail.Text = "Email incorreto!";
                     lblStatusSenha.Text = "";
-                    conexao.Close();
-                    comando = null;
                 }
                 else
                 {
-                    if (Convert.ToString(comando.ExecuteScalar()) != txtSenha.Text) // comando para verificar se a senha é igual
+                    if (Convert.ToString(resultado) != txtSenha.Text)
                     {
                         lblStatusSenha.Text = "Senha incorreta!";
                         lblStatusEmail.Text = "";
                         txtSenha.Focus();
-                        conexao.Close();
-                        comando = null;
                     }
                     else
                     {
-                        conexao.Close();
-                        comando = null;
-
                         this.Visible = false;
                         frmDashboard_Principal objfDashboard = new frmDashboard_Principal();
                         objfDashboard.ShowDialog();
                     }
                 }
             }
-        }
-        private void frmLogin_Activated(object sender, EventArgs e)
-        {
-            txtUsuario.Focus();
-        }
-
-        private void txtUsuario_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            catch (MySqlException Erro)
             {
-                txtSenha.Focus();
+                MessageBox.Show("Erro ao consultar o banco de dados: " + Erro.Message, "ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void txtSenha_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
+            finally
             {
-                btnEntrar.Focus();
+                conexao.Close();
             }
-        }
-
-        private void frmLogin_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

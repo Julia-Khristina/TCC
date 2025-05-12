@@ -43,7 +43,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ControlDarkDark;
-            label5.Location = new Point(304, 369);
+            label5.Location = new Point(308, 369);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(58, 13);
@@ -54,7 +54,7 @@
             // 
             lblPercentual.AutoSize = true;
             lblPercentual.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPercentual.Location = new Point(284, 278);
+            lblPercentual.Location = new Point(328, 278);
             lblPercentual.Margin = new Padding(4, 0, 4, 0);
             lblPercentual.Name = "lblPercentual";
             lblPercentual.Size = new Size(13, 20);
@@ -67,7 +67,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label3.ForeColor = Color.MidnightBlue;
-            label3.Location = new Point(136, 105);
+            label3.Location = new Point(136, 100);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(405, 20);
@@ -79,7 +79,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(195, 34);
+            label1.Location = new Point(197, 34);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(286, 52);
@@ -90,7 +90,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(251, 204);
+            label2.Location = new Point(254, 204);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(169, 21);
@@ -101,18 +101,22 @@
             // 
             progressBar.BackColor = SystemColors.ActiveCaptionText;
             progressBar.ForeColor = Color.Purple;
-            progressBar.Location = new Point(77, 243);
+            progressBar.Location = new Point(136, 248);
             progressBar.Margin = new Padding(4, 3, 4, 3);
             progressBar.Name = "progressBar";
-            progressBar.Size = new Size(526, 27);
+            progressBar.Size = new Size(405, 27);
             progressBar.TabIndex = 11;
+            // 
+            // timer
+            // 
+            timer.Interval = 50;
             // 
             // frmSplash
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(680, 403);
+            ClientSize = new Size(676, 412);
             Controls.Add(label5);
             Controls.Add(lblPercentual);
             Controls.Add(label3);
@@ -123,6 +127,7 @@
             Name = "frmSplash";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmInicio";
+            Load += frmSplash_Load;
             ResumeLayout(false);
             PerformLayout();
         }
