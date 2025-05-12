@@ -1,14 +1,33 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\xampp\\htdocs\\TCC\\",
+  "WorkspaceRootPath": "C:\\xampp\\htdocs\\TCC\\TCC\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\tcc\\prjtcc\\cadastrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\cadastrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\tcc\\prjtcc\\cadastrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\cadastrar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|C:\\xampp\\htdocs\\TCC\\TCC\\prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\tcc\\prjtcc\\verificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\verificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\tcc\\prjtcc\\verificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\verificar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|c:\\xampp\\htdocs\\tcc\\tcc\\prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{975F2AD1-C824-4AC9-9889-79B0537E20D0}|prjTCC\\prjTCC.csproj|solutionrelative:prjtcc\\captureform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lab0108\\AppData\\Local\\Temp\\.vsdbgsrc\\57d4d2e30e557eefff2ce08b05641c693e091d36a6326cd2d8a3fa16f85016ae\\Capture.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,29 +37,92 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Verificar.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Verificar.cs",
+              "RelativeDocumentMoniker": "prjTCC\\Verificar.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Verificar.cs",
+              "RelativeToolTip": "prjTCC\\Verificar.cs",
+              "ViewState": "AgIAACwAAAAAAAAAAAASwCMAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T18:09:58.817Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Verificar.cs [Design]",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Verificar.cs",
+              "RelativeDocumentMoniker": "prjTCC\\Verificar.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Verificar.cs [Design]",
+              "RelativeToolTip": "prjTCC\\Verificar.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T18:09:57.598Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Cadastrar.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Cadastrar.cs",
+              "RelativeDocumentMoniker": "prjTCC\\Cadastrar.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Cadastrar.cs*",
+              "RelativeToolTip": "prjTCC\\Cadastrar.cs*",
+              "ViewState": "AgIAAG8AAAAAAAAAAAAYwD4AAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T18:00:30.369Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cadastrar.cs [Design]",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Cadastrar.cs",
+              "RelativeDocumentMoniker": "prjTCC\\Cadastrar.cs",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\Cadastrar.cs [Design]*",
+              "RelativeToolTip": "prjTCC\\Cadastrar.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T18:00:20.178Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Capture.cs",
+              "DocumentMoniker": "C:\\Users\\lab0108\\AppData\\Local\\Temp\\.vsdbgsrc\\57d4d2e30e557eefff2ce08b05641c693e091d36a6326cd2d8a3fa16f85016ae\\Capture.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\Users\\lab0108\\AppData\\Local\\Temp\\.vsdbgsrc\\57d4d2e30e557eefff2ce08b05641c693e091d36a6326cd2d8a3fa16f85016ae\\Capture.cs",
+              "ToolTip": "C:\\Users\\lab0108\\AppData\\Local\\Temp\\.vsdbgsrc\\57d4d2e30e557eefff2ce08b05641c693e091d36a6326cd2d8a3fa16f85016ae\\Capture.cs [Somente Leitura]",
+              "RelativeToolTip": "..\\..\\..\\..\\Users\\lab0108\\AppData\\Local\\Temp\\.vsdbgsrc\\57d4d2e30e557eefff2ce08b05641c693e091d36a6326cd2d8a3fa16f85016ae\\Capture.cs [Somente Leitura]",
+              "ViewState": "AgIAAM8BAAAAAAAAAAAewO4BAAASAAAAAQAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T17:56:48.584Z",
+              "EditorCaption": " [Somente Leitura]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "captureForm.cs",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\prjTCC\\captureForm.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\captureForm.cs",
               "RelativeDocumentMoniker": "prjTCC\\captureForm.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\TCC\\prjTCC\\captureForm.cs*",
-              "RelativeToolTip": "prjTCC\\captureForm.cs*",
-              "ViewState": "AgIAAB8BAAAAAAAAAAAcwCsBAAAUAAAAAAAAAA==",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\captureForm.cs",
+              "RelativeToolTip": "prjTCC\\captureForm.cs",
+              "ViewState": "AgIAABUBAAAAAAAAAAAwwDABAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T17:54:45.914Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "captureForm.cs [Design]",
-              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\prjTCC\\captureForm.cs",
+              "DocumentMoniker": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\captureForm.cs",
               "RelativeDocumentMoniker": "prjTCC\\captureForm.cs",
-              "ToolTip": "C:\\xampp\\htdocs\\TCC\\prjTCC\\captureForm.cs [Design]*",
-              "RelativeToolTip": "prjTCC\\captureForm.cs [Design]*",
+              "ToolTip": "C:\\xampp\\htdocs\\TCC\\TCC\\prjTCC\\captureForm.cs [Design]",
+              "RelativeToolTip": "prjTCC\\captureForm.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-05T17:49:05.956Z",
               "EditorCaption": " [Design]"

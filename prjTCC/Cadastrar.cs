@@ -59,8 +59,8 @@ namespace prjTCC
 
                                 try
                                 {
-                                    string Myconnection = "datasource=localhost;username=root;database=pontualize;";
-                                    string Query = "SELECT * FROM usuarios WHERE UPPER(Nome) = '"+Nome.ToUpper()+"'";
+                                    string Myconnection = "datasource=localhost;username=root;database=db_pontualize;";
+                                    string Query = "SELECT * FROM aluno WHERE UPPER(nm_Aluno) = '"+Nome.ToUpper()+"'";
                                     MySqlConnection Myconn = new MySqlConnection(Myconnection);
                                     MySqlCommand Mycomand = new MySqlCommand(Query, Myconn);
 
@@ -85,8 +85,8 @@ namespace prjTCC
                                     {
                                         try
                                         {
-                                            string Myconnection1 = "datasource=localhost;username=root;database=pontualize;";
-                                            string Query1 = "INSERT INTO usuarios (RM, Nome, Turma, Ano, Email, Digital) " + "VALUES (@rm, @nome, @turma, @ano, @email, @digital)";
+                                            string Myconnection1 = "datasource=localhost;username=root;database=db_pontualize;";
+                                            string Query1 = "INSERT INTO aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria) " + "VALUES (@rm, @nome, @turma, @ano, @email, @digital)";
                                             MySqlConnection Myconn1 = new MySqlConnection(Myconnection1);
                                             Myconn1.Open();
 

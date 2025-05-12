@@ -32,8 +32,8 @@ namespace prjTCC
         {
             try
             {
-                string Myconnection = "datasource=localhost;username=root;database=pontualize;";
-                string Query = "SELECT * FROM usuarios";
+                string Myconnection = "datasource=localhost;username=root;database=db_pontualize;";
+                string Query = "SELECT * FROM aluno";
                 MySqlConnection Myconn = new MySqlConnection(Myconnection);
                 MySqlCommand Mycomand = new MySqlCommand(Query, Myconn);
 
