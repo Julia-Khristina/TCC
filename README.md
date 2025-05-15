@@ -4,14 +4,18 @@
 <p>Controle de entrada de alunos atrasados na Etec de São José dos Campos </p></div>
 
 ## 📌Objetivo do Projeto
-> O produto tem como objetivo facilitar para o jornalista acessar, visualizar e comparar dados que estão relacionados a COVID Longa em uma interface de fácil navegação e fácil acesso. 
+> O objetivo geral deste trabalho é desenvolver um sistema para gerenciar os atrasos dos alunos. Havendo a necessidade de 
+desenvolver um sistema de acesso à biometria, elaborar um banco de dados para armazenamento dos alunos e dados biométricos, desenvolver uma interface visual e interativa, além de exibir relatórios específicos mensais.
+
 > **Status do Projeto: Concluído✅**
 
 <br> 
   
 ## 💡Visão do Produto
 
-> Para jornalistas da Rede Vanguarda que desejam acessar, visualizar e analisar dados da COVID Longa, o "Data-SARS" é um site que permite um fácil acesso a informações relacionadas a COVID Longa. Ao contrário de alguns sites que propagam Fake News e que não possuem filtros de pesquisa, o nosso produto fornece os dados de maneira que seja fácil de entender e de analisar os dados, uma vez que nossos dados são autênticos e possuímos uma área de interação minimalista.
+> **Visão do Projeto (Resumo):**
+
+O projeto visa modernizar e automatizar o controle de acesso e registro de atrasos dos alunos na Etec Ilza Nascimento Pintus, substituindo o atual sistema manual — baseado em assinaturas em caderno — por um sistema digital baseado em biometria. A proposta busca melhorar a eficiência do processo, reduzir o desgaste do corpo pedagógico e garantir maior controle e precisão nas informações, alinhando a escola pública aos avanços tecnológicos já presentes em instituições privadas.
 
 <br>
 
