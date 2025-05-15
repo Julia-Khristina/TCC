@@ -1,14 +1,13 @@
 CREATE DATABASE Db_Pontualize;
 USE Db_Pontualize;
-
+-- DROP DATABASE Db_Pontualize;
 CREATE TABLE Serie (
     cd_Serie INT AUTO_INCREMENT PRIMARY KEY,
     nm_Serie VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Curso (
-    cd_Curso INT AUTO_INCREMENT PRIMARY KEY,
-    nm_Curso VARCHAR(100) NOT NULL
+    nm_Curso VARCHAR(100) PRIMARY KEY
 );
 
 CREATE TABLE Biometria (
@@ -17,15 +16,16 @@ CREATE TABLE Biometria (
 );
 
 CREATE TABLE Aluno (
-    cd_Aluno INT AUTO_INCREMENT PRIMARY KEY,
+    cd_Aluno INT PRIMARY KEY,
     nm_Aluno VARCHAR(100) NOT NULL,
     gmail_aluno VARCHAR(100) NOT NULL,
     telefone_aluno VARCHAR(11) NOT NULL,
-    Serie_Aluno INT,
-    Curso_Aluno INT,
+    Serie_Aluno INT NOT NULL,
+    Curso_Aluno VARCHAR(100) NOT NULL,
     cd_Biometria INT NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
-    FOREIGN KEY (Curso_Aluno) REFERENCES Curso(cd_Curso)
+    FOREIGN KEY (Curso_Aluno) REFERENCES Curso(nm_Curso),
+    FOREIGN KEY (cd_Biometria) REFERENCES Biometria(dados_Biometria)
 );
 
 CREATE TABLE Administrador (
@@ -75,7 +75,7 @@ SELECT
     CURRENT_DATE()
 FROM Aluno A
 JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
-JOIN Curso C ON A.Curso_Aluno = C.cd_Curso
+JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
 WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
@@ -135,11 +135,5 @@ INSERT INTO Curso (nm_Curso) VALUES
 
 INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Administrador, senha_Administrador)
 VALUES
-('Regiane Moraes Silva', '12 999999999', 'etec@gmail.com', '1234#');
+('Mestre dos Magos', '12 999999999', 'etec@gmail.com', '1234#');
 
--- Select
-<<<<<<< HEAD
-SELECT * FROM Administrador;
-=======
-SELECT * FROM Administrador;
->>>>>>> 207a820 (Atualizando arquivos e adicionando novos na pasta Dashboard)
