@@ -4,7 +4,7 @@
 <p>Controle de entrada de alunos atrasados na Etec de São José dos Campos </p></div>
 
 ## 📌Objetivo do Projeto
-> O objetivo geral deste trabalho é desenvolver um sistema para gerenciar os atrasos dos alunos. Havendo a necessidade de 
+O objetivo geral deste trabalho é desenvolver um sistema para gerenciar os atrasos dos alunos. Havendo a necessidade de 
 desenvolver um sistema de acesso à biometria, elaborar um banco de dados para armazenamento dos alunos e dados biométricos, desenvolver uma interface visual e interativa, além de exibir relatórios específicos mensais.
 
 > **Status do Projeto: Concluído✅**
@@ -13,15 +13,14 @@ desenvolver um sistema de acesso à biometria, elaborar um banco de dados para a
   
 ## 💡Visão do Produto
 
-> **Visão do Projeto (Resumo):**
-
 O projeto visa modernizar e automatizar o controle de acesso e registro de atrasos dos alunos na Etec Ilza Nascimento Pintus, substituindo o atual sistema manual — baseado em assinaturas em caderno — por um sistema digital baseado em biometria. A proposta busca melhorar a eficiência do processo, reduzir o desgaste do corpo pedagógico e garantir maior controle e precisão nas informações, alinhando a escola pública aos avanços tecnológicos já presentes em instituições privadas.
-
+> **Status do Projeto: Concluído✅**
 <br>
 
 ## 📚 Metodologia
 
-> O framework de Metodologia Ágil utilizado no produto foi o Scrum, um método ágil adaptativo, iterativo, flexível e eficaz. Entre as ferramentas utilizadas no Scrum, uma é a divisão do projeto em **Sprints**. Para selecionar quais seriam as entregas das nossas Sprints, primeiro definimos nosso **MVP**, priorizando as tarefas que trariam maior entrega de valor para o cliente. Então, a partir das Tarefas foi construído o **Backlog do Produto**,  o qual foi aprovado pelo cliente e dividido em 4 Backlog de Sprint. Dessa forma, com as Tarefas já traçadas, definimos a quantidade de tempo necessário para cada Tarefa, sendo dividido, de maneira mais otimizada, entre os Desenvolvedores do time.
+A metodologia adotada envolverá reuniões e entrevistas para levantamento de requisitos funcionais e não funcionais. Será necessária a aquisição de equipamentos de leitura biométrica. Também serão realizadas pesquisas bibliográficas e entrevistas de campo para compreender o processo de registro e monitoramento de alunos que chegam atrasados. Em seguida, testes serão aplicados a um protótipo inicial para avaliar sua viabilidade em um ambiente próximo ao real. Com base nos resultados, será desenvolvido um MVP mais completo, incorporando as melhorias solicitadas pelo cliente.
+> **Status do Projeto: Parcialmente Concluído✅**
 <br>
 </br>
 
