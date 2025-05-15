@@ -21,8 +21,7 @@ O projeto visa modernizar e automatizar o controle de acesso e registro de atras
 
 A metodologia adotada envolverá reuniões e entrevistas para levantamento de requisitos funcionais e não funcionais. Será necessária a aquisição de equipamentos de leitura biométrica. Também serão realizadas pesquisas bibliográficas e entrevistas de campo para compreender o processo de registro e monitoramento de alunos que chegam atrasados. Em seguida, testes serão aplicados a um protótipo inicial para avaliar sua viabilidade em um ambiente próximo ao real. Com base nos resultados, será desenvolvido um MVP mais completo, incorporando as melhorias solicitadas pelo cliente.
 > **Status do Projeto: Parcialmente Concluído✅**
-<br>
-</br>
+
 
 <h3>Linguagens Utilizadas</h3>
 <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" width="200px;" style="border-radius:50%;"/>
