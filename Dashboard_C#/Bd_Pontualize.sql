@@ -25,7 +25,7 @@ CREATE TABLE Aluno (
     cd_Biometria INT NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
     FOREIGN KEY (Curso_Aluno) REFERENCES Curso(nm_Curso),
-    FOREIGN KEY (cd_Biometria) REFERENCES Biometria(dados_Biometria)
+    FOREIGN KEY (cd_Biometria) REFERENCES Biometria(cd_Biometria)
 );
 
 CREATE TABLE Administrador (
@@ -47,8 +47,8 @@ SELECT
     CURRENT_DATE() AS Data
 FROM Aluno A
 JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
-JOIN Curso C ON A.Curso_Aluno = C.cd_Curso
-WHERE (
+JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
+    WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() <= '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() <= '18:15:59')
 );
