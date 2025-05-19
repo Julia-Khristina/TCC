@@ -83,7 +83,7 @@ namespace prjTCC
         {
             this.Invoke(new Function(delegate ()
             {
-                txtAno.Text = value;
+                cmbAno.Text = value;
             }));
         }
 
@@ -91,7 +91,7 @@ namespace prjTCC
         {
             this.Invoke(new Function(delegate ()
             {
-                txtTurma.Text = value;
+                cmbTurma.Text = value;
             }));
         }
 
@@ -287,12 +287,12 @@ namespace prjTCC
 
         private void txtAno_TextChanged(object sender, EventArgs e)
         {
-            Ano = txtAno.Text;  
+            
         }
 
         private void txtTurma_TextChanged(object sender, EventArgs e)
         {
-            Turma = txtTurma.Text;
+            
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -303,6 +303,16 @@ namespace prjTCC
         private void txtStatus_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbTurma_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Turma = cmbTurma.Text;
+        }
+
+        private void cmbAno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Ano = cmbAno.Text;
         }
     }
 

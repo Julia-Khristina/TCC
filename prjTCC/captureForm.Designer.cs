@@ -38,9 +38,9 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.txtRM = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtAno = new System.Windows.Forms.TextBox();
-            this.txtTurma = new System.Windows.Forms.TextBox();
             this.btnSair = new System.Windows.Forms.Button();
+            this.cmbAno = new System.Windows.Forms.ComboBox();
+            this.cmbTurma = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picDigital)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,24 +49,24 @@
             this.picDigital.Location = new System.Drawing.Point(18, 55);
             this.picDigital.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.picDigital.Name = "picDigital";
-            this.picDigital.Size = new System.Drawing.Size(364, 594);
+            this.picDigital.Size = new System.Drawing.Size(300, 465);
             this.picDigital.TabIndex = 0;
             this.picDigital.TabStop = false;
             // 
             // txtPrompt
             // 
             this.txtPrompt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPrompt.Location = new System.Drawing.Point(18, 658);
+            this.txtPrompt.Location = new System.Drawing.Point(20, 542);
             this.txtPrompt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPrompt.Name = "txtPrompt";
-            this.txtPrompt.Size = new System.Drawing.Size(362, 26);
+            this.txtPrompt.Size = new System.Drawing.Size(298, 26);
             this.txtPrompt.TabIndex = 1;
             // 
             // txtStatus
             // 
             this.txtStatus.BackColor = System.Drawing.SystemColors.Control;
             this.txtStatus.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.txtStatus.Location = new System.Drawing.Point(3, 766);
+            this.txtStatus.Location = new System.Drawing.Point(1, 636);
             this.txtStatus.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtStatus.Multiline = true;
             this.txtStatus.Name = "txtStatus";
@@ -78,7 +78,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(13, 724);
+            this.lblStatus.Location = new System.Drawing.Point(13, 589);
             this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(108, 37);
@@ -97,7 +97,7 @@
             // 
             // btnScan
             // 
-            this.btnScan.Location = new System.Drawing.Point(1019, 682);
+            this.btnScan.Location = new System.Drawing.Point(1019, 563);
             this.btnScan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(168, 63);
@@ -122,33 +122,13 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(460, 217);
+            this.txtEmail.Location = new System.Drawing.Point(460, 205);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(532, 26);
             this.txtEmail.TabIndex = 7;
             this.txtEmail.Text = "Email";
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
-            // 
-            // txtAno
-            // 
-            this.txtAno.Location = new System.Drawing.Point(460, 282);
-            this.txtAno.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtAno.Name = "txtAno";
-            this.txtAno.Size = new System.Drawing.Size(532, 26);
-            this.txtAno.TabIndex = 8;
-            this.txtAno.Text = "Ano";
-            this.txtAno.TextChanged += new System.EventHandler(this.txtAno_TextChanged);
-            // 
-            // txtTurma
-            // 
-            this.txtTurma.Location = new System.Drawing.Point(460, 354);
-            this.txtTurma.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTurma.Name = "txtTurma";
-            this.txtTurma.Size = new System.Drawing.Size(532, 26);
-            this.txtTurma.TabIndex = 9;
-            this.txtTurma.Text = "Turma";
-            this.txtTurma.TextChanged += new System.EventHandler(this.txtTurma_TextChanged);
             // 
             // btnSair
             // 
@@ -161,15 +141,43 @@
             this.btnSair.UseVisualStyleBackColor = false;
             this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
             // 
+            // cmbAno
+            // 
+            this.cmbAno.FormattingEnabled = true;
+            this.cmbAno.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cmbAno.Location = new System.Drawing.Point(460, 311);
+            this.cmbAno.Name = "cmbAno";
+            this.cmbAno.Size = new System.Drawing.Size(532, 28);
+            this.cmbAno.TabIndex = 11;
+            this.cmbAno.Text = "Ano";
+            this.cmbAno.SelectedIndexChanged += new System.EventHandler(this.cmbAno_SelectedIndexChanged);
+            // 
+            // cmbTurma
+            // 
+            this.cmbTurma.FormattingEnabled = true;
+            this.cmbTurma.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.cmbTurma.Location = new System.Drawing.Point(460, 256);
+            this.cmbTurma.Name = "cmbTurma";
+            this.cmbTurma.Size = new System.Drawing.Size(532, 28);
+            this.cmbTurma.TabIndex = 12;
+            this.cmbTurma.Text = "Turma";
+            this.cmbTurma.SelectedIndexChanged += new System.EventHandler(this.cmbTurma_SelectedIndexChanged);
+            // 
             // captureForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1200, 808);
+            this.ClientSize = new System.Drawing.Size(1200, 683);
+            this.Controls.Add(this.cmbTurma);
+            this.Controls.Add(this.cmbAno);
             this.Controls.Add(this.btnSair);
-            this.Controls.Add(this.txtTurma);
-            this.Controls.Add(this.txtAno);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtRM);
             this.Controls.Add(this.btnScan);
@@ -202,8 +210,8 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TextBox txtRM;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtAno;
-        private System.Windows.Forms.TextBox txtTurma;
         private System.Windows.Forms.Button btnSair;
+        private System.Windows.Forms.ComboBox cmbAno;
+        private System.Windows.Forms.ComboBox cmbTurma;
     }
 }
