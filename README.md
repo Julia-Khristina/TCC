@@ -1,16 +1,32 @@
-
-
 <div align="center">
 <h1 align="center">Pontualize</h1>
 
-
 <p>Controle de entrada de alunos atrasados na Etec de São José dos Campos </p></div>
 
+## 📌Objetivo do Projeto
+O objetivo geral deste trabalho é desenvolver um sistema para gerenciar os atrasos dos alunos. Havendo a necessidade de 
+desenvolver um sistema de acesso à biometria, elaborar um banco de dados para armazenamento dos alunos e dados biométricos, desenvolver uma interface visual e interativa, além de exibir relatórios específicos mensais.
 
-<h3  >Linguagens Utilizadas</h3>
-<img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" width="200px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
+> **Status do Projeto: Concluído✅**
+
+<br> 
+  
+## 💡Visão do Produto
+
+O projeto visa modernizar e automatizar o controle de acesso e registro de atrasos dos alunos na Etec Ilza Nascimento Pintus, substituindo o atual sistema manual — baseado em assinaturas em caderno — por um sistema digital baseado em biometria. A proposta busca melhorar a eficiência do processo, reduzir o desgaste do corpo pedagógico e garantir maior controle e precisão nas informações, alinhando a escola pública aos avanços tecnológicos já presentes em instituições privadas.
+> **Status do Projeto: Concluído✅**
+<br>
+
+## 📚 Metodologia
+
+A metodologia adotada envolverá reuniões e entrevistas para levantamento de requisitos funcionais e não funcionais. Será necessária a aquisição de equipamentos de leitura biométrica. Também serão realizadas pesquisas bibliográficas e entrevistas de campo para compreender o processo de registro e monitoramento de alunos que chegam atrasados. Em seguida, testes serão aplicados a um protótipo inicial para avaliar sua viabilidade em um ambiente próximo ao real. Com base nos resultados, será desenvolvido um MVP mais completo, incorporando as melhorias solicitadas pelo cliente.
+> **Status do Projeto: Parcialmente Concluído✅**
+
+
+<h3>Linguagens Utilizadas</h3>
+<img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" width="200px;" style="border-radius:50%;"/>
 </td>
-<h2 > Desenvolvedores</h2>
+<h2> Desenvolvedores</h2>
 <table>
   <tr>
     <td align="center">
