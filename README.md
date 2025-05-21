@@ -22,23 +22,24 @@ O projeto visa modernizar e automatizar o controle de acesso e registro de atras
 A metodologia adotada envolverá reuniões e entrevistas para levantamento de requisitos funcionais e não funcionais. Será necessária a aquisição de equipamentos de leitura biométrica. Também serão realizadas pesquisas bibliográficas e entrevistas de campo para compreender o processo de registro e monitoramento de alunos que chegam atrasados. Em seguida, testes serão aplicados a um protótipo inicial para avaliar sua viabilidade em um ambiente próximo ao real. Com base nos resultados, será desenvolvido um MVP mais completo, incorporando as melhorias solicitadas pelo cliente.
 > **Status do Projeto: Parcialmente Concluído✅**
 
+<br>
 
 <h3>Linguagens Utilizadas</h3>
-<img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/C%23.png" width="200px;" style="border-radius:50%;"/>
+<img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="200px;" style="border-radius:50%;"/>
 </td>
 <h2> Desenvolvedores</h2>
 <table>
   <tr>
     <td align="center">
-    <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Hillary.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Hillary.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
       <br /><a href="https://github.com/beaxx"><b>Hillary Medeiros</b></a>
     </td>
     <td align="center">
-      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Igor.jpeg" width="100px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 2"/>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Igor.jpeg" width="100px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 2"/>
       <br /><a href="https://github.com/Gigiovh"><b>Igor Vinícius</b></a>
     </td>
      <td align="center">
-      <img src="https://github.com/Julia-Khristina/TCC/blob/main/assets/Isac.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Isac.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
       <br /><a href="https://github.com/Lale-Araujo"><b>Isac Euclides</b></a>
     </td>
     <td align="center">
