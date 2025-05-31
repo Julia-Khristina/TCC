@@ -25,6 +25,9 @@ namespace Dashboard
             InitializeComponent();
             conexao = new MySqlConnection("Server=localhost;Port=3306;Database=Db_Pontualize;User=root");
 
+            PicMostrarSenha.Visible = false;
+            PicMostrarSenha2.Visible = false;
+
             // Estilizar o botão sem borda
             btnAlterar.FlatStyle = FlatStyle.Flat;
             btnAlterar.FlatAppearance.BorderSize = 0;
@@ -130,6 +133,62 @@ namespace Dashboard
             if (e.KeyCode == Keys.Enter)
             {
                 txtSenha.Focus();
+            }
+        }
+
+        private void txtConfirmacao_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtConfirmacao.Text))
+            {
+                // Se estiver vazio, esconde o botão de olho
+                PicMostrarSenha.Visible = false; // Ou picTogglePassword.Visible = false;
+            }
+            else
+            {
+                // Se NÃO estiver vazio, mostra o botão de olho
+                PicMostrarSenha.Visible = true; // Ou picTogglePassword.Visible = true;
+            }
+        }
+
+        private void txtSenha_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtSenha.Text))
+            {
+                // Se estiver vazio, esconde o botão de olho
+                PicMostrarSenha.Visible = false; // Ou picTogglePassword.Visible = false;
+            }
+            else
+            {
+                // Se NÃO estiver vazio, mostra o botão de olho
+                PicMostrarSenha.Visible = true; // Ou picTogglePassword.Visible = true;
+            }
+        }
+
+        private void PicMostrarSenha_Click(object sender, EventArgs e)
+        {
+            if (txtSenha.PasswordChar == '●') // Se a senha está mascarada
+            {
+                txtSenha.PasswordChar = '\0'; // Mostra a senha (caractere nulo)
+                PicMostrarSenha.Image = Properties.Resources.olho_aberto; // Muda para olho aberto
+            }
+            else // Se a senha está visível
+            {
+                txtSenha.PasswordChar = '●'; // Mascara a senha novamente
+                PicMostrarSenha.Image = Properties.Resources.olho_fechado; // Muda para olho fechado
+            }
+        }
+
+        private void PicMostrarSenha2_Click(object sender, EventArgs e)
+        {
+            if (txtConfirmacao.PasswordChar == '●') // Se a senha está mascarada
+            {
+                txtConfirmacao.PasswordChar = '\0'; // Mostra a senha (caractere nulo)
+                PicMostrarSenha.Image = Properties.Resources.olho_aberto; // Muda para olho aberto
+            }
+            else // Se a senha está visível
+            {
+                txtConfirmacao.PasswordChar = '●'; // Mascara a senha novamente
+                PicMostrarSenha.Image = Properties.Resources.olho_fechado; // Muda para olho fechado
             }
         }
     }

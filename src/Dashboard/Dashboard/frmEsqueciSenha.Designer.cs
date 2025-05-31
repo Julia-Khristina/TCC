@@ -50,6 +50,10 @@
             label12 = new Label();
             label13 = new Label();
             lblStatusEmail = new Label();
+            PicMostrarSenha = new PictureBox();
+            PicMostrarSenha2 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha2).BeginInit();
             SuspendLayout();
             // 
             // txtSenha
@@ -60,8 +64,10 @@
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
             txtSenha.Location = new Point(280, 233);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '●';
             txtSenha.Size = new Size(362, 20);
             txtSenha.TabIndex = 32;
+            txtSenha.TextChanged += txtSenha_TextChanged;
             txtSenha.KeyDown += txtSenha_KeyDown;
             // 
             // label7
@@ -167,8 +173,10 @@
             txtConfirmacao.ForeColor = Color.FromArgb(64, 64, 64);
             txtConfirmacao.Location = new Point(279, 300);
             txtConfirmacao.Name = "txtConfirmacao";
+            txtConfirmacao.PasswordChar = '●';
             txtConfirmacao.Size = new Size(360, 20);
             txtConfirmacao.TabIndex = 38;
+            txtConfirmacao.TextChanged += txtConfirmacao_TextChanged;
             txtConfirmacao.KeyDown += txtConfirmacao_KeyDown;
             // 
             // label2
@@ -283,12 +291,38 @@
             lblStatusEmail.Size = new Size(0, 15);
             lblStatusEmail.TabIndex = 45;
             // 
+            // PicMostrarSenha
+            // 
+            PicMostrarSenha.Cursor = Cursors.Hand;
+            PicMostrarSenha.Image = Properties.Resources.olho_fechado;
+            PicMostrarSenha.Location = new Point(610, 239);
+            PicMostrarSenha.Name = "PicMostrarSenha";
+            PicMostrarSenha.Size = new Size(24, 20);
+            PicMostrarSenha.SizeMode = PictureBoxSizeMode.StretchImage;
+            PicMostrarSenha.TabIndex = 46;
+            PicMostrarSenha.TabStop = false;
+            PicMostrarSenha.Click += PicMostrarSenha_Click;
+            // 
+            // PicMostrarSenha2
+            // 
+            PicMostrarSenha2.Cursor = Cursors.Hand;
+            PicMostrarSenha2.Image = Properties.Resources.olho_fechado;
+            PicMostrarSenha2.Location = new Point(610, 306);
+            PicMostrarSenha2.Name = "PicMostrarSenha2";
+            PicMostrarSenha2.Size = new Size(24, 20);
+            PicMostrarSenha2.SizeMode = PictureBoxSizeMode.StretchImage;
+            PicMostrarSenha2.TabIndex = 47;
+            PicMostrarSenha2.TabStop = false;
+            PicMostrarSenha2.Click += PicMostrarSenha2_Click;
+            // 
             // frmEsqueciSenha
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(800, 450);
+            Controls.Add(PicMostrarSenha2);
+            Controls.Add(PicMostrarSenha);
             Controls.Add(lblStatusEmail);
             Controls.Add(txtEmail);
             Controls.Add(label10);
@@ -316,6 +350,8 @@
             StartPosition = FormStartPosition.CenterScreen;
             Activated += frmEsqueciSenha_Activated;
             Load += frmEsqueciSenha_Load;
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -343,5 +379,8 @@
         private Label label12;
         private Label label13;
         private Label lblStatusEmail;
+        private PictureBox PicMostrarSenha;
+        private PictureBox pictureBox1;
+        private PictureBox PicMostrarSenha2;
     }
 }
