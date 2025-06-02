@@ -18,7 +18,7 @@ CREATE TABLE Biometria (
 CREATE TABLE Aluno (
     cd_Aluno INT PRIMARY KEY,
     nm_Aluno VARCHAR(100) NOT NULL,
-    gmail_aluno VARCHAR(100) NOT NULL,
+    gmail_aluno VARCHAR(100) UNIQUE NOT NULL,
     telefone_aluno VARCHAR(11) NOT NULL,
     Serie_Aluno INT NOT NULL,
     Curso_Aluno VARCHAR(100) NOT NULL,
