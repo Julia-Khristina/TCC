@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace prjTCC
 {
@@ -21,6 +22,7 @@ namespace prjTCC
         public string Turma = "";
         public string Ano = "";
         public string Email = "";
+        public string Telefone = "";
 
         private DPFP.Template Template;
 
@@ -99,6 +101,8 @@ namespace prjTCC
                 txtEmail.Text = value;
             }));
         }
+
+
 
         protected void SetAno(string value)
         {
@@ -391,7 +395,42 @@ namespace prjTCC
             }
         }
 
+        private void txtTelefone_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir somente dígitos e tecla Backspace
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true; // Cancela o caractere digitado
+            }
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            // Expressão regular simples para validar email
+            string pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
+        }
+
         
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (!IsValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("Email inválido! Por favor, digite um email no formato correto.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Focus();  // Deixa o foco na TextBox para corrigir
+            }
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            Telefone = maskTxtTel.Text;
+        }
     }
 
 }

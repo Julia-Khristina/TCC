@@ -26,6 +26,7 @@ namespace prjTCC
             txtNome.Text = "";
             txtRM.Text = "";
             txtEmail.Text = "";
+            
 
             // Limpa combos
             cmbAno.SelectedIndex = -1;
@@ -36,6 +37,7 @@ namespace prjTCC
             RM = "";
             Email = "";
             Ano = "";
+            Telefone = "";
             Turma = "";
         }
 
@@ -140,7 +142,7 @@ namespace prjTCC
                                 try
                                 {
                                     string Myconnection = "datasource=localhost;username=root;database=db_pontualize;";
-                                    string Query = "SELECT * FROM aluno WHERE UPPER(nm_Aluno) = '"+Nome.ToUpper()+"'";
+                                    string Query = "SELECT * FROM Aluno WHERE UPPER(nm_Aluno) = '"+Nome.ToUpper()+"'";
                                     MySqlConnection Myconn = new MySqlConnection(Myconnection);
                                     MySqlCommand Mycomand = new MySqlCommand(Query, Myconn);
 
@@ -181,8 +183,8 @@ namespace prjTCC
                                             long cdBiometria = cmdBiometria.LastInsertedId;
 
                                             // Inserir Dados na tabela aluno
-                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria)
-                                            VALUES (@rm, @nome, @turma, @ano, @email, @cd_biometria)";
+                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, tel_Aluno)
+                                            VALUES (@rm, @nome, @turma, @ano, @email, @cd_biometria, @tel_aluno)";
                                             MySqlCommand cmdAluno = new MySqlCommand(insertAluno, Myconn1);
 
                                             cmdAluno.Parameters.AddWithValue("@rm", RM);
@@ -191,6 +193,7 @@ namespace prjTCC
                                             cmdAluno.Parameters.AddWithValue("@ano", Ano); // já convertido para int se necessário
                                             cmdAluno.Parameters.AddWithValue("@email", Email);
                                             cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
+                                            cmdAluno.Parameters.AddWithValue("@tel_aluno", Telefone);
                                             cmdAluno.ExecuteNonQuery();
                                             Myconn1.Close();
                                            
@@ -235,7 +238,7 @@ namespace prjTCC
 
         private void UpdateStatus()
         {
-            SetStatus(String.Format("insira : {0}", Enroller.FeaturesNeeded, "Vezes"));
+            SetStatus(String.Format("insira : {0}", Enroller.FeaturesNeeded + "Vezes"));
         }
 
         private void reroll_Load(object sender, EventArgs e)
