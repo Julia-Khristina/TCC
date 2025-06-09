@@ -24,6 +24,15 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 
 <br>
 
+## 🏆**MVP** 
+
+### 1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique aqui](/documents/Sprints/Sprint1)):  Concluído✅
+### 2️⃣ - Comparação da Digital Processada com o Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
+### 3️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+### 4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
+
+<br>
+
 <h3>Linguagens Utilizadas</h3>
 <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="200px;" style="border-radius:50%;"/>
 </td>
