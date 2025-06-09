@@ -36,7 +36,7 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 
 <br>
 
-<h3>Linguagens Utilizadas</h3>
+## 💻**Linguagens Utilizadas**
 <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="200px;" style="border-radius:50%;"/>
 </td>
 <h2> Desenvolvedores</h2>
