@@ -26,10 +26,13 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 
 ## 🏆**MVP** 
 
-### 1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique aqui](/documents/Sprints/Sprint1)):  Concluído✅
-### 2️⃣ - Comparação da Digital Processada com o Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
-### 3️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
-### 4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
+1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique aqui](/documents/Sprints/Sprint1)):  Concluído✅
+<br><br>
+2️⃣ - Comparação da Digital Processada com Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
+<br><br>
+3️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+<br><br>
+4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
 
 <br>
 
