@@ -37,7 +37,30 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 <br>
 
 ## 💻**Tecnologias utilizadas**
-<img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="200px;" style="border-radius:50%;"/>
+
+<table>
+  <tr>
+    <td align="center">
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="120px;" height="120px;" style="border-radius:50%;"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/power_bi.png" width="100px;" height="120px;" style="border-radius:50%;"/>
+    </td>
+     <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/mysql.png" width="100px;" height="100px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/trello.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/leitor_biometrico.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/raspberry_pi.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+  </tr>
+</table>
+
 </td>
 <h2> Desenvolvedores</h2>
 <table>
