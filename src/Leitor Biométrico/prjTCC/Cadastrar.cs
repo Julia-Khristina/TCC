@@ -238,7 +238,7 @@ namespace prjTCC
 
         private void UpdateStatus()
         {
-            SetStatus(String.Format("insira : {0}", Enroller.FeaturesNeeded + "Vezes"));
+            SetStatus(String.Format("insira : {0}", Enroller.FeaturesNeeded + " Vezes"));
         }
 
         private void reroll_Load(object sender, EventArgs e)

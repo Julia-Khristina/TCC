@@ -431,6 +431,11 @@ namespace prjTCC
         {
             Telefone = maskTxtTel.Text;
         }
+
+        private void txtPrompt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

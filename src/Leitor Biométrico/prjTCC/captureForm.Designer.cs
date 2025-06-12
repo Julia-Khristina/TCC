@@ -54,7 +54,8 @@
             // 
             // picDigital
             // 
-            this.picDigital.Location = new System.Drawing.Point(36, 50);
+            this.picDigital.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.picDigital.Location = new System.Drawing.Point(36, 74);
             this.picDigital.Name = "picDigital";
             this.picDigital.Size = new System.Drawing.Size(186, 212);
             this.picDigital.TabIndex = 0;
@@ -62,12 +63,14 @@
             // 
             // txtPrompt
             // 
-            this.txtPrompt.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPrompt.Location = new System.Drawing.Point(12, 326);
+            this.txtPrompt.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.txtPrompt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtPrompt.Location = new System.Drawing.Point(36, 336);
             this.txtPrompt.Name = "txtPrompt";
             this.txtPrompt.ReadOnly = true;
-            this.txtPrompt.Size = new System.Drawing.Size(210, 20);
+            this.txtPrompt.Size = new System.Drawing.Size(186, 20);
             this.txtPrompt.TabIndex = 1;
+            this.txtPrompt.TextChanged += new System.EventHandler(this.txtPrompt_TextChanged);
             // 
             // txtStatus
             // 
@@ -85,7 +88,7 @@
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(12, 298);
+            this.lblStatus.Location = new System.Drawing.Point(12, 18);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(73, 25);
             this.lblStatus.TabIndex = 3;
@@ -101,12 +104,14 @@
             // 
             // btnScan
             // 
+            this.btnScan.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.btnScan.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnScan.Location = new System.Drawing.Point(584, 305);
             this.btnScan.Name = "btnScan";
             this.btnScan.Size = new System.Drawing.Size(112, 41);
             this.btnScan.TabIndex = 5;
             this.btnScan.Text = "Escanear";
-            this.btnScan.UseVisualStyleBackColor = true;
+            this.btnScan.UseVisualStyleBackColor = false;
             this.btnScan.Click += new System.EventHandler(this.btnScan_Click);
             // 
             // txtRM
@@ -153,7 +158,7 @@
             // 
             this.cmbAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAno.FormattingEnabled = true;
-            this.cmbAno.Location = new System.Drawing.Point(601, 182);
+            this.cmbAno.Location = new System.Drawing.Point(601, 185);
             this.cmbAno.Name = "cmbAno";
             this.cmbAno.Size = new System.Drawing.Size(62, 21);
             this.cmbAno.TabIndex = 12;
@@ -161,7 +166,9 @@
             // 
             // panel1
             // 
-            this.panel1.Location = new System.Drawing.Point(17, 34);
+            this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Location = new System.Drawing.Point(17, 58);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(223, 243);
             this.panel1.TabIndex = 13;
@@ -196,7 +203,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(598, 166);
+            this.label4.Location = new System.Drawing.Point(598, 169);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 17;
