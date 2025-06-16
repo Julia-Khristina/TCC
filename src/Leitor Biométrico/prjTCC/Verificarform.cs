@@ -131,7 +131,7 @@ namespace prjTCC
                         {
                             encontrado = true;
                             string nome = reader["nm_Aluno"].ToString();
-                            MessageBox.Show($"Aluno identificado: {nome}");
+                            MessageBox.Show($"Aluno identificado: {nome}","Verificado", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                             // Aqui você pode chamar o registro de entrada ou atraso
                             break;
                         }
@@ -165,6 +165,11 @@ namespace prjTCC
         }
 
         private void pbDedo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Verificarform_Load(object sender, EventArgs e)
         {
 
         }

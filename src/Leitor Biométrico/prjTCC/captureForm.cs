@@ -34,7 +34,7 @@ namespace prjTCC
 
                 if (Template != null)
                 {
-                    MessageBox.Show("Aluno cadastrado com sucesso");
+                    MessageBox.Show("Aluno cadastrado com sucesso","Cadastrado", MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
                 else
                 {
