@@ -19,7 +19,7 @@ namespace prjTCC
         public event OnTemplateEventHandler OnTemplate;
         private DPFP.Processing.Enrollment Enroller;
 
-       
+
         private void LimparCampos()
         {
             // Limpa campos de texto
