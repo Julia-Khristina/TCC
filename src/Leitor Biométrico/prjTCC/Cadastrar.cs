@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using System.Net.Http;
 
 namespace prjTCC
 {
@@ -139,6 +140,32 @@ namespace prjTCC
 
                                 byte[] bytes = br.ReadBytes((Int32)fingerprintData.Length);
 
+                                // CONVERTE O TEMPLATE PARA BASE64
+                                string base64Biometria = Convert.ToBase64String(bytes);
+
+                                // Exemplo: exibir em caixa de mensagem (depuração)
+                                MessageBox.Show(base64Biometria);
+
+                                // Exemplo: enviar via HTTP (POST JSON)
+                                using (HttpClient client = new HttpClient())
+                                {
+                                    var json = $"{{\"biometria\": \"{base64Biometria}\"}}";
+                                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                                    // Substitua pela sua URL real
+                                    var response = await client.PostAsync("http://localhost:5000/api/envioBiometria", content);
+
+                                    if (response.IsSuccessStatusCode)
+                                    {
+                                        MessageBox.Show("Biometria enviada com sucesso!");
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Erro ao enviar biometria: " + response.StatusCode);
+                                    }
+                                }
+
+
                                 try
                                 {
                                     string Myconnection = "datasource=localhost;username=root;database=db_pontualize;";
@@ -174,13 +201,13 @@ namespace prjTCC
                                             Myconn1.Open();
                                             
                                             // 1. Inserir na tabela Biometria
-                                            string insertBiometria = "INSERT INTO Biometria (dados_Biometria) VALUES (@digital)";
-                                            MySqlCommand cmdBiometria = new MySqlCommand(insertBiometria, Myconn1);
-                                            cmdBiometria.Parameters.AddWithValue("@digital", bytes);
-                                            cmdBiometria.ExecuteNonQuery();
+                                            //string insertBiometria = "INSERT INTO Biometria (dados_Biometria) VALUES (@digital)";
+                                            //MySqlCommand cmdBiometria = new MySqlCommand(insertBiometria, Myconn1);
+                                            //cmdBiometria.Parameters.AddWithValue("@digital", base64Biometria);
+                                            //cmdBiometria.ExecuteNonQuery();
 
                                             // 2. Obter o ID gerado
-                                            long cdBiometria = cmdBiometria.LastInsertedId;
+                                            //long cdBiometria = cmdBiometria.LastInsertedId;
 
                                             // Inserir Dados na tabela aluno
                                             string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, tel_Aluno)
@@ -192,7 +219,7 @@ namespace prjTCC
                                             cmdAluno.Parameters.AddWithValue("@turma", Turma);
                                             cmdAluno.Parameters.AddWithValue("@ano", Ano); // já convertido para int se necessário
                                             cmdAluno.Parameters.AddWithValue("@email", Email);
-                                            cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
+                                            //cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
                                             cmdAluno.Parameters.AddWithValue("@tel_aluno", Telefone);
                                             cmdAluno.ExecuteNonQuery();
                                             Myconn1.Close();
