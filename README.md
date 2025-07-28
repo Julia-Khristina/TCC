@@ -24,8 +24,43 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 
 <br>
 
-<h3>Linguagens Utilizadas</h3>
-<img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="200px;" style="border-radius:50%;"/>
+## 🏆**MVP** 
+
+1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique aqui](/documents/Sprints/Sprint1)):  Concluído✅
+<br><br>
+2️⃣ - Comparação da Digital Processada com Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
+<br><br>
+3️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+<br><br>
+4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
+
+<br>
+
+## 💻**Tecnologias utilizadas**
+
+<table>
+  <tr>
+    <td align="center">
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="120px;" height="120px;" style="border-radius:50%;"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/power_bi.png" width="100px;" height="120px;" style="border-radius:50%;"/>
+    </td>
+     <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/mysql.png" width="100px;" height="100px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/trello.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/leitor_biometrico.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+    <td align="center">
+      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/raspberry_pi.png" width="120px;" height="120px;" style="border-radius:50%;" />
+    </td>
+  </tr>
+</table>
+
 </td>
 <h2> Desenvolvedores</h2>
 <table>

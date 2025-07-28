@@ -148,7 +148,7 @@ namespace Dashboard
                 ObterCodigoCursoERedirecionar(Turmas_Direcionamento.SelectedItem.ToString()!);
             }
         }
-       
+
         private void ObterCodigoCursoERedirecionar(string nomeTurma)
         {
             try

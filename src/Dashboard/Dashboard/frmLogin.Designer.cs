@@ -45,7 +45,9 @@
             txtUsuario = new TextBox();
             txtSenha = new TextBox();
             lblEsqueciSenha = new Label();
+            PicMostrarSenha = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).BeginInit();
             SuspendLayout();
             // 
             // btnBarra
@@ -210,8 +212,10 @@
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
             txtSenha.Location = new Point(438, 274);
             txtSenha.Name = "txtSenha";
+            txtSenha.PasswordChar = '●';
             txtSenha.Size = new Size(303, 20);
             txtSenha.TabIndex = 15;
+            txtSenha.TextChanged += txtSenha_TextChanged;
             txtSenha.KeyDown += txtSenha_KeyDown;
             // 
             // lblEsqueciSenha
@@ -225,12 +229,24 @@
             lblEsqueciSenha.Text = "Esqueci a senha!";
             lblEsqueciSenha.Click += lblEsqueciSenha_Click;
             // 
+            // PicMostrarSenha
+            // 
+            PicMostrarSenha.Image = Properties.Resources.olho_fechado;
+            PicMostrarSenha.Location = new Point(711, 281);
+            PicMostrarSenha.Name = "PicMostrarSenha";
+            PicMostrarSenha.Size = new Size(24, 20);
+            PicMostrarSenha.SizeMode = PictureBoxSizeMode.StretchImage;
+            PicMostrarSenha.TabIndex = 17;
+            PicMostrarSenha.TabStop = false;
+            PicMostrarSenha.Click += PicMostrarSenha_Click;
+            // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
             ClientSize = new Size(800, 450);
+            Controls.Add(PicMostrarSenha);
             Controls.Add(lblEsqueciSenha);
             Controls.Add(txtSenha);
             Controls.Add(txtUsuario);
@@ -248,12 +264,14 @@
             Controls.Add(pictureBox1);
             Controls.Add(btnEntrar);
             Controls.Add(btnBarra);
+            Cursor = Cursors.Hand;
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLogin";
             Activated += frmLogin_Activated;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -277,5 +295,6 @@
         private TextBox txtUsuario;
         private TextBox txtSenha;
         private Label lblEsqueciSenha;
+        private PictureBox PicMostrarSenha;
     }
 }

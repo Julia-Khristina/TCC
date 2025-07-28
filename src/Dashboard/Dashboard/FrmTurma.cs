@@ -292,42 +292,92 @@ namespace Dashboard
 
         private void AbrirNovoFormularioTurma(int novoCursoId)
         {
-            Form? parentForm = this.ParentForm ?? this.Owner ?? Application.OpenForms["frmDashboard_Principal"];
-            this.Close();
+            Form? ownerForm = this.Owner ?? Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
+            bool ownerWasOriginallyVisible = ownerForm?.Visible ?? false; // Guarda estado inicial do dashboard
 
-            frmTurma newForm = new frmTurma(novoCursoId);
-            if (parentForm != null)
+            try
             {
-                newForm.Show(parentForm);
-            }
-            else
-            {
+                // 1. Cria a nova instância do formulário da turma
+                frmTurma newForm = new frmTurma(novoCursoId);
+
+                // 2. Define o Owner (Dashboard) se ele existir
+                if (ownerForm != null && !ownerForm.IsDisposed)
+                {
+                    newForm.Owner = ownerForm;
+                }
+
+                // 3. Garante que o Owner (Dashboard) esteja oculto ANTES de mostrar o novo form
+                if (ownerForm != null && ownerForm.Visible)
+                {
+                    ownerForm.Hide();
+                }
+
+                // 4. Mostra o NOVO formulário da turma. Ele deve vir para a frente.
                 newForm.Show();
+
+                // 5. Esconde o formulário da turma ANTIGA, logo APÓS mostrar o novo.
+                this.Hide();
+
+                // 6. Agenda o fechamento seguro do formulário ANTIGO.
+                this.BeginInvoke(new MethodInvoker(this.Close));
+
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao tentar trocar de turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Tratamento de erro: Tenta fechar este form com segurança
+                try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
+                // E tenta restaurar a visibilidade do dashboard se ele estava visível originalmente
+                if (ownerForm != null && !ownerForm.IsDisposed && ownerWasOriginallyVisible)
+                {
+                    ownerForm.Show();
+                }
+            }
+            // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
         }
+
+
 
         private void VoltarParaDashboard()
         {
-            Form? parentForm = this.ParentForm ?? this.Owner ?? Application.OpenForms["frmDashboard_Principal"];
-            this.Close();
+            try
+            {
+                Form? parentForm = this.Owner ?? Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
 
-            if (parentForm != null)
-            {
-                parentForm.Show();
-            }
-            else
-            {
-                foreach (Form form in Application.OpenForms)
+                // Oculta o formulário atual primeiro
+                this.Hide();
+
+                if (parentForm != null && !parentForm.IsDisposed)
                 {
-                    if (form is frmDashboard_Principal)
+                    parentForm.Show();
+                }
+                else
+                {
+                    // Se o dashboard não foi encontrado ou está fechado, pode ser necessário recriá-lo
+                    // ou simplesmente fechar este form. Ajuste conforme a lógica da sua aplicação.
+                    // Exemplo: Tentar encontrar e mostrar, ou criar um novo se não existir.
+                    var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
+                    if (dashboard != null)
                     {
-                        form.Show();
-                        return;
+                        dashboard.Show();
+                    }
+                    else
+                    {
+                        // new frmDashboard_Principal().Show(); // Descomente se quiser criar um novo se não houver
                     }
                 }
-                new frmDashboard_Principal().Show();
+
+                // Agenda o fechamento do formulário atual para ocorrer depois
+                this.BeginInvoke(new MethodInvoker(this.Close));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao voltar para o dashboard: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Tenta fechar mesmo em caso de erro
+                try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
             }
         }
+
 
         private void CleanupResources()
         {

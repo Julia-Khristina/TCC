@@ -18,7 +18,7 @@ CREATE TABLE Biometria (
 CREATE TABLE Aluno (
     cd_Aluno INT PRIMARY KEY,
     nm_Aluno VARCHAR(100) NOT NULL,
-    gmail_aluno VARCHAR(100) NOT NULL,
+    gmail_aluno VARCHAR(100) UNIQUE NOT NULL,
     telefone_aluno VARCHAR(11) NOT NULL,
     Serie_Aluno INT NOT NULL,
     Curso_Aluno VARCHAR(100) NOT NULL,
@@ -57,9 +57,6 @@ JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
 CREATE TABLE RegistroAtraso (
     cd_Registro INT AUTO_INCREMENT PRIMARY KEY,
     cd_Aluno INT,
-    nm_Aluno VARCHAR(100),
-    nm_Serie VARCHAR(100),
-    nm_Curso VARCHAR(100),
     horario_entrada TIME,
     data_registro DATE,
     FOREIGN KEY (cd_Aluno) REFERENCES Aluno(cd_Aluno)
@@ -68,15 +65,9 @@ CREATE TABLE RegistroAtraso (
 INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
 SELECT 
     A.cd_Aluno,
-    A.nm_Aluno,
-    S.nm_Serie,
-    C.nm_Curso,
     CURRENT_TIME(),
     CURRENT_DATE()
-FROM Aluno A
-JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
-JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
-WHERE (
+FROM Aluno A WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
 );
