@@ -153,7 +153,7 @@ namespace prjTCC
                                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
                                     // Substitua pela sua URL real
-                                    var response = await client.PostAsync("http://localhost:5000/api/envioBiometria", content);
+                                    var response = await client.PostAsync("http://192.168.0.30:8080/api/envioBiometria", content);
 
                                     if (response.IsSuccessStatusCode)
                                     {
