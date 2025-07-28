@@ -30,9 +30,11 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 <br><br>
 2️⃣ - Comparação da Digital Processada com Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
 <br><br>
-3️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+3️⃣ - Integração entre o Sistema C# com o RaspBerry PI | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Em Desenvolvimento ✅
 <br><br>
-4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
+4️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+<br><br>
+5️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
 
 <br>
 
