@@ -1,6 +1,6 @@
-CREATE DATABASE Db_Pontualize;
+CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
--- DROP DATABASE Db_Pontualize;
+
 CREATE TABLE Serie (
     cd_Serie INT AUTO_INCREMENT PRIMARY KEY,
     nm_Serie VARCHAR(100) NOT NULL
