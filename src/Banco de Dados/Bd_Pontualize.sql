@@ -8,7 +8,7 @@ CREATE TABLE Serie (
 
 CREATE TABLE Curso (
     cd_Curso INT AUTO_INCREMENT PRIMARY KEY,
-    nm_Curso VARCHAR(100) PRIMARY KEY
+    nm_Curso VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE Biometria (
@@ -22,10 +22,10 @@ CREATE TABLE Aluno (
     gmail_aluno VARCHAR(100) UNIQUE NOT NULL,
     telefone_aluno VARCHAR(11) NOT NULL,
     Serie_Aluno INT NOT NULL,
-    Curso_Aluno VARCHAR(100) NOT NULL,
+    Curso_Aluno INT NOT NULL,
     cd_Biometria INT NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
-    FOREIGN KEY (Curso_Aluno) REFERENCES Curso(nm_Curso),
+    FOREIGN KEY (Curso_Aluno) REFERENCES Curso(cd_Curso),
     FOREIGN KEY (cd_Biometria) REFERENCES Biometria(cd_Biometria)
 );
 
@@ -37,7 +37,6 @@ CREATE TABLE Administrador (
     senha_Administrador VARCHAR(255) NOT NULL
 );
 
--- TABELA DE NOTIFICAÇÕES
 CREATE TABLE Notificacao (
     cd_Notificacao INT AUTO_INCREMENT PRIMARY KEY,
     cd_Aluno INT,
@@ -69,7 +68,7 @@ SELECT
     CURRENT_DATE() AS Data
 FROM Aluno A
 JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
-JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
+JOIN Curso C ON A.Curso_Aluno = C.cd_Curso
 WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() <= '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() <= '18:15:59')
@@ -84,7 +83,6 @@ BEGIN
     DECLARE qtd_atrasos INT;
     DECLARE detalhes_atrasos TEXT;
 
-    -- Conta a quantidade de atrasos do aluno
     SELECT COUNT(*) INTO qtd_atrasos
     FROM RegistroAtraso
     WHERE cd_Aluno = NEW.cd_Aluno;
@@ -101,7 +99,6 @@ BEGIN
             LIMIT 3
         ) AS UltimosAtrasos;
 
-        -- Envia notificação
         INSERT INTO Notificacao (cd_Aluno, mensagem)
         VALUES (
             NEW.cd_Aluno,
@@ -115,7 +112,7 @@ END;
 //
 DELIMITER ;
 
--- INSERÇÕES básicas
+-- INSERÇÕES BÁSICAS
 INSERT INTO Serie (nm_Serie) VALUES
 ('Primeiro ano'),
 ('Segundo ano'),
@@ -130,6 +127,8 @@ INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Admin
 VALUES
 ('Mestre dos Magos', '12999999999', 'etec@gmail.com', '1234#');
 
+-- EXEMPLO DE INSERÇÃO DE ATRASO
+/*
 INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
 SELECT 
     A.cd_Aluno,
@@ -140,7 +139,7 @@ SELECT
     CURRENT_DATE()
 FROM Aluno A
 JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
-JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
+JOIN Curso C ON A.Curso_Aluno = C.cd_Curso
 WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
