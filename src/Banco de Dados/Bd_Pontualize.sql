@@ -7,6 +7,7 @@ CREATE TABLE Serie (
 );
 
 CREATE TABLE Curso (
+    cd_Curso INT AUTO_INCREMENT PRIMARY KEY,
     nm_Curso VARCHAR(100) PRIMARY KEY
 );
 
