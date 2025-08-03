@@ -36,7 +36,28 @@ CREATE TABLE Administrador (
     senha_Administrador VARCHAR(255) NOT NULL
 );
 
--- VIEW DE ENTRADAS COMUNS
+-- TABELA DE NOTIFICAÇÕES
+CREATE TABLE Notificacao (
+    cd_Notificacao INT AUTO_INCREMENT PRIMARY KEY,
+    cd_Aluno INT,
+    mensagem TEXT NOT NULL,
+    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cd_Aluno) REFERENCES Aluno(cd_Aluno)
+);
+
+-- TABELA DE REGISTRO DE ATRASOS
+CREATE TABLE RegistroAtraso (
+    cd_Registro INT AUTO_INCREMENT PRIMARY KEY,
+    cd_Aluno INT,
+    nm_Aluno VARCHAR(100),
+    nm_Serie VARCHAR(100),
+    nm_Curso VARCHAR(100),
+    horario_entrada TIME,
+    data_registro DATE,
+    FOREIGN KEY (cd_Aluno) REFERENCES Aluno(cd_Aluno)
+);
+
+-- VIEW DE ENTRADAS
 CREATE VIEW Entradas AS
 SELECT 
     A.cd_Aluno AS rm_Aluno,
@@ -48,31 +69,12 @@ SELECT
 FROM Aluno A
 JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
 JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
-    WHERE (
+WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() <= '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() <= '18:15:59')
 );
 
--- TABELA ATRASOS
-CREATE TABLE RegistroAtraso (
-    cd_Registro INT AUTO_INCREMENT PRIMARY KEY,
-    cd_Aluno INT,
-    horario_entrada TIME,
-    data_registro DATE,
-    FOREIGN KEY (cd_Aluno) REFERENCES Aluno(cd_Aluno)
-);
-
-INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
-SELECT 
-    A.cd_Aluno,
-    CURRENT_TIME(),
-    CURRENT_DATE()
-FROM Aluno A WHERE (
-    (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
-    (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
-);
-
--- AVISO DE 3 ATRASOS
+-- TRIGGER DE AVISO DE 3 ATRASOS
 DELIMITER //
 CREATE TRIGGER trig_AVISO_3_atrasos
 AFTER INSERT ON RegistroAtraso
@@ -87,10 +89,8 @@ BEGIN
     WHERE cd_Aluno = NEW.cd_Aluno;
 
     IF qtd_atrasos = 3 THEN
-        -- Monta a lista de datas e horários dos 3 atrasos
         SELECT GROUP_CONCAT(
-            DATE_FORMAT(data_registro, '%d/%m/%Y') 
-            SEPARATOR ', '
+            DATE_FORMAT(data_registro, '%d/%m/%Y') SEPARATOR ', '
         ) INTO detalhes_atrasos
         FROM (
             SELECT data_registro
@@ -100,6 +100,7 @@ BEGIN
             LIMIT 3
         ) AS UltimosAtrasos;
 
+        -- Envia notificação
         INSERT INTO Notificacao (cd_Aluno, mensagem)
         VALUES (
             NEW.cd_Aluno,
@@ -113,7 +114,7 @@ END;
 //
 DELIMITER ;
 
--- Inserções Básicas
+-- INSERÇÕES básicas
 INSERT INTO Serie (nm_Serie) VALUES
 ('Primeiro ano'),
 ('Segundo ano'),
@@ -126,4 +127,20 @@ INSERT INTO Curso (nm_Curso) VALUES
 
 INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Administrador, senha_Administrador)
 VALUES
-('Mestre dos Magos', '12 999999999', 'etec@gmail.com', '1234#');
+('Mestre dos Magos', '12999999999', 'etec@gmail.com', '1234#');
+
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+SELECT 
+    A.cd_Aluno,
+    A.nm_Aluno,
+    S.nm_Serie,
+    C.nm_Curso,
+    CURRENT_TIME(),
+    CURRENT_DATE()
+FROM Aluno A
+JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
+JOIN Curso C ON A.Curso_Aluno = C.nm_Curso
+WHERE (
+    (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
+    (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
+);
