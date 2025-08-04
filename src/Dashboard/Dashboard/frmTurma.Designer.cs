@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTurma));
             Painel_Perfil = new Panel();
+            pictureBox1 = new PictureBox();
             Turmas_Direcionamento = new ComboBox();
             btn_Notificacao_Direcionamento = new Button();
             btn_Relatorio_Direcionamento = new Button();
@@ -55,8 +56,8 @@
             pictureBox4 = new PictureBox();
             btnSolicitarAdvertencia = new Button();
             btnExportar = new Button();
-            pictureBox1 = new PictureBox();
             Painel_Perfil.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnMenu.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -68,17 +69,26 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             pnAtrasos_dia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // Painel_Perfil
             // 
             Painel_Perfil.Controls.Add(pictureBox1);
             Painel_Perfil.Location = new Point(0, 0);
-            Painel_Perfil.Margin = new Padding(4, 4, 4, 4);
             Painel_Perfil.Name = "Painel_Perfil";
-            Painel_Perfil.Size = new Size(198, 96);
+            Painel_Perfil.Size = new Size(158, 77);
             Painel_Perfil.TabIndex = 2;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, -38);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(138, 154);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
             // 
             // Turmas_Direcionamento
             // 
@@ -90,11 +100,11 @@
             Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
             Turmas_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
             Turmas_Direcionamento.FormattingEnabled = true;
-            Turmas_Direcionamento.Location = new Point(0, 72);
+            Turmas_Direcionamento.Location = new Point(0, 58);
             Turmas_Direcionamento.Margin = new Padding(0);
             Turmas_Direcionamento.MaxDropDownItems = 3;
             Turmas_Direcionamento.Name = "Turmas_Direcionamento";
-            Turmas_Direcionamento.Size = new Size(198, 32);
+            Turmas_Direcionamento.Size = new Size(158, 28);
             Turmas_Direcionamento.TabIndex = 9;
             // 
             // btn_Notificacao_Direcionamento
@@ -104,10 +114,9 @@
             btn_Notificacao_Direcionamento.FlatAppearance.BorderSize = 0;
             btn_Notificacao_Direcionamento.FlatStyle = FlatStyle.Flat;
             btn_Notificacao_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
-            btn_Notificacao_Direcionamento.Location = new Point(0, 36);
-            btn_Notificacao_Direcionamento.Margin = new Padding(4, 4, 4, 4);
+            btn_Notificacao_Direcionamento.Location = new Point(0, 29);
             btn_Notificacao_Direcionamento.Name = "btn_Notificacao_Direcionamento";
-            btn_Notificacao_Direcionamento.Size = new Size(198, 36);
+            btn_Notificacao_Direcionamento.Size = new Size(158, 29);
             btn_Notificacao_Direcionamento.TabIndex = 9;
             btn_Notificacao_Direcionamento.Text = "Notificação";
             btn_Notificacao_Direcionamento.UseVisualStyleBackColor = false;
@@ -120,9 +129,8 @@
             btn_Relatorio_Direcionamento.FlatStyle = FlatStyle.Flat;
             btn_Relatorio_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
             btn_Relatorio_Direcionamento.Location = new Point(0, 0);
-            btn_Relatorio_Direcionamento.Margin = new Padding(4, 4, 4, 4);
             btn_Relatorio_Direcionamento.Name = "btn_Relatorio_Direcionamento";
-            btn_Relatorio_Direcionamento.Size = new Size(198, 36);
+            btn_Relatorio_Direcionamento.Size = new Size(158, 29);
             btn_Relatorio_Direcionamento.TabIndex = 8;
             btn_Relatorio_Direcionamento.Text = "Relátorio";
             btn_Relatorio_Direcionamento.UseVisualStyleBackColor = false;
@@ -134,19 +142,17 @@
             pnMenu.Controls.Add(pnBotões);
             pnMenu.Controls.Add(Painel_Perfil);
             pnMenu.Location = new Point(0, 0);
-            pnMenu.Margin = new Padding(4, 4, 4, 4);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(198, 724);
+            pnMenu.Size = new Size(158, 579);
             pnMenu.TabIndex = 1;
             // 
             // panel2
             // 
             panel2.Controls.Add(panel3);
             panel2.Controls.Add(Btn_Voltar);
-            panel2.Location = new Point(0, 544);
-            panel2.Margin = new Padding(4, 4, 4, 4);
+            panel2.Location = new Point(0, 435);
             panel2.Name = "panel2";
-            panel2.Size = new Size(198, 180);
+            panel2.Size = new Size(158, 144);
             panel2.TabIndex = 9;
             // 
             // panel3
@@ -154,10 +160,9 @@
             panel3.Controls.Add(LblFuncao);
             panel3.Controls.Add(lblNome);
             panel3.Controls.Add(pictureBox2);
-            panel3.Location = new Point(16, 26);
-            panel3.Margin = new Padding(4, 4, 4, 4);
+            panel3.Location = new Point(13, 21);
             panel3.Name = "panel3";
-            panel3.Size = new Size(162, 70);
+            panel3.Size = new Size(130, 56);
             panel3.TabIndex = 2;
             // 
             // LblFuncao
@@ -165,10 +170,9 @@
             LblFuncao.AutoSize = true;
             LblFuncao.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblFuncao.ForeColor = Color.FromArgb(224, 224, 224);
-            LblFuncao.Location = new Point(78, 36);
-            LblFuncao.Margin = new Padding(4, 0, 4, 0);
+            LblFuncao.Location = new Point(62, 29);
             LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(56, 20);
+            LblFuncao.Size = new Size(49, 17);
             LblFuncao.TabIndex = 3;
             LblFuncao.Text = "Função";
             // 
@@ -176,20 +180,18 @@
             // 
             lblNome.AutoSize = true;
             lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(75, 11);
-            lblNome.Margin = new Padding(4, 0, 4, 0);
+            lblNome.Location = new Point(60, 9);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(61, 25);
+            lblNome.Size = new Size(50, 20);
             lblNome.TabIndex = 2;
             lblNome.Text = "Nome";
             // 
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(4, 4);
-            pictureBox2.Margin = new Padding(4, 4, 4, 4);
+            pictureBox2.Location = new Point(3, 3);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(64, 60);
+            pictureBox2.Size = new Size(51, 48);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
@@ -200,10 +202,9 @@
             Btn_Voltar.FlatStyle = FlatStyle.Flat;
             Btn_Voltar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Btn_Voltar.ForeColor = Color.FromArgb(98, 114, 255);
-            Btn_Voltar.Location = new Point(36, 116);
-            Btn_Voltar.Margin = new Padding(4, 4, 4, 4);
+            Btn_Voltar.Location = new Point(29, 93);
             Btn_Voltar.Name = "Btn_Voltar";
-            Btn_Voltar.Size = new Size(118, 41);
+            Btn_Voltar.Size = new Size(94, 33);
             Btn_Voltar.TabIndex = 0;
             Btn_Voltar.Text = "Voltar";
             Btn_Voltar.TextAlign = ContentAlignment.TopCenter;
@@ -214,20 +215,18 @@
             pnBotões.Controls.Add(Turmas_Direcionamento);
             pnBotões.Controls.Add(btn_Notificacao_Direcionamento);
             pnBotões.Controls.Add(btn_Relatorio_Direcionamento);
-            pnBotões.Location = new Point(4, 99);
-            pnBotões.Margin = new Padding(4, 4, 4, 4);
+            pnBotões.Location = new Point(3, 79);
             pnBotões.Name = "pnBotões";
-            pnBotões.Size = new Size(198, 114);
+            pnBotões.Size = new Size(158, 91);
             pnBotões.TabIndex = 8;
             // 
             // lblNmTurma
             // 
             lblNmTurma.AutoSize = true;
             lblNmTurma.Font = new Font("Segoe UI", 12F);
-            lblNmTurma.Location = new Point(230, 21);
-            lblNmTurma.Margin = new Padding(4, 0, 4, 0);
+            lblNmTurma.Location = new Point(184, 17);
             lblNmTurma.Name = "lblNmTurma";
-            lblNmTurma.Size = new Size(75, 32);
+            lblNmTurma.Size = new Size(62, 28);
             lblNmTurma.TabIndex = 2;
             lblNmTurma.Text = "Curso";
             lblNmTurma.TextAlign = ContentAlignment.MiddleCenter;
@@ -236,30 +235,28 @@
             // 
             pnAlunoAtrasos.BackColor = SystemColors.ButtonHighlight;
             pnAlunoAtrasos.Controls.Add(tbAtrasoTurma);
-            pnAlunoAtrasos.Location = new Point(230, 219);
-            pnAlunoAtrasos.Margin = new Padding(4, 4, 4, 4);
+            pnAlunoAtrasos.Location = new Point(184, 175);
             pnAlunoAtrasos.Name = "pnAlunoAtrasos";
-            pnAlunoAtrasos.Size = new Size(329, 421);
+            pnAlunoAtrasos.Size = new Size(263, 337);
             pnAlunoAtrasos.TabIndex = 5;
             // 
             // tbAtrasoTurma
             // 
             tbAtrasoTurma.AllowUserToOrderColumns = true;
             tbAtrasoTurma.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tbAtrasoTurma.Location = new Point(0, -1);
-            tbAtrasoTurma.Margin = new Padding(4, 4, 4, 4);
+            tbAtrasoTurma.Location = new Point(3, -3);
             tbAtrasoTurma.Name = "tbAtrasoTurma";
             tbAtrasoTurma.RowHeadersWidth = 51;
-            tbAtrasoTurma.Size = new Size(329, 419);
+            tbAtrasoTurma.Size = new Size(263, 335);
             tbAtrasoTurma.TabIndex = 0;
+            tbAtrasoTurma.CellContentClick += tbAtrasoTurma_CellContentClick;
             // 
             // pnGraficoTurma
             // 
             pnGraficoTurma.BackColor = SystemColors.ButtonHighlight;
-            pnGraficoTurma.Location = new Point(598, 219);
-            pnGraficoTurma.Margin = new Padding(4, 4, 4, 4);
+            pnGraficoTurma.Location = new Point(478, 175);
             pnGraficoTurma.Name = "pnGraficoTurma";
-            pnGraficoTurma.Size = new Size(558, 422);
+            pnGraficoTurma.Size = new Size(446, 338);
             pnGraficoTurma.TabIndex = 7;
             // 
             // lblDiario
@@ -269,10 +266,9 @@
             lblDiario.Enabled = false;
             lblDiario.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDiario.ForeColor = SystemColors.ActiveCaptionText;
-            lblDiario.Location = new Point(46, 48);
-            lblDiario.Margin = new Padding(4, 0, 4, 0);
+            lblDiario.Location = new Point(37, 38);
             lblDiario.Name = "lblDiario";
-            lblDiario.Size = new Size(49, 38);
+            lblDiario.Size = new Size(40, 31);
             lblDiario.TabIndex = 11;
             lblDiario.Text = "00";
             // 
@@ -283,10 +279,9 @@
             label2.Enabled = false;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(5, 21);
-            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Location = new Point(4, 17);
             label2.Name = "label2";
-            label2.Size = new Size(122, 25);
+            label2.Size = new Size(101, 20);
             label2.TabIndex = 10;
             label2.Text = "Atrasos Totais";
             // 
@@ -296,19 +291,17 @@
             pnAtrasos_Totais.Controls.Add(lblDiario);
             pnAtrasos_Totais.Controls.Add(label2);
             pnAtrasos_Totais.Controls.Add(pictureBox3);
-            pnAtrasos_Totais.Location = new Point(294, 91);
-            pnAtrasos_Totais.Margin = new Padding(4, 4, 4, 4);
+            pnAtrasos_Totais.Location = new Point(235, 73);
             pnAtrasos_Totais.Name = "pnAtrasos_Totais";
-            pnAtrasos_Totais.Size = new Size(218, 104);
+            pnAtrasos_Totais.Size = new Size(174, 83);
             pnAtrasos_Totais.TabIndex = 8;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(134, 25);
-            pictureBox3.Margin = new Padding(4, 4, 4, 4);
+            pictureBox3.Location = new Point(107, 20);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(64, 60);
+            pictureBox3.Size = new Size(51, 48);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -319,10 +312,9 @@
             pnAtrasos_dia.Controls.Add(label3);
             pnAtrasos_dia.Controls.Add(label4);
             pnAtrasos_dia.Controls.Add(pictureBox4);
-            pnAtrasos_dia.Location = new Point(888, 91);
-            pnAtrasos_dia.Margin = new Padding(4, 4, 4, 4);
+            pnAtrasos_dia.Location = new Point(710, 73);
             pnAtrasos_dia.Name = "pnAtrasos_dia";
-            pnAtrasos_dia.Size = new Size(218, 104);
+            pnAtrasos_dia.Size = new Size(174, 83);
             pnAtrasos_dia.TabIndex = 12;
             // 
             // label3
@@ -332,10 +324,9 @@
             label3.Enabled = false;
             label3.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label3.ForeColor = SystemColors.ActiveCaptionText;
-            label3.Location = new Point(46, 48);
-            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Location = new Point(37, 38);
             label3.Name = "label3";
-            label3.Size = new Size(49, 38);
+            label3.Size = new Size(40, 31);
             label3.TabIndex = 11;
             label3.Text = "00";
             // 
@@ -346,20 +337,18 @@
             label4.Enabled = false;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.ForeColor = SystemColors.ActiveCaptionText;
-            label4.Location = new Point(1, 21);
-            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Location = new Point(1, 17);
             label4.Name = "label4";
-            label4.Size = new Size(128, 25);
+            label4.Size = new Size(105, 20);
             label4.TabIndex = 10;
             label4.Text = "Atrasos do dia";
             // 
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(134, 25);
-            pictureBox4.Margin = new Padding(4, 4, 4, 4);
+            pictureBox4.Location = new Point(107, 20);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(64, 60);
+            pictureBox4.Size = new Size(51, 48);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 2;
             pictureBox4.TabStop = false;
@@ -370,10 +359,9 @@
             btnSolicitarAdvertencia.FlatStyle = FlatStyle.Flat;
             btnSolicitarAdvertencia.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSolicitarAdvertencia.ForeColor = Color.White;
-            btnSolicitarAdvertencia.Location = new Point(230, 660);
-            btnSolicitarAdvertencia.Margin = new Padding(4, 4, 4, 4);
+            btnSolicitarAdvertencia.Location = new Point(184, 528);
             btnSolicitarAdvertencia.Name = "btnSolicitarAdvertencia";
-            btnSolicitarAdvertencia.Size = new Size(214, 41);
+            btnSolicitarAdvertencia.Size = new Size(171, 33);
             btnSolicitarAdvertencia.TabIndex = 3;
             btnSolicitarAdvertencia.Text = "Solicitar Advertência";
             btnSolicitarAdvertencia.TextAlign = ContentAlignment.TopCenter;
@@ -385,30 +373,18 @@
             btnExportar.FlatStyle = FlatStyle.Flat;
             btnExportar.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnExportar.ForeColor = Color.White;
-            btnExportar.Location = new Point(1028, 19);
-            btnExportar.Margin = new Padding(4, 4, 4, 4);
+            btnExportar.Location = new Point(822, 15);
             btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(128, 35);
+            btnExportar.Size = new Size(102, 28);
             btnExportar.TabIndex = 13;
             btnExportar.Text = "Exportar";
             btnExportar.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(13, -48);
-            pictureBox1.Margin = new Padding(4, 3, 4, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 192);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
-            // 
             // frmTurma
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1189, 721);
+            ClientSize = new Size(951, 577);
             Controls.Add(btnExportar);
             Controls.Add(btnSolicitarAdvertencia);
             Controls.Add(pnAtrasos_dia);
@@ -418,10 +394,10 @@
             Controls.Add(lblNmTurma);
             Controls.Add(pnMenu);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(4, 4, 4, 4);
             Name = "frmTurma";
             StartPosition = FormStartPosition.CenterScreen;
             Painel_Perfil.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnMenu.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -436,7 +412,6 @@
             pnAtrasos_dia.ResumeLayout(false);
             pnAtrasos_dia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
-using prjTCC;
+
 
 
 namespace Dashboard
@@ -22,8 +22,7 @@ namespace Dashboard
 
         private void btnAddAluno_Click(object sender, EventArgs e)
         {
-            Cadastrar form2 = new Cadastrar();
-            form2.ShowDialog();
+        
         }
     }
 }

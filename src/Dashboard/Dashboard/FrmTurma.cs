@@ -422,5 +422,10 @@ namespace Dashboard
                 Console.WriteLine($"Erro no RoundControl: {ex.Message}");
             }
         }
+
+        private void tbAtrasoTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
