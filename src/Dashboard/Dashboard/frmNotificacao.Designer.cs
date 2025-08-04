@@ -170,7 +170,7 @@
             Turmas_Direcionamento.AllowDrop = true;
             Turmas_Direcionamento.BackColor = Color.FromArgb(98, 114, 255);
             Turmas_Direcionamento.Dock = DockStyle.Top;
-            Turmas_Direcionamento.DrawMode = DrawMode.OwnerDrawFixed;
+            Turmas_Direcionamento.DrawMode = DrawMode.Normal;
             Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
             Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
             Turmas_Direcionamento.ForeColor = SystemColors.ButtonHighlight;

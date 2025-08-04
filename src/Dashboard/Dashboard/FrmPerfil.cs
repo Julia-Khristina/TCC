@@ -45,5 +45,12 @@ namespace Dashboard
             objfrmNotificacao.Show();
             this.Close();
         }
+
+        private void FrmPerfil_Load(object sender, EventArgs e)
+        {
+            //NOME DAS TURMAS AINDA NÃO APARECE MAS ESTÁ DIRECIONANDO CORRETAMENTE
+            TurmaRedirecionamento.CarregarTurmas(Turmas_Direcionamento);
+            TurmaRedirecionamento.ConfigurarRedirecionamento(Turmas_Direcionamento, lblTurma, this);
+        }
     }
 }

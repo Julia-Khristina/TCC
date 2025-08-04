@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+
 
 namespace Dashboard
 {
@@ -19,6 +21,9 @@ namespace Dashboard
 
         private void frmNotificacao_Load(object sender, EventArgs e)
         {
+            //NOME DAS TURMAS AINDA NÃO APARECE MAS ESTÁ DIRECIONANDO CORRETAMENTE
+            TurmaRedirecionamento.CarregarTurmas(Turmas_Direcionamento);
+            TurmaRedirecionamento.ConfigurarRedirecionamento(Turmas_Direcionamento, lblTurma, this);
 
         }
 
