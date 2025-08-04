@@ -53,9 +53,10 @@
             // btnBarra
             // 
             btnBarra.BackColor = Color.MidnightBlue;
-            btnBarra.Location = new Point(-7, -8);
+            btnBarra.Location = new Point(-8, -11);
+            btnBarra.Margin = new Padding(3, 4, 3, 4);
             btnBarra.Name = "btnBarra";
-            btnBarra.Size = new Size(388, 468);
+            btnBarra.Size = new Size(443, 624);
             btnBarra.TabIndex = 0;
             btnBarra.UseVisualStyleBackColor = false;
             // 
@@ -63,9 +64,10 @@
             // 
             btnEntrar.BackColor = Color.FromArgb(98, 114, 255);
             btnEntrar.ForeColor = Color.White;
-            btnEntrar.Location = new Point(515, 373);
+            btnEntrar.Location = new Point(589, 497);
+            btnEntrar.Margin = new Padding(3, 4, 3, 4);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(149, 38);
+            btnEntrar.Size = new Size(170, 51);
             btnEntrar.TabIndex = 1;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = false;
@@ -74,9 +76,10 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Login_Etec;
-            pictureBox1.Location = new Point(-7, -8);
+            pictureBox1.Location = new Point(-8, -11);
+            pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(375, 468);
+            pictureBox1.Size = new Size(429, 624);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -86,9 +89,9 @@
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(513, 38);
+            label1.Location = new Point(586, 51);
             label1.Name = "label1";
-            label1.Size = new Size(153, 52);
+            label1.Size = new Size(189, 64);
             label1.TabIndex = 3;
             label1.Text = "LOGIN";
             // 
@@ -96,9 +99,9 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(434, 154);
+            label2.Location = new Point(496, 205);
             label2.Name = "label2";
-            label2.Size = new Size(134, 21);
+            label2.Size = new Size(168, 28);
             label2.TabIndex = 4;
             label2.Text = "Email Cadastrado:";
             // 
@@ -106,9 +109,9 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = SystemColors.ControlDark;
-            label3.Location = new Point(434, 105);
+            label3.Location = new Point(496, 140);
             label3.Name = "label3";
-            label3.Size = new Size(307, 15);
+            label3.Size = new Size(369, 20);
             label3.TabIndex = 5;
             label3.Text = "____________________________________________________________";
             // 
@@ -116,9 +119,9 @@
             // 
             lblAcesse.AutoSize = true;
             lblAcesse.ForeColor = SystemColors.ControlDarkDark;
-            lblAcesse.Location = new Point(521, 110);
+            lblAcesse.Location = new Point(595, 147);
             lblAcesse.Name = "lblAcesse";
-            lblAcesse.Size = new Size(136, 15);
+            lblAcesse.Size = new Size(173, 20);
             lblAcesse.TabIndex = 6;
             lblAcesse.Text = "Acesse a sua Dashboard!";
             // 
@@ -126,9 +129,9 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ControlDark;
-            label5.Location = new Point(435, 289);
+            label5.Location = new Point(497, 385);
             label5.Name = "label5";
-            label5.Size = new Size(307, 15);
+            label5.Size = new Size(369, 20);
             label5.TabIndex = 7;
             label5.Text = "____________________________________________________________";
             // 
@@ -136,9 +139,9 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(434, 245);
+            label4.Location = new Point(496, 327);
             label4.Name = "label4";
-            label4.Size = new Size(56, 21);
+            label4.Size = new Size(69, 28);
             label4.TabIndex = 8;
             label4.Text = "Senha:";
             // 
@@ -147,9 +150,9 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(562, 153);
+            label6.Location = new Point(657, 204);
             label6.Name = "label6";
-            label6.Size = new Size(17, 21);
+            label6.Size = new Size(20, 28);
             label6.TabIndex = 9;
             label6.Text = "*";
             // 
@@ -158,9 +161,9 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.Red;
-            label7.Location = new Point(484, 245);
+            label7.Location = new Point(559, 327);
             label7.Name = "label7";
-            label7.Size = new Size(17, 21);
+            label7.Size = new Size(20, 28);
             label7.TabIndex = 10;
             label7.Text = "*";
             // 
@@ -168,9 +171,9 @@
             // 
             label8.AutoSize = true;
             label8.ForeColor = SystemColors.ControlDark;
-            label8.Location = new Point(434, 198);
+            label8.Location = new Point(496, 264);
             label8.Name = "label8";
-            label8.Size = new Size(307, 15);
+            label8.Size = new Size(369, 20);
             label8.TabIndex = 11;
             label8.Text = "____________________________________________________________";
             // 
@@ -178,18 +181,18 @@
             // 
             lblStatusEmail.AutoSize = true;
             lblStatusEmail.ForeColor = Color.Red;
-            lblStatusEmail.Location = new Point(434, 216);
+            lblStatusEmail.Location = new Point(496, 288);
             lblStatusEmail.Name = "lblStatusEmail";
-            lblStatusEmail.Size = new Size(0, 15);
+            lblStatusEmail.Size = new Size(0, 20);
             lblStatusEmail.TabIndex = 12;
             // 
             // lblStatusSenha
             // 
             lblStatusSenha.AutoSize = true;
             lblStatusSenha.ForeColor = Color.Red;
-            lblStatusSenha.Location = new Point(435, 308);
+            lblStatusSenha.Location = new Point(497, 411);
             lblStatusSenha.Name = "lblStatusSenha";
-            lblStatusSenha.Size = new Size(0, 15);
+            lblStatusSenha.Size = new Size(0, 20);
             lblStatusSenha.TabIndex = 13;
             // 
             // txtUsuario
@@ -198,9 +201,10 @@
             txtUsuario.BorderStyle = BorderStyle.None;
             txtUsuario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.ForeColor = Color.FromArgb(64, 64, 64);
-            txtUsuario.Location = new Point(438, 182);
+            txtUsuario.Location = new Point(501, 243);
+            txtUsuario.Margin = new Padding(3, 4, 3, 4);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(303, 20);
+            txtUsuario.Size = new Size(346, 25);
             txtUsuario.TabIndex = 14;
             txtUsuario.KeyDown += txtUsuario_KeyDown;
             // 
@@ -210,10 +214,11 @@
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
-            txtSenha.Location = new Point(438, 274);
+            txtSenha.Location = new Point(501, 365);
+            txtSenha.Margin = new Padding(3, 4, 3, 4);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
-            txtSenha.Size = new Size(303, 20);
+            txtSenha.Size = new Size(346, 25);
             txtSenha.TabIndex = 15;
             txtSenha.TextChanged += txtSenha_TextChanged;
             txtSenha.KeyDown += txtSenha_KeyDown;
@@ -222,9 +227,9 @@
             // 
             lblEsqueciSenha.AutoSize = true;
             lblEsqueciSenha.ForeColor = Color.Red;
-            lblEsqueciSenha.Location = new Point(648, 335);
+            lblEsqueciSenha.Location = new Point(741, 447);
             lblEsqueciSenha.Name = "lblEsqueciSenha";
-            lblEsqueciSenha.Size = new Size(93, 15);
+            lblEsqueciSenha.Size = new Size(117, 20);
             lblEsqueciSenha.TabIndex = 16;
             lblEsqueciSenha.Text = "Esqueci a senha!";
             lblEsqueciSenha.Click += lblEsqueciSenha_Click;
@@ -232,9 +237,10 @@
             // PicMostrarSenha
             // 
             PicMostrarSenha.Image = Properties.Resources.olho_fechado;
-            PicMostrarSenha.Location = new Point(711, 281);
+            PicMostrarSenha.Location = new Point(813, 375);
+            PicMostrarSenha.Margin = new Padding(3, 4, 3, 4);
             PicMostrarSenha.Name = "PicMostrarSenha";
-            PicMostrarSenha.Size = new Size(24, 20);
+            PicMostrarSenha.Size = new Size(27, 27);
             PicMostrarSenha.SizeMode = PictureBoxSizeMode.StretchImage;
             PicMostrarSenha.TabIndex = 17;
             PicMostrarSenha.TabStop = false;
@@ -242,10 +248,10 @@
             // 
             // frmLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.InactiveBorder;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(PicMostrarSenha);
             Controls.Add(lblEsqueciSenha);
             Controls.Add(txtSenha);
@@ -266,6 +272,7 @@
             Controls.Add(btnBarra);
             Cursor = Cursors.Hand;
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLogin";

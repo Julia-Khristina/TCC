@@ -120,6 +120,7 @@
             btn_Notificacao_Direcionamento.TabIndex = 9;
             btn_Notificacao_Direcionamento.Text = "Notificação";
             btn_Notificacao_Direcionamento.UseVisualStyleBackColor = false;
+            btn_Notificacao_Direcionamento.Click += btn_Notificacao_Direcionamento_Click;
             // 
             // btn_Relatorio_Direcionamento
             // 
@@ -185,6 +186,7 @@
             lblNome.Size = new Size(50, 20);
             lblNome.TabIndex = 2;
             lblNome.Text = "Nome";
+            lblNome.Click += lblNome_Click;
             // 
             // pictureBox2
             // 
@@ -195,6 +197,7 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 1;
             pictureBox2.TabStop = false;
+            pictureBox2.Click += pictureBox2_Click;
             // 
             // Btn_Voltar
             // 

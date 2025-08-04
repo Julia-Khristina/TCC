@@ -22,7 +22,28 @@ namespace Dashboard
 
         private void btnAddAluno_Click(object sender, EventArgs e)
         {
-        
+
+        }
+
+        private void BTN_Relatorio_Direcionamento_Click(object sender, EventArgs e)
+        {
+            frmDashboard_Principal objFrmDashPrinc = new frmDashboard_Principal();
+            objFrmDashPrinc.Show();
+            this.Close();
+        }
+
+        private void Btn_Voltar_Click(object sender, EventArgs e)
+        {
+            frmDashboard_Principal objFrmDashPrinc = new frmDashboard_Principal();
+            objFrmDashPrinc.Show();
+            this.Close();
+        }
+
+        private void Notificacao_Direcionamento_Click(object sender, EventArgs e)
+        {
+            frmNotificacao objfrmNotificacao = new frmNotificacao();
+            objfrmNotificacao.Show();
+            this.Close();
         }
     }
 }

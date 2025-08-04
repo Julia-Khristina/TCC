@@ -21,5 +21,33 @@ namespace Dashboard
         {
 
         }
+
+        private void BTN_Relatorio_Direcionamento_Click(object sender, EventArgs e)
+        {
+            frmDashboard_Principal objFrmDashPrinc = new frmDashboard_Principal();
+            objFrmDashPrinc.Show();
+            this.Close();
+        }
+
+        private void Btn_Voltar_Click(object sender, EventArgs e)
+        {
+            frmDashboard_Principal objFrmDashPrinc = new frmDashboard_Principal();
+            objFrmDashPrinc.Show();
+            this.Close();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            FrmPerfil objfrmPerfil = new FrmPerfil();
+            objfrmPerfil.Show();
+            this.Close();
+        }
+
+        private void lblNome_Click(object sender, EventArgs e)
+        {
+            FrmPerfil objfrmPerfil = new FrmPerfil();
+            objfrmPerfil.Show();
+            this.Close();
+        }
     }
 }

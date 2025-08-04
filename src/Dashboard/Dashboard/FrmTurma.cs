@@ -427,5 +427,26 @@ namespace Dashboard
         {
 
         }
+
+        private void btn_Notificacao_Direcionamento_Click(object sender, EventArgs e)
+        {
+            frmNotificacao objfrmNotificacao = new frmNotificacao();
+            objfrmNotificacao.Show();
+            this.Close();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            FrmPerfil objfrmPerfil = new FrmPerfil();
+            objfrmPerfil.Show();
+            this.Close();
+        }
+
+        private void lblNome_Click(object sender, EventArgs e)
+        {
+            FrmPerfil objfrmPerfil = new FrmPerfil();
+            objfrmPerfil.Show();
+            this.Close();
+        }
     }
 }
