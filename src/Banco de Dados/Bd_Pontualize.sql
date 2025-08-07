@@ -24,6 +24,7 @@ CREATE TABLE Aluno (
     Serie_Aluno INT NOT NULL,
     Curso_Aluno INT NOT NULL,
     cd_Biometria INT NOT NULL,
+    status ENUM('AGUARDANDO_DIGITAL', 'REGISTRANDO_AGORA', 'COMPLETO') NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
     FOREIGN KEY (Curso_Aluno) REFERENCES Curso(cd_Curso),
     FOREIGN KEY (cd_Biometria) REFERENCES Biometria(cd_Biometria)
