@@ -1,3 +1,4 @@
+drop database Db_Pontualize;
 CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
 
@@ -20,10 +21,11 @@ CREATE TABLE Aluno (
     cd_Aluno INT PRIMARY KEY,
     nm_Aluno VARCHAR(100) NOT NULL,
     gmail_aluno VARCHAR(100) UNIQUE NOT NULL,
-    telefone_aluno VARCHAR(11) NOT NULL,
+    telefone_aluno VARCHAR(20) NOT NULL,
     Serie_Aluno INT NOT NULL,
     Curso_Aluno INT NOT NULL,
     cd_Biometria INT NOT NULL,
+    atrasos Int NOT NULL DEFAULT 0,
     status ENUM('AGUARDANDO_DIGITAL', 'REGISTRANDO_AGORA', 'COMPLETO') NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
     FOREIGN KEY (Curso_Aluno) REFERENCES Curso(cd_Curso),
@@ -145,3 +147,4 @@ WHERE (
     (CURRENT_TIME() < '15:30:00' AND CURRENT_TIME() > '07:45:59') OR
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
 );
+*/

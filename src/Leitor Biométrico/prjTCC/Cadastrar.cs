@@ -1,5 +1,4 @@
-﻿using DPFP;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using System.Net.Http;
+using DPFP;
 
 namespace prjTCC
 {
@@ -58,7 +58,7 @@ namespace prjTCC
 
         private void cmbInsertSerie()
         {
-            string conexao = "server=localhost;user=root;password=;database=db_pontualize;";
+            string conexao = "datasource=localhost;user=root;password=;database=Db_Pontualize;";
             using (MySqlConnection conn = new MySqlConnection(conexao))
             {
                 try
@@ -87,9 +87,9 @@ namespace prjTCC
         {
             try
             {
-                string query = "SELECT nm_Curso FROM Curso";
+                string query = "SELECT * FROM Curso";
 
-                MySqlConnection conexao = new MySqlConnection("server=localhost;database=db_pontualize;uid=root;pwd=;");
+                MySqlConnection conexao = new MySqlConnection("datasource=localhost;database=Db_Pontualize;uid=root;pwd=;");
                 MySqlCommand comando = new MySqlCommand(query, conexao);
                 MySqlDataAdapter adapter = new MySqlDataAdapter(comando);
                 DataTable tabela = new DataTable();
@@ -97,7 +97,7 @@ namespace prjTCC
                 adapter.Fill(tabela);
 
                 cmbTurma.DisplayMember = "nm_Curso";  
-                cmbTurma.ValueMember = "nm_Curso";     
+                cmbTurma.ValueMember = "cd_Curso";     
                 cmbTurma.DataSource = tabela;
                 cmbTurma.SelectedIndex = -1; 
             }
@@ -140,35 +140,13 @@ namespace prjTCC
 
                                 byte[] bytes = br.ReadBytes((Int32)fingerprintData.Length);
 
-                                // CONVERTE O TEMPLATE PARA BASE64
-                                string base64Biometria = Convert.ToBase64String(bytes);
-
-                                // Exemplo: exibir em caixa de mensagem (depuração)
-                                MessageBox.Show(base64Biometria);
-
-                                // Exemplo: enviar via HTTP (POST JSON)
-                                using (HttpClient client = new HttpClient())
-                                {
-                                    var json = $"{{\"biometria\": \"{base64Biometria}\"}}";
-                                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                                    // Substitua pela sua URL real
-                                    var response = await client.PostAsync("http://192.168.0.30:8080/api/envioBiometria", content);
-
-                                    if (response.IsSuccessStatusCode)
-                                    {
-                                        MessageBox.Show("Biometria enviada com sucesso!");
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Erro ao enviar biometria: " + response.StatusCode);
-                                    }
-                                }
+                               
+                               
 
 
                                 try
                                 {
-                                    string Myconnection = "datasource=localhost;username=root;database=db_pontualize;";
+                                    string Myconnection = "datasource=localhost;username=root;database=Db_Pontualize;";
                                     string Query = "SELECT * FROM Aluno WHERE UPPER(nm_Aluno) = '"+Nome.ToUpper()+"'";
                                     MySqlConnection Myconn = new MySqlConnection(Myconnection);
                                     MySqlCommand Mycomand = new MySqlCommand(Query, Myconn);
@@ -196,21 +174,23 @@ namespace prjTCC
                                         try
                                         {
                                             
-                                            string Myconnection1 = "datasource=localhost;username=root;database=db_pontualize;";
+                                            string Myconnection1 = "datasource=localhost;username=root;database=Db_Pontualize;";
                                             MySqlConnection Myconn1 = new MySqlConnection(Myconnection1);
                                             Myconn1.Open();
                                             
                                             // 1. Inserir na tabela Biometria
-                                            //string insertBiometria = "INSERT INTO Biometria (dados_Biometria) VALUES (@digital)";
-                                            //MySqlCommand cmdBiometria = new MySqlCommand(insertBiometria, Myconn1);
-                                            //cmdBiometria.Parameters.AddWithValue("@digital", base64Biometria);
-                                            //cmdBiometria.ExecuteNonQuery();
+                                            string insertBiometria = "INSERT INTO Biometria (dados_Biometria) VALUES (@digital)";
+                                            MySqlCommand cmdBiometria = new MySqlCommand(insertBiometria, Myconn1);
+                                            cmdBiometria.Parameters.AddWithValue("@digital",bytes);
+                                            cmdBiometria.ExecuteNonQuery();
 
                                             // 2. Obter o ID gerado
-                                            //long cdBiometria = cmdBiometria.LastInsertedId;
+                                            long cdBiometria = cmdBiometria.LastInsertedId;
+
+                                            
 
                                             // Inserir Dados na tabela aluno
-                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, tel_Aluno)
+                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, telefone_aluno)
                                             VALUES (@rm, @nome, @turma, @ano, @email, @cd_biometria, @tel_aluno)";
                                             MySqlCommand cmdAluno = new MySqlCommand(insertAluno, Myconn1);
 
@@ -219,7 +199,7 @@ namespace prjTCC
                                             cmdAluno.Parameters.AddWithValue("@turma", Turma);
                                             cmdAluno.Parameters.AddWithValue("@ano", Ano); // já convertido para int se necessário
                                             cmdAluno.Parameters.AddWithValue("@email", Email);
-                                            //cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
+                                            cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
                                             cmdAluno.Parameters.AddWithValue("@tel_aluno", Telefone);
                                             cmdAluno.ExecuteNonQuery();
                                             Myconn1.Close();

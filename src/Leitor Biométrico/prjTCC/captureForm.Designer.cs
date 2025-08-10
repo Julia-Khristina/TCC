@@ -295,6 +295,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox maskTxtTel;
+        public System.Windows.Forms.MaskedTextBox maskTxtTel;
     }
 }

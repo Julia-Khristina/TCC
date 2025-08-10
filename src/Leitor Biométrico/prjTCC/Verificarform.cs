@@ -26,13 +26,16 @@ namespace prjTCC
         public Verificarform()
         {
             InitializeComponent();
-            
+            this.FormClosed += Verificar_FormClosed;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Close();
-
+            if (Capturador != null)
+            {
+                Capturador.StopCapture();
+            }
+                Close();
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
@@ -105,18 +108,38 @@ namespace prjTCC
 
         private void VerificarDigital(FeatureSet features)
         {
+            // Limpa as labels antes de cada verificação
+            this.Invoke((MethodInvoker)delegate {
+                lblNomeValor.Text = "";
+                lblTurmaValor.Text = "";
+                lblCursoValor.Text = "";
+                lblAtrasoValor.Text = "";
+                lblSituacaoValor.Text = "";
+                lblSituacaoValor.ForeColor = Color.Black;
+            });
+
             try
             {
-                string conexao = "server=localhost;user=root;password=;database=db_pontualize;";
+                string conexao = "server=localhost;user=root;password=;database=Db_Pontualize;";
                 using (MySqlConnection conn = new MySqlConnection(conexao))
                 {
                     conn.Open();
-                    string query = "SELECT A.cd_Aluno, A.nm_Aluno, B.dados_Biometria FROM Aluno A INNER JOIN Biometria B ON A.cd_Biometria = B.cd_Biometria";
+                    // JOIN para pegar os nomes de série e curso
+                    string query = @"SELECT A.cd_Aluno, A.nm_Aluno, S.nm_Serie, C.nm_Curso, A.atrasos, B.dados_Biometria
+                                     FROM Aluno A
+                                     INNER JOIN Biometria B ON A.cd_Biometria = B.cd_Biometria
+                                     LEFT JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
+                                     LEFT JOIN Curso C ON A.Curso_Aluno = C.cd_Curso";
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
                     Verification verificador = new Verification();
                     bool encontrado = false;
+
+                    string cdAluno = "", nome = "", turmaNome = "", cursoNome = "";
+                    int atrasos = 0;
+                    bool atrasado = false;
+                    DateTime horarioEntrada = DateTime.Now;
 
                     while (reader.Read())
                     {
@@ -130,22 +153,92 @@ namespace prjTCC
                         if (result.Verified)
                         {
                             encontrado = true;
-                            string nome = reader["nm_Aluno"].ToString();
-                            MessageBox.Show($"Aluno identificado: {nome}","Verificado", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
-                            // Aqui você pode chamar o registro de entrada ou atraso
-                            break;
+
+                            cdAluno = reader["cd_Aluno"].ToString();
+                            nome = reader["nm_Aluno"].ToString();
+                            turmaNome = reader["nm_Serie"].ToString();
+                            cursoNome = reader["nm_Curso"].ToString();
+                            atrasos = reader["atrasos"] != DBNull.Value ? Convert.ToInt32(reader["atrasos"]) : 0;
+
+                            DateTime horarioLimite = DateTime.Today.AddHours(7).AddMinutes(30);
+                            atrasado = horarioEntrada > horarioLimite;
+
+                            break; // Para no primeiro aluno verificado
                         }
                     }
 
-                    if (!encontrado)
+                    reader.Close(); // Fecha o reader após o loop
+
+                    if (encontrado)
                     {
-                        MessageBox.Show("Aluno não encontrado!");
+                        // Atualiza atrasos e insere registro de atraso se necessário
+                        if (atrasado)
+                        {
+                            string update = "UPDATE Aluno SET atrasos = atrasos + 1 WHERE cd_Aluno = @cd";
+                            using (MySqlCommand updateCmd = new MySqlCommand(update, conn))
+                            {
+                                updateCmd.Parameters.AddWithValue("@cd", cdAluno);
+                                updateCmd.ExecuteNonQuery();
+                            }
+
+                            string insertAtraso = @"INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+                                                    VALUES (@cdAluno, @nome, @turma, @curso, @horario, @data)";
+                            using (MySqlCommand insertCmd = new MySqlCommand(insertAtraso, conn))
+                            {
+                                insertCmd.Parameters.AddWithValue("@cdAluno", cdAluno);
+                                insertCmd.Parameters.AddWithValue("@nome", nome);
+                                insertCmd.Parameters.AddWithValue("@turma", turmaNome);
+                                insertCmd.Parameters.AddWithValue("@curso", cursoNome);
+                                insertCmd.Parameters.AddWithValue("@horario", horarioEntrada.ToString("HH:mm:ss"));
+                                insertCmd.Parameters.AddWithValue("@data", horarioEntrada.ToString("yyyy-MM-dd"));
+                                insertCmd.ExecuteNonQuery();
+                            }
+                        }
+
+                        // Consulta o valor atualizado de atrasos SEMPRE
+                        string selectAtrasos = "SELECT atrasos FROM Aluno WHERE cd_Aluno = @cd";
+                        using (MySqlCommand selectCmd = new MySqlCommand(selectAtrasos, conn))
+                        {
+                            selectCmd.Parameters.AddWithValue("@cd", cdAluno);
+                            object resultAtrasos = selectCmd.ExecuteScalar();
+                            if (resultAtrasos != null && resultAtrasos != DBNull.Value)
+                                atrasos = Convert.ToInt32(resultAtrasos);
+                        }
+
+
+                        // Atualiza as labels do formulário
+                        this.Invoke((MethodInvoker)delegate {
+                            lblNomeValor.Text = nome;
+                            lblTurmaValor.Text = turmaNome;
+                            lblCursoValor.Text = cursoNome;
+                            lblAtrasoValor.Text = atrasos.ToString();
+                            lblSituacaoValor.Text = atrasado ? "ATRASADO" : "NO HORÁRIO";
+                            lblSituacaoValor.ForeColor = atrasado ? Color.Red : Color.Green;
+                        });
+                    }
+                    else
+                    {
+                        this.Invoke((MethodInvoker)delegate
+                        {
+                            lblNomeValor.Text = "Aluno não encontrado!";
+                            lblTurmaValor.Text = "";
+                            lblCursoValor.Text = "";
+                            lblAtrasoValor.Text = "";
+                            lblSituacaoValor.Text = "";
+                        });
                     }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro: " + ex.Message);
+                this.Invoke((MethodInvoker)delegate {
+                    MessageBox.Show("Erro ao verificar digital: " + ex.Message);
+                    lblNomeValor.Text = "";
+                    lblTurmaValor.Text = "";
+                    lblCursoValor.Text = "";
+                    lblAtrasoValor.Text = "";
+                    lblSituacaoValor.Text = "";
+                 });
             }
         }
 
@@ -170,6 +263,16 @@ namespace prjTCC
         }
 
         private void Verificarform_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }
