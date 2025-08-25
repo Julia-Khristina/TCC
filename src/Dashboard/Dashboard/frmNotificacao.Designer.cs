@@ -63,10 +63,10 @@
             // 
             panel2.Controls.Add(Btn_Voltar);
             panel2.Controls.Add(panel3);
-            panel2.Location = new Point(0, 434);
-            panel2.Margin = new Padding(3, 2, 3, 2);
+            panel2.Location = new Point(0, 542);
+            panel2.Margin = new Padding(4, 2, 4, 2);
             panel2.Name = "panel2";
-            panel2.Size = new Size(158, 144);
+            panel2.Size = new Size(198, 180);
             panel2.TabIndex = 9;
             // 
             // Btn_Voltar
@@ -74,10 +74,11 @@
             Btn_Voltar.BackColor = Color.White;
             Btn_Voltar.FlatStyle = FlatStyle.Flat;
             Btn_Voltar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Btn_Voltar.ForeColor = Color.FromArgb(98, 114, 255);
-            Btn_Voltar.Location = new Point(31, 98);
+            Btn_Voltar.ForeColor = Color.MidnightBlue;
+            Btn_Voltar.Location = new Point(39, 122);
+            Btn_Voltar.Margin = new Padding(4, 4, 4, 4);
             Btn_Voltar.Name = "Btn_Voltar";
-            Btn_Voltar.Size = new Size(94, 33);
+            Btn_Voltar.Size = new Size(118, 41);
             Btn_Voltar.TabIndex = 3;
             Btn_Voltar.Text = "Voltar";
             Btn_Voltar.TextAlign = ContentAlignment.TopCenter;
@@ -89,10 +90,10 @@
             panel3.Controls.Add(LblFuncao);
             panel3.Controls.Add(lblNome);
             panel3.Controls.Add(imgPerfil);
-            panel3.Location = new Point(13, 22);
-            panel3.Margin = new Padding(3, 2, 3, 2);
+            panel3.Location = new Point(16, 28);
+            panel3.Margin = new Padding(4, 2, 4, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(130, 56);
+            panel3.Size = new Size(162, 70);
             panel3.TabIndex = 2;
             // 
             // LblFuncao
@@ -100,9 +101,10 @@
             LblFuncao.AutoSize = true;
             LblFuncao.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblFuncao.ForeColor = Color.FromArgb(224, 224, 224);
-            LblFuncao.Location = new Point(62, 30);
+            LblFuncao.Location = new Point(78, 38);
+            LblFuncao.Margin = new Padding(4, 0, 4, 0);
             LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(49, 17);
+            LblFuncao.Size = new Size(56, 20);
             LblFuncao.TabIndex = 3;
             LblFuncao.Text = "Função";
             // 
@@ -110,9 +112,10 @@
             // 
             lblNome.AutoSize = true;
             lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(59, 10);
+            lblNome.Location = new Point(74, 12);
+            lblNome.Margin = new Padding(4, 0, 4, 0);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(50, 20);
+            lblNome.Size = new Size(61, 25);
             lblNome.TabIndex = 2;
             lblNome.Text = "Nome";
             lblNome.Click += lblNome_Click;
@@ -120,10 +123,10 @@
             // imgPerfil
             // 
             imgPerfil.Image = (Image)resources.GetObject("imgPerfil.Image");
-            imgPerfil.Location = new Point(3, 2);
-            imgPerfil.Margin = new Padding(3, 2, 3, 2);
+            imgPerfil.Location = new Point(4, 2);
+            imgPerfil.Margin = new Padding(4, 2, 4, 2);
             imgPerfil.Name = "imgPerfil";
-            imgPerfil.Size = new Size(51, 48);
+            imgPerfil.Size = new Size(64, 60);
             imgPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
             imgPerfil.TabIndex = 1;
             imgPerfil.TabStop = false;
@@ -131,14 +134,14 @@
             // 
             // pnMenu
             // 
-            pnMenu.BackColor = Color.FromArgb(98, 114, 255);
+            pnMenu.BackColor = Color.MidnightBlue;
             pnMenu.Controls.Add(panel2);
             pnMenu.Controls.Add(panel1);
             pnMenu.Controls.Add(Painel_Perfil);
             pnMenu.Location = new Point(0, -1);
-            pnMenu.Margin = new Padding(3, 2, 3, 2);
+            pnMenu.Margin = new Padding(4, 2, 4, 2);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(158, 578);
+            pnMenu.Size = new Size(198, 722);
             pnMenu.TabIndex = 1;
             // 
             // panel1
@@ -147,67 +150,67 @@
             panel1.Controls.Add(Turmas_Direcionamento);
             panel1.Controls.Add(Notificacao_Direcionamento);
             panel1.Controls.Add(BTN_Relatorio_Direcionamento);
-            panel1.Location = new Point(3, 78);
-            panel1.Margin = new Padding(3, 2, 3, 2);
+            panel1.Location = new Point(4, 98);
+            panel1.Margin = new Padding(4, 2, 4, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(158, 90);
+            panel1.Size = new Size(198, 112);
             panel1.TabIndex = 8;
             // 
             // lblTurma
             // 
             lblTurma.AutoSize = true;
-            lblTurma.BackColor = Color.FromArgb(98, 114, 255);
+            lblTurma.BackColor = Color.MidnightBlue;
             lblTurma.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTurma.ForeColor = SystemColors.ButtonHighlight;
-            lblTurma.Location = new Point(41, 62);
+            lblTurma.Location = new Point(51, 78);
+            lblTurma.Margin = new Padding(4, 0, 4, 0);
             lblTurma.Name = "lblTurma";
-            lblTurma.Size = new Size(51, 20);
+            lblTurma.Size = new Size(62, 25);
             lblTurma.TabIndex = 7;
             lblTurma.Text = "Turma";
             // 
             // Turmas_Direcionamento
             // 
             Turmas_Direcionamento.AllowDrop = true;
-            Turmas_Direcionamento.BackColor = Color.FromArgb(98, 114, 255);
+            Turmas_Direcionamento.BackColor = Color.MidnightBlue;
             Turmas_Direcionamento.Dock = DockStyle.Top;
-            Turmas_Direcionamento.DrawMode = DrawMode.Normal;
             Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
             Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
             Turmas_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
             Turmas_Direcionamento.FormattingEnabled = true;
-            Turmas_Direcionamento.Location = new Point(0, 60);
+            Turmas_Direcionamento.Location = new Point(0, 76);
             Turmas_Direcionamento.Margin = new Padding(0);
             Turmas_Direcionamento.MaxDropDownItems = 3;
             Turmas_Direcionamento.Name = "Turmas_Direcionamento";
-            Turmas_Direcionamento.Size = new Size(158, 28);
+            Turmas_Direcionamento.Size = new Size(198, 33);
             Turmas_Direcionamento.TabIndex = 9;
             // 
             // Notificacao_Direcionamento
             // 
-            Notificacao_Direcionamento.BackColor = Color.FromArgb(98, 114, 255);
+            Notificacao_Direcionamento.BackColor = Color.MidnightBlue;
             Notificacao_Direcionamento.Dock = DockStyle.Top;
             Notificacao_Direcionamento.FlatAppearance.BorderSize = 0;
             Notificacao_Direcionamento.FlatStyle = FlatStyle.Flat;
             Notificacao_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
-            Notificacao_Direcionamento.Location = new Point(0, 30);
-            Notificacao_Direcionamento.Margin = new Padding(3, 2, 3, 2);
+            Notificacao_Direcionamento.Location = new Point(0, 38);
+            Notificacao_Direcionamento.Margin = new Padding(4, 2, 4, 2);
             Notificacao_Direcionamento.Name = "Notificacao_Direcionamento";
-            Notificacao_Direcionamento.Size = new Size(158, 30);
+            Notificacao_Direcionamento.Size = new Size(198, 38);
             Notificacao_Direcionamento.TabIndex = 9;
             Notificacao_Direcionamento.Text = "Notificação";
             Notificacao_Direcionamento.UseVisualStyleBackColor = false;
             // 
             // BTN_Relatorio_Direcionamento
             // 
-            BTN_Relatorio_Direcionamento.BackColor = Color.FromArgb(98, 114, 255);
+            BTN_Relatorio_Direcionamento.BackColor = Color.MidnightBlue;
             BTN_Relatorio_Direcionamento.Dock = DockStyle.Top;
             BTN_Relatorio_Direcionamento.FlatAppearance.BorderSize = 0;
             BTN_Relatorio_Direcionamento.FlatStyle = FlatStyle.Flat;
             BTN_Relatorio_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
             BTN_Relatorio_Direcionamento.Location = new Point(0, 0);
-            BTN_Relatorio_Direcionamento.Margin = new Padding(3, 2, 3, 2);
+            BTN_Relatorio_Direcionamento.Margin = new Padding(4, 2, 4, 2);
             BTN_Relatorio_Direcionamento.Name = "BTN_Relatorio_Direcionamento";
-            BTN_Relatorio_Direcionamento.Size = new Size(158, 30);
+            BTN_Relatorio_Direcionamento.Size = new Size(198, 38);
             BTN_Relatorio_Direcionamento.TabIndex = 8;
             BTN_Relatorio_Direcionamento.Text = "Relátorio";
             BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = false;
@@ -217,18 +220,18 @@
             // 
             Painel_Perfil.Controls.Add(pictureBox1);
             Painel_Perfil.Location = new Point(0, 0);
-            Painel_Perfil.Margin = new Padding(3, 2, 3, 2);
+            Painel_Perfil.Margin = new Padding(4, 2, 4, 2);
             Painel_Perfil.Name = "Painel_Perfil";
-            Painel_Perfil.Size = new Size(158, 78);
+            Painel_Perfil.Size = new Size(198, 98);
             Painel_Perfil.TabIndex = 2;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(10, -34);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(12, -42);
+            pictureBox1.Margin = new Padding(4, 2, 4, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(138, 154);
+            pictureBox1.Size = new Size(172, 192);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -237,9 +240,10 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(185, 26);
+            label1.Location = new Point(231, 32);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(112, 28);
+            label1.Size = new Size(134, 32);
             label1.TabIndex = 2;
             label1.Text = "Notificação";
             // 
@@ -249,19 +253,19 @@
             Painel_Grafico.Controls.Add(pictureBox3);
             Painel_Grafico.Controls.Add(lblDescricao_Notificacao);
             Painel_Grafico.Controls.Add(lblTitulo_Notificacao);
-            Painel_Grafico.Location = new Point(185, 78);
-            Painel_Grafico.Margin = new Padding(3, 2, 3, 2);
+            Painel_Grafico.Location = new Point(231, 98);
+            Painel_Grafico.Margin = new Padding(4, 2, 4, 2);
             Painel_Grafico.Name = "Painel_Grafico";
-            Painel_Grafico.Size = new Size(722, 72);
+            Painel_Grafico.Size = new Size(902, 90);
             Painel_Grafico.TabIndex = 5;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(675, 17);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(844, 21);
+            pictureBox3.Margin = new Padding(4, 2, 4, 2);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(34, 37);
+            pictureBox3.Size = new Size(42, 46);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 5;
             pictureBox3.TabStop = false;
@@ -270,9 +274,10 @@
             // 
             lblDescricao_Notificacao.AutoSize = true;
             lblDescricao_Notificacao.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblDescricao_Notificacao.Location = new Point(34, 29);
+            lblDescricao_Notificacao.Location = new Point(42, 36);
+            lblDescricao_Notificacao.Margin = new Padding(4, 0, 4, 0);
             lblDescricao_Notificacao.Name = "lblDescricao_Notificacao";
-            lblDescricao_Notificacao.Size = new Size(504, 20);
+            lblDescricao_Notificacao.Size = new Size(613, 25);
             lblDescricao_Notificacao.TabIndex = 4;
             lblDescricao_Notificacao.Text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.";
             // 
@@ -280,17 +285,18 @@
             // 
             lblTitulo_Notificacao.AutoSize = true;
             lblTitulo_Notificacao.Font = new Font("Segoe UI", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTitulo_Notificacao.Location = new Point(18, 8);
+            lblTitulo_Notificacao.Location = new Point(22, 10);
+            lblTitulo_Notificacao.Margin = new Padding(4, 0, 4, 0);
             lblTitulo_Notificacao.Name = "lblTitulo_Notificacao";
-            lblTitulo_Notificacao.Size = new Size(187, 25);
+            lblTitulo_Notificacao.Size = new Size(211, 30);
             lblTitulo_Notificacao.TabIndex = 3;
             lblTitulo_Notificacao.Text = "Título da Notificação";
             // 
             // frmNotificacao
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(951, 578);
+            ClientSize = new Size(1189, 722);
             Controls.Add(Painel_Grafico);
             Controls.Add(label1);
             Controls.Add(pnMenu);

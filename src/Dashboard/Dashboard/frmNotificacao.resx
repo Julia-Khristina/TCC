@@ -682,9 +682,6 @@
   <metadata name="Turmas_Direcionamento.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="Turmas_Direcionamento.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABDgAAAVGCAYAAAB7TwuKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
@@ -3933,7 +3930,7 @@
   <data name="pictureBox3.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAYAAAD0eNT6AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACv6SURBVHhe7d0J
+        vgAADr4B6kKxwAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAACv6SURBVHhe7d0J
         3G5jvf/xL3ubbbOE6DjVETJVNOlUSoZ0IsMhIYWUkNBAmY5kjnIqp0E06O+olBApFQ3+DceUkJkMbfM8
         bee8fu2lPL9+e7uf57nva1jX5/N6vV//jj97X2vda13ree77XteSiKiPzSVpVUmbS9pX0kmSfiHpUknX
         Srpb0mMd+9/2zy7p/h37d+2/2az7M+zPIiIiogKbImkVSTtLOlXSvZL+d0gekvQjSR+RtA4/EBAREeXP
