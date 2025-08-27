@@ -2,6 +2,8 @@ drop database Db_Pontualize;
 CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
 
+SET SESSION max_allowed_packet = 67108864;
+
 CREATE TABLE Serie (
     cd_Serie INT AUTO_INCREMENT PRIMARY KEY,
     nm_Serie VARCHAR(100) NOT NULL
@@ -26,6 +28,7 @@ CREATE TABLE Aluno (
     Curso_Aluno INT NOT NULL,
     cd_Biometria INT NOT NULL,
     atrasos Int NOT NULL DEFAULT 0,
+    foto_aluno LONGBLOB NOT NULL,
     status ENUM('AGUARDANDO_DIGITAL', 'REGISTRANDO_AGORA', 'COMPLETO') NOT NULL,
     FOREIGN KEY (Serie_Aluno) REFERENCES Serie(cd_Serie),
     FOREIGN KEY (Curso_Aluno) REFERENCES Curso(cd_Curso),

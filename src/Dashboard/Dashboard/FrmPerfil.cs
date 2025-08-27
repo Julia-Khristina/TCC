@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
+using prjTCC;
 
 
 
@@ -22,7 +23,9 @@ namespace Dashboard
 
         private void btnAddAluno_Click(object sender, EventArgs e)
         {
-
+            Cadastrar objCadastrar = new Cadastrar();
+            objCadastrar.Show();
+            
         }
 
         private void BTN_Relatorio_Direcionamento_Click(object sender, EventArgs e)

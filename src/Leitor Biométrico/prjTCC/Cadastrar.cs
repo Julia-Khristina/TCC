@@ -56,6 +56,19 @@ namespace prjTCC
             UpdateStatus();
         }
 
+        private byte[] ImageToByteArray(Image image)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg); // ou PNG, conforme necessário
+                return ms.ToArray();
+            }
+
+            
+        }
+        
+
+
         private void cmbInsertSerie()
         {
             string conexao = "datasource=localhost;user=root;password=;database=Db_Pontualize;";
@@ -174,6 +187,7 @@ namespace prjTCC
                                         try
                                         {
                                             
+
                                             string Myconnection1 = "datasource=localhost;username=root;database=Db_Pontualize;";
                                             MySqlConnection Myconn1 = new MySqlConnection(Myconnection1);
                                             Myconn1.Open();
@@ -187,13 +201,13 @@ namespace prjTCC
                                             // 2. Obter o ID gerado
                                             long cdBiometria = cmdBiometria.LastInsertedId;
 
-                                            
+                                            byte[] imagem = ImageToByteArray(pictureBox1.Image);
 
                                             // Inserir Dados na tabela aluno
-                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, telefone_aluno)
-                                            VALUES (@rm, @nome, @turma, @ano, @email, @cd_biometria, @tel_aluno)";
+                                            string insertAluno = @"INSERT INTO Aluno (cd_Aluno, nm_Aluno, Curso_Aluno, Serie_Aluno, gmail_aluno, cd_Biometria, telefone_aluno,foto_aluno)
+                                            VALUES (@rm, @nome, @turma, @ano, @email, @cd_biometria, @tel_aluno,@foto)";
                                             MySqlCommand cmdAluno = new MySqlCommand(insertAluno, Myconn1);
-
+    
                                             cmdAluno.Parameters.AddWithValue("@rm", RM);
                                             cmdAluno.Parameters.AddWithValue("@nome", Nome);
                                             cmdAluno.Parameters.AddWithValue("@turma", Turma);
@@ -201,6 +215,7 @@ namespace prjTCC
                                             cmdAluno.Parameters.AddWithValue("@email", Email);
                                             cmdAluno.Parameters.AddWithValue("@cd_biometria", cdBiometria);
                                             cmdAluno.Parameters.AddWithValue("@tel_aluno", Telefone);
+                                            cmdAluno.Parameters.Add("@foto", MySqlDbType.LongBlob).Value = imagem;
                                             cmdAluno.ExecuteNonQuery();
                                             Myconn1.Close();
                                            

@@ -26,7 +26,7 @@ namespace prjTCC
 
         private DPFP.Template Template;
 
-        private void onTemplate(DPFP.Template template)
+        public void onTemplate(DPFP.Template template)
         {
             this.Invoke(new Function(delegate ()
             {
@@ -34,7 +34,7 @@ namespace prjTCC
 
                 if (Template != null)
                 {
-                    MessageBox.Show("Aluno cadastrado com sucesso","Cadastrado", MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
+                    MessageBox.Show(this,"Aluno cadastrado com sucesso","Cadastrado", MessageBoxButtons.OK,MessageBoxIcon.Information, MessageBoxDefaultButton.Button1, MessageBoxOptions.DefaultDesktopOnly);
                 }
                 else
                 {
@@ -117,6 +117,14 @@ namespace prjTCC
             this.Invoke(new Function(delegate ()
             {
                 cmbTurma.Text = value;
+            }));
+        }
+
+        protected void SetTelefone(string value)
+        {
+            this.Invoke(new Function(delegate ()
+            {
+                maskTxtTel.Text = value;
             }));
         }
 
@@ -312,6 +320,12 @@ namespace prjTCC
                 txtEmail.Focus();
                 return;
             }
+            if (maskTxtTel.Text == "")
+            {
+                MessageBox.Show("Campo Vazio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                maskTxtTel.Focus();
+                return;
+            }
             if (txtRM.Text == "")
             {
                 MessageBox.Show("Campo Vazio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -397,7 +411,7 @@ namespace prjTCC
 
         private void txtTelefone_TextChanged(object sender, EventArgs e)
         {
-            
+           
         }
 
         private void txtTelefone_KeyPress(object sender, KeyPressEventArgs e)
@@ -429,12 +443,28 @@ namespace prjTCC
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
-            Telefone = maskTxtTel.Text;
+            
         }
 
         private void txtPrompt_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnSelecionarFoto_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Arquivos de Imagem|*.jpg;*.jpeg;*.png;*.bmp";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                pictureBox1.Image = Image.FromFile(ofd.FileName);
+ 
+            }
+        }
+
+        private void maskTxtTel_TextChanged(object sender, EventArgs e)
+        {
+            Telefone = maskTxtTel.Text;
         }
     }
 
