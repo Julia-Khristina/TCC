@@ -2,7 +2,7 @@ drop database Db_Pontualize;
 CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
 
-SET SESSION max_allowed_packet = 67108864;
+SET GLOBAL max_allowed_packet = 67108864;
 
 CREATE TABLE Serie (
     cd_Serie INT AUTO_INCREMENT PRIMARY KEY,
