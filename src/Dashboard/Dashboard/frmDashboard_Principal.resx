@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="Turmas_Direcionamento.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="pictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -685,7 +688,7 @@
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABDgAAAVGCAYAAAB7TwuKAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        vwAADr8BOAVTJAAA/7JJREFUeF7s3QecJFXxwPEJu3cEQcIfEUERMzmKiEjOOWcRBEQJAgIKEkQBI4qS
+        vgAADr4B6kKxwAAA/7JJREFUeF7s3QecJFXxwPEJu3cEQcIfEUERMzmKiEjOOWcRBEQJAgIKEkQBI4qS
         RFAEFEFBgiBJkCg5HOG4nNPmvb3bNDPdPf9PzU2dRfl6ZnbvjuTvy6eY2Yndr7vfq655M5fJAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -5165,5 +5168,11 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA2E/+Pzo4lbRP
         WUEsAAAAAElFTkSuQmCC
 </value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>Aqui você acompanha, em tempo real, os alunos atrasados de cada turma, com 
+relatórios diários, semanais e mensais de forma simples e organizada. O sistema 
+também utiliza o Power BI para gerar gráficos dinâmicos que deixam a análise mais 
+visual e prática, além de permitir o download dos relatórios sempre que precisar.</value>
   </data>
 </root>
