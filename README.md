@@ -11,7 +11,7 @@ desenvolver um sistema de acesso à biometria, elaborar um banco de dados para a
 
 <br> 
   
-## 💡Visão do Produto Hillary
+## 💡Visão do Produto
 
 O projeto visa modernizar e automatizar o controle de acesso e registro de atrasos dos alunos na Etec Ilza Nascimento Pintus, substituindo o atual sistema manual — baseado em assinaturas em caderno — por um sistema digital baseado em biometria. A proposta busca melhorar a eficiência do processo, reduzir o desgaste do corpo pedagógico e garantir maior controle e precisão nas informações, alinhando a escola pública aos avanços tecnológicos já presentes em instituições privadas.
 > **Status do Projeto: Concluído✅**
