@@ -1,4 +1,4 @@
-drop database Db_Pontualize;
+-- drop database Db_Pontualize;
 CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
 
@@ -131,7 +131,9 @@ INSERT INTO Curso (nm_Curso) VALUES
 
 INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Administrador, senha_Administrador)
 VALUES
-('Mestre dos Magos', '12999999999', 'etec@gmail.com', '1234#');
+('Mestre dos Magos', '12999999999', 'etec@gmail.com', '$2a$12$TaL734zFwCyAQUhNwnCucOESnPOKLTOIerLbW31Rhx8iXDQpZQjIW');
+
+select * from Administrador;
 
 -- EXEMPLO DE INSERÇÃO DE ATRASO
 /*
