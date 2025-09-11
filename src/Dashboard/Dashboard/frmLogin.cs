@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BCrypt.Net;
 
 namespace Dashboard
 {
@@ -107,26 +108,33 @@ namespace Dashboard
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@parUsuario", txtUsuario.Text);
                 conexao.Open();
-                var resultado = comando.ExecuteScalar();
 
-                if (resultado == null)
+                // ExecuteScalar pode retornar null se o usuário não for encontrado
+                var senhaDoBancoComHash = comando.ExecuteScalar() as string;
+
+                if (senhaDoBancoComHash == null)
                 {
-                    lblStatusEmail.Text = "Email incorreto!";
+                    lblStatusEmail.Text = "Email ou senha incorretos!";
                     lblStatusSenha.Text = "";
                 }
                 else
                 {
-                    if (Convert.ToString(resultado) != txtSenha.Text)
+                    // VERIFICA A SENHA DIGITADA CONTRA O HASH DO BANCO
+                    bool senhaCorreta = PasswordHash.VerifyPassword(txtSenha.Text, senhaDoBancoComHash);
+
+                    if (!senhaCorreta)
                     {
-                        lblStatusSenha.Text = "Senha incorreta!";
-                        lblStatusEmail.Text = "";
+                        lblStatusEmail.Text = "Email ou senha incorretos!";
+                        lblStatusSenha.Text = "";
                         txtSenha.Focus();
                     }
                     else
                     {
+                        // Login bem-sucedido!
                         this.Visible = false;
                         frmDashboard_Principal objfDashboard = new frmDashboard_Principal();
                         objfDashboard.ShowDialog();
+                        this.Close(); // Fechar o formulário de login após abrir o dashboard
                     }
                 }
             }
@@ -136,7 +144,8 @@ namespace Dashboard
             }
             finally
             {
-                conexao.Close();
+                if (conexao.State == ConnectionState.Open)
+                    conexao.Close();
             }
         }
 

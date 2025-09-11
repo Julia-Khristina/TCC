@@ -31,9 +31,9 @@
             components = new System.ComponentModel.Container();
             label5 = new Label();
             lblPercentual = new Label();
-            label3 = new Label();
-            label1 = new Label();
-            label2 = new Label();
+            lblSubtitulo = new Label();
+            lblTitulo = new Label();
+            lblStatus = new Label();
             progressBar = new ProgressBar();
             timer = new System.Windows.Forms.Timer(components);
             SuspendLayout();
@@ -62,40 +62,40 @@
             lblPercentual.Text = ".";
             lblPercentual.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // lblSubtitulo
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.MidnightBlue;
-            label3.Location = new Point(136, 100);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(405, 20);
-            label3.TabIndex = 14;
-            label3.Text = "CONTROLE DE ENTRADA DE ALUNOS ATRASADOS";
+            lblSubtitulo.AutoSize = true;
+            lblSubtitulo.Font = new Font("Verdana", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.ForeColor = Color.MidnightBlue;
+            lblSubtitulo.Location = new Point(128, 122);
+            lblSubtitulo.Margin = new Padding(4, 0, 4, 0);
+            lblSubtitulo.Name = "lblSubtitulo";
+            lblSubtitulo.Size = new Size(413, 18);
+            lblSubtitulo.TabIndex = 14;
+            lblSubtitulo.Text = "CONTROLE DE ENTRADA DE ALUNOS ATRASADOS";
             // 
-            // label1
+            // lblTitulo
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(197, 34);
-            label1.Margin = new Padding(4, 0, 4, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(286, 52);
-            label1.TabIndex = 13;
-            label1.Text = "PONTUALIZE";
+            lblTitulo.AutoSize = true;
+            lblTitulo.Font = new Font("Yu Gothic", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitulo.ForeColor = Color.MidnightBlue;
+            lblTitulo.Location = new Point(182, 48);
+            lblTitulo.Margin = new Padding(4, 0, 4, 0);
+            lblTitulo.Name = "lblTitulo";
+            lblTitulo.Size = new Size(309, 55);
+            lblTitulo.TabIndex = 13;
+            lblTitulo.Text = "PONTUALIZE";
             // 
-            // label2
+            // lblStatus
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Tai Le", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(254, 204);
-            label2.Margin = new Padding(4, 0, 4, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(169, 21);
-            label2.TabIndex = 12;
-            label2.Text = "Carregando! Aguarde...";
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatus.Location = new Point(256, 219);
+            lblStatus.Margin = new Padding(4, 0, 4, 0);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(161, 16);
+            lblStatus.TabIndex = 12;
+            lblStatus.Text = "Carregando! Aguarde...";
             // 
             // progressBar
             // 
@@ -115,13 +115,13 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.InactiveBorder;
+            BackColor = SystemColors.ControlLightLight;
             ClientSize = new Size(676, 412);
             Controls.Add(label5);
             Controls.Add(lblPercentual);
-            Controls.Add(label3);
-            Controls.Add(label1);
-            Controls.Add(label2);
+            Controls.Add(lblSubtitulo);
+            Controls.Add(lblTitulo);
+            Controls.Add(lblStatus);
             Controls.Add(progressBar);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmSplash";
@@ -136,9 +136,9 @@
 
         private Label label5;
         private Label lblPercentual;
-        private Label label3;
-        private Label label1;
-        private Label label2;
+        private Label lblSubtitulo;
+        private Label lblTitulo;
+        private Label lblStatus;
         private ProgressBar progressBar;
         private System.Windows.Forms.Timer timer;
     }

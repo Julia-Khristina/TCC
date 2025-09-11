@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
 
 namespace Dashboard
 {
@@ -73,6 +74,7 @@ namespace Dashboard
 
         private void btnAlterar_Click(object sender, EventArgs e)
         {
+            string email = txtEmail.Text.Trim();
             string senha = txtSenha.Text.Trim();
             string confirmacao = txtConfirmacao.Text.Trim();
 
@@ -94,23 +96,33 @@ namespace Dashboard
 
             try
             {
+                // PASSO 1: VERIFICAR SE O E-MAIL EXISTE NO BANCO
                 strSQL = "SELECT COUNT(*) FROM Administrador WHERE email_Administrador = @email";
                 comando = new MySqlCommand(strSQL, conexao);
-                comando.Parameters.AddWithValue("@email", txtEmail.Text.Trim()); // <- ESSA LINHA É NECESSÁRIA!
+                comando.Parameters.AddWithValue("@email", email);
+
                 conexao.Open();
+                int userExists = Convert.ToInt32(comando.ExecuteScalar());
+                conexao.Close(); // Fechar a conexão após a consulta
 
-                int existe = Convert.ToInt32(comando.ExecuteScalar());
-                conexao.Close();
+                // Se userExists for 0, o e-mail não foi encontrado
+                if (userExists == 0)
+                {
+                    MessageBox.Show("O e-mail informado não foi encontrado em nosso sistema.", "E-mail não encontrado", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtEmail.Focus();
+                    return; // Interrompe a execução
+                }
 
+                // PASSO 2: Se o e-mail existe, GERA O HASH E ATUALIZA A SENHA
+                string senhaComHash = PasswordHash.HashPassword(senha);
 
-                // Atualiza a senha
-                strSQL = "UPDATE Administrador SET senha_Administrador = @senha WHERE email_Administrador = @email";
+                strSQL = "UPDATE Administrador SET senha_Administrador = @senhaHash WHERE email_Administrador = @email";
                 comando = new MySqlCommand(strSQL, conexao);
-                comando.Parameters.AddWithValue("@senha", senha);
-                comando.Parameters.AddWithValue("@email", txtEmail.Text);
+                comando.Parameters.AddWithValue("@senhaHash", senhaComHash);
+                comando.Parameters.AddWithValue("@email", email);
+
                 conexao.Open();
                 comando.ExecuteNonQuery();
-                conexao.Close();
 
                 MessageBox.Show("Senha alterada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
@@ -118,8 +130,12 @@ namespace Dashboard
             }
             catch (MySqlException ex)
             {
-                MessageBox.Show("Erro ao alterar senha: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
+                MessageBox.Show("Erro ao conectar com o banco de dados: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                if (conexao.State == ConnectionState.Open)
+                    conexao.Close();
             }
         }
 
