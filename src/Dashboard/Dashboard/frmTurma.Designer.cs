@@ -46,9 +46,11 @@
             pnAlunoAtrasos = new Panel();
             tbAtrasoTurma = new DataGridView();
             pnGraficoTurma = new Panel();
-            label6 = new Label();
-            label5 = new Label();
-            label1 = new Label();
+            lblAnoAluno = new Label();
+            pictureBoxCarometro = new PictureBox();
+            lblEmailAluno = new Label();
+            lblTelAluno = new Label();
+            lblNomeAluno = new Label();
             lblDiario = new Label();
             label2 = new Label();
             pnAtrasos_Totais = new Panel();
@@ -59,7 +61,6 @@
             pictureBox4 = new PictureBox();
             btnSolicitarAdvertencia = new Button();
             btnExportar = new Button();
-            pictureBox5 = new PictureBox();
             Painel_Perfil.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             pnMenu.SuspendLayout();
@@ -70,11 +71,11 @@
             pnAlunoAtrasos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tbAtrasoTurma).BeginInit();
             pnGraficoTurma.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCarometro).BeginInit();
             pnAtrasos_Totais.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             pnAtrasos_dia.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // Painel_Perfil
@@ -266,6 +267,7 @@
             tbAtrasoTurma.Location = new Point(3, -2);
             tbAtrasoTurma.Margin = new Padding(3, 2, 3, 2);
             tbAtrasoTurma.Name = "tbAtrasoTurma";
+            tbAtrasoTurma.ReadOnly = true;
             tbAtrasoTurma.RowHeadersWidth = 51;
             tbAtrasoTurma.Size = new Size(230, 251);
             tbAtrasoTurma.TabIndex = 0;
@@ -274,42 +276,60 @@
             // pnGraficoTurma
             // 
             pnGraficoTurma.BackColor = SystemColors.ButtonHighlight;
-            pnGraficoTurma.Controls.Add(pictureBox5);
-            pnGraficoTurma.Controls.Add(label6);
-            pnGraficoTurma.Controls.Add(label5);
-            pnGraficoTurma.Controls.Add(label1);
+            pnGraficoTurma.Controls.Add(lblAnoAluno);
+            pnGraficoTurma.Controls.Add(pictureBoxCarometro);
+            pnGraficoTurma.Controls.Add(lblEmailAluno);
+            pnGraficoTurma.Controls.Add(lblTelAluno);
+            pnGraficoTurma.Controls.Add(lblNomeAluno);
             pnGraficoTurma.Location = new Point(419, 131);
             pnGraficoTurma.Margin = new Padding(3, 2, 3, 2);
             pnGraficoTurma.Name = "pnGraficoTurma";
             pnGraficoTurma.Size = new Size(391, 253);
             pnGraficoTurma.TabIndex = 7;
             // 
-            // label6
+            // lblAnoAluno
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(141, 79);
-            label6.Name = "label6";
-            label6.Size = new Size(38, 15);
-            label6.TabIndex = 2;
-            label6.Text = "label6";
+            lblAnoAluno.AutoSize = true;
+            lblAnoAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAnoAluno.Location = new Point(141, 113);
+            lblAnoAluno.Name = "lblAnoAluno";
+            lblAnoAluno.Size = new Size(0, 25);
+            lblAnoAluno.TabIndex = 4;
             // 
-            // label5
+            // pictureBoxCarometro
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(141, 47);
-            label5.Name = "label5";
-            label5.Size = new Size(38, 15);
-            label5.TabIndex = 1;
-            label5.Text = "label5";
+            pictureBoxCarometro.Location = new Point(17, 17);
+            pictureBoxCarometro.Name = "pictureBoxCarometro";
+            pictureBoxCarometro.Size = new Size(100, 111);
+            pictureBoxCarometro.TabIndex = 3;
+            pictureBoxCarometro.TabStop = false;
             // 
-            // label1
+            // lblEmailAluno
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(141, 17);
-            label1.Name = "label1";
-            label1.Size = new Size(38, 15);
-            label1.TabIndex = 0;
-            label1.Text = "label1";
+            lblEmailAluno.AutoSize = true;
+            lblEmailAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmailAluno.Location = new Point(141, 79);
+            lblEmailAluno.Name = "lblEmailAluno";
+            lblEmailAluno.Size = new Size(0, 25);
+            lblEmailAluno.TabIndex = 2;
+            // 
+            // lblTelAluno
+            // 
+            lblTelAluno.AutoSize = true;
+            lblTelAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTelAluno.Location = new Point(141, 47);
+            lblTelAluno.Name = "lblTelAluno";
+            lblTelAluno.Size = new Size(0, 25);
+            lblTelAluno.TabIndex = 1;
+            // 
+            // lblNomeAluno
+            // 
+            lblNomeAluno.AutoSize = true;
+            lblNomeAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNomeAluno.Location = new Point(141, 17);
+            lblNomeAluno.Name = "lblNomeAluno";
+            lblNomeAluno.Size = new Size(0, 25);
+            lblNomeAluno.TabIndex = 0;
             // 
             // lblDiario
             // 
@@ -333,7 +353,7 @@
             label2.ForeColor = SystemColors.ActiveCaptionText;
             label2.Location = new Point(4, 13);
             label2.Name = "label2";
-            label2.Size = new Size(80, 15);
+            label2.Size = new Size(79, 15);
             label2.TabIndex = 10;
             label2.Text = "Atrasos Totais";
             // 
@@ -438,14 +458,6 @@
             btnExportar.Text = "Exportar";
             btnExportar.UseVisualStyleBackColor = false;
             // 
-            // pictureBox5
-            // 
-            pictureBox5.Location = new Point(17, 17);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(100, 111);
-            pictureBox5.TabIndex = 3;
-            pictureBox5.TabStop = false;
-            // 
             // frmTurma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -463,6 +475,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmTurma";
             StartPosition = FormStartPosition.CenterScreen;
+            Load += frmTurma_Load;
             Painel_Perfil.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             pnMenu.ResumeLayout(false);
@@ -475,13 +488,13 @@
             ((System.ComponentModel.ISupportInitialize)tbAtrasoTurma).EndInit();
             pnGraficoTurma.ResumeLayout(false);
             pnGraficoTurma.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxCarometro).EndInit();
             pnAtrasos_Totais.ResumeLayout(false);
             pnAtrasos_Totais.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             pnAtrasos_dia.ResumeLayout(false);
             pnAtrasos_dia.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -514,9 +527,10 @@
         private Button btnSolicitarAdvertencia;
         private Button btnExportar;
         private PictureBox pictureBox1;
-        private Label label6;
-        private Label label5;
-        private Label label1;
-        private PictureBox pictureBox5;
+        private Label lblEmailAluno;
+        private Label lblTelAluno;
+        private Label lblNomeAluno;
+        private PictureBox pictureBoxCarometro;
+        private Label lblAnoAluno;
     }
 }

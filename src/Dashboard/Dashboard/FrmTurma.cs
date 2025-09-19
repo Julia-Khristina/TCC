@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace Dashboard
 {
     public partial class frmTurma : Form
@@ -425,8 +426,88 @@ namespace Dashboard
 
         private void tbAtrasoTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0) // garante que clicou em uma linha válida
+            {
+                // Pega o nome do aluno da linha clicada
+                string nomeAluno = tbAtrasoTurma.Rows[e.RowIndex].Cells["Nome do Aluno"].Value.ToString();
 
+                // Conexão com banco
+                string connStr = "server=localhost;database=Db_Pontualize;uid=root;pwd=;";
+                using (MySqlConnection conn = new MySqlConnection(connStr))
+                {
+                    conn.Open();
+
+                    string query = @"
+                SELECT 
+                    A.nm_Aluno,
+                    A.gmail_aluno,
+                    A.telefone_aluno,
+                    S.nm_Serie,
+                    A.foto_aluno   -- coluna BLOB com a imagem
+                FROM Aluno A
+                JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
+                WHERE A.nm_Aluno = @nome";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nome", nomeAluno);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                lblNomeAluno.Text = reader["nm_Aluno"].ToString();
+                                lblEmailAluno.Text = reader["gmail_aluno"].ToString();
+                                lblTelAluno.Text = reader["telefone_aluno"].ToString();
+                                lblAnoAluno.Text = reader["nm_Serie"].ToString();
+
+                                // Verifica se há foto
+                                // Supondo que você tenha um MySqlDataReader chamado 'reader'
+                                if (reader["foto_aluno"] != DBNull.Value)
+                                {
+                                    byte[] fotoBytes = (byte[])reader["foto_aluno"];
+                                    if (fotoBytes.Length > 0)
+                                    {
+                                        using (MemoryStream ms = new MemoryStream(fotoBytes))
+                                        {
+                                            try
+                                            {
+                                                pictureBoxCarometro.Image = Image.FromStream(ms);
+                                            }
+                                            catch (ArgumentException)
+                                            {
+                                                // Se os dados não forem uma imagem válida
+                                                pictureBoxCarometro.Image = null; // ou imagem padrão
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        pictureBoxCarometro.Image = null;
+                                    }
+                                }
+                                else
+                                {
+                                    pictureBoxCarometro.Image = null; // não há imagem
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Aluno não encontrado no banco.", "Aviso",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Erro ao selecionar a linha desejada.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
+
 
         private void btn_Notificacao_Direcionamento_Click(object sender, EventArgs e)
         {
@@ -448,5 +529,18 @@ namespace Dashboard
             objfrmPerfil.Show();
             this.Close();
         }
+
+        private void frmTurma_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
+       
+
+
+
+
+
     }
 }
