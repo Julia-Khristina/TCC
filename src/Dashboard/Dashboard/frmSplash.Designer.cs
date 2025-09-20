@@ -54,7 +54,7 @@
             // 
             lblPercentual.AutoSize = true;
             lblPercentual.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPercentual.Location = new Point(328, 278);
+            lblPercentual.Location = new Point(328, 216);
             lblPercentual.Margin = new Padding(4, 0, 4, 0);
             lblPercentual.Name = "lblPercentual";
             lblPercentual.Size = new Size(13, 20);
@@ -93,9 +93,8 @@
             lblStatus.Location = new Point(256, 219);
             lblStatus.Margin = new Padding(4, 0, 4, 0);
             lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(161, 16);
+            lblStatus.Size = new Size(0, 16);
             lblStatus.TabIndex = 12;
-            lblStatus.Text = "Carregando! Aguarde...";
             // 
             // progressBar
             // 
