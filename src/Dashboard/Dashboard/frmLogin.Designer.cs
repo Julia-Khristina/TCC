@@ -28,15 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            btnBarra = new Button();
             btnEntrar = new Button();
             pictureBox1 = new PictureBox();
             label1 = new Label();
-            label3 = new Label();
             lblAcesse = new Label();
             label5 = new Label();
-            label4 = new Label();
-            label7 = new Label();
             label8 = new Label();
             lblStatusEmail = new Label();
             lblStatusSenha = new Label();
@@ -44,24 +40,20 @@
             txtSenha = new TextBox();
             lblEsqueciSenha = new Label();
             PicMostrarSenha = new PictureBox();
-            label2 = new Label();
+            label7 = new Label();
+            label4 = new Label();
             label6 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            btnBarra = new Button();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).BeginInit();
             SuspendLayout();
             // 
-            // btnBarra
-            // 
-            btnBarra.BackColor = Color.MidnightBlue;
-            btnBarra.Location = new Point(-7, -8);
-            btnBarra.Name = "btnBarra";
-            btnBarra.Size = new Size(388, 468);
-            btnBarra.TabIndex = 0;
-            btnBarra.UseVisualStyleBackColor = false;
-            // 
             // btnEntrar
             // 
             btnEntrar.BackColor = Color.MidnightBlue;
+            btnEntrar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEntrar.ForeColor = Color.White;
             btnEntrar.Location = new Point(515, 373);
             btnEntrar.Name = "btnEntrar";
@@ -84,31 +76,22 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Candara", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(512, 38);
+            label1.Location = new Point(526, 31);
             label1.Name = "label1";
-            label1.Size = new Size(153, 52);
+            label1.Size = new Size(142, 53);
             label1.TabIndex = 3;
             label1.Text = "LOGIN";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.ForeColor = SystemColors.ControlDark;
-            label3.Location = new Point(434, 105);
-            label3.Name = "label3";
-            label3.Size = new Size(307, 15);
-            label3.TabIndex = 5;
-            label3.Text = "____________________________________________________________";
             // 
             // lblAcesse
             // 
             lblAcesse.AutoSize = true;
+            lblAcesse.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAcesse.ForeColor = SystemColors.ControlDarkDark;
-            lblAcesse.Location = new Point(521, 110);
+            lblAcesse.Location = new Point(521, 92);
             lblAcesse.Name = "lblAcesse";
-            lblAcesse.Size = new Size(136, 15);
+            lblAcesse.Size = new Size(150, 15);
             lblAcesse.TabIndex = 6;
             lblAcesse.Text = "Acesse a sua Dashboard!";
             // 
@@ -116,38 +99,17 @@
             // 
             label5.AutoSize = true;
             label5.ForeColor = SystemColors.ControlDark;
-            label5.Location = new Point(435, 271);
+            label5.Location = new Point(435, 281);
             label5.Name = "label5";
             label5.Size = new Size(307, 15);
             label5.TabIndex = 7;
             label5.Text = "____________________________________________________________";
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.Location = new Point(434, 227);
-            label4.Name = "label4";
-            label4.Size = new Size(56, 21);
-            label4.TabIndex = 8;
-            label4.Text = "Senha:";
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label7.ForeColor = Color.Red;
-            label7.Location = new Point(489, 227);
-            label7.Name = "label7";
-            label7.Size = new Size(17, 21);
-            label7.TabIndex = 10;
-            label7.Text = "*";
-            // 
             // label8
             // 
             label8.AutoSize = true;
             label8.ForeColor = SystemColors.ControlDark;
-            label8.Location = new Point(434, 198);
+            label8.Location = new Point(434, 178);
             label8.Name = "label8";
             label8.Size = new Size(307, 15);
             label8.TabIndex = 11;
@@ -156,8 +118,9 @@
             // lblStatusEmail
             // 
             lblStatusEmail.AutoSize = true;
+            lblStatusEmail.Font = new Font("Microsoft Sans Serif", 9F);
             lblStatusEmail.ForeColor = Color.Red;
-            lblStatusEmail.Location = new Point(435, 305);
+            lblStatusEmail.Location = new Point(435, 197);
             lblStatusEmail.Name = "lblStatusEmail";
             lblStatusEmail.Size = new Size(0, 15);
             lblStatusEmail.TabIndex = 12;
@@ -165,34 +128,35 @@
             // lblStatusSenha
             // 
             lblStatusSenha.AutoSize = true;
+            lblStatusSenha.Font = new Font("Microsoft Sans Serif", 9F);
             lblStatusSenha.ForeColor = Color.Red;
-            lblStatusSenha.Location = new Point(435, 290);
+            lblStatusSenha.Location = new Point(435, 300);
             lblStatusSenha.Name = "lblStatusSenha";
             lblStatusSenha.Size = new Size(0, 15);
             lblStatusSenha.TabIndex = 13;
             // 
             // txtUsuario
             // 
-            txtUsuario.BackColor = SystemColors.InactiveBorder;
+            txtUsuario.BackColor = Color.Snow;
             txtUsuario.BorderStyle = BorderStyle.None;
-            txtUsuario.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsuario.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.ForeColor = Color.FromArgb(64, 64, 64);
-            txtUsuario.Location = new Point(438, 182);
+            txtUsuario.Location = new Point(438, 162);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(302, 20);
+            txtUsuario.Size = new Size(302, 17);
             txtUsuario.TabIndex = 14;
             txtUsuario.KeyDown += txtUsuario_KeyDown;
             // 
             // txtSenha
             // 
-            txtSenha.BackColor = SystemColors.InactiveBorder;
+            txtSenha.BackColor = Color.Snow;
             txtSenha.BorderStyle = BorderStyle.None;
-            txtSenha.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSenha.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
-            txtSenha.Location = new Point(438, 256);
+            txtSenha.Location = new Point(438, 266);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
-            txtSenha.Size = new Size(302, 20);
+            txtSenha.Size = new Size(302, 17);
             txtSenha.TabIndex = 15;
             txtSenha.TextChanged += txtSenha_TextChanged;
             txtSenha.KeyDown += txtSenha_KeyDown;
@@ -200,10 +164,11 @@
             // lblEsqueciSenha
             // 
             lblEsqueciSenha.AutoSize = true;
+            lblEsqueciSenha.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblEsqueciSenha.ForeColor = Color.DodgerBlue;
-            lblEsqueciSenha.Location = new Point(648, 335);
+            lblEsqueciSenha.Location = new Point(642, 331);
             lblEsqueciSenha.Name = "lblEsqueciSenha";
-            lblEsqueciSenha.Size = new Size(93, 15);
+            lblEsqueciSenha.Size = new Size(101, 15);
             lblEsqueciSenha.TabIndex = 16;
             lblEsqueciSenha.Text = "Esqueci a senha!";
             lblEsqueciSenha.Click += lblEsqueciSenha_Click;
@@ -211,7 +176,7 @@
             // PicMostrarSenha
             // 
             PicMostrarSenha.Image = Properties.Resources.olho_fechado;
-            PicMostrarSenha.Location = new Point(711, 263);
+            PicMostrarSenha.Location = new Point(711, 273);
             PicMostrarSenha.Name = "PicMostrarSenha";
             PicMostrarSenha.Size = new Size(24, 20);
             PicMostrarSenha.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -219,32 +184,73 @@
             PicMostrarSenha.TabStop = false;
             PicMostrarSenha.Click += PicMostrarSenha_Click;
             // 
-            // label2
+            // label7
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(434, 154);
-            label2.Name = "label2";
-            label2.Size = new Size(134, 21);
-            label2.TabIndex = 4;
-            label2.Text = "Email Cadastrado:";
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.ForeColor = Color.Red;
+            label7.Location = new Point(489, 237);
+            label7.Name = "label7";
+            label7.Size = new Size(17, 21);
+            label7.TabIndex = 10;
+            label7.Text = "*";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Location = new Point(434, 237);
+            label4.Name = "label4";
+            label4.Size = new Size(60, 20);
+            label4.TabIndex = 8;
+            label4.Text = "Senha:";
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(575, 153);
+            label6.Location = new Point(575, 133);
             label6.Name = "label6";
             label6.Size = new Size(17, 21);
             label6.TabIndex = 9;
             label6.Text = "*";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Location = new Point(434, 134);
+            label2.Name = "label2";
+            label2.Size = new Size(139, 20);
+            label2.TabIndex = 4;
+            label2.Text = "Email Cadastrado:";
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.ForeColor = SystemColors.ControlDark;
+            label3.Location = new Point(434, 87);
+            label3.Name = "label3";
+            label3.Size = new Size(307, 15);
+            label3.TabIndex = 5;
+            label3.Text = "____________________________________________________________";
+            // 
+            // btnBarra
+            // 
+            btnBarra.BackColor = Color.MidnightBlue;
+            btnBarra.ForeColor = Color.White;
+            btnBarra.Location = new Point(230, -8);
+            btnBarra.Name = "btnBarra";
+            btnBarra.Size = new Size(148, 468);
+            btnBarra.TabIndex = 18;
+            btnBarra.UseVisualStyleBackColor = false;
+            // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.InactiveBorder;
+            BackColor = Color.Snow;
             ClientSize = new Size(799, 450);
             Controls.Add(PicMostrarSenha);
             Controls.Add(lblEsqueciSenha);
@@ -270,6 +276,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmLogin";
             Activated += frmLogin_Activated;
+            Load += frmLogin_Load_1;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)PicMostrarSenha).EndInit();
             ResumeLayout(false);
@@ -277,16 +284,11 @@
         }
 
         #endregion
-
-        private Button btnBarra;
         private Button btnEntrar;
         private PictureBox pictureBox1;
         private Label label1;
-        private Label label3;
         private Label lblAcesse;
         private Label label5;
-        private Label label4;
-        private Label label7;
         private Label label8;
         private Label lblStatusEmail;
         private Label lblStatusSenha;
@@ -294,7 +296,11 @@
         private TextBox txtSenha;
         private Label lblEsqueciSenha;
         private PictureBox PicMostrarSenha;
-        private Label label2;
+        private Label label7;
+        private Label label4;
         private Label label6;
+        private Label label2;
+        private Label label3;
+        private Button btnBarra;
     }
 }

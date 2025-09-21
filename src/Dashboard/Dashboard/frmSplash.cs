@@ -1,5 +1,5 @@
 ﻿using System;
-using System.ComponentModel; // <-- ADICIONADO: Necessário para a propriedade DesignMode
+using System.ComponentModel; 
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -21,7 +21,6 @@ namespace Dashboard
                 this.SetStyle(ControlStyles.UserPaint, true);
 
                 this.DoubleBuffered = true;
-                // -----------------------------
             }
 
             private static GraphicsPath GetRoundedRect(Rectangle bounds, int radius)
@@ -37,7 +36,7 @@ namespace Dashboard
 
             protected override void OnPaint(PaintEventArgs e)
             {
-                // 1. Código para o modo Design (para evitar erros no editor)
+                // Modo Design pra evitar erros no editor
                 if (this.DesignMode)
                 {
                     using (var brush = new SolidBrush(Color.FromArgb(96, 110, 253)))
@@ -48,39 +47,38 @@ namespace Dashboard
                     return;
                 }
 
-                // 2. Configurações de desenho para a aplicação em execução
+                // Configurações de desenho pra execução
                 e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // Raio dinâmico para garantir pontas perfeitamente redondas
+                // pontas redondas
                 int cornerRadius = this.Height / 2;
 
-                // 3. Cria o caminho arredondado para o fundo, que também servirá como máscara (Clip)
+                // fundo arredondado 
                 using (GraphicsPath clipPath = GetRoundedRect(ClientRectangle, cornerRadius))
                 {
-                    // 4. Desenha o fundo cinza
-                    using (SolidBrush backBrush = new SolidBrush(Color.FromArgb(224, 224, 224)))
+                    // fundo cinza
+                    using (SolidBrush backBrush = new SolidBrush(Color.Transparent))
                     {
                         e.Graphics.FillPath(backBrush, clipPath);
                     }
 
-                    // 5. Calcula a largura do preenchimento (progresso)
+                    // largura do preenchimento (progresso)
                     double percentage = (double)this.Value / this.Maximum;
                     int fillWidth = (int)(this.Width * percentage);
 
-                    // Só desenha o preenchimento se houver progresso
+                    // Só desenha o preenchimento 
                     if (fillWidth > 0)
                     {
-                        // 6. Define a máscara. Tudo desenhado a seguir só aparecerá dentro desta forma.
                         e.Graphics.SetClip(clipPath);
 
-                        // 7. Desenha o preenchimento azul como um retângulo simples.
-                        // A máscara (Clip) se encarrega de dar o formato arredondado.
-                        using (SolidBrush fillBrush = new SolidBrush(Color.FromArgb(96, 110, 253)))
+                        // preenchimento azul
+                        using (SolidBrush fillBrush = new SolidBrush(Color.FromArgb(63, 81, 181)))
+
                         {
                             e.Graphics.FillRectangle(fillBrush, 0, 0, fillWidth, this.Height);
                         }
 
-                        // 8. Limpa a máscara para não afetar outros desenhos.
+                        // Limpa a máscara para não afetar outros desenhos.
                         e.Graphics.ResetClip();
                     }
                 }
@@ -92,7 +90,7 @@ namespace Dashboard
             if (progressBar.Value < 100)
             {
                 progressBar.Value += 1;
-                lblPercentual.Text = $"Carregando! Aguarde... {progressBar.Value}%";
+                lblPercentual.Text = $"{progressBar.Value}%";
             }
             else
             {
@@ -129,8 +127,8 @@ namespace Dashboard
             this.Controls.Add(progressBar);
 
             // Configura o label
-            lblPercentual.Text = "Carregando! Aguarde... 0%";
-            lblPercentual.Font = new Font("Segoe UI", 10);
+            lblPercentual.Text = "0%";
+            lblPercentual.Font = new Font("Microsoft Sans Serif", 10);
             lblPercentual.ForeColor = Color.Gray;
             lblPercentual.BackColor = Color.Transparent;
             lblPercentual.AutoSize = true;
@@ -140,6 +138,11 @@ namespace Dashboard
             );
 
             timer.Start();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
