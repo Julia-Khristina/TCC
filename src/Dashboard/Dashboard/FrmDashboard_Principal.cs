@@ -25,6 +25,7 @@ namespace Dashboard
             this.Resize += frmDashboard_Principal_Resize;
             // Chama o método de redimensionamento uma vez para posicionamento inicial
             frmDashboard_Principal_Resize(this, EventArgs.Empty);
+
         }
 
         private void InitializeApp()

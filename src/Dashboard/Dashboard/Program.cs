@@ -30,7 +30,7 @@ namespace Dashboard
             // Execute o formulário principal com tratamento de exceções
             try
             {
-                Application.Run(new frmSplash());
+                Application.Run(new frmDashboard_Principal());
             }
             catch (Exception ex)
             {
