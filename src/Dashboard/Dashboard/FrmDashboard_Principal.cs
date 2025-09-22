@@ -18,6 +18,13 @@ namespace Dashboard
         {
             InitializeComponent();
             InitializeApp();
+
+            this.WindowState = FormWindowState.Maximized; // Garante que a janela abra maximizada
+
+            // Adiciona um manipulador para o evento Resize para centralizar os painéis
+            this.Resize += frmDashboard_Principal_Resize;
+            // Chama o método de redimensionamento uma vez para posicionamento inicial
+            frmDashboard_Principal_Resize(this, EventArgs.Empty);
         }
 
         private void InitializeApp()
@@ -266,9 +273,22 @@ namespace Dashboard
             }
         }
 
-        private void frmDashboard_Principal_Load(object sender, EventArgs e)
+        private void frmDashboard_Principal_Resize(object sender, EventArgs e)
         {
+            // Centraliza o flowLayoutPanelReports horizontalmente
+            if (flowLayoutPanelReports.Parent != null)
+            {
+                int x = (flowLayoutPanelReports.Parent.Width - flowLayoutPanelReports.Width) / 2;
+                flowLayoutPanelReports.Location = new Point(x, flowLayoutPanelReports.Location.Y);
+            }
 
+            // Centraliza o panelWelcome horizontal e verticalmente dentro do pnConteudo
+            if (panelWelcome.Parent != null)
+            {
+                int x = (panelWelcome.Parent.Width - panelWelcome.Width) / 2;
+                int y = (panelWelcome.Parent.Height - panelWelcome.Height) / 2;
+                panelWelcome.Location = new Point(x, y);
+            }
         }
 
         private void Turmas_Direcionamento_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -296,5 +316,21 @@ namespace Dashboard
             objfrmPerfil.Show();
             this.Close();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnConteudo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void BTN_Relatorio_Direcionamento_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+

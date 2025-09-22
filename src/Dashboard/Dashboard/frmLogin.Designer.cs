@@ -53,11 +53,11 @@
             // btnEntrar
             // 
             btnEntrar.BackColor = Color.MidnightBlue;
-            btnEntrar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEntrar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnEntrar.ForeColor = Color.White;
             btnEntrar.Location = new Point(515, 373);
             btnEntrar.Name = "btnEntrar";
-            btnEntrar.Size = new Size(148, 38);
+            btnEntrar.Size = new Size(148, 33);
             btnEntrar.TabIndex = 1;
             btnEntrar.Text = "Entrar";
             btnEntrar.UseVisualStyleBackColor = false;
@@ -66,9 +66,9 @@
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.Login_Etec;
-            pictureBox1.Location = new Point(-7, -8);
+            pictureBox1.Location = new Point(-12, -8);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(375, 468);
+            pictureBox1.Size = new Size(392, 468);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -76,11 +76,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Candara", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Mongolian Baiti", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(526, 31);
+            label1.Location = new Point(519, 31);
             label1.Name = "label1";
-            label1.Size = new Size(142, 53);
+            label1.Size = new Size(158, 45);
             label1.TabIndex = 3;
             label1.Text = "LOGIN";
             // 
@@ -137,7 +137,7 @@
             // 
             // txtUsuario
             // 
-            txtUsuario.BackColor = Color.Snow;
+            txtUsuario.BackColor = SystemColors.ButtonHighlight;
             txtUsuario.BorderStyle = BorderStyle.None;
             txtUsuario.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.ForeColor = Color.FromArgb(64, 64, 64);
@@ -149,7 +149,7 @@
             // 
             // txtSenha
             // 
-            txtSenha.BackColor = Color.Snow;
+            txtSenha.BackColor = SystemColors.ButtonHighlight;
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
@@ -242,7 +242,7 @@
             btnBarra.ForeColor = Color.White;
             btnBarra.Location = new Point(230, -8);
             btnBarra.Name = "btnBarra";
-            btnBarra.Size = new Size(148, 468);
+            btnBarra.Size = new Size(155, 468);
             btnBarra.TabIndex = 18;
             btnBarra.UseVisualStyleBackColor = false;
             // 
@@ -250,7 +250,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Snow;
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(799, 450);
             Controls.Add(PicMostrarSenha);
             Controls.Add(lblEsqueciSenha);

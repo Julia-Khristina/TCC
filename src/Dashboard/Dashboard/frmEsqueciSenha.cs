@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using BCrypt.Net;
+using System.Drawing.Drawing2D;
 
 namespace Dashboard
 {
@@ -21,6 +22,10 @@ namespace Dashboard
         MySqlDataReader dr;
         string strSQL;
 
+        private const int borderRadius = 25; // Mesma constante usada no frmLogin
+        private bool isMouseOverBtnVoltar = false;
+        private bool isMouseOverBtnAlterar = false;
+
         public frmEsqueciSenha()
         {
             InitializeComponent();
@@ -29,19 +34,73 @@ namespace Dashboard
             PicMostrarSenha.Visible = false;
             PicMostrarSenha2.Visible = false;
 
-            // Estilizar o botão sem borda
-            btnAlterar.FlatStyle = FlatStyle.Flat;
-            btnAlterar.FlatAppearance.BorderSize = 0;
-            btnAlterar.BackColor = ColorTranslator.FromHtml("#606EFD");
-            btnAlterar.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#41436A");
-
+            // Configurações do btnVoltar
             btnVoltar.FlatStyle = FlatStyle.Flat;
             btnVoltar.FlatAppearance.BorderSize = 0;
-            btnVoltar.BackColor = ColorTranslator.FromHtml("#606EFD");
-            btnVoltar.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#41436A");
+            btnVoltar.BackColor = ColorTranslator.FromHtml("#E9ECEF"); // Cinza claro
+            btnVoltar.ForeColor = ColorTranslator.FromHtml("#212529"); // Texto escuro
+            btnVoltar.Paint += (s, e) => RoundControl(btnVoltar, e, ref isMouseOverBtnVoltar);
+            btnVoltar.Resize += (s, e) => btnVoltar.Invalidate();
+            btnVoltar.MouseEnter += (s, e) => { isMouseOverBtnVoltar = true; btnVoltar.Invalidate(); };
+            btnVoltar.MouseLeave += (s, e) => { isMouseOverBtnVoltar = false; btnVoltar.Invalidate(); };
+
+            // Configurações do btnAlterar
+            btnAlterar.FlatStyle = FlatStyle.Flat;
+            btnAlterar.FlatAppearance.BorderSize = 0;
+            btnAlterar.BackColor = ColorTranslator.FromHtml("#5C6BC0"); // Azul principal
+            btnAlterar.ForeColor = Color.White;
+            btnAlterar.Paint += (s, e) => RoundControl(btnAlterar, e, ref isMouseOverBtnAlterar);
+            btnAlterar.Resize += (s, e) => btnAlterar.Invalidate();
+            btnAlterar.MouseEnter += (s, e) => { isMouseOverBtnAlterar = true; btnAlterar.Invalidate(); };
+            btnAlterar.MouseLeave += (s, e) => { isMouseOverBtnAlterar = false; btnAlterar.Invalidate(); };
+
 
             btnBarra.FlatStyle = FlatStyle.Flat;
             btnBarra.FlatAppearance.BorderSize = 0;
+        }
+
+        private void RoundControl(Control control, PaintEventArgs e, ref bool isMouseOver)
+        {
+            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
+                return;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (var path = new GraphicsPath())
+            {
+                Rectangle bounds = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
+                path.AddArc(bounds.X, bounds.Y, borderRadius, borderRadius, 180, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Y, borderRadius, borderRadius, 270, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Bottom - borderRadius, borderRadius, borderRadius, 0, 90);
+                path.AddArc(bounds.X, bounds.Bottom - borderRadius, borderRadius, borderRadius, 90, 90);
+                path.CloseAllFigures();
+
+                control.Region = new Region(path);
+
+                // Define a cor considerando MouseOver
+                Color currentBackColor = control.BackColor;
+                if (isMouseOver)
+                {
+                    if (control == btnVoltar)
+                        currentBackColor = ColorTranslator.FromHtml("#D6D9DC"); // MouseOver cinza
+                    else if (control == btnAlterar)
+                        currentBackColor = ColorTranslator.FromHtml("#7986CB"); // MouseOver azul mais claro
+                }
+
+                e.Graphics.FillPath(new SolidBrush(currentBackColor), path);
+                e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
+
+                if (control is Button btn)
+                {
+                    TextRenderer.DrawText(
+                        e.Graphics,
+                        btn.Text,
+                        btn.Font,
+                        control.ClientRectangle,
+                        btn.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                }
+            }
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)

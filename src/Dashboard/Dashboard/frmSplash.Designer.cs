@@ -69,11 +69,11 @@
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.MidnightBlue;
-            lblSubtitulo.Location = new Point(123, 116);
+            lblSubtitulo.Location = new Point(172, 115);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(405, 20);
+            lblSubtitulo.Size = new Size(298, 20);
             lblSubtitulo.TabIndex = 14;
-            lblSubtitulo.Text = "CONTROLE DE ENTRADA DE ALUNOS ATRASADOS";
+            lblSubtitulo.Text = "Controle de entrada de alunos atrasados";
             // 
             // lblStatus
             // 
@@ -86,7 +86,7 @@
             // 
             // progressBar
             // 
-            progressBar.BackColor = SystemColors.ActiveCaptionText;
+            progressBar.BackColor = SystemColors.ActiveBorder;
             progressBar.ForeColor = Color.Purple;
             progressBar.Location = new Point(109, 233);
             progressBar.Name = "progressBar";
@@ -132,7 +132,7 @@
             // 
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Snow;
+            BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(646, 389);
             Controls.Add(label4);
             Controls.Add(label1);
