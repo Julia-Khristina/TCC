@@ -34,13 +34,15 @@ namespace Dashboard
             {
                 Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
                 connection = new MySqlConnection(connectionString);
-
                 Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
-                lblTurma.Visible = true;
 
                 ConfigureEventHandlers();
-                CarregarTurmas();
-                Turmas_Direcionamento.SelectedIndex = -1;
+
+                // A ORDEM CORRETA DE CARREGAMENTO
+                Turmas_Direcionamento.Items.Clear();
+                Turmas_Direcionamento.Items.Add("Dropdown de Turmas"); // 1. Adiciona o placeholder
+                CarregarTurmas();                                     // 2. Adiciona os cursos do banco
+                Turmas_Direcionamento.SelectedIndex = 0;              // 3. Seleciona o placeholder
             }
             catch (Exception ex)
             {
@@ -62,7 +64,7 @@ namespace Dashboard
 
             // Eventos da ComboBox
             Turmas_Direcionamento.SelectedIndexChanged += Turmas_Direcionamento_SelectedIndexChanged;
-            Turmas_Direcionamento.DrawItem += ComboBox_DrawItem;
+            Turmas_Direcionamento.DrawItem += Turmas_Direcionamento_DrawItem;
 
             // Evento para fechar o form
             this.FormClosed += Dashboard_Principal_FormClosed;
@@ -84,28 +86,6 @@ namespace Dashboard
             RoundControl(panel, e);
         }
 
-        private void ComboBox_DrawItem(object? sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0 || sender is not ComboBox comboBox) return;
-
-            e.DrawBackground();
-            string? text = comboBox.Items[e.Index]?.ToString();
-            if (text == null) return;
-
-            using (StringFormat sf = new StringFormat())
-            {
-                sf.Alignment = StringAlignment.Center;
-                sf.LineAlignment = StringAlignment.Center;
-
-                using (SolidBrush brush = new SolidBrush(e.ForeColor))
-                {
-                    e.Graphics.DrawString(text, comboBox.Font, brush, e.Bounds, sf);
-                }
-            }
-
-            e.DrawFocusRectangle();
-        }
-
         private void CarregarTurmas()
         {
             try
@@ -121,7 +101,7 @@ namespace Dashboard
                         Turmas_Direcionamento.BeginUpdate();
                         try
                         {
-                            Turmas_Direcionamento.Items.Clear();
+                            // Turmas_Direcionamento.Items.Clear();
                             while (reader.Read())
                             {
                                 string? curso = reader["nm_Curso"]?.ToString();
@@ -148,14 +128,71 @@ namespace Dashboard
             }
         }
 
+        private void Turmas_Direcionamento_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0) return;
+
+            // ESTADO 1: Desenhando o item principal (caixa fechada)
+            if ((e.State & DrawItemState.ComboBoxEdit) == DrawItemState.ComboBoxEdit)
+            {
+                // Cor de fundo azul do mockup
+                Color backgroundColor = Color.FromArgb(52, 152, 219);
+                using (var backgroundBrush = new SolidBrush(backgroundColor))
+                {
+                    e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
+                }
+
+                // Pega o ícone de "turma" (índice 2)
+                Image icon = imageListMenu.Images[2];
+                int iconX = e.Bounds.Left + 10;
+                int iconY = e.Bounds.Top + (e.Bounds.Height - icon.Height) / 2;
+                e.Graphics.DrawImage(icon, iconX, iconY);
+
+                // Pega o texto do item selecionado
+                string text = Turmas_Direcionamento.Items[e.Index].ToString();
+                Point textLocation = new Point(iconX + icon.Width + 10, e.Bounds.Y + (e.Bounds.Height - e.Font.Height) / 2);
+                TextRenderer.DrawText(e.Graphics, text, e.Font, textLocation, Color.White, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+
+                // Desenha a setinha
+                ControlPaint.DrawComboButton(e.Graphics, e.Bounds.Right - 20, e.Bounds.Y, 20, e.Bounds.Height, ButtonState.Normal);
+            }
+            // ESTADO 2: Desenhando os itens na lista suspensa
+            else
+            {
+                // Pinta o fundo (azul escuro para item normal, azul claro para item selecionado)
+                if ((e.State & DrawItemState.Selected) == DrawItemState.Selected)
+                {
+                    e.Graphics.FillRectangle(Brushes.CornflowerBlue, e.Bounds);
+                }
+                else
+                {
+                    e.Graphics.FillRectangle(Brushes.MidnightBlue, e.Bounds);
+                }
+
+                // Desenha o texto do item, SEM ÍCONE
+                string text = Turmas_Direcionamento.Items[e.Index].ToString();
+                Point textLocation = new Point(e.Bounds.Left + 5, e.Bounds.Y + 2);
+                TextRenderer.DrawText(e.Graphics, text, e.Font, textLocation, Color.White);
+            }
+
+            // Desenha a borda de foco se necessário
+            e.DrawFocusRectangle();
+        }
+
+
+        // DENTRO DE frmDashboard_Principal.cs
+
         private void Turmas_Direcionamento_SelectedIndexChanged(object? sender, EventArgs e)
         {
-            if (Turmas_Direcionamento.SelectedIndex != -1 && Turmas_Direcionamento.SelectedItem != null)
+            // A CONDIÇÃO CORRETA E SEGURA:
+            // Verifica se o item selecionado NÃO é o placeholder (índice 0).
+            if (Turmas_Direcionamento.SelectedIndex > 0 && Turmas_Direcionamento.SelectedItem != null)
             {
-                lblTurma.Visible = false;
+                // Esta linha agora só executa para cursos válidos.
                 ObterCodigoCursoERedirecionar(Turmas_Direcionamento.SelectedItem.ToString()!);
             }
         }
+
 
         private void ObterCodigoCursoERedirecionar(string nomeTurma)
         {
