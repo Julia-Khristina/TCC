@@ -37,19 +37,18 @@ namespace Dashboard
             label2 = new Label();
             pictureBox3 = new PictureBox();
             Painel_Semanal = new Panel();
-            lblSemanal = new Label();
             pictureBox4 = new PictureBox();
+            lblSemanal = new Label();
             label5 = new Label();
             Painel_Mensal = new Panel();
-            lblMensal = new Label();
             pictureBox5 = new PictureBox();
+            lblMensal = new Label();
             label7 = new Label();
             label3 = new Label();
             btnSolicitarAdvertencia = new Button();
             button1 = new Button();
             label6 = new Label();
             Painel_Perfil = new Panel();
-            label4 = new Label();
             pictureBox1 = new PictureBox();
             panel1 = new Panel();
             lblTurma = new Label();
@@ -64,6 +63,7 @@ namespace Dashboard
             pictureBox2 = new PictureBox();
             Btn_Sair = new Button();
             pnMenu = new Panel();
+            pnEspacador = new Panel();
             flowLayoutPanelMenu = new FlowLayoutPanel();
             pnConteudo = new Panel();
             tableLayoutPanelCards = new TableLayoutPanel();
@@ -118,11 +118,11 @@ namespace Dashboard
             lblDiario.AutoSize = true;
             lblDiario.BackColor = Color.FromArgb(136, 170, 238);
             lblDiario.Enabled = false;
-            lblDiario.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblDiario.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDiario.ForeColor = SystemColors.ActiveCaptionText;
-            lblDiario.Location = new Point(20, 29);
+            lblDiario.Location = new Point(20, 48);
             lblDiario.Name = "lblDiario";
-            lblDiario.Size = new Size(34, 25);
+            lblDiario.Size = new Size(60, 47);
             lblDiario.TabIndex = 11;
             lblDiario.Text = "00";
             // 
@@ -131,21 +131,21 @@ namespace Dashboard
             label2.AutoSize = true;
             label2.BackColor = Color.FromArgb(136, 170, 238);
             label2.Enabled = false;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(10, 7);
+            label2.Location = new Point(23, 23);
             label2.Name = "label2";
-            label2.Size = new Size(38, 15);
+            label2.Size = new Size(52, 21);
             label2.TabIndex = 10;
             label2.Text = "Diário";
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(80, 18);
+            pictureBox3.Location = new Point(99, 27);
             pictureBox3.Margin = new Padding(3, 1, 3, 1);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(45, 36);
+            pictureBox3.Size = new Size(76, 68);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -153,8 +153,8 @@ namespace Dashboard
             // Painel_Semanal
             // 
             Painel_Semanal.BackColor = Color.FromArgb(255, 232, 164);
-            Painel_Semanal.Controls.Add(lblSemanal);
             Painel_Semanal.Controls.Add(pictureBox4);
+            Painel_Semanal.Controls.Add(lblSemanal);
             Painel_Semanal.Controls.Add(label5);
             Painel_Semanal.Dock = DockStyle.Fill;
             Painel_Semanal.Location = new Point(229, 3);
@@ -163,48 +163,48 @@ namespace Dashboard
             Painel_Semanal.Size = new Size(184, 126);
             Painel_Semanal.TabIndex = 3;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(93, 27);
+            pictureBox4.Margin = new Padding(3, 1, 3, 1);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(76, 68);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 12;
+            pictureBox4.TabStop = false;
+            // 
             // lblSemanal
             // 
             lblSemanal.AutoSize = true;
             lblSemanal.BackColor = Color.FromArgb(255, 232, 164);
             lblSemanal.Enabled = false;
-            lblSemanal.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSemanal.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSemanal.ForeColor = SystemColors.ActiveCaptionText;
-            lblSemanal.Location = new Point(18, 31);
+            lblSemanal.Location = new Point(18, 46);
             lblSemanal.Name = "lblSemanal";
-            lblSemanal.Size = new Size(34, 25);
+            lblSemanal.Size = new Size(60, 47);
             lblSemanal.TabIndex = 14;
             lblSemanal.Text = "00";
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(76, 23);
-            pictureBox4.Margin = new Padding(3, 1, 3, 1);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(45, 36);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 12;
-            pictureBox4.TabStop = false;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.BackColor = Color.FromArgb(255, 232, 164);
             label5.Enabled = false;
-            label5.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(8, 11);
+            label5.Location = new Point(14, 23);
             label5.Name = "label5";
-            label5.Size = new Size(52, 15);
+            label5.Size = new Size(70, 21);
             label5.TabIndex = 13;
             label5.Text = "Semanal";
             // 
             // Painel_Mensal
             // 
             Painel_Mensal.BackColor = Color.FromArgb(238, 136, 136);
-            Painel_Mensal.Controls.Add(lblMensal);
             Painel_Mensal.Controls.Add(pictureBox5);
+            Painel_Mensal.Controls.Add(lblMensal);
             Painel_Mensal.Controls.Add(label7);
             Painel_Mensal.Dock = DockStyle.Fill;
             Painel_Mensal.Location = new Point(443, 3);
@@ -213,40 +213,40 @@ namespace Dashboard
             Painel_Mensal.Size = new Size(198, 126);
             Painel_Mensal.TabIndex = 3;
             // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(108, 25);
+            pictureBox5.Margin = new Padding(3, 1, 3, 1);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(76, 68);
+            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox5.TabIndex = 15;
+            pictureBox5.TabStop = false;
+            // 
             // lblMensal
             // 
             lblMensal.AutoSize = true;
             lblMensal.BackColor = Color.FromArgb(238, 136, 136);
             lblMensal.Enabled = false;
-            lblMensal.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblMensal.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMensal.ForeColor = SystemColors.ActiveCaptionText;
-            lblMensal.Location = new Point(18, 31);
+            lblMensal.Location = new Point(27, 46);
             lblMensal.Name = "lblMensal";
-            lblMensal.Size = new Size(34, 25);
+            lblMensal.Size = new Size(60, 47);
             lblMensal.TabIndex = 17;
             lblMensal.Text = "00";
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(78, 23);
-            pictureBox5.Margin = new Padding(3, 1, 3, 1);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(45, 36);
-            pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox5.TabIndex = 15;
-            pictureBox5.TabStop = false;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.BackColor = Color.FromArgb(238, 136, 136);
             label7.Enabled = false;
-            label7.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.Location = new Point(8, 11);
+            label7.Location = new Point(27, 25);
             label7.Name = "label7";
-            label7.Size = new Size(45, 15);
+            label7.Size = new Size(60, 21);
             label7.TabIndex = 16;
             label7.Text = "Mensal";
             // 
@@ -299,7 +299,6 @@ namespace Dashboard
             // 
             // Painel_Perfil
             // 
-            Painel_Perfil.Controls.Add(label4);
             Painel_Perfil.Controls.Add(pictureBox1);
             Painel_Perfil.Dock = DockStyle.Top;
             Painel_Perfil.Location = new Point(0, 0);
@@ -307,24 +306,13 @@ namespace Dashboard
             Painel_Perfil.Size = new Size(200, 89);
             Painel_Perfil.TabIndex = 2;
             // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.DarkBlue;
-            label4.Location = new Point(2, 54);
-            label4.Name = "label4";
-            label4.Size = new Size(221, 12);
-            label4.TabIndex = 1;
-            label4.Text = "______________________________________________________";
-            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
             pictureBox1.Location = new Point(12, 10);
             pictureBox1.Margin = new Padding(3, 1, 3, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(158, 49);
+            pictureBox1.Size = new Size(173, 49);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
@@ -339,7 +327,7 @@ namespace Dashboard
             // lblTurma
             // 
             lblTurma.AutoSize = true;
-            lblTurma.BackColor = Color.SteelBlue;
+            lblTurma.BackColor = Color.MidnightBlue;
             lblTurma.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTurma.ForeColor = SystemColors.ButtonHighlight;
             lblTurma.Location = new Point(23, 133);
@@ -351,10 +339,10 @@ namespace Dashboard
             // Turmas_Direcionamento
             // 
             Turmas_Direcionamento.AllowDrop = true;
-            Turmas_Direcionamento.BackColor = Color.SteelBlue;
-            Turmas_Direcionamento.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            Turmas_Direcionamento.BackColor = Color.MidnightBlue;
+            Turmas_Direcionamento.DrawMode = DrawMode.OwnerDrawFixed;
             Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
-            Turmas_Direcionamento.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
             Turmas_Direcionamento.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Turmas_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
             Turmas_Direcionamento.FormattingEnabled = true;
@@ -439,22 +427,22 @@ namespace Dashboard
             // LblFuncao
             // 
             LblFuncao.AutoSize = true;
-            LblFuncao.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            LblFuncao.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             LblFuncao.ForeColor = SystemColors.ButtonHighlight;
-            LblFuncao.Location = new Point(50, 28);
+            LblFuncao.Location = new Point(63, 24);
             LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(46, 15);
+            LblFuncao.Size = new Size(56, 20);
             LblFuncao.TabIndex = 2;
             LblFuncao.Text = "Função";
             // 
             // lblNome
             // 
             lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(50, 11);
+            lblNome.Location = new Point(63, 7);
             lblNome.Name = "lblNome";
-            lblNome.Size = new Size(41, 15);
+            lblNome.Size = new Size(52, 20);
             lblNome.TabIndex = 1;
             lblNome.Text = "Nome";
             lblNome.Click += lblNome_Click;
@@ -462,7 +450,7 @@ namespace Dashboard
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(10, 11);
+            pictureBox2.Location = new Point(25, 9);
             pictureBox2.Margin = new Padding(3, 1, 3, 1);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(30, 30);
@@ -480,7 +468,7 @@ namespace Dashboard
             Btn_Sair.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             Btn_Sair.ForeColor = Color.White;
             Btn_Sair.Location = new Point(0, 40);
-            Btn_Sair.Margin = new Padding(3, 1, 3, 1);
+            Btn_Sair.Margin = new Padding(3, 6, 3, 6);
             Btn_Sair.Name = "Btn_Sair";
             Btn_Sair.Size = new Size(200, 40);
             Btn_Sair.TabIndex = 5;
@@ -490,6 +478,7 @@ namespace Dashboard
             // pnMenu
             // 
             pnMenu.BackColor = Color.MidnightBlue;
+            pnMenu.Controls.Add(pnEspacador);
             pnMenu.Controls.Add(flowLayoutPanelMenu);
             pnMenu.Controls.Add(Painel_Perfil);
             pnMenu.Controls.Add(panel2);
@@ -499,6 +488,15 @@ namespace Dashboard
             pnMenu.Name = "pnMenu";
             pnMenu.Size = new Size(200, 473);
             pnMenu.TabIndex = 0;
+            // 
+            // pnEspacador
+            // 
+            pnEspacador.BackColor = Color.Transparent;
+            pnEspacador.Dock = DockStyle.Fill;
+            pnEspacador.Location = new Point(0, 269);
+            pnEspacador.Name = "pnEspacador";
+            pnEspacador.Size = new Size(200, 104);
+            pnEspacador.TabIndex = 0;
             // 
             // flowLayoutPanelMenu
             // 
@@ -602,7 +600,6 @@ namespace Dashboard
             Painel_Mensal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             Painel_Perfil.ResumeLayout(false);
-            Painel_Perfil.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
@@ -628,10 +625,8 @@ namespace Dashboard
         private Label label2;
         private Label lblDiario;
         private Label lblSemanal;
-        private PictureBox pictureBox4;
         private Label label5;
         private Label lblMensal;
-        private PictureBox pictureBox5;
         private Label label7;
         private Label label3;
         private Button btnSolicitarAdvertencia;
@@ -658,7 +653,9 @@ namespace Dashboard
         private FlowLayoutPanel flowLayoutPanelReports;
         private FlowLayoutPanel flowLayoutPanelMenu;
         private ImageList imageListMenu;
-        private Label label4;
+        private Panel pnEspacador;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox5;
     }
 }
 

@@ -47,7 +47,7 @@
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ButtonShadow;
-            label5.Location = new Point(293, 353);
+            label5.Location = new Point(268, 353);
             label5.Name = "label5";
             label5.Size = new Size(58, 13);
             label5.TabIndex = 16;
@@ -57,7 +57,7 @@
             // 
             lblPercentual.AutoSize = true;
             lblPercentual.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblPercentual.Location = new Point(310, 267);
+            lblPercentual.Location = new Point(285, 267);
             lblPercentual.Name = "lblPercentual";
             lblPercentual.Size = new Size(13, 20);
             lblPercentual.TabIndex = 15;
@@ -69,7 +69,7 @@
             lblSubtitulo.AutoSize = true;
             lblSubtitulo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.MidnightBlue;
-            lblSubtitulo.Location = new Point(172, 115);
+            lblSubtitulo.Location = new Point(147, 115);
             lblSubtitulo.Name = "lblSubtitulo";
             lblSubtitulo.Size = new Size(298, 20);
             lblSubtitulo.TabIndex = 14;
@@ -79,7 +79,7 @@
             // 
             lblStatus.AutoSize = true;
             lblStatus.Font = new Font("Verdana", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblStatus.Location = new Point(251, 206);
+            lblStatus.Location = new Point(226, 206);
             lblStatus.Name = "lblStatus";
             lblStatus.Size = new Size(0, 16);
             lblStatus.TabIndex = 12;
@@ -88,7 +88,7 @@
             // 
             progressBar.BackColor = SystemColors.ActiveBorder;
             progressBar.ForeColor = Color.Purple;
-            progressBar.Location = new Point(109, 233);
+            progressBar.Location = new Point(84, 233);
             progressBar.Name = "progressBar";
             progressBar.Size = new Size(428, 22);
             progressBar.TabIndex = 11;
@@ -102,7 +102,7 @@
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
-            label1.Location = new Point(234, 204);
+            label1.Location = new Point(209, 204);
             label1.Name = "label1";
             label1.Size = new Size(178, 18);
             label1.TabIndex = 17;
@@ -113,7 +113,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.MidnightBlue;
-            label4.Location = new Point(173, 120);
+            label4.Location = new Point(148, 120);
             label4.Name = "label4";
             label4.Size = new Size(0, 13);
             label4.TabIndex = 20;
@@ -121,7 +121,7 @@
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(155, -39);
+            pictureBox1.Location = new Point(130, -39);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(338, 203);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -133,7 +133,7 @@
             AutoScaleDimensions = new SizeF(6F, 13F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
-            ClientSize = new Size(646, 389);
+            ClientSize = new Size(607, 389);
             Controls.Add(label4);
             Controls.Add(label1);
             Controls.Add(label5);

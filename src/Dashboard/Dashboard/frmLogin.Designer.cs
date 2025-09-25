@@ -120,7 +120,7 @@
             lblStatusEmail.AutoSize = true;
             lblStatusEmail.Font = new Font("Microsoft Sans Serif", 9F);
             lblStatusEmail.ForeColor = Color.Red;
-            lblStatusEmail.Location = new Point(435, 197);
+            lblStatusEmail.Location = new Point(435, 304);
             lblStatusEmail.Name = "lblStatusEmail";
             lblStatusEmail.Size = new Size(0, 15);
             lblStatusEmail.TabIndex = 12;
@@ -130,7 +130,7 @@
             lblStatusSenha.AutoSize = true;
             lblStatusSenha.Font = new Font("Microsoft Sans Serif", 9F);
             lblStatusSenha.ForeColor = Color.Red;
-            lblStatusSenha.Location = new Point(435, 300);
+            lblStatusSenha.Location = new Point(435, 302);
             lblStatusSenha.Name = "lblStatusSenha";
             lblStatusSenha.Size = new Size(0, 15);
             lblStatusSenha.TabIndex = 13;
@@ -141,7 +141,7 @@
             txtUsuario.BorderStyle = BorderStyle.None;
             txtUsuario.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtUsuario.ForeColor = Color.FromArgb(64, 64, 64);
-            txtUsuario.Location = new Point(438, 162);
+            txtUsuario.Location = new Point(438, 166);
             txtUsuario.Name = "txtUsuario";
             txtUsuario.Size = new Size(302, 17);
             txtUsuario.TabIndex = 14;
@@ -153,7 +153,7 @@
             txtSenha.BorderStyle = BorderStyle.None;
             txtSenha.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
-            txtSenha.Location = new Point(438, 266);
+            txtSenha.Location = new Point(438, 270);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
             txtSenha.Size = new Size(302, 17);

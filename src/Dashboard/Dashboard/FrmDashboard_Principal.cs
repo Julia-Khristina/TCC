@@ -40,7 +40,7 @@ namespace Dashboard
 
                 // A ORDEM CORRETA DE CARREGAMENTO
                 Turmas_Direcionamento.Items.Clear();
-                Turmas_Direcionamento.Items.Add("Dropdown de Turmas"); // 1. Adiciona o placeholder
+                Turmas_Direcionamento.Items.Add("Turmas"); // 1. Adiciona o placeholder
                 CarregarTurmas();                                     // 2. Adiciona os cursos do banco
                 Turmas_Direcionamento.SelectedIndex = 0;              // 3. Seleciona o placeholder
             }
@@ -142,19 +142,10 @@ namespace Dashboard
                     e.Graphics.FillRectangle(backgroundBrush, e.Bounds);
                 }
 
-                // Pega o ícone de "turma" (índice 2)
-                Image icon = imageListMenu.Images[2];
-                int iconX = e.Bounds.Left + 10;
-                int iconY = e.Bounds.Top + (e.Bounds.Height - icon.Height) / 2;
-                e.Graphics.DrawImage(icon, iconX, iconY);
-
                 // Pega o texto do item selecionado
                 string text = Turmas_Direcionamento.Items[e.Index].ToString();
-                Point textLocation = new Point(iconX + icon.Width + 10, e.Bounds.Y + (e.Bounds.Height - e.Font.Height) / 2);
+                Point textLocation = new Point((e.Bounds.Height - e.Font.Height) / 2);
                 TextRenderer.DrawText(e.Graphics, text, e.Font, textLocation, Color.White, TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
-
-                // Desenha a setinha
-                ControlPaint.DrawComboButton(e.Graphics, e.Bounds.Right - 20, e.Bounds.Y, 20, e.Bounds.Height, ButtonState.Normal);
             }
             // ESTADO 2: Desenhando os itens na lista suspensa
             else
@@ -178,9 +169,6 @@ namespace Dashboard
             // Desenha a borda de foco se necessário
             e.DrawFocusRectangle();
         }
-
-
-        // DENTRO DE frmDashboard_Principal.cs
 
         private void Turmas_Direcionamento_SelectedIndexChanged(object? sender, EventArgs e)
         {
