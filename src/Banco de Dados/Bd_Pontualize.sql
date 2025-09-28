@@ -129,6 +129,47 @@ INSERT INTO Curso (nm_Curso) VALUES
 ('Administração'),
 ('Desenvolvimento de Sistemas');
 
+INSERT INTO Biometria (dados_Biometria) VALUES
+('A1B2C3D4'), ('B1C2D3E4'), ('C1D2E3F4'),
+('D1E2F3A4'), ('E1F2A3B4'), ('F1A2B3C4'),
+('A2B3C4D5'), ('B2C3D4E5'), ('C2D3E4F5'),
+('D2E3F4A5'), ('E2F3A4B5'), ('F2A3B4C5'),
+('A3B4C5D6'), ('B3C4D5E6'), ('C3D4E5F6'),
+('D3E4F5A6'), ('E3F4A5B6'), ('F3A4B5C6');
+
+INSERT INTO Aluno (cd_aluno, nm_Aluno, gmail_aluno, telefone_aluno, Serie_Aluno, Curso_Aluno, cd_Biometria, atrasos, foto_aluno) VALUES
+-- Curso 1: Automação Industrial
+('230060','Ana Silva', 'aluno1@gmail.com', '11999990001', 1, 1, 1, 0, 'FFD8FFE0'),
+('230061', 'Bruno Costa', 'aluno2@gmail.com', '11999990002', 1, 1, 2, 1, 'FFD8FFE0'),
+
+('240030', 'Carla Souza', 'aluno3@gmail.com', '11999990003', 2, 1, 3, 0, 'FFD8FFE0'),
+('240031', 'Diego Lima', 'aluno4@gmail.com', '11999990004', 2, 1, 4, 2, 'FFD8FFE0'),
+
+('250024', 'Eduarda Alves', 'aluno5@gmail.com', '11999990005', 3, 1, 5, 0, 'FFD8FFE0'),
+('250025', 'Felipe Torres', 'aluno6@gmail.com', '11999990006', 3, 1, 6, 1, 'FFD8FFE0'),
+
+-- Curso 2: Administração
+('230070', 'Gabriela Rocha', 'aluno7@gmail.com', '11999990007', 1, 2, 7, 0, 'FFD8FFE0'),
+('230071', 'Henrique Melo', 'aluno8@gmail.com', '11999990008', 1, 2, 8, 3, 'FFD8FFE0'), 
+
+('240067', 'Isabela Martins', 'aluno9@gmail.com', '11999990009', 2, 2, 9, 0, 'FFD8FFE0'),
+('240068', 'João Pedro', 'aluno10@gmail.com', '11999990010', 2, 2, 10, 0, 'FFD8FFE0'),
+
+('250067', 'Karen Oliveira', 'aluno11@gmail.com', '11999990011', 3, 2, 11, 0, 'FFD8FFE0'),
+('250069', 'Lucas Ribeiro', 'aluno12@gmail.com', '11999990012', 3, 2, 12, 2, 'FFD8FFE0'),
+
+-- Curso 3: Desenvolvimento de Sistemas
+('230093', 'Mariana Fernandes', 'aluno13@gmail.com', '11999990013', 1, 3, 13, 0, 'FFD8FFE0'),
+('230094', 'Nicolas Barros', 'aluno14@gmail.com', '11999990014', 1, 3, 14, 1, 'FFD8FFE0'),
+
+('240009', 'Olivia Prado', 'aluno15@gmail.com', '11999990015', 2, 3, 15, 0, 'FFD8FFE0'),
+('240010', 'Paulo Henrique', 'aluno16@gmail.com', '11999990016', 2, 3, 16, 0, 'FFD8FFE0'),
+
+('250048', 'Renata Cardoso', 'aluno17@gmail.com', '11999990017', 3, 3, 17, 0, 'FFD8FFE0'),
+('250049', 'Thiago Moreira', 'aluno18@gmail.com', '11999990018', 3, 3, 18, 1, 'FFD8FFE0');
+
+
+
 INSERT INTO Administrador (nm_Administrador, telefone_Administrador, email_Administrador, senha_Administrador)
 VALUES
 ('Mestre dos Magos', '12999999999', 'etec@gmail.com', '$2a$12$TaL734zFwCyAQUhNwnCucOESnPOKLTOIerLbW31Rhx8iXDQpZQjIW');

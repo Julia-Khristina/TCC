@@ -46,8 +46,13 @@
             pnAlunoAtrasos = new Panel();
             tbAtrasoTurma = new DataGridView();
             pnGraficoTurma = new Panel();
-            lblAnoAluno = new Label();
             pictureBoxCarometro = new PictureBox();
+            btnMoldura = new Button();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label1 = new Label();
+            lblAnoAluno = new Label();
             lblEmailAluno = new Label();
             lblTelAluno = new Label();
             lblNomeAluno = new Label();
@@ -276,8 +281,13 @@
             // pnGraficoTurma
             // 
             pnGraficoTurma.BackColor = SystemColors.ButtonHighlight;
-            pnGraficoTurma.Controls.Add(lblAnoAluno);
             pnGraficoTurma.Controls.Add(pictureBoxCarometro);
+            pnGraficoTurma.Controls.Add(btnMoldura);
+            pnGraficoTurma.Controls.Add(label7);
+            pnGraficoTurma.Controls.Add(label6);
+            pnGraficoTurma.Controls.Add(label5);
+            pnGraficoTurma.Controls.Add(label1);
+            pnGraficoTurma.Controls.Add(lblAnoAluno);
             pnGraficoTurma.Controls.Add(lblEmailAluno);
             pnGraficoTurma.Controls.Add(lblTelAluno);
             pnGraficoTurma.Controls.Add(lblNomeAluno);
@@ -286,49 +296,100 @@
             pnGraficoTurma.Name = "pnGraficoTurma";
             pnGraficoTurma.Size = new Size(391, 253);
             pnGraficoTurma.TabIndex = 7;
-            // 
-            // lblAnoAluno
-            // 
-            lblAnoAluno.AutoSize = true;
-            lblAnoAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAnoAluno.Location = new Point(141, 113);
-            lblAnoAluno.Name = "lblAnoAluno";
-            lblAnoAluno.Size = new Size(0, 25);
-            lblAnoAluno.TabIndex = 4;
+            pnGraficoTurma.Paint += pnGraficoTurma_Paint;
             // 
             // pictureBoxCarometro
             // 
-            pictureBoxCarometro.Location = new Point(17, 17);
+            pictureBoxCarometro.Location = new Point(40, 29);
             pictureBoxCarometro.Name = "pictureBoxCarometro";
             pictureBoxCarometro.Size = new Size(100, 111);
             pictureBoxCarometro.TabIndex = 3;
             pictureBoxCarometro.TabStop = false;
             // 
+            // btnMoldura
+            // 
+            btnMoldura.BackColor = Color.MidnightBlue;
+            btnMoldura.Location = new Point(29, 20);
+            btnMoldura.Name = "btnMoldura";
+            btnMoldura.Size = new Size(123, 128);
+            btnMoldura.TabIndex = 9;
+            btnMoldura.Text = "button1";
+            btnMoldura.UseVisualStyleBackColor = false;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(182, 174);
+            label7.Name = "label7";
+            label7.Size = new Size(41, 21);
+            label7.TabIndex = 8;
+            label7.Text = "Ano:";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label6.Location = new Point(180, 123);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 21);
+            label6.TabIndex = 7;
+            label6.Text = "Email:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Location = new Point(180, 69);
+            label5.Name = "label5";
+            label5.Size = new Size(70, 21);
+            label5.TabIndex = 6;
+            label5.Text = "Telefone:";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(180, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 21);
+            label1.TabIndex = 5;
+            label1.Text = "Nome:";
+            // 
+            // lblAnoAluno
+            // 
+            lblAnoAluno.AutoSize = true;
+            lblAnoAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAnoAluno.Location = new Point(180, 195);
+            lblAnoAluno.Name = "lblAnoAluno";
+            lblAnoAluno.Size = new Size(0, 21);
+            lblAnoAluno.TabIndex = 4;
+            // 
             // lblEmailAluno
             // 
             lblEmailAluno.AutoSize = true;
-            lblEmailAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblEmailAluno.Location = new Point(141, 79);
+            lblEmailAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmailAluno.Location = new Point(182, 142);
             lblEmailAluno.Name = "lblEmailAluno";
-            lblEmailAluno.Size = new Size(0, 25);
+            lblEmailAluno.Size = new Size(0, 21);
             lblEmailAluno.TabIndex = 2;
             // 
             // lblTelAluno
             // 
             lblTelAluno.AutoSize = true;
-            lblTelAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTelAluno.Location = new Point(141, 47);
+            lblTelAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTelAluno.Location = new Point(180, 90);
             lblTelAluno.Name = "lblTelAluno";
-            lblTelAluno.Size = new Size(0, 25);
+            lblTelAluno.Size = new Size(0, 21);
             lblTelAluno.TabIndex = 1;
             // 
             // lblNomeAluno
             // 
             lblNomeAluno.AutoSize = true;
-            lblNomeAluno.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNomeAluno.Location = new Point(141, 17);
+            lblNomeAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNomeAluno.Location = new Point(180, 35);
             lblNomeAluno.Name = "lblNomeAluno";
-            lblNomeAluno.Size = new Size(0, 25);
+            lblNomeAluno.Size = new Size(0, 21);
             lblNomeAluno.TabIndex = 0;
             // 
             // lblDiario
@@ -475,6 +536,7 @@
             Margin = new Padding(3, 2, 3, 2);
             Name = "frmTurma";
             StartPosition = FormStartPosition.CenterScreen;
+            WindowState = FormWindowState.Maximized;
             Load += frmTurma_Load;
             Painel_Perfil.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
@@ -532,5 +594,10 @@
         private Label lblNomeAluno;
         private PictureBox pictureBoxCarometro;
         private Label lblAnoAluno;
+        private Label label6;
+        private Label label5;
+        private Label label1;
+        private Label label7;
+        private Button btnMoldura;
     }
 }

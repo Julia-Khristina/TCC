@@ -20,6 +20,10 @@ namespace Dashboard
             InitializeComponent();
             cursoId = cd_Curso;
             InitializeTurmaForm();
+
+            btnMoldura.FlatStyle = FlatStyle.Flat;
+            btnMoldura.FlatAppearance.BorderSize = 0;
+
         }
 
         private void InitializeTurmaForm()
@@ -535,12 +539,9 @@ namespace Dashboard
 
         }
 
+        private void pnGraficoTurma_Paint(object sender, PaintEventArgs e)
+        {
 
-       
-
-
-
-
-
+        }
     }
 }
