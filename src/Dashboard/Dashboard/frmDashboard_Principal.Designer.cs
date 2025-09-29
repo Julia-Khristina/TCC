@@ -53,10 +53,10 @@ namespace Dashboard
             pnConteudo = new Panel();
             tableLayoutPanelCards = new TableLayoutPanel();
             panelWelcome = new Panel();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            menuPrincipal2 = new MenuPrincipal();
             BtnWelcome = new ArredondamentoBtn();
             arredondamentoBtn1 = new ArredondamentoBtn();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            menuPrincipal2 = new MenuPrincipal();
             Painel_Diário.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             Painel_Semanal.SuspendLayout();
@@ -73,9 +73,9 @@ namespace Dashboard
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Mongolian Baiti", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(53, 40);
+            label1.Location = new Point(61, 53);
             label1.Name = "label1";
-            label1.Size = new Size(155, 23);
+            label1.Size = new Size(199, 29);
             label1.TabIndex = 1;
             label1.Text = "Relatório Geral";
             // 
@@ -86,10 +86,10 @@ namespace Dashboard
             Painel_Diário.Controls.Add(label2);
             Painel_Diário.Controls.Add(pictureBox3);
             Painel_Diário.Dock = DockStyle.Fill;
-            Painel_Diário.Location = new Point(3, 3);
-            Painel_Diário.Margin = new Padding(3, 3, 15, 3);
+            Painel_Diário.Location = new Point(3, 4);
+            Painel_Diário.Margin = new Padding(3, 4, 17, 4);
             Painel_Diário.Name = "Painel_Diário";
-            Painel_Diário.Size = new Size(196, 126);
+            Painel_Diário.Size = new Size(225, 168);
             Painel_Diário.TabIndex = 2;
             // 
             // lblDiario
@@ -99,9 +99,9 @@ namespace Dashboard
             lblDiario.Enabled = false;
             lblDiario.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblDiario.ForeColor = SystemColors.ActiveCaptionText;
-            lblDiario.Location = new Point(20, 48);
+            lblDiario.Location = new Point(23, 64);
             lblDiario.Name = "lblDiario";
-            lblDiario.Size = new Size(60, 47);
+            lblDiario.Size = new Size(75, 60);
             lblDiario.TabIndex = 11;
             lblDiario.Text = "00";
             // 
@@ -112,19 +112,19 @@ namespace Dashboard
             label2.Enabled = false;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ActiveCaptionText;
-            label2.Location = new Point(23, 23);
+            label2.Location = new Point(26, 31);
             label2.Name = "label2";
-            label2.Size = new Size(52, 21);
+            label2.Size = new Size(65, 28);
             label2.TabIndex = 10;
             label2.Text = "Diário";
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(99, 27);
+            pictureBox3.Location = new Point(113, 36);
             pictureBox3.Margin = new Padding(3, 1, 3, 1);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(76, 68);
+            pictureBox3.Size = new Size(87, 91);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -136,19 +136,19 @@ namespace Dashboard
             Painel_Semanal.Controls.Add(lblSemanal);
             Painel_Semanal.Controls.Add(label5);
             Painel_Semanal.Dock = DockStyle.Fill;
-            Painel_Semanal.Location = new Point(229, 3);
-            Painel_Semanal.Margin = new Padding(15, 3, 15, 3);
+            Painel_Semanal.Location = new Point(262, 4);
+            Painel_Semanal.Margin = new Padding(17, 4, 17, 4);
             Painel_Semanal.Name = "Painel_Semanal";
-            Painel_Semanal.Size = new Size(184, 126);
+            Painel_Semanal.Size = new Size(211, 168);
             Painel_Semanal.TabIndex = 3;
             // 
             // pictureBox4
             // 
             pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
-            pictureBox4.Location = new Point(93, 27);
+            pictureBox4.Location = new Point(106, 36);
             pictureBox4.Margin = new Padding(3, 1, 3, 1);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(76, 68);
+            pictureBox4.Size = new Size(87, 91);
             pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox4.TabIndex = 12;
             pictureBox4.TabStop = false;
@@ -160,9 +160,9 @@ namespace Dashboard
             lblSemanal.Enabled = false;
             lblSemanal.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSemanal.ForeColor = SystemColors.ActiveCaptionText;
-            lblSemanal.Location = new Point(18, 46);
+            lblSemanal.Location = new Point(21, 61);
             lblSemanal.Name = "lblSemanal";
-            lblSemanal.Size = new Size(60, 47);
+            lblSemanal.Size = new Size(75, 60);
             lblSemanal.TabIndex = 14;
             lblSemanal.Text = "00";
             // 
@@ -173,9 +173,9 @@ namespace Dashboard
             label5.Enabled = false;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ActiveCaptionText;
-            label5.Location = new Point(14, 23);
+            label5.Location = new Point(16, 31);
             label5.Name = "label5";
-            label5.Size = new Size(70, 21);
+            label5.Size = new Size(86, 28);
             label5.TabIndex = 13;
             label5.Text = "Semanal";
             // 
@@ -187,19 +187,19 @@ namespace Dashboard
             Painel_Mensal.Controls.Add(label7);
             Painel_Mensal.Controls.Add(flowLayoutPanelReports);
             Painel_Mensal.Dock = DockStyle.Fill;
-            Painel_Mensal.Location = new Point(443, 3);
-            Painel_Mensal.Margin = new Padding(15, 3, 3, 3);
+            Painel_Mensal.Location = new Point(507, 4);
+            Painel_Mensal.Margin = new Padding(17, 4, 3, 4);
             Painel_Mensal.Name = "Painel_Mensal";
-            Painel_Mensal.Size = new Size(198, 126);
+            Painel_Mensal.Size = new Size(226, 168);
             Painel_Mensal.TabIndex = 3;
             // 
             // pictureBox5
             // 
             pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
-            pictureBox5.Location = new Point(108, 25);
+            pictureBox5.Location = new Point(123, 33);
             pictureBox5.Margin = new Padding(3, 1, 3, 1);
             pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(76, 68);
+            pictureBox5.Size = new Size(87, 91);
             pictureBox5.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox5.TabIndex = 15;
             pictureBox5.TabStop = false;
@@ -211,9 +211,9 @@ namespace Dashboard
             lblMensal.Enabled = false;
             lblMensal.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblMensal.ForeColor = SystemColors.ActiveCaptionText;
-            lblMensal.Location = new Point(27, 46);
+            lblMensal.Location = new Point(31, 61);
             lblMensal.Name = "lblMensal";
-            lblMensal.Size = new Size(60, 47);
+            lblMensal.Size = new Size(75, 60);
             lblMensal.TabIndex = 17;
             lblMensal.Text = "00";
             // 
@@ -224,17 +224,18 @@ namespace Dashboard
             label7.Enabled = false;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.Location = new Point(27, 25);
+            label7.Location = new Point(31, 33);
             label7.Name = "label7";
-            label7.Size = new Size(60, 21);
+            label7.Size = new Size(74, 28);
             label7.TabIndex = 16;
             label7.Text = "Mensal";
             // 
             // flowLayoutPanelReports
             // 
             flowLayoutPanelReports.Location = new Point(0, 0);
+            flowLayoutPanelReports.Margin = new Padding(3, 4, 3, 4);
             flowLayoutPanelReports.Name = "flowLayoutPanelReports";
-            flowLayoutPanelReports.Size = new Size(200, 100);
+            flowLayoutPanelReports.Size = new Size(229, 133);
             flowLayoutPanelReports.TabIndex = 11;
             // 
             // label3
@@ -242,9 +243,9 @@ namespace Dashboard
             label3.AutoSize = true;
             label3.BackColor = Color.WhiteSmoke;
             label3.Font = new Font("Mongolian Baiti", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label3.Location = new Point(205, 39);
+            label3.Location = new Point(234, 52);
             label3.Name = "label3";
-            label3.Size = new Size(210, 20);
+            label3.Size = new Size(262, 25);
             label3.TabIndex = 4;
             label3.Text = "Bem-vindo ao Pontualize!";
             // 
@@ -253,9 +254,9 @@ namespace Dashboard
             label6.AutoSize = true;
             label6.BackColor = Color.WhiteSmoke;
             label6.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label6.Location = new Point(56, 73);
+            label6.Location = new Point(18, 107);
             label6.Name = "label6";
-            label6.Size = new Size(556, 64);
+            label6.Size = new Size(699, 80);
             label6.TabIndex = 8;
             label6.Text = resources.GetString("label6.Text");
             label6.TextAlign = ContentAlignment.MiddleCenter;
@@ -281,9 +282,9 @@ namespace Dashboard
             // lblFalsoComboBox
             // 
             lblFalsoComboBox.AutoSize = true;
-            lblFalsoComboBox.Location = new Point(87, 80);
+            lblFalsoComboBox.Location = new Point(99, 107);
             lblFalsoComboBox.Name = "lblFalsoComboBox";
-            lblFalsoComboBox.Size = new Size(52, 15);
+            lblFalsoComboBox.Size = new Size(65, 20);
             lblFalsoComboBox.TabIndex = 11;
             lblFalsoComboBox.Text = "  Turmas";
             // 
@@ -294,10 +295,10 @@ namespace Dashboard
             pnConteudo.Controls.Add(panelWelcome);
             pnConteudo.Controls.Add(label1);
             pnConteudo.Dock = DockStyle.Fill;
-            pnConteudo.Location = new Point(200, 0);
+            pnConteudo.Location = new Point(229, 0);
             pnConteudo.Margin = new Padding(0);
             pnConteudo.Name = "pnConteudo";
-            pnConteudo.Size = new Size(750, 473);
+            pnConteudo.Size = new Size(857, 631);
             pnConteudo.TabIndex = 1;
             // 
             // tableLayoutPanelCards
@@ -310,11 +311,12 @@ namespace Dashboard
             tableLayoutPanelCards.Controls.Add(Painel_Diário, 0, 0);
             tableLayoutPanelCards.Controls.Add(Painel_Semanal, 1, 0);
             tableLayoutPanelCards.Controls.Add(Painel_Mensal, 2, 0);
-            tableLayoutPanelCards.Location = new Point(54, 75);
+            tableLayoutPanelCards.Location = new Point(62, 100);
+            tableLayoutPanelCards.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanelCards.Name = "tableLayoutPanelCards";
             tableLayoutPanelCards.RowCount = 1;
             tableLayoutPanelCards.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanelCards.Size = new Size(644, 132);
+            tableLayoutPanelCards.Size = new Size(736, 176);
             tableLayoutPanelCards.TabIndex = 9;
             // 
             // panelWelcome
@@ -325,35 +327,11 @@ namespace Dashboard
             panelWelcome.Controls.Add(lblFalsoComboBox);
             panelWelcome.Controls.Add(label3);
             panelWelcome.Controls.Add(arredondamentoBtn1);
-            panelWelcome.Location = new Point(54, 213);
+            panelWelcome.Location = new Point(62, 284);
+            panelWelcome.Margin = new Padding(3, 4, 3, 4);
             panelWelcome.Name = "panelWelcome";
-            panelWelcome.Size = new Size(644, 227);
+            panelWelcome.Size = new Size(736, 303);
             panelWelcome.TabIndex = 10;
-            // 
-            // tableLayoutPanel1
-            // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
-            tableLayoutPanel1.Controls.Add(menuPrincipal2, 0, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(950, 473);
-            tableLayoutPanel1.TabIndex = 6;
-            // 
-            // menuPrincipal2
-            // 
-            menuPrincipal2.Dock = DockStyle.Fill; // <-- ADICIONE ESTA LINHA
-            menuPrincipal2.Location = new Point(0, 0); // O Dock controla a posição, pode zerar
-            menuPrincipal2.Margin = new Padding(0); // Remove margens
-            menuPrincipal2.Name = "menuPrincipal1";
-            // menuPrincipal1.Size = new Size(197, 427); // REMOVA ou comente esta linha
-            menuPrincipal2.TabIndex = 6;
             // 
             // BtnWelcome
             // 
@@ -364,9 +342,10 @@ namespace Dashboard
             BtnWelcome.FlatAppearance.BorderSize = 0;
             BtnWelcome.FlatStyle = FlatStyle.Flat;
             BtnWelcome.ForeColor = Color.White;
-            BtnWelcome.Location = new Point(229, 187);
+            BtnWelcome.Location = new Point(262, 249);
+            BtnWelcome.Margin = new Padding(3, 4, 3, 4);
             BtnWelcome.Name = "BtnWelcome";
-            BtnWelcome.Size = new Size(150, 34);
+            BtnWelcome.Size = new Size(171, 45);
             BtnWelcome.TabIndex = 12;
             BtnWelcome.Text = "Acesse";
             BtnWelcome.UseVisualStyleBackColor = false;
@@ -380,17 +359,43 @@ namespace Dashboard
             arredondamentoBtn1.FlatAppearance.BorderSize = 0;
             arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
             arredondamentoBtn1.ForeColor = Color.White;
-            arredondamentoBtn1.Location = new Point(5, 8);
+            arredondamentoBtn1.Location = new Point(6, 11);
+            arredondamentoBtn1.Margin = new Padding(3, 4, 3, 4);
             arredondamentoBtn1.Name = "arredondamentoBtn1";
-            arredondamentoBtn1.Size = new Size(636, 177);
+            arredondamentoBtn1.Size = new Size(727, 236);
             arredondamentoBtn1.TabIndex = 13;
             arredondamentoBtn1.UseVisualStyleBackColor = false;
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 229F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
+            tableLayoutPanel1.Controls.Add(menuPrincipal2, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(1086, 631);
+            tableLayoutPanel1.TabIndex = 6;
+            // 
+            // menuPrincipal2
+            // 
+            menuPrincipal2.Dock = DockStyle.Fill;
+            menuPrincipal2.Location = new Point(0, 0);
+            menuPrincipal2.Margin = new Padding(0);
+            menuPrincipal2.Name = "menuPrincipal2";
+            menuPrincipal2.Size = new Size(229, 631);
+            menuPrincipal2.TabIndex = 6;
+            // 
             // frmDashboard_Principal
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(950, 473);
+            ClientSize = new Size(1086, 631);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 1, 3, 1);

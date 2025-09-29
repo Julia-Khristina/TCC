@@ -42,6 +42,7 @@ namespace Dashboard
                 formPerfil.Show();
                 this.Hide();
                 this.BeginInvoke(new MethodInvoker(this.Close));
+
             };
 
             // 4. Sair Clicado
@@ -117,10 +118,20 @@ namespace Dashboard
 
         private void btnAddAluno_Click(object sender, EventArgs e)
         {
-            Cadastrar objCadastrar = new Cadastrar();
-            objCadastrar.Show();
+            // Cria o form de cadastro
+            Cadastrar formCadastrar = new Cadastrar();
+
+            // Esconde o FrmPerfil enquanto o formCadastrar está aberto
             this.Hide();
-            this.BeginInvoke(new MethodInvoker(this.Close));
+
+            // Quando o formCadastrar fechar, reexibe o FrmPerfil
+            formCadastrar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+
+            // Mostra o formCadastrar
+            formCadastrar.Show();
         }
 
 
