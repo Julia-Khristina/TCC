@@ -19,19 +19,67 @@ namespace Dashboard
         {
             InitializeComponent();
             cursoId = cd_Curso;
+
+            // 1. Turma Selecionada
+            menuPrincipal1.TurmaSelecionada += (sender, novoCursoId) =>
+            {
+                AbrirNovoFormularioTurma(novoCursoId);
+            };
+
+            menuPrincipal1.NotificacaoClicada += (sender, e) =>
+            {
+                frmNotificacao formNotificacao = new frmNotificacao();
+                formNotificacao.Show();
+                this.Hide();
+                this.BeginInvoke(new MethodInvoker(this.Close));
+            };
+
+
+            // 3. Perfil Clicado
+            menuPrincipal1.PerfilClicado += (sender, e) =>
+            {
+                FrmPerfil frmPerfil = new FrmPerfil();
+                frmPerfil.Show();
+                this.Hide();
+                this.BeginInvoke(new MethodInvoker(this.Close));
+            };
+
+            // 4. Sair Clicado
+            menuPrincipal1.SairClicado += (sender, e) =>
+            {
+                Application.Exit();
+            };
+
+            // 5. Relatório Clicado
+            menuPrincipal1.RelatorioClicado += (sender, e) =>
+            {
+                var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
+                if (dashboard != null)
+                {
+                    dashboard.Show();
+                }
+                else
+                {
+                    new frmDashboard_Principal().Show();
+                }
+                this.Hide();
+                this.BeginInvoke(new MethodInvoker(this.Close));
+            };
+
             InitializeTurmaForm();
 
-            btnMoldura.FlatStyle = FlatStyle.Flat;
-            btnMoldura.FlatAppearance.BorderSize = 0;
+            // Aplica o evento Paint para os painéis que precisam de bordas arredondadas
+            tbAtrasoTurma.CellPainting += new DataGridViewCellPaintingEventHandler(DataGridView_CellPainting);
 
+            // Configura o DataGridView para não ter borda padrão
+            tbAtrasoTurma.BorderStyle = BorderStyle.None;
         }
+
 
         private void InitializeTurmaForm()
         {
             try
             {
-                Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
-                ConfigureEventHandlers();
                 LoadInitialData();
             }
             catch (Exception ex)
@@ -40,88 +88,24 @@ namespace Dashboard
             }
         }
 
-        private void ConfigureEventHandlers()
-        {
-            // Eventos do botão voltar
-            Btn_Voltar.Paint += (sender, e) => PaintButton(Btn_Voltar, e);
-            Btn_Voltar.Resize += (sender, e) => Btn_Voltar.Invalidate();
-            Btn_Voltar.Click += (sender, e) => VoltarParaDashboard();
-
-            // Eventos dos outros botões 
-            btnSolicitarAdvertencia.Paint += (sender, e) => PaintButton(btnSolicitarAdvertencia, e);
-            btnSolicitarAdvertencia.Resize += (sender, e) => btnSolicitarAdvertencia.Invalidate();
-            btnExportar.Paint += (sender, e) => PaintButton(btnExportar, e);
-            btnExportar.Resize += (sender, e) => btnExportar.Invalidate();
-
-            // Eventos de arrendondamento dos painéis
-            pnGraficoTurma.Paint += (sender, e) => RoundPanel(pnGraficoTurma, e);
-            pnAtrasos_Totais.Paint += (sender, e) => RoundPanel(pnAtrasos_Totais, e);
-            pnAtrasos_dia.Paint += (sender, e) => RoundPanel(pnAtrasos_dia, e);
-            pnAlunoAtrasos.Paint += (sender, e) => PaintSimplePanel(pnAlunoAtrasos, e);
-
-            // Evento de fechamento do formulário
-            this.FormClosed += (sender, e) => CleanupResources();
-
-            // Eventos do ComboBox
-            Turmas_Direcionamento.DrawItem += (sender, e) => ComboBox_DrawItem(sender, e);
-            Turmas_Direcionamento.SelectedIndexChanged += Turmas_Direcionamento_SelectedIndexChanged;
-
-            // Evento do botão de relatório
-            btn_Relatorio_Direcionamento.Click += (sender, e) => VoltarParaDashboard();
-        }
-
-        private void PaintButton(Button? btn, PaintEventArgs e)
-        {
-            if (btn == null || e == null || btn.IsDisposed) return;
-
-            RoundControl(btn, e);
-            TextRenderer.DrawText(e.Graphics, btn.Text, btn.Font, btn.ClientRectangle,
-                                btn.ForeColor, Color.Transparent,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-        }
-
-        private void RoundPanel(Panel? panel, PaintEventArgs e)
-        {
-            if (panel == null || e == null || panel.IsDisposed) return;
-            RoundControl(panel, e);
-        }
-
-        private void PaintSimplePanel(Panel? panel, PaintEventArgs e)
-        {
-            if (panel == null || e == null || panel.IsDisposed) return;
-
-            panel.Region = null;
-            e.Graphics.FillRectangle(new SolidBrush(panel.BackColor), panel.ClientRectangle);
-        }
-
-        private void ComboBox_DrawItem(object? sender, DrawItemEventArgs e)
-        {
-            if (e.Index < 0 || sender is not ComboBox comboBox) return;
-
-            e.DrawBackground();
-            string? text = comboBox.Items[e.Index]?.ToString();
-            if (text == null) return;
-
-            using (StringFormat sf = new StringFormat())
-            {
-                sf.Alignment = StringAlignment.Center;
-                sf.LineAlignment = StringAlignment.Center;
-
-                using (SolidBrush brush = new SolidBrush(e.ForeColor))
-                {
-                    e.Graphics.DrawString(text, comboBox.Font, brush, e.Bounds, sf);
-                }
-            }
-
-            e.DrawFocusRectangle();
-        }
-
         private void LoadInitialData()
         {
             CarregarNomeDaTurma();
             CarregarAtrasosDaTurma();
-            CarregarTurmasNoComboBox();
         }
+
+        private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Sua lógica de desenho personalizado aqui
+            // Exemplo: desenhar bordas arredondadas para células específicas
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                e.PaintBackground(e.CellBounds, true);
+                // Desenhe seu conteúdo personalizado
+                // e.Handled = true; // Se você quiser assumir o controle total do desenho da célula
+            }
+        }
+
 
         private void CarregarNomeDaTurma()
         {
@@ -153,6 +137,43 @@ namespace Dashboard
                 MessageBox.Show("Erro ao carregar nome da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ConfigureDataGridView()
+        {
+            tbAtrasoTurma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // Alinhado à esquerda como no mockup
+            tbAtrasoTurma.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            tbAtrasoTurma.RowHeadersVisible = false; // Oculta a coluna de cabeçalho de linha
+            tbAtrasoTurma.EnableHeadersVisualStyles = false; // Permite customizar o estilo do cabeçalho
+            tbAtrasoTurma.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; // Remove borda do cabeçalho
+            tbAtrasoTurma.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Apenas bordas horizontais
+            tbAtrasoTurma.AdvancedCellBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None; // Remove borda inferior da última célula
+            tbAtrasoTurma.AdvancedCellBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+            tbAtrasoTurma.AdvancedCellBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+            tbAtrasoTurma.AdvancedCellBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+
+            // Cores e fontes do cabeçalho da tabela
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+
+            // Cores e fontes das células
+            tbAtrasoTurma.DefaultCellStyle.BackColor = Color.White;
+            tbAtrasoTurma.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
+            tbAtrasoTurma.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+
+            // Estilo da linha selecionada
+            tbAtrasoTurma.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 230, 207); // Verde suave
+            tbAtrasoTurma.DefaultCellStyle.SelectionForeColor = Color.FromArgb(45, 90, 61); // Cor do texto para linha selecionada
+
+            // Remove a borda do DataGridView
+            tbAtrasoTurma.BorderStyle = BorderStyle.None;
+
+            // Adiciona padding às células (requer customização ou evento CellPainting)
+            // Para um padding visual, você pode ajustar a altura da linha ou usar o evento CellPainting
+            tbAtrasoTurma.RowTemplate.Height = 35; // Aumenta a altura da linha para simular padding
+        }
+
 
         private void CarregarAtrasosDaTurma()
         {
@@ -198,72 +219,6 @@ namespace Dashboard
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ConfigureDataGridView()
-        {
-            tbAtrasoTurma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            tbAtrasoTurma.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-        }
-
-        private void CarregarTurmasNoComboBox()
-        {
-            try
-            {
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT nm_Curso FROM Curso WHERE cd_Curso != @id";
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@id", cursoId);
-                        using (MySqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            Turmas_Direcionamento.BeginUpdate();
-                            try
-                            {
-                                Turmas_Direcionamento.Items.Clear();
-                                while (reader.Read())
-                                {
-                                    string? nomeCurso = reader["nm_Curso"]?.ToString();
-                                    if (!string.IsNullOrEmpty(nomeCurso))
-                                    {
-                                        Turmas_Direcionamento.Items.Add(nomeCurso);
-                                    }
-                                }
-
-                                if (!string.IsNullOrEmpty(nomeTurmaAtual))
-                                {
-                                    Turmas_Direcionamento.Items.Insert(0, nomeTurmaAtual);
-                                    Turmas_Direcionamento.SelectedIndex = 0;
-                                }
-                            }
-                            finally
-                            {
-                                Turmas_Direcionamento.EndUpdate();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar turmas: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void Turmas_Direcionamento_SelectedIndexChanged(object? sender, EventArgs e)
-        {
-            if (Turmas_Direcionamento.SelectedIndex != -1 &&
-                Turmas_Direcionamento.SelectedItem != null)
-            {
-                string nomeTurmaSelecionada = Turmas_Direcionamento.SelectedItem.ToString()!;
-                if (nomeTurmaSelecionada != nomeTurmaAtual)
-                {
-                    ObterCodigoCursoERedirecionar(nomeTurmaSelecionada);
-                }
             }
         }
 
@@ -340,8 +295,6 @@ namespace Dashboard
             }
             // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
         }
-
-
 
         private void VoltarParaDashboard()
         {
@@ -512,26 +465,11 @@ namespace Dashboard
             }
         }
 
-
-        private void btn_Notificacao_Direcionamento_Click(object sender, EventArgs e)
+        private void FrmTurma_FormClosed(object sender, FormClosedEventArgs e)
         {
-            frmNotificacao objfrmNotificacao = new frmNotificacao();
-            objfrmNotificacao.Show();
-            this.Close();
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            FrmPerfil objfrmPerfil = new FrmPerfil();
-            objfrmPerfil.Show();
-            this.Close();
-        }
-
-        private void lblNome_Click(object sender, EventArgs e)
-        {
-            FrmPerfil objfrmPerfil = new FrmPerfil();
-            objfrmPerfil.Show();
-            this.Close();
+            // Encontra o dashboard e o mostra novamente
+            var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
+            dashboard?.Show();
         }
 
         private void frmTurma_Load(object sender, EventArgs e)
@@ -540,6 +478,26 @@ namespace Dashboard
         }
 
         private void pnGraficoTurma_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblNmTurma_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSolicitarAdvertencia_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }

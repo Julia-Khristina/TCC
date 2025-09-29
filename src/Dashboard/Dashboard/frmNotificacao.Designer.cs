@@ -29,219 +29,30 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNotificacao));
-            panel2 = new Panel();
-            Btn_Voltar = new Button();
-            panel3 = new Panel();
-            LblFuncao = new Label();
-            lblNome = new Label();
-            imgPerfil = new PictureBox();
-            pnMenu = new Panel();
-            panel1 = new Panel();
-            lblTurma = new Label();
-            Turmas_Direcionamento = new ComboBox();
-            Notificacao_Direcionamento = new Button();
-            BTN_Relatorio_Direcionamento = new Button();
-            Painel_Perfil = new Panel();
-            pictureBox1 = new PictureBox();
             label1 = new Label();
             Painel_Grafico = new Panel();
             pictureBox3 = new PictureBox();
             lblDescricao_Notificacao = new Label();
             lblTitulo_Notificacao = new Label();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgPerfil).BeginInit();
-            pnMenu.SuspendLayout();
-            panel1.SuspendLayout();
-            Painel_Perfil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            pnConteudo = new Panel();
+            menuPrincipal2 = new MenuPrincipal();
             Painel_Grafico.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            pnConteudo.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(Btn_Voltar);
-            panel2.Controls.Add(panel3);
-            panel2.Location = new Point(0, 325);
-            panel2.Margin = new Padding(3, 1, 3, 1);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(139, 108);
-            panel2.TabIndex = 9;
-            // 
-            // Btn_Voltar
-            // 
-            Btn_Voltar.BackColor = Color.White;
-            Btn_Voltar.FlatStyle = FlatStyle.Flat;
-            Btn_Voltar.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Btn_Voltar.ForeColor = Color.MidnightBlue;
-            Btn_Voltar.Location = new Point(27, 73);
-            Btn_Voltar.Margin = new Padding(3, 2, 3, 2);
-            Btn_Voltar.Name = "Btn_Voltar";
-            Btn_Voltar.Size = new Size(83, 25);
-            Btn_Voltar.TabIndex = 3;
-            Btn_Voltar.Text = "Voltar";
-            Btn_Voltar.TextAlign = ContentAlignment.TopCenter;
-            Btn_Voltar.UseVisualStyleBackColor = false;
-            Btn_Voltar.Click += Btn_Voltar_Click;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(LblFuncao);
-            panel3.Controls.Add(lblNome);
-            panel3.Controls.Add(imgPerfil);
-            panel3.Location = new Point(11, 17);
-            panel3.Margin = new Padding(3, 1, 3, 1);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(113, 42);
-            panel3.TabIndex = 2;
-            // 
-            // LblFuncao
-            // 
-            LblFuncao.AutoSize = true;
-            LblFuncao.Font = new Font("Segoe UI", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblFuncao.ForeColor = Color.FromArgb(224, 224, 224);
-            LblFuncao.Location = new Point(55, 23);
-            LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(38, 12);
-            LblFuncao.TabIndex = 3;
-            LblFuncao.Text = "Função";
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(52, 7);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(40, 15);
-            lblNome.TabIndex = 2;
-            lblNome.Text = "Nome";
-            lblNome.Click += lblNome_Click;
-            // 
-            // imgPerfil
-            // 
-            imgPerfil.Image = (Image)resources.GetObject("imgPerfil.Image");
-            imgPerfil.Location = new Point(3, 1);
-            imgPerfil.Margin = new Padding(3, 1, 3, 1);
-            imgPerfil.Name = "imgPerfil";
-            imgPerfil.Size = new Size(45, 36);
-            imgPerfil.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgPerfil.TabIndex = 1;
-            imgPerfil.TabStop = false;
-            imgPerfil.Click += pictureBox2_Click;
-            // 
-            // pnMenu
-            // 
-            pnMenu.BackColor = Color.MidnightBlue;
-            pnMenu.Controls.Add(panel2);
-            pnMenu.Controls.Add(panel1);
-            pnMenu.Controls.Add(Painel_Perfil);
-            pnMenu.Location = new Point(0, -1);
-            pnMenu.Margin = new Padding(3, 1, 3, 1);
-            pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(139, 433);
-            pnMenu.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lblTurma);
-            panel1.Controls.Add(Turmas_Direcionamento);
-            panel1.Controls.Add(Notificacao_Direcionamento);
-            panel1.Controls.Add(BTN_Relatorio_Direcionamento);
-            panel1.Location = new Point(3, 59);
-            panel1.Margin = new Padding(3, 1, 3, 1);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(139, 67);
-            panel1.TabIndex = 8;
-            // 
-            // lblTurma
-            // 
-            lblTurma.AutoSize = true;
-            lblTurma.BackColor = Color.MidnightBlue;
-            lblTurma.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTurma.ForeColor = SystemColors.ButtonHighlight;
-            lblTurma.Location = new Point(36, 47);
-            lblTurma.Name = "lblTurma";
-            lblTurma.Size = new Size(41, 15);
-            lblTurma.TabIndex = 7;
-            lblTurma.Text = "Turma";
-            // 
-            // Turmas_Direcionamento
-            // 
-            Turmas_Direcionamento.AllowDrop = true;
-            Turmas_Direcionamento.BackColor = Color.MidnightBlue;
-            Turmas_Direcionamento.Dock = DockStyle.Top;
-            Turmas_Direcionamento.DropDownStyle = ComboBoxStyle.DropDownList;
-            Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
-            Turmas_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
-            Turmas_Direcionamento.FormattingEnabled = true;
-            Turmas_Direcionamento.Location = new Point(0, 46);
-            Turmas_Direcionamento.Margin = new Padding(0);
-            Turmas_Direcionamento.MaxDropDownItems = 3;
-            Turmas_Direcionamento.Name = "Turmas_Direcionamento";
-            Turmas_Direcionamento.Size = new Size(139, 23);
-            Turmas_Direcionamento.TabIndex = 9;
-            // 
-            // Notificacao_Direcionamento
-            // 
-            Notificacao_Direcionamento.BackColor = Color.MidnightBlue;
-            Notificacao_Direcionamento.Dock = DockStyle.Top;
-            Notificacao_Direcionamento.FlatAppearance.BorderSize = 0;
-            Notificacao_Direcionamento.FlatStyle = FlatStyle.Flat;
-            Notificacao_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
-            Notificacao_Direcionamento.Location = new Point(0, 23);
-            Notificacao_Direcionamento.Margin = new Padding(3, 1, 3, 1);
-            Notificacao_Direcionamento.Name = "Notificacao_Direcionamento";
-            Notificacao_Direcionamento.Size = new Size(139, 23);
-            Notificacao_Direcionamento.TabIndex = 9;
-            Notificacao_Direcionamento.Text = "Notificação";
-            Notificacao_Direcionamento.UseVisualStyleBackColor = false;
-            // 
-            // BTN_Relatorio_Direcionamento
-            // 
-            BTN_Relatorio_Direcionamento.BackColor = Color.MidnightBlue;
-            BTN_Relatorio_Direcionamento.Dock = DockStyle.Top;
-            BTN_Relatorio_Direcionamento.FlatAppearance.BorderSize = 0;
-            BTN_Relatorio_Direcionamento.FlatStyle = FlatStyle.Flat;
-            BTN_Relatorio_Direcionamento.ForeColor = SystemColors.ButtonHighlight;
-            BTN_Relatorio_Direcionamento.Location = new Point(0, 0);
-            BTN_Relatorio_Direcionamento.Margin = new Padding(3, 1, 3, 1);
-            BTN_Relatorio_Direcionamento.Name = "BTN_Relatorio_Direcionamento";
-            BTN_Relatorio_Direcionamento.Size = new Size(139, 23);
-            BTN_Relatorio_Direcionamento.TabIndex = 8;
-            BTN_Relatorio_Direcionamento.Text = "Relátorio";
-            BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = false;
-            BTN_Relatorio_Direcionamento.Click += BTN_Relatorio_Direcionamento_Click;
-            // 
-            // Painel_Perfil
-            // 
-            Painel_Perfil.Controls.Add(pictureBox1);
-            Painel_Perfil.Location = new Point(0, 0);
-            Painel_Perfil.Margin = new Padding(3, 1, 3, 1);
-            Painel_Perfil.Name = "Painel_Perfil";
-            Painel_Perfil.Size = new Size(139, 59);
-            Painel_Perfil.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(8, -25);
-            pictureBox1.Margin = new Padding(3, 1, 3, 1);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(120, 115);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(162, 19);
+            label1.Location = new Point(20, 39);
             label1.Name = "label1";
             label1.Size = new Size(88, 21);
             label1.TabIndex = 2;
             label1.Text = "Notificação";
+            label1.Click += label1_Click;
             // 
             // Painel_Grafico
             // 
@@ -249,10 +60,10 @@
             Painel_Grafico.Controls.Add(pictureBox3);
             Painel_Grafico.Controls.Add(lblDescricao_Notificacao);
             Painel_Grafico.Controls.Add(lblTitulo_Notificacao);
-            Painel_Grafico.Location = new Point(162, 59);
+            Painel_Grafico.Location = new Point(20, 80);
             Painel_Grafico.Margin = new Padding(3, 1, 3, 1);
             Painel_Grafico.Name = "Painel_Grafico";
-            Painel_Grafico.Size = new Size(631, 54);
+            Painel_Grafico.Size = new Size(522, 54);
             Painel_Grafico.TabIndex = 5;
             // 
             // pictureBox3
@@ -286,55 +97,72 @@
             lblTitulo_Notificacao.TabIndex = 3;
             lblTitulo_Notificacao.Text = "Título da Notificação";
             // 
+            // tableLayoutPanel1
+            // 
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
+            tableLayoutPanel1.Controls.Add(menuPrincipal2, 0, 0);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Size = new Size(832, 433);
+            tableLayoutPanel1.TabIndex = 6;
+            // 
+            // pnConteudo
+            // 
+            pnConteudo.Controls.Add(label1);
+            pnConteudo.Controls.Add(Painel_Grafico);
+            pnConteudo.Dock = DockStyle.Fill;
+            pnConteudo.Location = new Point(200, 0);
+            pnConteudo.Margin = new Padding(0);
+            pnConteudo.Name = "pnConteudo";
+            pnConteudo.Size = new Size(632, 433);
+            pnConteudo.TabIndex = 7;
+            // 
+            // menuPrincipal2
+            // 
+            menuPrincipal2.Dock = DockStyle.Fill; // <-- ADICIONE ESTA LINHA
+            menuPrincipal2.Location = new Point(0, 0); // O Dock controla a posição, pode zerar
+            menuPrincipal2.Margin = new Padding(0); // Remove margens
+            menuPrincipal2.Name = "menuPrincipal1";
+            // menuPrincipal1.Size = new Size(197, 427); // REMOVA ou comente esta linha
+            menuPrincipal2.TabIndex = 6;
+            // 
             // frmNotificacao
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(832, 433);
-            Controls.Add(Painel_Grafico);
-            Controls.Add(label1);
-            Controls.Add(pnMenu);
+            Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(1, 1, 1, 1);
+            Margin = new Padding(1);
             Name = "frmNotificacao";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmNotificacao";
+            WindowState = FormWindowState.Maximized;
             Load += frmNotificacao_Load;
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgPerfil).EndInit();
-            pnMenu.ResumeLayout(false);
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            Painel_Perfil.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             Painel_Grafico.ResumeLayout(false);
             Painel_Grafico.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            pnConteudo.ResumeLayout(false);
+            pnConteudo.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Panel panel2;
-        private Panel panel3;
-        private Label LblFuncao;
-        private Label lblNome;
-        private PictureBox imgPerfil;
-        private Panel pnMenu;
-        private Panel panel1;
-        private Label lblTurma;
-        private ComboBox Turmas_Direcionamento;
-        private Button Notificacao_Direcionamento;
-        private Button BTN_Relatorio_Direcionamento;
-        private Panel Painel_Perfil;
-        private PictureBox pictureBox1;
         private Label label1;
         private Panel Painel_Grafico;
         private Label lblTitulo_Notificacao;
         private Label lblDescricao_Notificacao;
         private PictureBox pictureBox3;
-        private Button Btn_Voltar;
+        private TableLayoutPanel tableLayoutPanel1;
+        private Panel pnConteudo;
+        private MenuPrincipal menuPrincipal2;
     }
 }

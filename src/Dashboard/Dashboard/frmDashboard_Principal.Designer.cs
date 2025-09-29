@@ -46,46 +46,23 @@ namespace Dashboard
             label7 = new Label();
             flowLayoutPanelReports = new FlowLayoutPanel();
             label3 = new Label();
-            btnSolicitarAdvertencia = new Button();
-            button1 = new Button();
             label6 = new Label();
-            Painel_Perfil = new Panel();
-            pictureBox1 = new PictureBox();
             panel1 = new Panel();
-            lblTurma = new Label();
-            Turmas_Direcionamento = new ComboBox();
-            Notificacao_Direcionamento = new Button();
             imageListMenu = new ImageList(components);
-            BTN_Relatorio_Direcionamento = new Button();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            LblFuncao = new Label();
-            lblNome = new Label();
-            pictureBox2 = new PictureBox();
-            pnSairContainer = new Panel();
-            Btn_Sair = new Button();
-            pnMenu = new Panel();
-            pnEspacador = new Panel();
-            flowLayoutPanelMenu = new FlowLayoutPanel();
+            lblFalsoComboBox = new Label();
             pnConteudo = new Panel();
             tableLayoutPanelCards = new TableLayoutPanel();
             panelWelcome = new Panel();
             tableLayoutPanel1 = new TableLayoutPanel();
-            lblFalsoComboBox = new Label();
+            menuPrincipal2 = new MenuPrincipal();
+            BtnWelcome = new ArredondamentoBtn();
+            arredondamentoBtn1 = new ArredondamentoBtn();
             Painel_Diário.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             Painel_Semanal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             Painel_Mensal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            Painel_Perfil.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            pnSairContainer.SuspendLayout();
-            pnMenu.SuspendLayout();
-            flowLayoutPanelMenu.SuspendLayout();
             pnConteudo.SuspendLayout();
             tableLayoutPanelCards.SuspendLayout();
             panelWelcome.SuspendLayout();
@@ -271,30 +248,6 @@ namespace Dashboard
             label3.TabIndex = 4;
             label3.Text = "Bem-vindo ao Pontualize!";
             // 
-            // btnSolicitarAdvertencia
-            // 
-            btnSolicitarAdvertencia.BackColor = Color.MidnightBlue;
-            btnSolicitarAdvertencia.FlatStyle = FlatStyle.Flat;
-            btnSolicitarAdvertencia.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSolicitarAdvertencia.ForeColor = Color.White;
-            btnSolicitarAdvertencia.Location = new Point(190, 190);
-            btnSolicitarAdvertencia.Margin = new Padding(3, 2, 3, 2);
-            btnSolicitarAdvertencia.Name = "btnSolicitarAdvertencia";
-            btnSolicitarAdvertencia.Size = new Size(150, 25);
-            btnSolicitarAdvertencia.TabIndex = 6;
-            btnSolicitarAdvertencia.Text = "botão";
-            btnSolicitarAdvertencia.TextAlign = ContentAlignment.TopCenter;
-            btnSolicitarAdvertencia.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.WhiteSmoke;
-            button1.Location = new Point(3, 8);
-            button1.Name = "button1";
-            button1.Size = new Size(640, 177);
-            button1.TabIndex = 7;
-            button1.UseVisualStyleBackColor = false;
-            // 
             // label6
             // 
             label6.AutoSize = true;
@@ -307,80 +260,12 @@ namespace Dashboard
             label6.Text = resources.GetString("label6.Text");
             label6.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Painel_Perfil
-            // 
-            Painel_Perfil.Controls.Add(pictureBox1);
-            Painel_Perfil.Dock = DockStyle.Top;
-            Painel_Perfil.Location = new Point(0, 0);
-            Painel_Perfil.Name = "Painel_Perfil";
-            Painel_Perfil.Size = new Size(200, 89);
-            Painel_Perfil.TabIndex = 2;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 20);
-            pictureBox1.Margin = new Padding(3, 1, 3, 1);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 49);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
-            // 
             // panel1
             // 
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
             panel1.Size = new Size(200, 100);
             panel1.TabIndex = 0;
-            // 
-            // lblTurma
-            // 
-            lblTurma.AutoSize = true;
-            lblTurma.BackColor = Color.MidnightBlue;
-            lblTurma.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTurma.ForeColor = SystemColors.ControlDark;
-            lblTurma.Location = new Point(20, 158);
-            lblTurma.Name = "lblTurma";
-            lblTurma.Size = new Size(62, 20);
-            lblTurma.TabIndex = 12;
-            lblTurma.Text = "Turmas";
-            lblTurma.Click += lblTurma_Click;
-            // 
-            // Turmas_Direcionamento
-            // 
-            Turmas_Direcionamento.AllowDrop = true;
-            Turmas_Direcionamento.BackColor = Color.MidnightBlue;
-            Turmas_Direcionamento.DrawMode = DrawMode.OwnerDrawFixed;
-            Turmas_Direcionamento.FlatStyle = FlatStyle.Flat;
-            Turmas_Direcionamento.Font = new Font("Segoe UI", 9.95F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            Turmas_Direcionamento.FormattingEnabled = true;
-            Turmas_Direcionamento.Location = new Point(15, 99);
-            Turmas_Direcionamento.Margin = new Padding(0, 3, 0, 0);
-            Turmas_Direcionamento.MaxDropDownItems = 3;
-            Turmas_Direcionamento.Name = "Turmas_Direcionamento";
-            Turmas_Direcionamento.Size = new Size(173, 26);
-            Turmas_Direcionamento.TabIndex = 9;
-            Turmas_Direcionamento.Visible = false;
-            Turmas_Direcionamento.SelectedIndexChanged += Turmas_Direcionamento_SelectedIndexChanged_1;
-            // 
-            // Notificacao_Direcionamento
-            // 
-            Notificacao_Direcionamento.FlatAppearance.BorderSize = 0;
-            Notificacao_Direcionamento.FlatStyle = FlatStyle.Flat;
-            Notificacao_Direcionamento.Font = new Font("Segoe UI", 12F);
-            Notificacao_Direcionamento.ForeColor = Color.White;
-            Notificacao_Direcionamento.ImageAlign = ContentAlignment.MiddleLeft;
-            Notificacao_Direcionamento.ImageIndex = 1;
-            Notificacao_Direcionamento.ImageList = imageListMenu;
-            Notificacao_Direcionamento.Location = new Point(18, 46);
-            Notificacao_Direcionamento.Margin = new Padding(3, 3, 3, 10);
-            Notificacao_Direcionamento.Name = "Notificacao_Direcionamento";
-            Notificacao_Direcionamento.Size = new Size(167, 40);
-            Notificacao_Direcionamento.TabIndex = 1;
-            Notificacao_Direcionamento.Text = "  Notificação";
-            Notificacao_Direcionamento.TextImageRelation = TextImageRelation.ImageBeforeText;
-            Notificacao_Direcionamento.UseVisualStyleBackColor = true;
             // 
             // imageListMenu
             // 
@@ -390,149 +275,17 @@ namespace Dashboard
             imageListMenu.Images.SetKeyName(0, "Relatório.png");
             imageListMenu.Images.SetKeyName(1, "alert.png");
             imageListMenu.Images.SetKeyName(2, "chart-histogram.png");
+            imageListMenu.Images.SetKeyName(3, "seta.png");
+            imageListMenu.Images.SetKeyName(4, "");
             // 
-            // BTN_Relatorio_Direcionamento
+            // lblFalsoComboBox
             // 
-            BTN_Relatorio_Direcionamento.FlatAppearance.BorderSize = 0;
-            BTN_Relatorio_Direcionamento.FlatStyle = FlatStyle.Flat;
-            BTN_Relatorio_Direcionamento.Font = new Font("Segoe UI", 12F);
-            BTN_Relatorio_Direcionamento.ForeColor = Color.White;
-            BTN_Relatorio_Direcionamento.ImageAlign = ContentAlignment.MiddleLeft;
-            BTN_Relatorio_Direcionamento.ImageIndex = 0;
-            BTN_Relatorio_Direcionamento.ImageList = imageListMenu;
-            BTN_Relatorio_Direcionamento.Location = new Point(15, 3);
-            BTN_Relatorio_Direcionamento.Margin = new Padding(0, 3, 3, 0);
-            BTN_Relatorio_Direcionamento.Name = "BTN_Relatorio_Direcionamento";
-            BTN_Relatorio_Direcionamento.Padding = new Padding(3, 3, 3, 0);
-            BTN_Relatorio_Direcionamento.Size = new Size(170, 40);
-            BTN_Relatorio_Direcionamento.TabIndex = 0;
-            BTN_Relatorio_Direcionamento.Text = "  Relatório";
-            BTN_Relatorio_Direcionamento.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = true;
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(panel3);
-            panel2.Dock = DockStyle.Bottom;
-            panel2.Location = new Point(0, 308);
-            panel2.Margin = new Padding(3, 20, 3, 3);
-            panel2.Name = "panel2";
-            panel2.Padding = new Padding(0, 0, 0, 20);
-            panel2.Size = new Size(200, 75);
-            panel2.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(LblFuncao);
-            panel3.Controls.Add(lblNome);
-            panel3.Controls.Add(pictureBox2);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 5);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(200, 50);
-            panel3.TabIndex = 10;
-            // 
-            // LblFuncao
-            // 
-            LblFuncao.AutoSize = true;
-            LblFuncao.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblFuncao.ForeColor = SystemColors.ButtonHighlight;
-            LblFuncao.Location = new Point(63, 22);
-            LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(56, 20);
-            LblFuncao.TabIndex = 2;
-            LblFuncao.Text = "Função";
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(63, 6);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(52, 20);
-            lblNome.TabIndex = 1;
-            lblNome.Text = "Nome";
-            lblNome.Click += lblNome_Click;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(24, 10);
-            pictureBox2.Margin = new Padding(3, 1, 3, 1);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(30, 30);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
-            // 
-            // pnSairContainer
-            // 
-            pnSairContainer.BackColor = Color.MidnightBlue;
-            pnSairContainer.Controls.Add(Btn_Sair);
-            pnSairContainer.Dock = DockStyle.Bottom;
-            pnSairContainer.Location = new Point(0, 383);
-            pnSairContainer.Name = "pnSairContainer";
-            pnSairContainer.Padding = new Padding(20, 10, 20, 10);
-            pnSairContainer.Size = new Size(200, 90);
-            pnSairContainer.TabIndex = 11;
-            // 
-            // Btn_Sair
-            // 
-            Btn_Sair.BackColor = Color.White;
-            Btn_Sair.Dock = DockStyle.Top;
-            Btn_Sair.FlatAppearance.BorderSize = 0;
-            Btn_Sair.FlatStyle = FlatStyle.Flat;
-            Btn_Sair.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            Btn_Sair.ForeColor = Color.MidnightBlue;
-            Btn_Sair.Location = new Point(20, 10);
-            Btn_Sair.Name = "Btn_Sair";
-            Btn_Sair.Padding = new Padding(10);
-            Btn_Sair.Size = new Size(160, 40);
-            Btn_Sair.TabIndex = 5;
-            Btn_Sair.Text = "Sair";
-            Btn_Sair.UseVisualStyleBackColor = false;
-            // 
-            // pnMenu
-            // 
-            pnMenu.BackColor = Color.MidnightBlue;
-            pnMenu.Controls.Add(pnEspacador);
-            pnMenu.Controls.Add(flowLayoutPanelMenu);
-            pnMenu.Controls.Add(lblTurma);
-            pnMenu.Controls.Add(Painel_Perfil);
-            pnMenu.Controls.Add(panel2);
-            pnMenu.Controls.Add(pnSairContainer);
-            pnMenu.Dock = DockStyle.Fill;
-            pnMenu.Location = new Point(0, 0);
-            pnMenu.Margin = new Padding(0);
-            pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(200, 473);
-            pnMenu.TabIndex = 0;
-            // 
-            // pnEspacador
-            // 
-            pnEspacador.BackColor = Color.Transparent;
-            pnEspacador.Dock = DockStyle.Fill;
-            pnEspacador.Location = new Point(0, 263);
-            pnEspacador.Name = "pnEspacador";
-            pnEspacador.Size = new Size(200, 45);
-            pnEspacador.TabIndex = 0;
-            // 
-            // flowLayoutPanelMenu
-            // 
-            flowLayoutPanelMenu.Controls.Add(BTN_Relatorio_Direcionamento);
-            flowLayoutPanelMenu.Controls.Add(Notificacao_Direcionamento);
-            flowLayoutPanelMenu.Controls.Add(Turmas_Direcionamento);
-            flowLayoutPanelMenu.Controls.Add(lblFalsoComboBox);
-            flowLayoutPanelMenu.Dock = DockStyle.Top;
-            flowLayoutPanelMenu.FlowDirection = FlowDirection.TopDown;
-            flowLayoutPanelMenu.Location = new Point(0, 89);
-            flowLayoutPanelMenu.Name = "flowLayoutPanelMenu";
-            flowLayoutPanelMenu.Padding = new Padding(15, 0, 0, 0);
-            flowLayoutPanelMenu.Size = new Size(200, 174);
-            flowLayoutPanelMenu.TabIndex = 8;
-            flowLayoutPanelMenu.WrapContents = false;
+            lblFalsoComboBox.AutoSize = true;
+            lblFalsoComboBox.Location = new Point(87, 80);
+            lblFalsoComboBox.Name = "lblFalsoComboBox";
+            lblFalsoComboBox.Size = new Size(52, 15);
+            lblFalsoComboBox.TabIndex = 11;
+            lblFalsoComboBox.Text = "  Turmas";
             // 
             // pnConteudo
             // 
@@ -567,10 +320,11 @@ namespace Dashboard
             // panelWelcome
             // 
             panelWelcome.Anchor = AnchorStyles.None;
+            panelWelcome.Controls.Add(BtnWelcome);
             panelWelcome.Controls.Add(label6);
+            panelWelcome.Controls.Add(lblFalsoComboBox);
             panelWelcome.Controls.Add(label3);
-            panelWelcome.Controls.Add(btnSolicitarAdvertencia);
-            panelWelcome.Controls.Add(button1);
+            panelWelcome.Controls.Add(arredondamentoBtn1);
             panelWelcome.Location = new Point(54, 213);
             panelWelcome.Name = "panelWelcome";
             panelWelcome.Size = new Size(644, 227);
@@ -581,24 +335,56 @@ namespace Dashboard
             tableLayoutPanel1.ColumnCount = 2;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(pnMenu, 0, 0);
             tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
+            tableLayoutPanel1.Controls.Add(menuPrincipal2, 0, 0);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(0);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Size = new Size(950, 473);
-            tableLayoutPanel1.TabIndex = 10;
+            tableLayoutPanel1.TabIndex = 6;
             // 
-            // lblFalsoComboBox
+            // menuPrincipal2
             // 
-            lblFalsoComboBox.AutoSize = true;
-            lblFalsoComboBox.Location = new Point(18, 125);
-            lblFalsoComboBox.Name = "lblFalsoComboBox";
-            lblFalsoComboBox.Size = new Size(46, 15);
-            lblFalsoComboBox.TabIndex = 11;
-            lblFalsoComboBox.Text = "Turmas";
+            menuPrincipal2.Dock = DockStyle.Fill; // <-- ADICIONE ESTA LINHA
+            menuPrincipal2.Location = new Point(0, 0); // O Dock controla a posição, pode zerar
+            menuPrincipal2.Margin = new Padding(0); // Remove margens
+            menuPrincipal2.Name = "menuPrincipal1";
+            // menuPrincipal1.Size = new Size(197, 427); // REMOVA ou comente esta linha
+            menuPrincipal2.TabIndex = 6;
+            // 
+            // BtnWelcome
+            // 
+            BtnWelcome.BackColor = Color.MidnightBlue;
+            BtnWelcome.BorderColor = Color.Transparent;
+            BtnWelcome.BorderRadius = 10;
+            BtnWelcome.BorderSize = 0;
+            BtnWelcome.FlatAppearance.BorderSize = 0;
+            BtnWelcome.FlatStyle = FlatStyle.Flat;
+            BtnWelcome.ForeColor = Color.White;
+            BtnWelcome.Location = new Point(229, 187);
+            BtnWelcome.Name = "BtnWelcome";
+            BtnWelcome.Size = new Size(150, 34);
+            BtnWelcome.TabIndex = 12;
+            BtnWelcome.Text = "Acesse";
+            BtnWelcome.UseVisualStyleBackColor = false;
+            // 
+            // arredondamentoBtn1
+            // 
+            arredondamentoBtn1.BackColor = Color.WhiteSmoke;
+            arredondamentoBtn1.BorderColor = Color.Transparent;
+            arredondamentoBtn1.BorderRadius = 10;
+            arredondamentoBtn1.BorderSize = 0;
+            arredondamentoBtn1.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn1.ForeColor = Color.White;
+            arredondamentoBtn1.Location = new Point(5, 8);
+            arredondamentoBtn1.Name = "arredondamentoBtn1";
+            arredondamentoBtn1.Size = new Size(636, 177);
+            arredondamentoBtn1.TabIndex = 13;
+            arredondamentoBtn1.UseVisualStyleBackColor = false;
             // 
             // frmDashboard_Principal
             // 
@@ -620,17 +406,6 @@ namespace Dashboard
             Painel_Mensal.ResumeLayout(false);
             Painel_Mensal.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            Painel_Perfil.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            pnSairContainer.ResumeLayout(false);
-            pnMenu.ResumeLayout(false);
-            pnMenu.PerformLayout();
-            flowLayoutPanelMenu.ResumeLayout(false);
-            flowLayoutPanelMenu.PerformLayout();
             pnConteudo.ResumeLayout(false);
             pnConteudo.PerformLayout();
             tableLayoutPanelCards.ResumeLayout(false);
@@ -653,35 +428,20 @@ namespace Dashboard
         private Label lblMensal;
         private Label label7;
         private Label label3;
-        private Button btnSolicitarAdvertencia;
-        private Button button1;
         private Label label6;
-        private Panel Painel_Perfil;
-        private PictureBox pictureBox1;
         private Panel panel1;
-        private Label lblTurma;
-        private ComboBox Turmas_Direcionamento;
-        private Button Notificacao_Direcionamento;
-        private Button BTN_Relatorio_Direcionamento;
-        private Panel panel2;
-        private Panel panel3;
-        private Label LblFuncao;
-        private Label lblNome;
-        private PictureBox pictureBox2;
-        private Button Btn_Sair;
-        private Panel pnMenu;
         private Panel pnConteudo;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanelCards;
         private Panel panelWelcome;
         private FlowLayoutPanel flowLayoutPanelReports;
-        private FlowLayoutPanel flowLayoutPanelMenu;
         private ImageList imageListMenu;
-        private Panel pnEspacador;
-        private Panel pnSairContainer;
         private PictureBox pictureBox4;
         private PictureBox pictureBox5;
         private Label lblFalsoComboBox;
+        private MenuPrincipal menuPrincipal2;
+        private ArredondamentoBtn BtnWelcome;
+        private ArredondamentoBtn arredondamentoBtn1;
     }
 }
 
