@@ -42,12 +42,44 @@ namespace Dashboard
             }
         }
 
+        private bool disableHoverEffect = false;
+        public bool DisableHoverEffect
+        {
+            get { return disableHoverEffect; }
+            set
+            {
+                disableHoverEffect = value;
+                // Se o efeito de hover for desabilitado, garantimos que a cor de hover seja a mesma do fundo.
+                if (disableHoverEffect)
+                {
+                    this.FlatAppearance.MouseOverBackColor = this.BackColor;
+                }
+                
+            }
+        }
+
+        public override Color BackColor
+        {
+            get { return base.BackColor; }
+            set
+            {
+                base.BackColor = value;
+                // Se o hover estiver desabilitado, garante que a cor de hover
+                // seja SEMPRE a mesma da cor de fundo.
+                if (disableHoverEffect)
+                {
+                    this.FlatAppearance.MouseOverBackColor = value;
+                }
+            }
+        }
+
         // Construtor
         public ArredondamentoBtn()
         {
             this.FlatStyle = FlatStyle.Flat;
             this.FlatAppearance.BorderSize = 0;
             this.Size = new Size(150, 40);
+            // Define a cor padrão, que será interceptada pelo override acima.
             this.BackColor = Color.MidnightBlue;
             this.ForeColor = Color.White;
             this.Resize += new EventHandler(Button_Resize);

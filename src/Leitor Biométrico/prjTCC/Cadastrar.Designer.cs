@@ -33,30 +33,32 @@
             // 
             // txtNome
             // 
-            this.txtNome.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             // 
             // txtRM
             // 
-            this.txtRM.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtRM.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             // 
             // txtEmail
             // 
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             // 
             // maskTxtTel
             // 
-            this.maskTxtTel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.maskTxtTel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // Cadastrar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1008, 506);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.ClientSize = new System.Drawing.Size(756, 411);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Cadastrar";
             this.Text = "Reroll";
             this.Load += new System.EventHandler(this.reroll_Load);

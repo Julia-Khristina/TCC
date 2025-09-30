@@ -18,6 +18,7 @@ namespace Dashboard
         public frmTurma(int cd_Curso)
         {
             InitializeComponent();
+            ConfigureEventHandlers();
             cursoId = cd_Curso;
 
             // 1. Turma Selecionada
@@ -96,16 +97,62 @@ namespace Dashboard
 
         private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-            // Sua lógica de desenho personalizado aqui
-            // Exemplo: desenhar bordas arredondadas para células específicas
+            // desenhar bordas arredondadas para células específicas
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 e.PaintBackground(e.CellBounds, true);
-                // Desenhe seu conteúdo personalizado
-                // e.Handled = true; // Se você quiser assumir o controle total do desenho da célula
+                // conteúdo personalizado
+                // e.Handled = true; // assumir o controle total do desenho da célula
             }
         }
 
+        private void PaintRoundedBorders(Control control, PaintEventArgs e, int borderRadius)
+        {
+            if (control == null || e == null || control.IsDisposed)
+                return;
+
+            // Usa o retângulo do cliente para obter as dimensões corretas.
+            Rectangle rect = control.ClientRectangle;
+
+            // Garante que o GraphicsPath seja liberado corretamente.
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                // Adiciona arcos para criar os cantos arredondados.
+                int diameter = borderRadius * 2;
+                path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+                path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+                path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
+                path.CloseFigure();
+
+                // Configura o modo de suavização para alta qualidade.
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                // Define a região do controle para o caminho arredondado.
+                control.Region = new Region(path);
+
+                // 1. Preenche o painel com sua cor de fundo.
+                using (SolidBrush brush = new SolidBrush(control.BackColor))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                // 2. Desenha uma borda com a cor do PARENTE para suavizar as bordas.
+                using (Pen pen = new Pen(control.Parent.BackColor, 1))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+
+            }
+        }
+
+        private void ConfigureEventHandlers()
+        {
+            const int cardBorderRadius = 15;
+            // Eventos de arredondamento dos painéis
+            pnAtrasos_Totais.Paint += (sender, e) => PaintRoundedBorders(pnAtrasos_Totais, e, cardBorderRadius);
+            pnAtrasos_dia.Paint += (sender, e) => PaintRoundedBorders(pnAtrasos_dia, e, cardBorderRadius);
+        }
 
         private void CarregarNomeDaTurma()
         {

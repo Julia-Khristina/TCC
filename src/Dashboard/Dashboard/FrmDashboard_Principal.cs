@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 using System.Data;
 using System.Text;
 using Dashboard.Resources;
+using System.Runtime.InteropServices;
 
 namespace Dashboard
 {
@@ -18,6 +19,24 @@ namespace Dashboard
         public frmDashboard_Principal()
         {
             InitializeComponent();
+
+            ConfigureEventHandlers();
+
+            richTextBox1.Text = "Aqui você acompanha, em tempo real, os alunos atrasados de cada turma, com relatórios "
+                              + "diários, semanais e mensais de forma simples e organizada. O sistema também utiliza o "
+                              + "Power BI para gerar gráficos dinâmicos que deixam a análise mais visual e prática, além de "
+                              + "permitir o download dos relatórios sempre que precisar.";
+
+            JustifyRichText(richTextBox1);
+
+            this.Load += FrmDashboard_Principal_Load;
+            this.Resize += FrmDashboard_Principal_Resize;
+
+            //RichTextBox
+            richTextBox1.BackColor = Color.WhiteSmoke;
+            richTextBox1.ReadOnly = true;
+            richTextBox1.BorderStyle = BorderStyle.None; // Garante que a borda seja removida
+            richTextBox1.TabStop = false;
 
             // 1. Turma Selecionada
             menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) => {
@@ -69,16 +88,88 @@ namespace Dashboard
             }
         }
 
+        private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
+        {
+            AlignWelcomePanel();
+        }
+
+        // Evento que roda sempre que o formulário é redimensionado
+        private void FrmDashboard_Principal_Resize(object? sender, EventArgs e)
+        {
+            AlignWelcomePanel();
+        }
+
+        private void AlignWelcomePanel()
+        {
+            // Garante que os controles existem.
+            if (tableLayoutPanelCards == null || Painel_Diário == null || Painel_Semanal == null || panelWelcome == null)
+                return;
+
+            // 1. Calcula a posição inicial (esquerda).
+            int left = tableLayoutPanelCards.Left + Painel_Diário.Bounds.Left;
+
+            // 2. Calcula a posição final (direita).
+            int right = tableLayoutPanelCards.Left + Painel_Semanal.Bounds.Right;
+
+            // 3. Define a posição e a largura do panelWelcome.
+            panelWelcome.Left = left;
+            panelWelcome.Width = right - left;
+
+            // 4. Centraliza o botão "Acesse".
+            BtnWelcome.Left = (panelWelcome.ClientSize.Width - BtnWelcome.Width) / 2;
+        }
+
         private void ConfigureEventHandlers()
         {
-
+            const int cardBorderRadius = 15;
             // Eventos de arredondamento dos painéis
-            Painel_Diário.Paint += (sender, e) => RoundPanel(Painel_Diário, e);
-            Painel_Semanal.Paint += (sender, e) => RoundPanel(Painel_Semanal, e);
-            Painel_Mensal.Paint += (sender, e) => RoundPanel(Painel_Mensal, e);
+            Painel_Diário.Paint += (sender, e) => PaintRoundedBorders(Painel_Diário, e, cardBorderRadius);
+            Painel_Semanal.Paint += (sender, e) => PaintRoundedBorders(Painel_Semanal, e, cardBorderRadius);
+            Painel_Mensal.Paint += (sender, e) => PaintRoundedBorders(Painel_Mensal, e, cardBorderRadius);
+
 
             // Evento para fechar o form
             this.FormClosed += Dashboard_Principal_FormClosed;
+        }
+
+        private void PaintRoundedBorders(Control control, PaintEventArgs e, int borderRadius)
+        {
+            if (control == null || e == null || control.IsDisposed)
+                return;
+
+            // Usa o retângulo do cliente para obter as dimensões corretas.
+            Rectangle rect = control.ClientRectangle;
+
+            // Garante que o GraphicsPath seja liberado corretamente.
+            using (GraphicsPath path = new GraphicsPath())
+            {
+                // Adiciona arcos para criar os cantos arredondados.
+                int diameter = borderRadius * 2;
+                path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+                path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+                path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
+                path.CloseFigure();
+
+                // Configura o modo de suavização para alta qualidade.
+                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+                // Define a região do controle para o caminho arredondado.
+                control.Region = new Region(path);
+
+                // 1. Preenche o painel com sua cor de fundo.
+                using (SolidBrush brush = new SolidBrush(control.BackColor))
+                {
+                    e.Graphics.FillPath(brush, path);
+                }
+
+                // 2. Desenha uma borda com a cor do PARENTE para suavizar as bordas.
+                using (Pen pen = new Pen(control.Parent.BackColor, 1))
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+
+            }
         }
 
 
@@ -86,23 +177,6 @@ namespace Dashboard
         {
             e.Handled = true;
         }
-
-        private void PaintButton(Button? btn, PaintEventArgs e)
-        {
-            if (btn == null || e == null || btn.IsDisposed) return;
-
-            RoundControl(btn, e);
-            TextRenderer.DrawText(e.Graphics, btn.Text, btn.Font, btn.ClientRectangle,
-                                btn.ForeColor, Color.Transparent,
-                                TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-        }
-
-        private void RoundPanel(Panel? panel, PaintEventArgs e)
-        {
-            if (panel == null || e == null || panel.IsDisposed) return;
-            RoundControl(panel, e);
-        }
-
         private void ComboBox_DrawItem(object? sender, DrawItemEventArgs e)
         {
             if (e.Index < 0 || sender is not ComboBox comboBox) return;
@@ -138,37 +212,37 @@ namespace Dashboard
             catch { }
         }
 
-        private void RoundControl(Control? control, PaintEventArgs e)
+        private const int EM_SETPARAFORMAT = 1095;
+        private const int PFM_ALIGNMENT = 0x00000008;
+        private const int PFA_JUSTIFY = 0x0004;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct PARAFORMAT
         {
-            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
-                return;
-
-            try
-            {
-                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-                using (var path = new GraphicsPath())
-                {
-                    path.AddArc(0, 0, borderRadius, borderRadius, 180, 90);
-                    path.AddArc(control.Width - borderRadius, 0, borderRadius, borderRadius, 270, 90);
-                    path.AddArc(control.Width - borderRadius, control.Height - borderRadius, borderRadius, borderRadius, 0, 90);
-                    path.AddArc(0, control.Height - borderRadius, borderRadius, borderRadius, 90, 90);
-                    path.CloseAllFigures();
-
-                    if (!control.IsDisposed && control.IsHandleCreated)
-                    {
-                        control.Region = new Region(path);
-                    }
-
-                    e.Graphics.FillPath(new SolidBrush(control.BackColor), path);
-                    e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro no RoundControl: {ex.Message}");
-            }
+            public int cbSize;
+            public uint dwMask;
+            public short wNumbering;
+            public short wReserved;
+            public int dxStartIndent;
+            public int dxRightIndent;
+            public int dxOffset;
+            public short wAlignment;
+            public short cTabCount;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+            public int[] rgxTabs;
         }
 
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, ref PARAFORMAT lParam);
+
+        private void JustifyRichText(RichTextBox box)
+        {
+            PARAFORMAT fmt = new PARAFORMAT();
+            fmt.cbSize = Marshal.SizeOf(fmt);
+            fmt.dwMask = PFM_ALIGNMENT;
+            fmt.wAlignment = PFA_JUSTIFY;
+
+            SendMessage(box.Handle, EM_SETPARAFORMAT, IntPtr.Zero, ref fmt);
+        }
     }
 }
