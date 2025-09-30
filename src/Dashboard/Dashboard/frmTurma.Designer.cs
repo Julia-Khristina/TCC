@@ -115,8 +115,8 @@ namespace Dashboard
             // tlpConteudoPrincipal
             // 
             tlpConteudoPrincipal.ColumnCount = 2;
-            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.294117F));
-            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.70588F));
+            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50.66297F));
+            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 49.3370323F));
             tlpConteudoPrincipal.Controls.Add(lblNmTurma, 0, 0);
             tlpConteudoPrincipal.Controls.Add(btnExportar, 1, 0);
             tlpConteudoPrincipal.Controls.Add(pnAtrasos_Totais, 0, 1);
@@ -128,8 +128,8 @@ namespace Dashboard
             tlpConteudoPrincipal.Name = "tlpConteudoPrincipal";
             tlpConteudoPrincipal.RowCount = 3;
             tlpConteudoPrincipal.RowStyles.Add(new RowStyle());
-            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 33.3333321F));
-            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 66.6666641F));
+            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 27.6523743F));
+            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 72.34762F));
             tlpConteudoPrincipal.Size = new Size(595, 464);
             tlpConteudoPrincipal.TabIndex = 0;
             // 
@@ -140,7 +140,7 @@ namespace Dashboard
             lblNmTurma.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
             lblNmTurma.Location = new Point(3, 0);
             lblNmTurma.Name = "lblNmTurma";
-            lblNmTurma.Size = new Size(204, 40);
+            lblNmTurma.Size = new Size(295, 40);
             lblNmTurma.TabIndex = 2;
             lblNmTurma.Text = "Administração";
             lblNmTurma.TextAlign = ContentAlignment.MiddleLeft;
@@ -174,7 +174,7 @@ namespace Dashboard
             pnAtrasos_Totais.Location = new Point(3, 42);
             pnAtrasos_Totais.Margin = new Padding(3, 2, 3, 2);
             pnAtrasos_Totais.Name = "pnAtrasos_Totais";
-            pnAtrasos_Totais.Size = new Size(204, 137);
+            pnAtrasos_Totais.Size = new Size(295, 113);
             pnAtrasos_Totais.TabIndex = 8;
             // 
             // lblDiario
@@ -219,10 +219,10 @@ namespace Dashboard
             pnAtrasos_dia.Controls.Add(label3);
             pnAtrasos_dia.Controls.Add(label4);
             pnAtrasos_dia.Dock = DockStyle.Fill;
-            pnAtrasos_dia.Location = new Point(213, 42);
+            pnAtrasos_dia.Location = new Point(304, 42);
             pnAtrasos_dia.Margin = new Padding(3, 2, 3, 2);
             pnAtrasos_dia.Name = "pnAtrasos_dia";
-            pnAtrasos_dia.Size = new Size(379, 137);
+            pnAtrasos_dia.Size = new Size(288, 113);
             pnAtrasos_dia.TabIndex = 12;
             // 
             // pictureBox1
@@ -264,10 +264,10 @@ namespace Dashboard
             pnAlunoAtrasos.BackColor = Color.White;
             pnAlunoAtrasos.Controls.Add(tbAtrasoTurma);
             pnAlunoAtrasos.Dock = DockStyle.Fill;
-            pnAlunoAtrasos.Location = new Point(3, 183);
+            pnAlunoAtrasos.Location = new Point(3, 159);
             pnAlunoAtrasos.Margin = new Padding(3, 2, 3, 2);
             pnAlunoAtrasos.Name = "pnAlunoAtrasos";
-            pnAlunoAtrasos.Size = new Size(204, 279);
+            pnAlunoAtrasos.Size = new Size(295, 303);
             pnAlunoAtrasos.TabIndex = 5;
             // 
             // tbAtrasoTurma
@@ -298,7 +298,7 @@ namespace Dashboard
             tbAtrasoTurma.Name = "tbAtrasoTurma";
             tbAtrasoTurma.ReadOnly = true;
             tbAtrasoTurma.RowHeadersWidth = 51;
-            tbAtrasoTurma.Size = new Size(204, 279);
+            tbAtrasoTurma.Size = new Size(295, 303);
             tbAtrasoTurma.TabIndex = 0;
             tbAtrasoTurma.CellContentClick += tbAtrasoTurma_CellContentClick;
             // 
@@ -308,10 +308,10 @@ namespace Dashboard
             pnGraficoTurma.Controls.Add(panel2);
             pnGraficoTurma.Controls.Add(panel1);
             pnGraficoTurma.Dock = DockStyle.Fill;
-            pnGraficoTurma.Location = new Point(213, 183);
+            pnGraficoTurma.Location = new Point(304, 159);
             pnGraficoTurma.Margin = new Padding(3, 2, 3, 2);
             pnGraficoTurma.Name = "pnGraficoTurma";
-            pnGraficoTurma.Size = new Size(379, 279);
+            pnGraficoTurma.Size = new Size(288, 303);
             pnGraficoTurma.TabIndex = 7;
             pnGraficoTurma.Paint += pnGraficoTurma_Paint;
             // 
@@ -321,7 +321,7 @@ namespace Dashboard
             panel2.Dock = DockStyle.Fill;
             panel2.Location = new Point(0, 245);
             panel2.Name = "panel2";
-            panel2.Size = new Size(379, 34);
+            panel2.Size = new Size(288, 58);
             panel2.TabIndex = 12;
             // 
             // btnSolicitarAdvertencia
@@ -356,7 +356,7 @@ namespace Dashboard
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(379, 245);
+            panel1.Size = new Size(288, 245);
             panel1.TabIndex = 11;
             // 
             // pictureBoxCarometro

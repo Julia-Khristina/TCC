@@ -19,6 +19,7 @@ namespace Dashboard
         {
             InitializeComponent();
             ConfigureEventHandlers();
+
             cursoId = cd_Curso;
 
             // 1. Turma Selecionada
