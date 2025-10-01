@@ -14,11 +14,18 @@ namespace Dashboard
         private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
         private readonly int cursoId;
         private string nomeTurmaAtual = string.Empty;
+        private System.Windows.Forms.Timer timerAtualizacaoTurma;
 
         public frmTurma(int cd_Curso)
         {
             InitializeComponent();
             ConfigureEventHandlers();
+
+            timerAtualizacaoTurma = new System.Windows.Forms.Timer();
+            timerAtualizacaoTurma.Interval = 60000; // Atualiza a cada 1 minuto
+            timerAtualizacaoTurma.Tick += TimerAtualizacaoTurma_Tick;
+            timerAtualizacaoTurma.Start();
+
 
             cursoId = cd_Curso;
 
@@ -94,6 +101,7 @@ namespace Dashboard
         {
             CarregarNomeDaTurma();
             CarregarAtrasosDaTurma();
+            AtualizarLabelsAtrasosTurma();
         }
 
         private void DataGridView_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -548,6 +556,63 @@ namespace Dashboard
         private void button1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        // Copie e cole estes três métodos na sua classe frmTurma
+
+        private void TimerAtualizacaoTurma_Tick(object sender, EventArgs e)
+        {
+            AtualizarLabelsAtrasosTurma();
+        }
+
+        private void AtualizarLabelsAtrasosTurma()
+        {
+            // Query para contar atrasos de hoje para a turma específica
+            string sqlDia = @"SELECT COUNT(ra.cd_Registro) 
+                      FROM RegistroAtraso ra
+                      JOIN Aluno a ON ra.cd_Aluno = a.cd_Aluno
+                      WHERE ra.data_registro = CURDATE() AND a.Curso_Aluno = @cursoId";
+
+            // Query para contar todos os atrasos da história para a turma específica
+            string sqlTotal = @"SELECT COUNT(ra.cd_Registro) 
+                        FROM RegistroAtraso ra
+                        JOIN Aluno a ON ra.cd_Aluno = a.cd_Aluno
+                        WHERE a.Curso_Aluno = @cursoId";
+
+            // IMPORTANTE: Renomeie os labels no seu formulário para corresponderem
+            // Supondo que seus labels se chamem 'lblAtrasosDiaValor' e 'lblAtrasosTotaisValor'
+            lblDiario.Text = GetAtrasosTurma(sqlDia).ToString();
+            label3.Text = GetAtrasosTurma(sqlTotal).ToString();
+        }
+
+        private int GetAtrasosTurma(string sql)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@cursoId", this.cursoId);
+                    object result = cmd.ExecuteScalar();
+                    return result == DBNull.Value ? 0 : Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar atrasos da turma: {ex.Message}");
+                return 0;
+            }
+        }
+
+        private void lblDiario_Click(object sender, EventArgs e)
+        {
+            // fazer a mesma lógica de carregamento de atrasos para esse
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+            // fazer a mesma lógica de carregamento de atrasos tbm
         }
     }
 }

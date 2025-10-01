@@ -15,12 +15,18 @@ namespace Dashboard
         private const int borderRadius = 15;
         private MySqlConnection? connection;
         private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
+        private System.Windows.Forms.Timer timerAtualizacao; // Timer pra atualizar os cards de atraso
 
         public frmDashboard_Principal()
         {
             InitializeComponent();
 
             ConfigureEventHandlers();
+
+            timerAtualizacao = new System.Windows.Forms.Timer();
+            timerAtualizacao.Interval = 60000; // 1 min pra atualizar
+            timerAtualizacao.Tick += TimerAtualizacao_Tick;
+            timerAtualizacao.Start();
 
             richTextBox1.Text = "Aqui você acompanha, em tempo real, os alunos atrasados de cada turma, com relatórios "
                               + "diários, semanais e mensais de forma simples e organizada. O sistema também utiliza o "
@@ -39,36 +45,70 @@ namespace Dashboard
             richTextBox1.TabStop = false;
 
             // 1. Turma Selecionada
-            menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) => {
+            menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) =>
+            {
                 frmTurma formTurma = new frmTurma(novoCursoId);
                 formTurma.Show();
                 this.Hide(); // Esconde o dashboard para mostrar a turma
             };
 
             // 2. Notificação Clicada
-            menuPrincipal2.NotificacaoClicada += (sender, e) => {
+            menuPrincipal2.NotificacaoClicada += (sender, e) =>
+            {
                 frmNotificacao formNotificacao = new frmNotificacao();
                 formNotificacao.Show();
                 this.Hide(); // Esconde o dashboard para mostrar a notificação
             };
 
             // 3. Perfil Clicado
-            menuPrincipal2.PerfilClicado += (sender, e) => {
+            menuPrincipal2.PerfilClicado += (sender, e) =>
+            {
                 FrmPerfil formPerfil = new FrmPerfil();
                 formPerfil.Show();
                 this.Hide(); // Esconde o dashboard para mostrar o perfil
             };
 
             // 4. Sair Clicado
-            menuPrincipal2.SairClicado += (sender, e) => {
+            menuPrincipal2.SairClicado += (sender, e) =>
+            {
                 Application.Exit();
             };
 
             // 5. Relatório Clicado (NÃO FAZ NADA, POIS JÁ ESTÁ NA TELA)
-            menuPrincipal2.RelatorioClicado += (sender, e) => {
+            menuPrincipal2.RelatorioClicado += (sender, e) =>
+            {
                 // Não é necessário fazer nada aqui. O usuário já está na tela de relatórios.
                 // Simplesmente ignore o clique.
             };
+        }
+        private int GetAtrasos(string sql)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    object result = cmd.ExecuteScalar();
+                    return Convert.ToInt32(result);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar atrasos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return 0;
+            }
+        }
+
+        private void AtualizarLabelsAtrasos() // Comando para buscar os atrasos do card
+        {
+            string sqlDia = "SELECT COUNT(*) FROM RegistroAtraso WHERE data_registro = CURDATE()";
+            string sqlSemana = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEARWEEK(data_registro, 1) = YEARWEEK(CURDATE(), 1)";
+            string sqlMes = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEAR(data_registro) = YEAR(CURDATE()) AND MONTH(data_registro) = MONTH(CURDATE())";
+
+            lblDiario.Text = GetAtrasos(sqlDia).ToString();
+            lblSemanal.Text = GetAtrasos(sqlSemana).ToString();
+            label4.Text = GetAtrasos(sqlMes).ToString();
         }
 
 
@@ -91,6 +131,7 @@ namespace Dashboard
         private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
         {
             AlignWelcomePanel();
+            AtualizarLabelsAtrasos(); // Atualiza os cards ao abrir
         }
 
         // Evento que roda sempre que o formulário é redimensionado
@@ -243,6 +284,11 @@ namespace Dashboard
             fmt.wAlignment = PFA_JUSTIFY;
 
             SendMessage(box.Handle, EM_SETPARAFORMAT, IntPtr.Zero, ref fmt);
+        }
+
+        private void TimerAtualizacao_Tick(object sender, EventArgs e)
+        {
+            AtualizarLabelsAtrasos();
         }
     }
 }
