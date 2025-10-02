@@ -36,10 +36,9 @@ namespace Dashboard
             JustifyRichText(richTextBox1);
 
             this.Load += FrmDashboard_Principal_Load;
-            this.Resize += FrmDashboard_Principal_Resize;
 
             //RichTextBox
-            richTextBox1.BackColor = Color.WhiteSmoke;
+            richTextBox1.BackColor = Color.Lavender;
             richTextBox1.ReadOnly = true;
             richTextBox1.BorderStyle = BorderStyle.None; // Garante que a borda seja removida
             richTextBox1.TabStop = false;
@@ -130,36 +129,10 @@ namespace Dashboard
 
         private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
         {
-            AlignWelcomePanel();
             AtualizarLabelsAtrasos(); // Atualiza os cards ao abrir
         }
 
-        // Evento que roda sempre que o formulário é redimensionado
-        private void FrmDashboard_Principal_Resize(object? sender, EventArgs e)
-        {
-            AlignWelcomePanel();
-        }
-
-        private void AlignWelcomePanel()
-        {
-            // Garante que os controles existem.
-            if (tableLayoutPanelCards == null || Painel_Diário == null || Painel_Semanal == null || panelWelcome == null)
-                return;
-
-            // 1. Calcula a posição inicial (esquerda).
-            int left = tableLayoutPanelCards.Left + Painel_Diário.Bounds.Left;
-
-            // 2. Calcula a posição final (direita).
-            int right = tableLayoutPanelCards.Left + Painel_Semanal.Bounds.Right;
-
-            // 3. Define a posição e a largura do panelWelcome.
-            panelWelcome.Left = left;
-            panelWelcome.Width = right - left;
-
-            // 4. Centraliza o botão "Acesse".
-            BtnWelcome.Left = (panelWelcome.ClientSize.Width - BtnWelcome.Width) / 2;
-        }
-
+        
         private void ConfigureEventHandlers()
         {
             const int cardBorderRadius = 15;
@@ -167,6 +140,7 @@ namespace Dashboard
             Painel_Diário.Paint += (sender, e) => PaintRoundedBorders(Painel_Diário, e, cardBorderRadius);
             Painel_Semanal.Paint += (sender, e) => PaintRoundedBorders(Painel_Semanal, e, cardBorderRadius);
             Painel_Mensal.Paint += (sender, e) => PaintRoundedBorders(Painel_Mensal, e, cardBorderRadius);
+            Painel_Notificacao.Paint += (sender, e) => PaintRoundedBorders(Painel_Notificacao, e, cardBorderRadius);
 
 
             // Evento para fechar o form
@@ -289,6 +263,16 @@ namespace Dashboard
         private void TimerAtualizacao_Tick(object sender, EventArgs e)
         {
             AtualizarLabelsAtrasos();
+        }
+
+        private void pnConteudo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void lblDiario_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

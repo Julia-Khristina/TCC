@@ -61,21 +61,23 @@
             // 
             // Notificacao_Direcionamento
             // 
+            Notificacao_Direcionamento.BackColor = Color.MidnightBlue;
             Notificacao_Direcionamento.FlatAppearance.BorderSize = 0;
             Notificacao_Direcionamento.FlatStyle = FlatStyle.Flat;
-            Notificacao_Direcionamento.Font = new Font("Segoe UI", 12F);
+            Notificacao_Direcionamento.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Notificacao_Direcionamento.ForeColor = Color.White;
             Notificacao_Direcionamento.ImageAlign = ContentAlignment.MiddleLeft;
             Notificacao_Direcionamento.ImageIndex = 1;
             Notificacao_Direcionamento.ImageList = imageListMenu;
-            Notificacao_Direcionamento.Location = new Point(18, 46);
-            Notificacao_Direcionamento.Margin = new Padding(3, 3, 3, 0);
+            Notificacao_Direcionamento.Location = new Point(20, 71);
+            Notificacao_Direcionamento.Margin = new Padding(15, 3, 3, 12);
             Notificacao_Direcionamento.Name = "Notificacao_Direcionamento";
-            Notificacao_Direcionamento.Size = new Size(167, 40);
+            Notificacao_Direcionamento.Padding = new Padding(5, 3, 3, 3);
+            Notificacao_Direcionamento.Size = new Size(180, 40);
             Notificacao_Direcionamento.TabIndex = 1;
             Notificacao_Direcionamento.Text = "  Notificação";
             Notificacao_Direcionamento.TextImageRelation = TextImageRelation.ImageBeforeText;
-            Notificacao_Direcionamento.UseVisualStyleBackColor = true;
+            Notificacao_Direcionamento.UseVisualStyleBackColor = false;
             Notificacao_Direcionamento.Click += Notificacao_Direcionamento_Click;
             // 
             // imageListMenu
@@ -98,32 +100,33 @@
             Turmas_Direcionamento.Font = new Font("Segoe UI", 9.95F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Turmas_Direcionamento.ForeColor = Color.White;
             Turmas_Direcionamento.FormattingEnabled = true;
-            Turmas_Direcionamento.Location = new Point(15, 89);
-            Turmas_Direcionamento.Margin = new Padding(0, 3, 0, 0);
+            Turmas_Direcionamento.Location = new Point(10, 123);
+            Turmas_Direcionamento.Margin = new Padding(5, 0, 0, 0);
             Turmas_Direcionamento.MaxDropDownItems = 3;
             Turmas_Direcionamento.Name = "Turmas_Direcionamento";
-            Turmas_Direcionamento.Size = new Size(173, 26);
+            Turmas_Direcionamento.Size = new Size(200, 26);
             Turmas_Direcionamento.TabIndex = 9;
             Turmas_Direcionamento.Visible = false;
             // 
             // BTN_Relatorio_Direcionamento
             // 
+            BTN_Relatorio_Direcionamento.BackColor = Color.MidnightBlue;
             BTN_Relatorio_Direcionamento.FlatAppearance.BorderSize = 0;
             BTN_Relatorio_Direcionamento.FlatStyle = FlatStyle.Flat;
-            BTN_Relatorio_Direcionamento.Font = new Font("Segoe UI", 12F);
+            BTN_Relatorio_Direcionamento.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             BTN_Relatorio_Direcionamento.ForeColor = Color.White;
             BTN_Relatorio_Direcionamento.ImageAlign = ContentAlignment.MiddleLeft;
             BTN_Relatorio_Direcionamento.ImageIndex = 0;
             BTN_Relatorio_Direcionamento.ImageList = imageListMenu;
-            BTN_Relatorio_Direcionamento.Location = new Point(15, 3);
-            BTN_Relatorio_Direcionamento.Margin = new Padding(0, 3, 3, 0);
+            BTN_Relatorio_Direcionamento.Location = new Point(20, 16);
+            BTN_Relatorio_Direcionamento.Margin = new Padding(15, 6, 3, 12);
             BTN_Relatorio_Direcionamento.Name = "BTN_Relatorio_Direcionamento";
-            BTN_Relatorio_Direcionamento.Padding = new Padding(3, 3, 3, 0);
-            BTN_Relatorio_Direcionamento.Size = new Size(170, 40);
+            BTN_Relatorio_Direcionamento.Padding = new Padding(5, 3, 3, 3);
+            BTN_Relatorio_Direcionamento.Size = new Size(180, 40);
             BTN_Relatorio_Direcionamento.TabIndex = 0;
             BTN_Relatorio_Direcionamento.Text = "  Relatório";
             BTN_Relatorio_Direcionamento.TextImageRelation = TextImageRelation.ImageBeforeText;
-            BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = true;
+            BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = false;
             BTN_Relatorio_Direcionamento.Click += BTN_Relatorio_Direcionamento_Click;
             // 
             // panel2
@@ -134,7 +137,7 @@
             panel2.Margin = new Padding(3, 20, 3, 3);
             panel2.Name = "panel2";
             panel2.Padding = new Padding(0, 0, 0, 20);
-            panel2.Size = new Size(200, 75);
+            panel2.Size = new Size(230, 75);
             panel2.TabIndex = 9;
             // 
             // panel3
@@ -145,7 +148,7 @@
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 5);
             panel3.Name = "panel3";
-            panel3.Size = new Size(200, 50);
+            panel3.Size = new Size(230, 50);
             panel3.TabIndex = 10;
             // 
             // LblFuncao
@@ -191,7 +194,7 @@
             pnSairContainer.Location = new Point(0, 431);
             pnSairContainer.Name = "pnSairContainer";
             pnSairContainer.Padding = new Padding(20, 10, 20, 10);
-            pnSairContainer.Size = new Size(200, 90);
+            pnSairContainer.Size = new Size(230, 90);
             pnSairContainer.TabIndex = 11;
             // 
             // Btn_Sair
@@ -205,7 +208,7 @@
             Btn_Sair.Location = new Point(20, 10);
             Btn_Sair.Name = "Btn_Sair";
             Btn_Sair.Padding = new Padding(10);
-            Btn_Sair.Size = new Size(160, 40);
+            Btn_Sair.Size = new Size(190, 40);
             Btn_Sair.TabIndex = 5;
             Btn_Sair.Text = "Sair";
             Btn_Sair.UseVisualStyleBackColor = false;
@@ -222,7 +225,7 @@
             pnMenu.Location = new Point(0, 0);
             pnMenu.Margin = new Padding(0);
             pnMenu.Name = "pnMenu";
-            pnMenu.Size = new Size(200, 521);
+            pnMenu.Size = new Size(230, 521);
             pnMenu.TabIndex = 0;
             // 
             // pnEspacador
@@ -231,7 +234,7 @@
             pnEspacador.Dock = DockStyle.Fill;
             pnEspacador.Location = new Point(0, 263);
             pnEspacador.Name = "pnEspacador";
-            pnEspacador.Size = new Size(200, 93);
+            pnEspacador.Size = new Size(230, 93);
             pnEspacador.TabIndex = 0;
             // 
             // flowLayoutPanelMenu
@@ -244,53 +247,55 @@
             flowLayoutPanelMenu.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanelMenu.Location = new Point(0, 89);
             flowLayoutPanelMenu.Name = "flowLayoutPanelMenu";
-            flowLayoutPanelMenu.Padding = new Padding(15, 0, 0, 0);
-            flowLayoutPanelMenu.Size = new Size(200, 174);
+            flowLayoutPanelMenu.Padding = new Padding(5, 10, 0, 0);
+            flowLayoutPanelMenu.Size = new Size(230, 174);
             flowLayoutPanelMenu.TabIndex = 8;
             flowLayoutPanelMenu.WrapContents = false;
             // 
             // btnTurma
             // 
+            btnTurma.BackColor = Color.MidnightBlue;
             btnTurma.FlatAppearance.BorderSize = 0;
             btnTurma.FlatStyle = FlatStyle.Flat;
-            btnTurma.Font = new Font("Segoe UI", 12F);
+            btnTurma.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnTurma.ForeColor = Color.White;
             btnTurma.ImageAlign = ContentAlignment.MiddleLeft;
             btnTurma.ImageIndex = 3;
             btnTurma.ImageList = imageListMenu;
-            btnTurma.Location = new Point(18, 115);
-            btnTurma.Margin = new Padding(3, 0, 3, 0);
+            btnTurma.Location = new Point(20, 149);
+            btnTurma.Margin = new Padding(15, 0, 3, 0);
             btnTurma.Name = "btnTurma";
-            btnTurma.Padding = new Padding(3, 3, 3, 0);
-            btnTurma.Size = new Size(170, 40);
+            btnTurma.Padding = new Padding(5, 3, 3, 0);
+            btnTurma.Size = new Size(180, 40);
             btnTurma.TabIndex = 11;
             btnTurma.Text = "  Turmas";
             btnTurma.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnTurma.UseVisualStyleBackColor = true;
+            btnTurma.UseVisualStyleBackColor = false;
             // 
             // Painel_Perfil
             // 
+            Painel_Perfil.BackColor = Color.MidnightBlue;
             Painel_Perfil.Controls.Add(pictureBox1);
             Painel_Perfil.Dock = DockStyle.Top;
             Painel_Perfil.Location = new Point(0, 0);
             Painel_Perfil.Name = "Painel_Perfil";
-            Painel_Perfil.Size = new Size(200, 89);
+            Painel_Perfil.Size = new Size(230, 89);
             Painel_Perfil.TabIndex = 2;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.LOGO1;
-            pictureBox1.Location = new Point(12, 20);
+            pictureBox1.Location = new Point(11, 25);
             pictureBox1.Margin = new Padding(3, 1, 3, 1);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(173, 49);
+            pictureBox1.Size = new Size(191, 60);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnCount = 1;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(pnMenu, 0, 0);
@@ -299,7 +304,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(200, 521);
+            tableLayoutPanel1.Size = new Size(230, 521);
             tableLayoutPanel1.TabIndex = 12;
             // 
             // MenuPrincipal
@@ -308,7 +313,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Name = "MenuPrincipal";
-            Size = new Size(200, 521);
+            Size = new Size(230, 521);
             panel2.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();

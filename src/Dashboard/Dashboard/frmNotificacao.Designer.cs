@@ -100,7 +100,7 @@
             // tableLayoutPanel1
             // 
             tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 218F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
             tableLayoutPanel1.Controls.Add(menuPrincipal2, 0, 0);
@@ -118,19 +118,19 @@
             pnConteudo.Controls.Add(label1);
             pnConteudo.Controls.Add(Painel_Grafico);
             pnConteudo.Dock = DockStyle.Fill;
-            pnConteudo.Location = new Point(200, 0);
+            pnConteudo.Location = new Point(218, 0);
             pnConteudo.Margin = new Padding(0);
             pnConteudo.Name = "pnConteudo";
-            pnConteudo.Size = new Size(632, 433);
+            pnConteudo.Size = new Size(614, 433);
             pnConteudo.TabIndex = 7;
             // 
             // menuPrincipal2
             // 
-            menuPrincipal2.Dock = DockStyle.Fill; // <-- ADICIONE ESTA LINHA
-            menuPrincipal2.Location = new Point(0, 0); // O Dock controla a posição, pode zerar
-            menuPrincipal2.Margin = new Padding(0); // Remove margens
-            menuPrincipal2.Name = "menuPrincipal1";
-            // menuPrincipal1.Size = new Size(197, 427); // REMOVA ou comente esta linha
+            menuPrincipal2.Dock = DockStyle.Fill;
+            menuPrincipal2.Location = new Point(0, 0);
+            menuPrincipal2.Margin = new Padding(0);
+            menuPrincipal2.Name = "menuPrincipal2";
+            menuPrincipal2.Size = new Size(218, 433);
             menuPrincipal2.TabIndex = 6;
             // 
             // frmNotificacao
