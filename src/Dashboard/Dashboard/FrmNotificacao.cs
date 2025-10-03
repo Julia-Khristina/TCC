@@ -65,10 +65,25 @@ namespace Dashboard
 
         private void frmNotificacao_Load(object sender, EventArgs e)
         {
+            Maximizar_Tela();
             //NOME DAS TURMAS AINDA NÃO APARECE MAS ESTÁ DIRECIONANDO CORRETAMENTE
             //TurmaRedirecionamento.CarregarTurmas(Turmas_Direcionamento);
             //TurmaRedirecionamento.ConfigurarRedirecionamento(Turmas_Direcionamento, lblTurma, this);
 
+        }
+
+        private void Maximizar_Tela()
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            // Obtém a área de trabalho do monitor onde a janela está.
+            Rectangle workingArea = Screen.FromHandle(this.Handle).WorkingArea;
+
+            // Define a posição e o tamanho do formulário para preencher a área de trabalho.
+            this.Location = workingArea.Location;
+            this.Size = workingArea.Size;
+
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void BTN_Relatorio_Direcionamento_Click(object sender, EventArgs e)

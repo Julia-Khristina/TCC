@@ -110,6 +110,19 @@ namespace Dashboard
             label4.Text = GetAtrasos(sqlMes).ToString();
         }
 
+        private void Maximizar_Tela()
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            // Obtém a área de trabalho do monitor onde a janela está.
+            Rectangle workingArea = Screen.FromHandle(this.Handle).WorkingArea;
+
+            // Define a posição e o tamanho do formulário para preencher a área de trabalho.
+            this.Location = workingArea.Location;
+            this.Size = workingArea.Size;
+
+            this.WindowState = FormWindowState.Normal;
+        }
 
         private void InitializeApp()
         {
@@ -130,9 +143,10 @@ namespace Dashboard
         private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
         {
             AtualizarLabelsAtrasos(); // Atualiza os cards ao abrir
+            Maximizar_Tela();
         }
 
-        
+
         private void ConfigureEventHandlers()
         {
             const int cardBorderRadius = 15;
@@ -265,14 +279,5 @@ namespace Dashboard
             AtualizarLabelsAtrasos();
         }
 
-        private void pnConteudo_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void lblDiario_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
