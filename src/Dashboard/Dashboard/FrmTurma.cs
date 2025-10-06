@@ -21,6 +21,9 @@ namespace Dashboard
             InitializeComponent();
             ConfigureEventHandlers();
 
+            pnAlunoAtrasos.Paint += PaintPanel;
+            pnAlunoAtrasos.BackColor = Color.White;
+
             timerAtualizacaoTurma = new System.Windows.Forms.Timer();
             timerAtualizacaoTurma.Interval = 60000; // Atualiza a cada 1 minuto
             timerAtualizacaoTurma.Tick += TimerAtualizacaoTurma_Tick;
@@ -78,7 +81,7 @@ namespace Dashboard
             InitializeTurmaForm();
 
             // Aplica o evento Paint para os painéis que precisam de bordas arredondadas
-            tbAtrasoTurma.CellPainting += new DataGridViewCellPaintingEventHandler(DataGridView_CellPainting);
+           // tbAtrasoTurma.CellPainting += new DataGridViewCellPaintingEventHandler(DataGridView_CellPainting);
 
             // Configura o DataGridView para não ter borda padrão
             tbAtrasoTurma.BorderStyle = BorderStyle.None;
@@ -196,38 +199,42 @@ namespace Dashboard
 
         private void ConfigureDataGridView()
         {
+            // --- ESTRUTURA E COMPORTAMENTO ---
             tbAtrasoTurma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft; // Alinhado à esquerda como no mockup
-            tbAtrasoTurma.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            tbAtrasoTurma.RowHeadersVisible = false; // Oculta a coluna de cabeçalho de linha
-            tbAtrasoTurma.EnableHeadersVisualStyles = false; // Permite customizar o estilo do cabeçalho
-            tbAtrasoTurma.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; // Remove borda do cabeçalho
-            tbAtrasoTurma.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Apenas bordas horizontais
-            tbAtrasoTurma.AdvancedCellBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.None; // Remove borda inferior da última célula
-            tbAtrasoTurma.AdvancedCellBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
-            tbAtrasoTurma.AdvancedCellBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
-            tbAtrasoTurma.AdvancedCellBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+            tbAtrasoTurma.AllowUserToAddRows = false;
+            tbAtrasoTurma.AllowUserToDeleteRows = false;
+            tbAtrasoTurma.AllowUserToResizeRows = false;
+            tbAtrasoTurma.RowHeadersVisible = false; // Essencial para um look limpo
+            tbAtrasoTurma.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
-            // Cores e fontes do cabeçalho da tabela
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(248, 249, 250);
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
+            // --- BORDAS ---
+            tbAtrasoTurma.BorderStyle = BorderStyle.None; // Remove a borda externa
+            tbAtrasoTurma.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Apenas linhas horizontais
+            tbAtrasoTurma.GridColor = Color.FromArgb(233, 236, 239); // Cor cinza bem clara para as linhas
+
+            // --- CABEÇALHO (ORDER NO, CUSTOMER, etc.) ---
+            tbAtrasoTurma.EnableHeadersVisualStyles = false; // Permite customização
+            tbAtrasoTurma.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; // Sem borda no cabeçalho
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.BackColor = Color.White; // Fundo branco, igual ao painel
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Cor do texto cinza/azulado
             tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 10, 10, 10); // Adiciona espaço à esquerda
+            tbAtrasoTurma.ColumnHeadersHeight = 70; // Aumenta a altura do cabeçalho
 
-            // Cores e fontes das células
+            // --- CÉLULAS (DADOS) ---
             tbAtrasoTurma.DefaultCellStyle.BackColor = Color.White;
-            tbAtrasoTurma.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
-            tbAtrasoTurma.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            tbAtrasoTurma.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80); // Cor do texto principal (escuro)
+            tbAtrasoTurma.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
+            tbAtrasoTurma.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            tbAtrasoTurma.DefaultCellStyle.Padding = new Padding(10, 0, 0, 0); // Adiciona espaço à esquerda
 
-            // Estilo da linha selecionada
-            tbAtrasoTurma.DefaultCellStyle.SelectionBackColor = Color.FromArgb(168, 230, 207); // Verde suave
-            tbAtrasoTurma.DefaultCellStyle.SelectionForeColor = Color.FromArgb(45, 90, 61); // Cor do texto para linha selecionada
+            // --- ESTILO DA LINHA SELECIONADA ---
+            tbAtrasoTurma.DefaultCellStyle.SelectionBackColor = Color.White; // Um cinza muito claro
+            tbAtrasoTurma.DefaultCellStyle.SelectionForeColor = Color.FromArgb(44, 62, 80); // Mantém a cor do texto
 
-            // Remove a borda do DataGridView
-            tbAtrasoTurma.BorderStyle = BorderStyle.None;
-
-            // Adiciona padding às células (requer customização ou evento CellPainting)
-            // Para um padding visual, você pode ajustar a altura da linha ou usar o evento CellPainting
-            tbAtrasoTurma.RowTemplate.Height = 35; // Aumenta a altura da linha para simular padding
+            // --- ALTURA DAS LINHAS ---
+            tbAtrasoTurma.RowTemplate.Height = 45; // Aumenta a altura para dar mais "respiro"
         }
 
 
@@ -391,6 +398,40 @@ namespace Dashboard
                 try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
             }
         }
+        private void PaintPanel(object sender, PaintEventArgs e)
+        {
+            // Define a qualidade do desenho para ser suave (anti-aliasing)
+            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            // Pega o controle (o painel) que acionou o evento
+            Control panel = sender as Control;
+            if (panel == null) return;
+
+            // Define o raio dos cantos arredondados
+            int borderRadius = 15;
+
+            // Cria um caminho gráfico com cantos arredondados
+            using (var path = new System.Drawing.Drawing2D.GraphicsPath())
+            {
+                var rect = new Rectangle(0, 0, panel.Width, panel.Height);
+                int diameter = borderRadius * 2;
+                path.AddArc(rect.X, rect.Y, diameter, diameter, 180, 90);
+                path.AddArc(rect.Right - diameter, rect.Y, diameter, diameter, 270, 90);
+                path.AddArc(rect.Right - diameter, rect.Bottom - diameter, diameter, diameter, 0, 90);
+                path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
+                path.CloseFigure();
+
+                // Define a região do painel para o caminho arredondado
+                panel.Region = new Region(path);
+
+                // Desenha uma borda sutil para um acabamento mais suave
+                using (var pen = new Pen(Color.FromArgb(224, 224, 224), 1)) // Cor cinza claro
+                {
+                    e.Graphics.DrawPath(pen, path);
+                }
+            }
+        }
+
 
 
         private void CleanupResources()
@@ -452,6 +493,7 @@ namespace Dashboard
 
                     string query = @"
                 SELECT 
+                    A.cd_Aluno,
                     A.nm_Aluno,
                     A.gmail_aluno,
                     A.telefone_aluno,
@@ -469,6 +511,7 @@ namespace Dashboard
                         {
                             if (reader.Read())
                             {
+                                lblRM.Text = reader["cd_Aluno"].ToString();
                                 lblNomeAluno.Text = reader["nm_Aluno"].ToString();
                                 lblEmailAluno.Text = reader["gmail_aluno"].ToString();
                                 lblTelAluno.Text = reader["telefone_aluno"].ToString();
@@ -613,6 +656,11 @@ namespace Dashboard
         private void label3_Click(object sender, EventArgs e)
         {
             // fazer a mesma lógica de carregamento de atrasos tbm
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
