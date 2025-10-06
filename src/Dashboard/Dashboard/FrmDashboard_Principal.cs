@@ -279,5 +279,19 @@ namespace Dashboard
             AtualizarLabelsAtrasos();
         }
 
+        private void pnConteudo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void arredondamentoBtn6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

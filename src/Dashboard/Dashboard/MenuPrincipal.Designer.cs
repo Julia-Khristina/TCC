@@ -85,7 +85,7 @@
             imageListMenu.ColorDepth = ColorDepth.Depth32Bit;
             imageListMenu.ImageStream = (ImageListStreamer)resources.GetObject("imageListMenu.ImageStream");
             imageListMenu.TransparentColor = Color.Transparent;
-            imageListMenu.Images.SetKeyName(0, "Relatório.png");
+            imageListMenu.Images.SetKeyName(0, "home.png");
             imageListMenu.Images.SetKeyName(1, "alert.png");
             imageListMenu.Images.SetKeyName(2, "chart-histogram.png");
             imageListMenu.Images.SetKeyName(3, "seta.png");
@@ -124,7 +124,7 @@
             BTN_Relatorio_Direcionamento.Padding = new Padding(5, 3, 3, 3);
             BTN_Relatorio_Direcionamento.Size = new Size(180, 40);
             BTN_Relatorio_Direcionamento.TabIndex = 0;
-            BTN_Relatorio_Direcionamento.Text = "  Relatório";
+            BTN_Relatorio_Direcionamento.Text = "  Início";
             BTN_Relatorio_Direcionamento.TextImageRelation = TextImageRelation.ImageBeforeText;
             BTN_Relatorio_Direcionamento.UseVisualStyleBackColor = false;
             BTN_Relatorio_Direcionamento.Click += BTN_Relatorio_Direcionamento_Click;
@@ -207,7 +207,7 @@
             Btn_Sair.ForeColor = Color.MidnightBlue;
             Btn_Sair.Location = new Point(20, 10);
             Btn_Sair.Name = "Btn_Sair";
-            Btn_Sair.Padding = new Padding(10, 10, 10, 10);
+            Btn_Sair.Padding = new Padding(10);
             Btn_Sair.Size = new Size(190, 40);
             Btn_Sair.TabIndex = 5;
             Btn_Sair.Text = "Sair";
