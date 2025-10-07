@@ -674,7 +674,7 @@ namespace Dashboard
 
             try
             {
-                using(var conn = new MySqlConnection(conexao))
+                using (var conn = new MySqlConnection(conexao))
                 {
                     conn.Open();
                     string query = @"
@@ -695,7 +695,7 @@ namespace Dashboard
                         cmd.Parameters.AddWithValue("@rmAluno", rmAluno);
                         int rowsAffected = cmd.ExecuteNonQuery();
                         using (var reader = cmd.ExecuteReader())
-                        { 
+                        {
                             if (reader.Read())
                             {
                                 var dados = new Dictionary<string, string>
@@ -715,9 +715,9 @@ namespace Dashboard
                                 using (var doc = DocX.Load(saida))
                                 {
                                     foreach (var item in dados)
-                                    
+
                                         doc.ReplaceText(item.Key, item.Value);
-                                    
+
                                     doc.Save();
                                 }
                                 MessageBox.Show("Advertência gerada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -734,6 +734,202 @@ namespace Dashboard
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao gerar advertência: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn1Ano_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
+                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                                   FROM Aluno a
+                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                                   WHERE a.Curso_Aluno = @cursoId
+                                      AND a.Serie_Aluno = 1
+                                   GROUP BY a.nm_Aluno
+                                   ORDER BY `Quantidade de Atrasos` DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            if (tbAtrasoTurma.InvokeRequired)
+                            {
+                                tbAtrasoTurma.Invoke((MethodInvoker)(() =>
+                                {
+                                    tbAtrasoTurma.DataSource = dt;
+                                    ConfigureDataGridView();
+                                }));
+                            }
+                            else
+                            {
+                                tbAtrasoTurma.DataSource = dt;
+                                ConfigureDataGridView();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn2Ano_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
+                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                                   FROM Aluno a
+                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                                   WHERE a.Curso_Aluno = @cursoId
+                                      AND a.Serie_Aluno = 2
+                                   GROUP BY a.nm_Aluno
+                                   ORDER BY `Quantidade de Atrasos` DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            if (tbAtrasoTurma.InvokeRequired)
+                            {
+                                tbAtrasoTurma.Invoke((MethodInvoker)(() =>
+                                {
+                                    tbAtrasoTurma.DataSource = dt;
+                                    ConfigureDataGridView();
+                                }));
+                            }
+                            else
+                            {
+                                tbAtrasoTurma.DataSource = dt;
+                                ConfigureDataGridView();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn3Ano_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
+                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                                   FROM Aluno a
+                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                                   WHERE a.Curso_Aluno = @cursoId
+                                      AND a.Serie_Aluno = 3
+                                   GROUP BY a.nm_Aluno
+                                   ORDER BY `Quantidade de Atrasos` DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            if (tbAtrasoTurma.InvokeRequired)
+                            {
+                                tbAtrasoTurma.Invoke((MethodInvoker)(() =>
+                                {
+                                    tbAtrasoTurma.DataSource = dt;
+                                    ConfigureDataGridView();
+                                }));
+                            }
+                            else
+                            {
+                                tbAtrasoTurma.DataSource = dt;
+                                ConfigureDataGridView();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void pnAtrasos_Totais_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void arredondamentoBtn1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var connection = new MySqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
+                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                                   FROM Aluno a
+                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                                   WHERE a.Curso_Aluno = @cursoId
+                                   GROUP BY a.nm_Aluno
+                                   ORDER BY `Quantidade de Atrasos` DESC";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@cursoId", cursoId);
+                        using (MySqlDataAdapter da = new MySqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+
+                            if (tbAtrasoTurma.InvokeRequired)
+                            {
+                                tbAtrasoTurma.Invoke((MethodInvoker)(() =>
+                                {
+                                    tbAtrasoTurma.DataSource = dt;
+                                    ConfigureDataGridView();
+                                }));
+                            }
+                            else
+                            {
+                                tbAtrasoTurma.DataSource = dt;
+                                ConfigureDataGridView();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

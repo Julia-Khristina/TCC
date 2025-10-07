@@ -31,8 +31,8 @@ namespace Dashboard
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTurma));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             tableLayoutPanel1 = new TableLayoutPanel();
             menuPrincipal1 = new MenuPrincipal();
             pnConteudo = new Panel();
@@ -70,6 +70,7 @@ namespace Dashboard
             lblAnoAluno = new Label();
             arredondamentoBtn4 = new ArredondamentoBtn();
             tableLayoutPanel2 = new TableLayoutPanel();
+            arredondamentoBtn1 = new ArredondamentoBtn();
             pnConteudo.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             pnAtrasos_dia.SuspendLayout();
@@ -111,6 +112,7 @@ namespace Dashboard
             // 
             // pnConteudo
             // 
+            pnConteudo.Controls.Add(arredondamentoBtn1);
             pnConteudo.Controls.Add(btn3Ano);
             pnConteudo.Controls.Add(btn2Ano);
             pnConteudo.Controls.Add(btn1Ano);
@@ -135,13 +137,14 @@ namespace Dashboard
             btn3Ano.FlatAppearance.BorderSize = 0;
             btn3Ano.FlatStyle = FlatStyle.Flat;
             btn3Ano.ForeColor = Color.White;
-            btn3Ano.Location = new Point(355, 212);
+            btn3Ano.Location = new Point(267, 212);
             btn3Ano.Margin = new Padding(2);
             btn3Ano.Name = "btn3Ano";
             btn3Ano.Size = new Size(118, 36);
             btn3Ano.TabIndex = 15;
             btn3Ano.Text = "3º Ano";
             btn3Ano.UseVisualStyleBackColor = false;
+            btn3Ano.Click += btn3Ano_Click;
             // 
             // btn2Ano
             // 
@@ -153,13 +156,14 @@ namespace Dashboard
             btn2Ano.FlatAppearance.BorderSize = 0;
             btn2Ano.FlatStyle = FlatStyle.Flat;
             btn2Ano.ForeColor = Color.White;
-            btn2Ano.Location = new Point(190, 212);
+            btn2Ano.Location = new Point(145, 212);
             btn2Ano.Margin = new Padding(2);
             btn2Ano.Name = "btn2Ano";
             btn2Ano.Size = new Size(118, 36);
             btn2Ano.TabIndex = 14;
             btn2Ano.Text = "2º Ano";
             btn2Ano.UseVisualStyleBackColor = false;
+            btn2Ano.Click += btn2Ano_Click;
             // 
             // btn1Ano
             // 
@@ -178,6 +182,7 @@ namespace Dashboard
             btn1Ano.TabIndex = 13;
             btn1Ano.Text = "1º Ano";
             btn1Ano.UseVisualStyleBackColor = false;
+            btn1Ano.Click += btn1Ano_Click;
             // 
             // tableLayoutPanel3
             // 
@@ -252,6 +257,7 @@ namespace Dashboard
             pnAtrasos_Totais.Name = "pnAtrasos_Totais";
             pnAtrasos_Totais.Size = new Size(289, 129);
             pnAtrasos_Totais.TabIndex = 8;
+            pnAtrasos_Totais.Paint += pnAtrasos_Totais_Paint;
             // 
             // lblDiario
             // 
@@ -352,23 +358,23 @@ namespace Dashboard
             // 
             tbAtrasoTurma.AllowUserToOrderColumns = true;
             tbAtrasoTurma.BackgroundColor = Color.White;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.FromArgb(248, 249, 250);
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(248, 249, 250);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             tbAtrasoTurma.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(168, 230, 207);
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            tbAtrasoTurma.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(168, 230, 207);
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            tbAtrasoTurma.DefaultCellStyle = dataGridViewCellStyle4;
             tbAtrasoTurma.Dock = DockStyle.Fill;
             tbAtrasoTurma.GridColor = Color.FromArgb(233, 236, 239);
             tbAtrasoTurma.Location = new Point(0, 0);
@@ -589,6 +595,25 @@ namespace Dashboard
             tableLayoutPanel2.Size = new Size(1091, 630);
             tableLayoutPanel2.TabIndex = 6;
             // 
+            // arredondamentoBtn1
+            // 
+            arredondamentoBtn1.BackColor = Color.MidnightBlue;
+            arredondamentoBtn1.BorderColor = Color.Transparent;
+            arredondamentoBtn1.BorderRadius = 10;
+            arredondamentoBtn1.BorderSize = 0;
+            arredondamentoBtn1.DisableHoverEffect = false;
+            arredondamentoBtn1.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn1.ForeColor = Color.White;
+            arredondamentoBtn1.Location = new Point(389, 212);
+            arredondamentoBtn1.Margin = new Padding(2);
+            arredondamentoBtn1.Name = "arredondamentoBtn1";
+            arredondamentoBtn1.Size = new Size(118, 36);
+            arredondamentoBtn1.TabIndex = 16;
+            arredondamentoBtn1.Text = "Todos";
+            arredondamentoBtn1.UseVisualStyleBackColor = false;
+            arredondamentoBtn1.Click += arredondamentoBtn1_Click;
+            // 
             // frmTurma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -662,5 +687,6 @@ namespace Dashboard
         private ArredondamentoBtn btn1Ano;
         private ArredondamentoBtn arredondamentoBtn4;
         private Label lblRM;
+        private ArredondamentoBtn arredondamentoBtn1;
     }
 }
