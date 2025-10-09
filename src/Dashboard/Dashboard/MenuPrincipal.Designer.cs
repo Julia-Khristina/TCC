@@ -35,10 +35,6 @@
             Turmas_Direcionamento = new ComboBox();
             BTN_Relatorio_Direcionamento = new Button();
             panel2 = new Panel();
-            panel3 = new Panel();
-            LblFuncao = new Label();
-            lblNome = new Label();
-            pictureBox2 = new PictureBox();
             pnSairContainer = new Panel();
             Btn_Sair = new Button();
             pnMenu = new Panel();
@@ -48,9 +44,6 @@
             Painel_Perfil = new Panel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel1 = new TableLayoutPanel();
-            panel2.SuspendLayout();
-            panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             pnSairContainer.SuspendLayout();
             pnMenu.SuspendLayout();
             flowLayoutPanelMenu.SuspendLayout();
@@ -131,7 +124,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(panel3);
             panel2.Dock = DockStyle.Bottom;
             panel2.Location = new Point(0, 356);
             panel2.Margin = new Padding(3, 20, 3, 3);
@@ -139,52 +131,6 @@
             panel2.Padding = new Padding(0, 0, 0, 20);
             panel2.Size = new Size(230, 75);
             panel2.TabIndex = 9;
-            // 
-            // panel3
-            // 
-            panel3.Controls.Add(LblFuncao);
-            panel3.Controls.Add(lblNome);
-            panel3.Controls.Add(pictureBox2);
-            panel3.Dock = DockStyle.Bottom;
-            panel3.Location = new Point(0, 5);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(230, 50);
-            panel3.TabIndex = 10;
-            // 
-            // LblFuncao
-            // 
-            LblFuncao.AutoSize = true;
-            LblFuncao.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            LblFuncao.ForeColor = SystemColors.ButtonHighlight;
-            LblFuncao.Location = new Point(63, 22);
-            LblFuncao.Name = "LblFuncao";
-            LblFuncao.Size = new Size(56, 20);
-            LblFuncao.TabIndex = 2;
-            LblFuncao.Text = "Função";
-            // 
-            // lblNome
-            // 
-            lblNome.AutoSize = true;
-            lblNome.Font = new Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblNome.ForeColor = SystemColors.ButtonHighlight;
-            lblNome.Location = new Point(63, 6);
-            lblNome.Name = "lblNome";
-            lblNome.Size = new Size(52, 20);
-            lblNome.TabIndex = 1;
-            lblNome.Text = "Nome";
-            lblNome.Click += lblNome_Click;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.Image = Properties.Resources.perfil;
-            pictureBox2.Location = new Point(24, 10);
-            pictureBox2.Margin = new Padding(3, 1, 3, 1);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(30, 30);
-            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 0;
-            pictureBox2.TabStop = false;
-            pictureBox2.Click += pictureBox2_Click;
             // 
             // pnSairContainer
             // 
@@ -314,10 +260,6 @@
             Controls.Add(tableLayoutPanel1);
             Name = "MenuPrincipal";
             Size = new Size(230, 521);
-            panel2.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             pnSairContainer.ResumeLayout(false);
             pnMenu.ResumeLayout(false);
             flowLayoutPanelMenu.ResumeLayout(false);
@@ -334,10 +276,6 @@
         private ComboBox Turmas_Direcionamento;
         private Button BTN_Relatorio_Direcionamento;
         private Panel panel2;
-        private Panel panel3;
-        private Label LblFuncao;
-        private Label lblNome;
-        private PictureBox pictureBox2;
         private Panel pnSairContainer;
         private Button Btn_Sair;
         private Panel pnMenu;

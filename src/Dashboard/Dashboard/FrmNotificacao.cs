@@ -33,14 +33,6 @@ namespace Dashboard
                 this.BeginInvoke(new MethodInvoker(this.Close));
             };
 
-            // 3. Perfil Clicado
-            menuPrincipal2.PerfilClicado += (sender, e) => {
-                FrmPerfil formPerfil = new FrmPerfil();
-                formPerfil.Show();
-                this.Hide();
-                this.BeginInvoke(new MethodInvoker(this.Close));
-            };
-
             // 4. Sair Clicado
             menuPrincipal2.SairClicado += (sender, e) => {
                 Application.Exit();

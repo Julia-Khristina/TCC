@@ -7,6 +7,7 @@ using System.Data;
 using System.Text;
 using Dashboard.Resources;
 using System.Runtime.InteropServices;
+using prjTCC;
 
 namespace Dashboard
 {
@@ -59,25 +60,16 @@ namespace Dashboard
                 this.Hide(); // Esconde o dashboard para mostrar a notificação
             };
 
-            // 3. Perfil Clicado
-            menuPrincipal2.PerfilClicado += (sender, e) =>
-            {
-                FrmPerfil formPerfil = new FrmPerfil();
-                formPerfil.Show();
-                this.Hide(); // Esconde o dashboard para mostrar o perfil
-            };
-
             // 4. Sair Clicado
             menuPrincipal2.SairClicado += (sender, e) =>
             {
                 Application.Exit();
             };
 
-            // 5. Relatório Clicado (NÃO FAZ NADA, POIS JÁ ESTÁ NA TELA)
+            // 5. Relatório Clicado 
             menuPrincipal2.RelatorioClicado += (sender, e) =>
             {
-                // Não é necessário fazer nada aqui. O usuário já está na tela de relatórios.
-                // Simplesmente ignore o clique.
+                // Não é necessário fazer nada aqui. 
             };
         }
         private int GetAtrasos(string sql)
@@ -201,6 +193,35 @@ namespace Dashboard
             }
         }
 
+        public void ShowFormWithOverlay(Form dialogForm)
+        {
+            // formulário de overlay em tempo de execução
+            using (Form overlay = new Form())
+            {
+                overlay.StartPosition = FormStartPosition.Manual;
+                overlay.FormBorderStyle = FormBorderStyle.None;
+                overlay.Opacity = 0.60; // 70% de opacidade. Ajuste conforme necessário.
+                overlay.BackColor = Color.Black;
+                overlay.ShowInTaskbar = false;
+
+                // Garante que o overlay cubra o formulário principal inteiro
+                overlay.Location = this.Location;
+                overlay.Size = this.Size;
+
+                // Exibe o overlay
+                overlay.Show();
+
+                // Define o formulário de diálogo como "dono" do overlay
+                dialogForm.Owner = overlay;
+
+                dialogForm.ShowDialog();
+
+                // Quando o dialogForm é fechado, o código continua aqui.
+                overlay.Close();
+            }
+        }
+
+
 
         private void Turmas_Direcionamento_KeyPress(object? sender, KeyPressEventArgs e)
         {
@@ -278,20 +299,37 @@ namespace Dashboard
         {
             AtualizarLabelsAtrasos();
         }
-
-        private void pnConteudo_Paint(object sender, PaintEventArgs e)
+        private void btnAddAluno_Click(object sender, EventArgs e)
         {
+            // Cria o form de cadastro
+            Cadastrar formCadastrar = new Cadastrar();
 
+            // Esconde o FrmPerfil enquanto o formCadastrar está aberto
+            this.Hide();
+
+            // Quando o formCadastrar fechar, reexibe o FrmPerfil
+            formCadastrar.FormClosed += (s, args) =>
+            {
+                this.Show();
+            };
+
+            // Mostra o formCadastrar
+            formCadastrar.Show();
         }
 
-        private void tableLayoutPanel5_Paint(object sender, PaintEventArgs e)
+        private void imgConfig_Click(object sender, EventArgs e)
         {
+            // Cria a instância do formulário que você quer mostrar
+            using (FrmPerfil formPerfil = new FrmPerfil())
+            {
+                // Centraliza o formulário na tela
+                formPerfil.StartPosition = FormStartPosition.CenterParent;
 
-        }
+                // Chama nosso método mágico!
+                ShowFormWithOverlay(formPerfil);
+            }
 
-        private void arredondamentoBtn6_Click(object sender, EventArgs e)
-        {
-
+            // AtualizarInformacoesDoUsuario();
         }
     }
 }

@@ -16,7 +16,6 @@ namespace Dashboard
     {
         public event EventHandler<int> TurmaSelecionada; // <int> para passar o ID do curso
         public event EventHandler NotificacaoClicada;
-        public event EventHandler PerfilClicado;
         public event EventHandler SairClicado;
         public event EventHandler RelatorioClicado;
 
@@ -309,16 +308,6 @@ namespace Dashboard
         private void Notificacao_Direcionamento_Click(object sender, EventArgs e)
         {
             NotificacaoClicada?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            PerfilClicado?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void lblNome_Click(object sender, EventArgs e)
-        {
-            PerfilClicado?.Invoke(this, EventArgs.Empty);
         }
 
         private void lblTurma_Click(object sender, EventArgs e)

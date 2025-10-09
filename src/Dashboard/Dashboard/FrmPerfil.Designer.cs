@@ -28,189 +28,261 @@
         /// </summary>
         private void InitializeComponent()
         {
-            lblnm = new Label();
-            label1 = new Label();
-            pnConteudo = new Panel();
-            tableLayoutPanel2 = new TableLayoutPanel();
-            btnAddAuxiliar = new ArredondamentoBtn();
-            btnAddAluno = new ArredondamentoBtn();
-            panel5 = new Panel();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            menuPrincipal1 = new MenuPrincipal();
-            pnConteudo.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
-            panel5.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            tableLayoutPanel1.SuspendLayout();
+            lblNome = new Label();
+            arredondamentoBtn7 = new ArredondamentoBtn();
+            Imagem_Perfil = new PictureBox();
+            label7 = new Label();
+            label8 = new Label();
+            arredondamentoBtn8 = new ArredondamentoBtn();
+            btnVoltar = new Button();
+            btnAlterar = new Button();
+            label9 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            lblTelefone = new Label();
+            label11 = new Label();
+            label14 = new Label();
+            lblEmail = new Label();
+            label16 = new Label();
+            label17 = new Label();
+            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).BeginInit();
             SuspendLayout();
             // 
-            // lblnm
+            // lblNome
             // 
-            lblnm.AutoSize = true;
-            lblnm.Dock = DockStyle.Bottom;
-            lblnm.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblnm.Location = new Point(211, 103);
-            lblnm.Name = "lblnm";
-            lblnm.Size = new Size(202, 30);
-            lblnm.TabIndex = 17;
-            lblnm.Text = "Nome";
-            lblnm.TextAlign = ContentAlignment.MiddleCenter;
+            lblNome.AutoSize = true;
+            lblNome.Font = new Font("Segoe UI", 12F);
+            lblNome.Location = new Point(324, 168);
+            lblNome.Name = "lblNome";
+            lblNome.Size = new Size(0, 21);
+            lblNome.TabIndex = 3;
             // 
-            // label1
+            // arredondamentoBtn7
             // 
-            label1.AutoSize = true;
-            label1.Dock = DockStyle.Top;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(211, 133);
-            label1.Name = "label1";
-            label1.Size = new Size(202, 21);
-            label1.TabIndex = 18;
-            label1.Text = "Função exercida";
-            label1.TextAlign = ContentAlignment.BottomCenter;
+            arredondamentoBtn7.BackColor = Color.GhostWhite;
+            arredondamentoBtn7.BorderColor = Color.Transparent;
+            arredondamentoBtn7.BorderRadius = 10;
+            arredondamentoBtn7.BorderSize = 0;
+            arredondamentoBtn7.DisableHoverEffect = false;
+            arredondamentoBtn7.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn7.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn7.ForeColor = Color.White;
+            arredondamentoBtn7.Location = new Point(45, 115);
+            arredondamentoBtn7.Name = "arredondamentoBtn7";
+            arredondamentoBtn7.Size = new Size(222, 280);
+            arredondamentoBtn7.TabIndex = 12;
+            arredondamentoBtn7.UseVisualStyleBackColor = false;
             // 
-            // pnConteudo
+            // Imagem_Perfil
             // 
-            pnConteudo.Controls.Add(tableLayoutPanel2);
-            pnConteudo.Controls.Add(panel5);
-            pnConteudo.Dock = DockStyle.Fill;
-            pnConteudo.Location = new Point(203, 3);
-            pnConteudo.Name = "pnConteudo";
-            pnConteudo.Size = new Size(626, 427);
-            pnConteudo.TabIndex = 19;
+            Imagem_Perfil.Image = Properties.Resources.regiane;
+            Imagem_Perfil.Location = new Point(51, 121);
+            Imagem_Perfil.Name = "Imagem_Perfil";
+            Imagem_Perfil.Size = new Size(209, 245);
+            Imagem_Perfil.SizeMode = PictureBoxSizeMode.StretchImage;
+            Imagem_Perfil.TabIndex = 13;
+            Imagem_Perfil.TabStop = false;
             // 
-            // tableLayoutPanel2
+            // label7
             // 
-            tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 48.9952049F));
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 51.0047951F));
-            tableLayoutPanel2.Controls.Add(btnAddAuxiliar, 0, 0);
-            tableLayoutPanel2.Controls.Add(btnAddAluno, 1, 0);
-            tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(0, 236);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 2;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(626, 191);
-            tableLayoutPanel2.TabIndex = 20;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label7.Location = new Point(395, 42);
+            label7.Name = "label7";
+            label7.Size = new Size(236, 30);
+            label7.TabIndex = 14;
+            label7.Text = "Configurações da Conta";
             // 
-            // btnAddAuxiliar
+            // label8
             // 
-            btnAddAuxiliar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnAddAuxiliar.BackColor = Color.MidnightBlue;
-            btnAddAuxiliar.BorderColor = Color.Transparent;
-            btnAddAuxiliar.BorderRadius = 10;
-            btnAddAuxiliar.BorderSize = 0;
-            btnAddAuxiliar.FlatAppearance.BorderSize = 0;
-            btnAddAuxiliar.FlatStyle = FlatStyle.Flat;
-            btnAddAuxiliar.ForeColor = Color.White;
-            btnAddAuxiliar.Location = new Point(153, 3);
-            btnAddAuxiliar.Name = "btnAddAuxiliar";
-            btnAddAuxiliar.Size = new Size(150, 40);
-            btnAddAuxiliar.TabIndex = 19;
-            btnAddAuxiliar.Text = "Adicionar Auxiliar";
-            btnAddAuxiliar.UseVisualStyleBackColor = false;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI", 12F);
+            label8.Location = new Point(328, 88);
+            label8.Name = "label8";
+            label8.Size = new Size(371, 21);
+            label8.TabIndex = 15;
+            label8.Text = "Confira e atualize suas informações quando precisar";
             // 
-            // btnAddAluno
+            // arredondamentoBtn8
             // 
-            btnAddAluno.BackColor = Color.MidnightBlue;
-            btnAddAluno.BorderColor = Color.Transparent;
-            btnAddAluno.BorderRadius = 10;
-            btnAddAluno.BorderSize = 0;
-            btnAddAluno.FlatAppearance.BorderSize = 0;
-            btnAddAluno.FlatStyle = FlatStyle.Flat;
-            btnAddAluno.ForeColor = Color.White;
-            btnAddAluno.Location = new Point(309, 3);
-            btnAddAluno.Name = "btnAddAluno";
-            btnAddAluno.Size = new Size(149, 40);
-            btnAddAluno.TabIndex = 19;
-            btnAddAluno.Text = "Adicionar Aluno";
-            btnAddAluno.UseVisualStyleBackColor = false;
-            btnAddAluno.Click += btnAddAluno_Click;
+            arredondamentoBtn8.BackColor = Color.MidnightBlue;
+            arredondamentoBtn8.BorderColor = Color.Transparent;
+            arredondamentoBtn8.BorderRadius = 10;
+            arredondamentoBtn8.BorderSize = 0;
+            arredondamentoBtn8.DisableHoverEffect = false;
+            arredondamentoBtn8.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn8.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn8.ForeColor = Color.White;
+            arredondamentoBtn8.Location = new Point(-48, -10);
+            arredondamentoBtn8.Name = "arredondamentoBtn8";
+            arredondamentoBtn8.Size = new Size(220, 499);
+            arredondamentoBtn8.TabIndex = 16;
+            arredondamentoBtn8.UseVisualStyleBackColor = false;
             // 
-            // panel5
+            // btnVoltar
             // 
-            panel5.Controls.Add(tableLayoutPanel3);
-            panel5.Dock = DockStyle.Top;
-            panel5.Location = new Point(0, 0);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(626, 236);
-            panel5.TabIndex = 19;
+            btnVoltar.BackColor = Color.MidnightBlue;
+            btnVoltar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVoltar.ForeColor = Color.White;
+            btnVoltar.Location = new Point(347, 394);
+            btnVoltar.Name = "btnVoltar";
+            btnVoltar.Size = new Size(149, 38);
+            btnVoltar.TabIndex = 35;
+            btnVoltar.Text = "Voltar";
+            btnVoltar.UseVisualStyleBackColor = false;
+            btnVoltar.Click += btnVoltar_Click;
             // 
-            // tableLayoutPanel3
+            // btnAlterar
             // 
-            tableLayoutPanel3.ColumnCount = 3;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
-            tableLayoutPanel3.Controls.Add(lblnm, 1, 0);
-            tableLayoutPanel3.Controls.Add(label1, 1, 1);
-            tableLayoutPanel3.Dock = DockStyle.Top;
-            tableLayoutPanel3.Location = new Point(0, 0);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 2;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 103F));
-            tableLayoutPanel3.Size = new Size(626, 236);
-            tableLayoutPanel3.TabIndex = 19;
+            btnAlterar.BackColor = Color.MidnightBlue;
+            btnAlterar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAlterar.ForeColor = Color.White;
+            btnAlterar.Location = new Point(523, 394);
+            btnAlterar.Name = "btnAlterar";
+            btnAlterar.Size = new Size(149, 38);
+            btnAlterar.TabIndex = 34;
+            btnAlterar.Text = "Alterar";
+            btnAlterar.UseVisualStyleBackColor = false;
             // 
-            // tableLayoutPanel1
+            // label9
             // 
-            tableLayoutPanel1.ColumnCount = 2;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 200F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Controls.Add(menuPrincipal1, 0, 0);
-            tableLayoutPanel1.Controls.Add(pnConteudo, 1, 0);
-            tableLayoutPanel1.Dock = DockStyle.Fill;
-            tableLayoutPanel1.Location = new Point(0, 0);
-            tableLayoutPanel1.Margin = new Padding(0);
-            tableLayoutPanel1.Name = "tableLayoutPanel1";
-            tableLayoutPanel1.RowCount = 1;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(832, 433);
-            tableLayoutPanel1.TabIndex = 6;
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label9.Location = new Point(50, 368);
+            label9.Name = "label9";
+            label9.Size = new Size(115, 17);
+            label9.TabIndex = 36;
+            label9.Text = "Trocar de imagem";
             // 
-            // menuPrincipal1
+            // label12
             // 
-            menuPrincipal1.Dock = DockStyle.Fill;
-            menuPrincipal1.Location = new Point(0, 0);
-            menuPrincipal1.Margin = new Padding(0);
-            menuPrincipal1.Name = "menuPrincipal1";
-            menuPrincipal1.Size = new Size(200, 433);
-            menuPrincipal1.TabIndex = 6;
+            label12.AutoSize = true;
+            label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Location = new Point(324, 140);
+            label12.Name = "label12";
+            label12.Size = new Size(55, 20);
+            label12.TabIndex = 46;
+            label12.Text = "Nome:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.ForeColor = SystemColors.ControlDark;
+            label13.Location = new Point(325, 179);
+            label13.Name = "label13";
+            label13.Size = new Size(377, 15);
+            label13.TabIndex = 45;
+            label13.Text = "__________________________________________________________________________";
+            // 
+            // lblTelefone
+            // 
+            lblTelefone.AutoSize = true;
+            lblTelefone.Font = new Font("Segoe UI", 12F);
+            lblTelefone.Location = new Point(324, 244);
+            lblTelefone.Name = "lblTelefone";
+            lblTelefone.Size = new Size(0, 21);
+            lblTelefone.TabIndex = 47;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label11.Location = new Point(324, 216);
+            label11.Name = "label11";
+            label11.Size = new Size(75, 20);
+            label11.TabIndex = 49;
+            label11.Text = "Telefone:";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.ForeColor = SystemColors.ControlDark;
+            label14.Location = new Point(325, 255);
+            label14.Name = "label14";
+            label14.Size = new Size(377, 15);
+            label14.TabIndex = 48;
+            label14.Text = "__________________________________________________________________________";
+            // 
+            // lblEmail
+            // 
+            lblEmail.AutoSize = true;
+            lblEmail.Font = new Font("Segoe UI", 12F);
+            lblEmail.Location = new Point(324, 325);
+            lblEmail.Name = "lblEmail";
+            lblEmail.Size = new Size(0, 21);
+            lblEmail.TabIndex = 50;
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label16.Location = new Point(324, 297);
+            label16.Name = "label16";
+            label16.Size = new Size(52, 20);
+            label16.TabIndex = 52;
+            label16.Text = "Email:";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.ForeColor = SystemColors.ControlDark;
+            label17.Location = new Point(325, 336);
+            label17.Name = "label17";
+            label17.Size = new Size(377, 15);
+            label17.TabIndex = 51;
+            label17.Text = "__________________________________________________________________________";
             // 
             // FrmPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(832, 433);
-            Controls.Add(tableLayoutPanel1);
+            BackColor = Color.GhostWhite;
+            ClientSize = new Size(770, 483);
+            Controls.Add(lblEmail);
+            Controls.Add(label16);
+            Controls.Add(label17);
+            Controls.Add(lblTelefone);
+            Controls.Add(label11);
+            Controls.Add(label14);
+            Controls.Add(lblNome);
+            Controls.Add(label12);
+            Controls.Add(label13);
+            Controls.Add(label9);
+            Controls.Add(btnVoltar);
+            Controls.Add(btnAlterar);
+            Controls.Add(Imagem_Perfil);
+            Controls.Add(arredondamentoBtn7);
+            Controls.Add(arredondamentoBtn8);
+            Controls.Add(label8);
+            Controls.Add(label7);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(1, 2, 1, 2);
             Name = "FrmPerfil";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmRelatorio";
-            WindowState = FormWindowState.Maximized;
-            pnConteudo.ResumeLayout(false);
-            tableLayoutPanel2.ResumeLayout(false);
-            panel5.ResumeLayout(false);
-            tableLayoutPanel3.ResumeLayout(false);
-            tableLayoutPanel3.PerformLayout();
-            tableLayoutPanel1.ResumeLayout(false);
+            Load += FrmPerfil_Load;
+            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-        private Label lblnm;
-        private Label label1;
-        private Panel pnConteudo;
-        private TableLayoutPanel tableLayoutPanel2;
-        private Panel panel5;
-        private TableLayoutPanel tableLayoutPanel1;
-        private MenuPrincipal menuPrincipal1;
-        private ArredondamentoBtn btnAddAuxiliar;
-        private ArredondamentoBtn btnAddAluno;
-        private TableLayoutPanel tableLayoutPanel3;
+        private Label lblNome;
+        private ArredondamentoBtn arredondamentoBtn7;
+        private PictureBox Imagem_Perfil;
+        private Label label7;
+        private Label label8;
+        private ArredondamentoBtn arredondamentoBtn8;
+        private Button btnVoltar;
+        private Button btnAlterar;
+        private Label label9;
+        private Label label12;
+        private Label label13;
+        private Label lblTelefone;
+        private Label label11;
+        private Label label14;
+        private Label lblEmail;
+        private Label label16;
+        private Label label17;
     }
 }

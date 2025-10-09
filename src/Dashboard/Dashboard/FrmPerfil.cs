@@ -9,110 +9,86 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.DataFormats;
 using prjTCC;
+using System.Drawing.Drawing2D;
 
 namespace Dashboard
 {
     public partial class FrmPerfil : Form
     {
+        private const int borderRadius = 25; // Mesma constante usada no frmLogin
+        private bool isMouseOverBtnVoltar = false;
+        private bool isMouseOverBtnAlterar = false;
+
         private readonly int cursoId;
         private string nomeTurmaAtual = string.Empty;
         public FrmPerfil()
         {
             InitializeComponent();
 
-            // 1. Turma Selecionada
-            menuPrincipal1.TurmaSelecionada += (sender, novoCursoId) =>
-            {
-                AbrirNovoFormularioTurma(novoCursoId);
-            };
+            // Configurações do btnVoltar
+            btnVoltar.FlatStyle = FlatStyle.Flat;
+            btnVoltar.FlatAppearance.BorderSize = 0;
+            btnVoltar.BackColor = ColorTranslator.FromHtml("#E9ECEF"); // Cinza claro
+            btnVoltar.ForeColor = ColorTranslator.FromHtml("#212529"); // Texto escuro
+            btnVoltar.Paint += (s, e) => RoundControl(btnVoltar, e, ref isMouseOverBtnVoltar);
+            btnVoltar.Resize += (s, e) => btnVoltar.Invalidate();
+            btnVoltar.MouseEnter += (s, e) => { isMouseOverBtnVoltar = true; btnVoltar.Invalidate(); };
+            btnVoltar.MouseLeave += (s, e) => { isMouseOverBtnVoltar = false; btnVoltar.Invalidate(); };
 
-            // 2. Notificação Clicada (MANTENHA APENAS ESTA)
-            menuPrincipal1.NotificacaoClicada += (sender, e) =>
-            {
-                frmNotificacao formNotificacao = new frmNotificacao();
-                formNotificacao.Show();
-                this.Hide();
-                this.BeginInvoke(new MethodInvoker(this.Close));
-            };
-
-            // 3. Perfil Clicado
-            menuPrincipal1.PerfilClicado += (sender, e) =>
-            {
-                FrmPerfil formPerfil = new FrmPerfil();
-                formPerfil.Show();
-                this.Hide();
-                this.BeginInvoke(new MethodInvoker(this.Close));
-
-            };
-
-            // 4. Sair Clicado
-            menuPrincipal1.SairClicado += (sender, e) =>
-            {
-                Application.Exit();
-            };
-
-            // 5. Relatório Clicado
-            menuPrincipal1.RelatorioClicado += (sender, e) =>
-            {
-                var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-                if (dashboard != null)
-                {
-                    dashboard.Show();
-                }
-                else
-                {
-                    new frmDashboard_Principal().Show();
-                }
-                this.Hide();
-                this.BeginInvoke(new MethodInvoker(this.Close));
-            };
+            // Configurações do btnAlterar
+            btnAlterar.FlatStyle = FlatStyle.Flat;
+            btnAlterar.FlatAppearance.BorderSize = 0;
+            btnAlterar.BackColor = ColorTranslator.FromHtml("#5C6BC0"); // Azul principal
+            btnAlterar.ForeColor = Color.White;
+            btnAlterar.Paint += (s, e) => RoundControl(btnAlterar, e, ref isMouseOverBtnAlterar);
+            btnAlterar.Resize += (s, e) => btnAlterar.Invalidate();
+            btnAlterar.MouseEnter += (s, e) => { isMouseOverBtnAlterar = true; btnAlterar.Invalidate(); };
+            btnAlterar.MouseLeave += (s, e) => { isMouseOverBtnAlterar = false; btnAlterar.Invalidate(); };
 
         }
 
-        private void AbrirNovoFormularioTurma(int novoCursoId)
+        private void RoundControl(Control control, PaintEventArgs e, ref bool isMouseOver)
         {
-            Form? ownerForm = this.Owner ?? Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-            bool ownerWasOriginallyVisible = ownerForm?.Visible ?? false; // Guarda estado inicial do dashboard
+            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
+                return;
 
-            try
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (var path = new GraphicsPath())
             {
-                // 1. Cria a nova instância do formulário da turma
-                frmTurma newForm = new frmTurma(novoCursoId);
+                Rectangle bounds = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
+                path.AddArc(bounds.X, bounds.Y, borderRadius, borderRadius, 180, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Y, borderRadius, borderRadius, 270, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Bottom - borderRadius, borderRadius, borderRadius, 0, 90);
+                path.AddArc(bounds.X, bounds.Bottom - borderRadius, borderRadius, borderRadius, 90, 90);
+                path.CloseAllFigures();
 
-                // 2. Define o Owner (Dashboard) se ele existir
-                if (ownerForm != null && !ownerForm.IsDisposed)
+                control.Region = new Region(path);
+
+                // Define a cor considerando MouseOver
+                Color currentBackColor = control.BackColor;
+                if (isMouseOver)
                 {
-                    newForm.Owner = ownerForm;
+                    if (control == btnVoltar)
+                        currentBackColor = ColorTranslator.FromHtml("#D6D9DC"); // MouseOver cinza
+                    else if (control == btnAlterar)
+                        currentBackColor = ColorTranslator.FromHtml("#7986CB"); // MouseOver azul mais claro
                 }
 
-                // 3. Garante que o Owner (Dashboard) esteja oculto ANTES de mostrar o novo form
-                if (ownerForm != null && ownerForm.Visible)
+                e.Graphics.FillPath(new SolidBrush(currentBackColor), path);
+                e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
+
+                if (control is Button btn)
                 {
-                    ownerForm.Hide();
-                }
-
-                // 4. Mostra o NOVO formulário da turma. Ele deve vir para a frente.
-                newForm.Show();
-
-                // 5. Esconde o formulário da turma ANTIGA, logo APÓS mostrar o novo.
-                this.Hide();
-
-                // 6. Agenda o fechamento seguro do formulário ANTIGO.
-                this.BeginInvoke(new MethodInvoker(this.Close));
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao tentar trocar de turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Tratamento de erro: Tenta fechar este form com segurança
-                try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
-                // E tenta restaurar a visibilidade do dashboard se ele estava visível originalmente
-                if (ownerForm != null && !ownerForm.IsDisposed && ownerWasOriginallyVisible)
-                {
-                    ownerForm.Show();
+                    TextRenderer.DrawText(
+                        e.Graphics,
+                        btn.Text,
+                        btn.Font,
+                        control.ClientRectangle,
+                        btn.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
                 }
             }
-            // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
         }
 
 
@@ -159,6 +135,18 @@ namespace Dashboard
         private void btnAddAuxiliar_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmPerfil_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Visible = false;
+            frmDashboard_Principal objFDashboard = new frmDashboard_Principal();
+            objFDashboard.Show();
         }
     }
 }
