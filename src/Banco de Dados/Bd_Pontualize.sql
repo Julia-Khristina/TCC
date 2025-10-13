@@ -40,7 +40,9 @@ CREATE TABLE Administrador (
     nm_Administrador VARCHAR(100) NOT NULL,
     telefone_Administrador VARCHAR(20) NOT NULL,
     email_Administrador VARCHAR(100) UNIQUE NOT NULL,
-    senha_Administrador VARCHAR(255) NOT NULL
+    senha_Administrador VARCHAR(255) NOT NULL,
+    imagem_perfil LONGBLOB NOT NULL,
+    ult_atualizacao DATETIME
 );
 
 CREATE TABLE Notificacao (
