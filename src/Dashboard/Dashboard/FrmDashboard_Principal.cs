@@ -7,12 +7,22 @@ using System.Data;
 using System.Text;
 using Dashboard.Resources;
 using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
+using MySql.Data.MySqlClient;
 using prjTCC;
 
 namespace Dashboard
 {
     public partial class frmDashboard_Principal : Form
     {
+
+        //adicionar as váriaveis de controle de conexão
+        MySqlConnection conexao;
+        MySqlCommand comando;
+        MySqlDataAdapter da;
+        MySqlDataReader dr;
+        string strSQL;
+
         private const int borderRadius = 15;
         private MySqlConnection? connection;
         private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
@@ -21,6 +31,8 @@ namespace Dashboard
         public frmDashboard_Principal()
         {
             InitializeComponent();
+
+            conexao = new MySqlConnection("Server=localhost;Port=3306;Database=Db_Pontualize;User=root");
 
             ConfigureEventHandlers();
 
@@ -132,10 +144,44 @@ namespace Dashboard
             }
         }
 
+        private string GetNomeAdministrador()
+        {
+            string nomeAdmin = "Administrador"; // Valor padrão caso não encontre
+            string sql = "SELECT nm_Administrador FROM Administrador LIMIT 1";
+
+            try
+            {
+                // Usa a mesma connectionString que você já tem
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        object result = cmd.ExecuteScalar(); // ExecuteScalar é perfeito para buscar um único valor
+
+                        // Verifica se o resultado não é nulo ou vazio
+                        if (result != null && result != DBNull.Value)
+                        {
+                            nomeAdmin = result.ToString();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Em caso de erro, mostra uma mensagem e mantém o nome padrão
+                MessageBox.Show($"Erro ao buscar o nome do administrador: {ex.Message}", "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return nomeAdmin;
+        }
+
+
         private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
         {
             AtualizarLabelsAtrasos(); // Atualiza os cards ao abrir
             Maximizar_Tela();
+            CarregarDadosDoPerfil();
         }
 
 
@@ -330,6 +376,108 @@ namespace Dashboard
             }
 
             // AtualizarInformacoesDoUsuario();
+        }
+
+        private void CarregarDadosDoPerfil()
+        {
+            // Define valores padrão
+            string nomeAdmin = "Administrador";
+            Image imagemPerfil = null; // Começa sem imagem
+
+            // SQL para buscar nome e imagem de uma vez
+            string sql = "SELECT nm_Administrador, imagem_perfil FROM Administrador LIMIT 1";
+
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
+                    {
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                // Pega o nome
+                                if (reader["nm_Administrador"] != DBNull.Value)
+                                {
+                                    nomeAdmin = reader["nm_Administrador"].ToString();
+                                }
+
+                                // Pega a imagem
+                                if (reader["imagem_perfil"] != DBNull.Value)
+                                {
+                                    byte[] imgBytes = (byte[])reader["imagem_perfil"];
+                                    if (imgBytes.Length > 0)
+                                    {
+                                        // Converte os bytes para uma imagem
+                                        // Usar 'new Bitmap(ms)' cria uma cópia independente, evitando erros
+                                        using (System.IO.MemoryStream ms = new System.IO.MemoryStream(imgBytes))
+                                        {
+                                            imagemPerfil = new Bitmap(ms);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar dados do perfil: {ex.Message}", "Erro de Conexão", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                // Atualiza os controles na tela com os dados encontrados (ou os padrões)
+                lblNome.Text = nomeAdmin;
+                image_perfil.Image = imagemPerfil; // Assumindo que o nome do seu PictureBox é 'image_perfil'
+            }
+        }
+
+
+        private void image_perfil_Click(object sender, EventArgs e)
+        {
+        }
+
+        private GraphicsPath GetRoundedRectPath(Rectangle rect, int radius)
+        {
+            GraphicsPath path = new GraphicsPath();
+            radius = Math.Max(1, Math.Min(radius, Math.Min(rect.Width / 2, rect.Height / 2)));
+            path.AddArc(rect.X, rect.Y, radius * 2, radius * 2, 180, 90);
+            path.AddArc(rect.Right - (radius * 2), rect.Y, radius * 2, radius * 2, 270, 90);
+            path.AddArc(rect.Right - (radius * 2), rect.Bottom - (radius * 2), radius * 2, radius * 2, 0, 90);
+            path.AddArc(rect.X, rect.Bottom - (radius * 2), radius * 2, radius * 2, 90, 90);
+            path.CloseFigure();
+            return path;
+        }
+
+        private void image_perfil_Paint(object sender, PaintEventArgs e)
+        {
+            int borderRadius = 10;
+
+            // controle que está sendo desenhado
+            PictureBox pictureBox = sender as PictureBox;
+            if (pictureBox == null) return;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            // retângulo que define a área do PictureBox
+            Rectangle rect = new Rectangle(0, 0, pictureBox.Width, pictureBox.Height);
+
+            // cria o molde com cantos arredondados
+            using (GraphicsPath path = GetRoundedRectPath(rect, borderRadius))
+            {
+                // Aplica o molde ao PictureBox, cortando os cantos
+                pictureBox.Region = new Region(path);
+
+                // Desenha a imagem dentro da nova região arredondada
+                if (pictureBox.Image != null)
+                {
+                    // Usar o ClientRectangle garante que a imagem seja desenhada na área visível
+                    e.Graphics.DrawImage(pictureBox.Image, pictureBox.ClientRectangle);
+                }
+            }
         }
     }
 }
