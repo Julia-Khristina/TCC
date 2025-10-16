@@ -28,14 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            arredondamentoBtn7 = new ArredondamentoBtn();
-            Imagem_Perfil = new PictureBox();
             label7 = new Label();
             label8 = new Label();
             arredondamentoBtn8 = new ArredondamentoBtn();
             btnVoltar = new Button();
             btnSalvar = new Button();
-            lblTrocarImagem = new Label();
             label12 = new Label();
             label13 = new Label();
             label11 = new Label();
@@ -47,36 +44,13 @@
             txtTelefone = new TextBox();
             txtEmail = new TextBox();
             btnCancelar = new Button();
-            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).BeginInit();
+            lblTrocarImagem = new Label();
+            Imagem_Perfil = new CustomControls.RoundedPictureBox();
+            arredondamentoCard1 = new CustomControls.ArredondamentoCard();
             ((System.ComponentModel.ISupportInitialize)btnEditar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).BeginInit();
+            arredondamentoCard1.SuspendLayout();
             SuspendLayout();
-            // 
-            // arredondamentoBtn7
-            // 
-            arredondamentoBtn7.BackColor = Color.GhostWhite;
-            arredondamentoBtn7.BorderColor = Color.Transparent;
-            arredondamentoBtn7.BorderRadius = 10;
-            arredondamentoBtn7.BorderSize = 0;
-            arredondamentoBtn7.DisableHoverEffect = false;
-            arredondamentoBtn7.FlatAppearance.BorderSize = 0;
-            arredondamentoBtn7.FlatStyle = FlatStyle.Flat;
-            arredondamentoBtn7.ForeColor = Color.White;
-            arredondamentoBtn7.Location = new Point(45, 115);
-            arredondamentoBtn7.Name = "arredondamentoBtn7";
-            arredondamentoBtn7.Size = new Size(222, 280);
-            arredondamentoBtn7.TabIndex = 12;
-            arredondamentoBtn7.UseVisualStyleBackColor = false;
-            // 
-            // Imagem_Perfil
-            // 
-            Imagem_Perfil.Image = Properties.Resources.regiane;
-            Imagem_Perfil.Location = new Point(51, 121);
-            Imagem_Perfil.Name = "Imagem_Perfil";
-            Imagem_Perfil.Size = new Size(209, 245);
-            Imagem_Perfil.SizeMode = PictureBoxSizeMode.StretchImage;
-            Imagem_Perfil.TabIndex = 13;
-            Imagem_Perfil.TabStop = false;
-            Imagem_Perfil.Paint += Imagem_Perfil_Paint;
             // 
             // label7
             // 
@@ -106,11 +80,13 @@
             arredondamentoBtn8.BorderSize = 0;
             arredondamentoBtn8.DisableHoverEffect = false;
             arredondamentoBtn8.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn8.FlatAppearance.MouseDownBackColor = Color.MidnightBlue;
+            arredondamentoBtn8.FlatAppearance.MouseOverBackColor = Color.MidnightBlue;
             arredondamentoBtn8.FlatStyle = FlatStyle.Flat;
             arredondamentoBtn8.ForeColor = Color.White;
-            arredondamentoBtn8.Location = new Point(-48, -10);
+            arredondamentoBtn8.Location = new Point(-48, -25);
             arredondamentoBtn8.Name = "arredondamentoBtn8";
-            arredondamentoBtn8.Size = new Size(220, 509);
+            arredondamentoBtn8.Size = new Size(220, 538);
             arredondamentoBtn8.TabIndex = 16;
             arredondamentoBtn8.UseVisualStyleBackColor = false;
             // 
@@ -139,17 +115,6 @@
             btnSalvar.Text = "Salvar";
             btnSalvar.UseVisualStyleBackColor = false;
             btnSalvar.Click += btnSalvar_Click;
-            // 
-            // lblTrocarImagem
-            // 
-            lblTrocarImagem.AutoSize = true;
-            lblTrocarImagem.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblTrocarImagem.Location = new Point(50, 368);
-            lblTrocarImagem.Name = "lblTrocarImagem";
-            lblTrocarImagem.Size = new Size(115, 17);
-            lblTrocarImagem.TabIndex = 36;
-            lblTrocarImagem.Text = "Trocar de imagem";
-            lblTrocarImagem.Click += lblTrocarImagem_Click;
             // 
             // label12
             // 
@@ -262,12 +227,46 @@
             btnCancelar.UseVisualStyleBackColor = false;
             btnCancelar.Click += btnCancelar_Click;
             // 
+            // lblTrocarImagem
+            // 
+            lblTrocarImagem.AutoSize = true;
+            lblTrocarImagem.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblTrocarImagem.Location = new Point(57, 258);
+            lblTrocarImagem.Name = "lblTrocarImagem";
+            lblTrocarImagem.Size = new Size(115, 17);
+            lblTrocarImagem.TabIndex = 36;
+            lblTrocarImagem.Text = "Trocar de imagem";
+            lblTrocarImagem.Click += lblTrocarImagem_Click;
+            // 
+            // Imagem_Perfil
+            // 
+            Imagem_Perfil.BorderRadius = 15;
+            Imagem_Perfil.Location = new Point(6, 4);
+            Imagem_Perfil.Name = "Imagem_Perfil";
+            Imagem_Perfil.Size = new Size(216, 250);
+            Imagem_Perfil.SizeMode = PictureBoxSizeMode.StretchImage;
+            Imagem_Perfil.TabIndex = 59;
+            Imagem_Perfil.TabStop = false;
+            // 
+            // arredondamentoCard1
+            // 
+            arredondamentoCard1.BorderColor = Color.Transparent;
+            arredondamentoCard1.BorderRadius = 10;
+            arredondamentoCard1.BorderSize = 0;
+            arredondamentoCard1.Controls.Add(Imagem_Perfil);
+            arredondamentoCard1.Controls.Add(lblTrocarImagem);
+            arredondamentoCard1.Location = new Point(30, 88);
+            arredondamentoCard1.Name = "arredondamentoCard1";
+            arredondamentoCard1.Size = new Size(229, 288);
+            arredondamentoCard1.TabIndex = 58;
+            // 
             // FrmPerfil
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
             ClientSize = new Size(770, 495);
+            Controls.Add(arredondamentoCard1);
             Controls.Add(btnCancelar);
             Controls.Add(txtEmail);
             Controls.Add(txtTelefone);
@@ -279,35 +278,32 @@
             Controls.Add(label14);
             Controls.Add(label12);
             Controls.Add(label13);
-            Controls.Add(lblTrocarImagem);
             Controls.Add(btnVoltar);
             Controls.Add(btnSalvar);
-            Controls.Add(Imagem_Perfil);
-            Controls.Add(arredondamentoBtn7);
             Controls.Add(arredondamentoBtn8);
             Controls.Add(label8);
             Controls.Add(label7);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(1, 2, 1, 2);
             Name = "FrmPerfil";
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmRelatorio";
             Load += FrmPerfil_Load;
-            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).EndInit();
             ((System.ComponentModel.ISupportInitialize)btnEditar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)Imagem_Perfil).EndInit();
+            arredondamentoCard1.ResumeLayout(false);
+            arredondamentoCard1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private ArredondamentoBtn arredondamentoBtn7;
-        private PictureBox Imagem_Perfil;
         private Label label7;
         private Label label8;
         private ArredondamentoBtn arredondamentoBtn8;
         private Button btnVoltar;
         private Button btnSalvar;
-        private Label lblTrocarImagem;
         private Label label12;
         private Label label13;
         private Label label11;
@@ -319,5 +315,8 @@
         private TextBox txtTelefone;
         private TextBox txtEmail;
         private Button btnCancelar;
+        private Label lblTrocarImagem;
+        private CustomControls.RoundedPictureBox Imagem_Perfil;
+        private CustomControls.ArredondamentoCard arredondamentoCard1;
     }
 }

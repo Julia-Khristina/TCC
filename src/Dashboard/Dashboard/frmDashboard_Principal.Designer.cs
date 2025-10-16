@@ -89,12 +89,12 @@ namespace Dashboard
             panel3 = new Panel();
             imgConfig = new PictureBox();
             label11 = new Label();
-            arredondamentoBtn6 = new ArredondamentoBtn();
+            btnCardMeuPerfil = new ArredondamentoBtn();
             tableLayoutPanel4 = new TableLayoutPanel();
             lblNome = new Label();
             label10 = new Label();
-            image_perfil = new PictureBox();
             btnAddAluno = new ArredondamentoBtn();
+            image_perfil = new CustomControls.RoundedPictureBox();
             menuPrincipal2 = new MenuPrincipal();
             button2 = new Button();
             button4 = new Button();
@@ -808,7 +808,7 @@ namespace Dashboard
             // 
             panel3.Controls.Add(imgConfig);
             panel3.Controls.Add(label11);
-            panel3.Controls.Add(arredondamentoBtn6);
+            panel3.Controls.Add(btnCardMeuPerfil);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 0);
             panel3.Name = "panel3";
@@ -840,21 +840,24 @@ namespace Dashboard
             label11.TabIndex = 27;
             label11.Text = "Meu Perfil";
             // 
-            // arredondamentoBtn6
+            // btnCardMeuPerfil
             // 
-            arredondamentoBtn6.BackColor = Color.MidnightBlue;
-            arredondamentoBtn6.BorderColor = Color.Transparent;
-            arredondamentoBtn6.BorderRadius = 10;
-            arredondamentoBtn6.BorderSize = 0;
-            arredondamentoBtn6.DisableHoverEffect = false;
-            arredondamentoBtn6.FlatAppearance.BorderSize = 0;
-            arredondamentoBtn6.FlatStyle = FlatStyle.Flat;
-            arredondamentoBtn6.ForeColor = Color.White;
-            arredondamentoBtn6.Location = new Point(23, 31);
-            arredondamentoBtn6.Name = "arredondamentoBtn6";
-            arredondamentoBtn6.Size = new Size(318, 38);
-            arredondamentoBtn6.TabIndex = 25;
-            arredondamentoBtn6.UseVisualStyleBackColor = false;
+            btnCardMeuPerfil.BackColor = Color.MidnightBlue;
+            btnCardMeuPerfil.BorderColor = Color.Transparent;
+            btnCardMeuPerfil.BorderRadius = 10;
+            btnCardMeuPerfil.BorderSize = 0;
+            btnCardMeuPerfil.DisableHoverEffect = false;
+            btnCardMeuPerfil.FlatAppearance.BorderSize = 0;
+            btnCardMeuPerfil.FlatAppearance.MouseDownBackColor = Color.MidnightBlue;
+            btnCardMeuPerfil.FlatAppearance.MouseOverBackColor = Color.MidnightBlue;
+            btnCardMeuPerfil.FlatStyle = FlatStyle.Flat;
+            btnCardMeuPerfil.ForeColor = Color.White;
+            btnCardMeuPerfil.Location = new Point(23, 31);
+            btnCardMeuPerfil.Name = "btnCardMeuPerfil";
+            btnCardMeuPerfil.Size = new Size(318, 38);
+            btnCardMeuPerfil.TabIndex = 25;
+            btnCardMeuPerfil.UseVisualStyleBackColor = false;
+            btnCardMeuPerfil.MouseEnter += btnCardMeuPerfil_MouseEnter;
             // 
             // tableLayoutPanel4
             // 
@@ -863,19 +866,19 @@ namespace Dashboard
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Controls.Add(lblNome, 0, 1);
             tableLayoutPanel4.Controls.Add(label10, 0, 3);
-            tableLayoutPanel4.Controls.Add(image_perfil, 0, 0);
             tableLayoutPanel4.Controls.Add(btnAddAluno, 0, 4);
+            tableLayoutPanel4.Controls.Add(image_perfil, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(0, 0);
-            tableLayoutPanel4.Margin = new Padding(2, 20, 2, 2);
+            tableLayoutPanel4.Margin = new Padding(0);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 7;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 45F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 30F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 58F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 40F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 49F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 65F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 61F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 49F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 158F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel4.Size = new Size(351, 772);
@@ -887,7 +890,7 @@ namespace Dashboard
             lblNome.AutoSize = true;
             lblNome.Font = new Font("Segoe UI Semibold", 14F, FontStyle.Bold);
             lblNome.ForeColor = SystemColors.Desktop;
-            lblNome.Location = new Point(3, 375);
+            lblNome.Location = new Point(3, 386);
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(345, 25);
             lblNome.TabIndex = 20;
@@ -900,26 +903,12 @@ namespace Dashboard
             label10.AutoSize = true;
             label10.Font = new Font("Segoe UI Semibold", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label10.ForeColor = SystemColors.Desktop;
-            label10.Location = new Point(25, 460);
+            label10.Location = new Point(25, 472);
             label10.Margin = new Padding(25, 0, 3, 0);
             label10.Name = "label10";
             label10.Size = new Size(135, 28);
             label10.TabIndex = 23;
             label10.Text = "Minhas ações";
-            // 
-            // image_perfil
-            // 
-            image_perfil.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            image_perfil.Image = (Image)resources.GetObject("image_perfil.Image");
-            image_perfil.Location = new Point(70, 122);
-            image_perfil.Margin = new Padding(70, 70, 70, 2);
-            image_perfil.Name = "image_perfil";
-            image_perfil.Size = new Size(211, 231);
-            image_perfil.SizeMode = PictureBoxSizeMode.StretchImage;
-            image_perfil.TabIndex = 19;
-            image_perfil.TabStop = false;
-            image_perfil.Click += image_perfil_Click;
-            image_perfil.Paint += image_perfil_Paint;
             // 
             // btnAddAluno
             // 
@@ -932,7 +921,7 @@ namespace Dashboard
             btnAddAluno.FlatAppearance.BorderSize = 0;
             btnAddAluno.FlatStyle = FlatStyle.Flat;
             btnAddAluno.ForeColor = Color.White;
-            btnAddAluno.Location = new Point(70, 511);
+            btnAddAluno.Location = new Point(70, 523);
             btnAddAluno.Margin = new Padding(70, 2, 70, 2);
             btnAddAluno.Name = "btnAddAluno";
             btnAddAluno.Size = new Size(211, 40);
@@ -940,6 +929,18 @@ namespace Dashboard
             btnAddAluno.Text = "Adicionar Aluno";
             btnAddAluno.UseVisualStyleBackColor = false;
             btnAddAluno.Click += btnAddAluno_Click;
+            // 
+            // image_perfil
+            // 
+            image_perfil.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            image_perfil.BorderRadius = 15;
+            image_perfil.Location = new Point(70, 137);
+            image_perfil.Margin = new Padding(70, 30, 70, 3);
+            image_perfil.Name = "image_perfil";
+            image_perfil.Size = new Size(211, 231);
+            image_perfil.SizeMode = PictureBoxSizeMode.StretchImage;
+            image_perfil.TabIndex = 12;
+            image_perfil.TabStop = false;
             // 
             // menuPrincipal2
             // 
@@ -1119,11 +1120,10 @@ namespace Dashboard
         private PictureBox pictureBox2;
         private Panel panel2;
         private Label lblNome;
-        private PictureBox image_perfil;
         private TableLayoutPanel tableLayoutPanel4;
         private ArredondamentoBtn btnAddAluno;
         private Label label10;
-        private ArredondamentoBtn arredondamentoBtn6;
+        private ArredondamentoBtn btnCardMeuPerfil;
         private Label label8;
         private Panel panel3;
         private Label label11;
@@ -1171,6 +1171,7 @@ namespace Dashboard
         private Label lbl1_CardNot;
         private Label lblNotificacao;
         private Label lbl2_CardNot;
+        private CustomControls.RoundedPictureBox image_perfil;
     }
 }
 

@@ -1,4 +1,4 @@
-using System;
+Ôªøusing System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
@@ -16,7 +16,7 @@ namespace Dashboard
     public partial class frmDashboard_Principal : Form
     {
 
-        //adicionar as v·riaveis de controle de conex„o
+        //adicionar as v√°riaveis de controle de conex√£o
         MySqlConnection conexao;
         MySqlCommand comando;
         MySqlDataAdapter da;
@@ -34,19 +34,19 @@ namespace Dashboard
 
             conexao = new MySqlConnection("Server=localhost;Port=3306;Database=Db_Pontualize;User=root");
 
-            ConfigureEventHandlers();
+            ConfiguraEventos();
 
             timerAtualizacao = new System.Windows.Forms.Timer();
             timerAtualizacao.Interval = 60000; // 1 min pra atualizar
             timerAtualizacao.Tick += TimerAtualizacao_Tick;
             timerAtualizacao.Start();
 
-            richTextBox1.Text = "Aqui vocÍ acompanha, em tempo real, os alunos atrasados de cada turma, com relatÛrios "
-                              + "di·rios, semanais e mensais de forma simples e organizada. O sistema tambÈm utiliza o "
-                              + "Power BI para gerar gr·ficos din‚micos que deixam a an·lise mais visual e pr·tica, alÈm de "
-                              + "permitir o download dos relatÛrios sempre que precisar.";
+            richTextBox1.Text = "Aqui voc√™ acompanha, em tempo real, os alunos atrasados de cada turma, com relat√≥rios "
+                              + "di√°rios, semanais e mensais de forma simples e organizada. O sistema tamb√©m utiliza o "
+                              + "Power BI para gerar gr√°ficos din√¢micos que deixam a an√°lise mais visual e pr√°tica, al√©m de "
+                              + "permitir o download dos relat√≥rios sempre que precisar.";
 
-            JustifyRichText(richTextBox1);
+            JustificarRichText(richTextBox1);
 
             this.Load += FrmDashboard_Principal_Load;
 
@@ -56,7 +56,7 @@ namespace Dashboard
             richTextBox1.BorderStyle = BorderStyle.None; // Garante que a borda seja removida
             richTextBox1.TabStop = false;
 
-            // 1. Turma Selecionada
+            // Turma Selecionada
             menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) =>
             {
                 frmTurma formTurma = new frmTurma(novoCursoId);
@@ -64,24 +64,24 @@ namespace Dashboard
                 this.Hide(); // Esconde o dashboard para mostrar a turma
             };
 
-            // 2. NotificaÁ„o Clicada
+            // Notifica√ß√£o Clicada
             menuPrincipal2.NotificacaoClicada += (sender, e) =>
             {
                 frmNotificacao formNotificacao = new frmNotificacao();
                 formNotificacao.Show();
-                this.Hide(); // Esconde o dashboard para mostrar a notificaÁ„o
+                this.Hide(); // Esconde o dashboard para mostrar a notifica√ß√£o
             };
 
-            // 4. Sair Clicado
+            // Sair Clicado
             menuPrincipal2.SairClicado += (sender, e) =>
             {
                 Application.Exit();
             };
 
-            // 5. RelatÛrio Clicado 
+            // Relat√≥rio Clicado 
             menuPrincipal2.RelatorioClicado += (sender, e) =>
             {
-                // N„o È necess·rio fazer nada aqui. 
+                // j√° est√° na tela
             };
         }
         private int GetAtrasos(string sql)
@@ -101,6 +101,26 @@ namespace Dashboard
                 MessageBox.Show($"Erro ao buscar atrasos: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return 0;
             }
+
+        }
+
+        private string GetTurmaMaisAtrasada(string sqlQuery)
+        {
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(sqlQuery, conn);
+                    object result = cmd.ExecuteScalar();
+                    return result != null ? result.ToString() : "N/A";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao buscar turma mais atrasada: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return "N/A";
+            }
         }
 
         private void AtualizarLabelsAtrasos() // Comando para buscar os atrasos do card
@@ -112,16 +132,52 @@ namespace Dashboard
             lblDiario.Text = GetAtrasos(sqlDia).ToString();
             lblSemanal.Text = GetAtrasos(sqlSemana).ToString();
             label4.Text = GetAtrasos(sqlMes).ToString();
+
+            string sqlTurmaMaisAtrasadaBase = "SELECT CONCAT(RA.nm_Serie, ' ', RA.nm_Curso) AS TurmaCompleta FROM RegistroAtraso RA ";
+            string groupByTurma = " GROUP BY TurmaCompleta ORDER BY COUNT(*) DESC LIMIT 1";
+
+
+            // Atrasos di√°rios 
+            string sqlDiaOntem = "SELECT COUNT(*) FROM RegistroAtraso WHERE data_registro = CURDATE() - INTERVAL 1 DAY";
+            int atrasosHoje = GetAtrasos(sqlDia);
+            int atrasosOntem = GetAtrasos(sqlDiaOntem);
+            int diferencaDia = atrasosHoje - atrasosOntem;
+            lbl1_CardDiario.Text = (diferencaDia >= 0 ? "‚Üë " : "‚Üì ") + Math.Abs(diferencaDia).ToString() + " atrasos em rela√ß√£o a ontem";
+
+            string sqlTurmaMaisAtrasadaDia = sqlTurmaMaisAtrasadaBase + " WHERE RA.data_registro = CURDATE()" + groupByTurma;
+            lbl2_CardDiario.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaDia);
+
+            // Atrasos semanais 
+            string sqlSemanaPassada = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEARWEEK(data_registro, 1) = YEARWEEK(CURDATE() - INTERVAL 7 DAY, 1)";
+            int atrasosEstaSemana = GetAtrasos(sqlSemana);
+            int atrasosSemanaPassada = GetAtrasos(sqlSemanaPassada);
+            int diferencaSemana = atrasosEstaSemana - atrasosSemanaPassada;
+            lbl1_CardSemanal.Text = (diferencaSemana >= 0 ? "‚Üë " : "‚Üì ") + Math.Abs(diferencaSemana).ToString() + " atrasos em rela√ß√£o √† semana passada";
+
+            string sqlTurmaMaisAtrasadaSemana = sqlTurmaMaisAtrasadaBase + " WHERE YEARWEEK(RA.data_registro, 1) = YEARWEEK(CURDATE(), 1)" + groupByTurma;
+            lbl2_CardSemanal.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaSemana);
+
+            // Atrasos mensais 
+            string sqlMesPassado = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEAR(data_registro) = YEAR(CURDATE() - INTERVAL 1 MONTH) AND MONTH(data_registro) = MONTH(CURDATE() - INTERVAL 1 MONTH)";
+            int atrasosEsteMes = GetAtrasos(sqlMes);
+            int atrasosMesPassado = GetAtrasos(sqlMesPassado);
+            int diferencaMes = atrasosEsteMes - atrasosMesPassado;
+            lbl1_CardMensal.Text = (diferencaMes >= 0 ? "‚Üë " : "‚Üì ") + Math.Abs(diferencaMes).ToString() + " atrasos em rela√ß√£o ao m√™s passado";
+
+            string sqlTurmaMaisAtrasadaMes = sqlTurmaMaisAtrasadaBase + " WHERE YEAR(RA.data_registro) = YEAR(CURDATE()) AND MONTH(RA.data_registro) = MONTH(CURDATE())" + groupByTurma;
+            lbl2_CardMensal.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaMes);
+
+
         }
 
         private void Maximizar_Tela()
         {
             this.FormBorderStyle = FormBorderStyle.None;
 
-            // ObtÈm a ·rea de trabalho do monitor onde a janela est·.
+            // Obt√©m a √°rea de trabalho do monitor onde a janela est√°.
             Rectangle workingArea = Screen.FromHandle(this.Handle).WorkingArea;
 
-            // Define a posiÁ„o e o tamanho do formul·rio para preencher a ·rea de trabalho.
+            // Define a posi√ß√£o e o tamanho do formul√°rio para preencher a √°rea de trabalho.
             this.Location = workingArea.Location;
             this.Size = workingArea.Size;
 
@@ -136,46 +192,13 @@ namespace Dashboard
                 connection = new MySqlConnection(connectionString);
 
                 // Carrega os dados e configura os eventos
-                ConfigureEventHandlers();
+                ConfiguraEventos();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Erro ao inicializar o aplicativo: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private string GetNomeAdministrador()
-        {
-            string nomeAdmin = "Administrador"; // Valor padr„o caso n„o encontre
-            string sql = "SELECT nm_Administrador FROM Administrador LIMIT 1";
-
-            try
-            {
-                // Usa a mesma connectionString que vocÍ j· tem
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
-                {
-                    conn.Open();
-                    using (MySqlCommand cmd = new MySqlCommand(sql, conn))
-                    {
-                        object result = cmd.ExecuteScalar(); // ExecuteScalar È perfeito para buscar um ˙nico valor
-
-                        // Verifica se o resultado n„o È nulo ou vazio
-                        if (result != null && result != DBNull.Value)
-                        {
-                            nomeAdmin = result.ToString();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Em caso de erro, mostra uma mensagem e mantÈm o nome padr„o
-                MessageBox.Show($"Erro ao buscar o nome do administrador: {ex.Message}", "Erro de Conex„o", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return nomeAdmin;
-        }
-
 
         private void FrmDashboard_Principal_Load(object? sender, EventArgs e)
         {
@@ -185,11 +208,11 @@ namespace Dashboard
         }
 
 
-        private void ConfigureEventHandlers()
+        private void ConfiguraEventos()
         {
             const int cardBorderRadius = 15;
-            // Eventos de arredondamento dos painÈis
-            Painel_Di·rio.Paint += (sender, e) => PaintRoundedBorders(Painel_Di·rio, e, cardBorderRadius);
+            // Eventos de arredondamento dos pain√©is
+            Painel_Di√°rio.Paint += (sender, e) => PaintRoundedBorders(Painel_Di√°rio, e, cardBorderRadius);
             Painel_Semanal.Paint += (sender, e) => PaintRoundedBorders(Painel_Semanal, e, cardBorderRadius);
             Painel_Mensal.Paint += (sender, e) => PaintRoundedBorders(Painel_Mensal, e, cardBorderRadius);
             Painel_Notificacao.Paint += (sender, e) => PaintRoundedBorders(Painel_Notificacao, e, cardBorderRadius);
@@ -204,7 +227,7 @@ namespace Dashboard
             if (control == null || e == null || control.IsDisposed)
                 return;
 
-            // Usa o ret‚ngulo do cliente para obter as dimensıes corretas.
+            // Usa o ret√¢ngulo do cliente para obter as dimens√µes corretas.
             Rectangle rect = control.ClientRectangle;
 
             // Garante que o GraphicsPath seja liberado corretamente.
@@ -218,19 +241,19 @@ namespace Dashboard
                 path.AddArc(rect.X, rect.Bottom - diameter, diameter, diameter, 90, 90);
                 path.CloseFigure();
 
-                // Configura o modo de suavizaÁ„o para alta qualidade.
+                // Configura o modo de suaviza√ß√£o para alta qualidade.
                 e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-                // Define a regi„o do controle para o caminho arredondado.
+                // Define a regi√£o do controle para o caminho arredondado.
                 control.Region = new Region(path);
 
-                // 1. Preenche o painel com sua cor de fundo.
+                // Preenche o painel com sua cor de fundo.
                 using (SolidBrush brush = new SolidBrush(control.BackColor))
                 {
                     e.Graphics.FillPath(brush, path);
                 }
 
-                // 2. Desenha uma borda com a cor do PARENTE para suavizar as bordas.
+                // Desenha uma borda com a cor do PARENTE para suavizar as bordas.
                 using (Pen pen = new Pen(control.Parent.BackColor, 1))
                 {
                     e.Graphics.DrawPath(pen, path);
@@ -239,30 +262,29 @@ namespace Dashboard
             }
         }
 
-        public void ShowFormWithOverlay(Form dialogForm)
+        public void AbrirFormOverlay(Form dialogForm)
         {
-            // formul·rio de overlay em tempo de execuÁ„o
+            // formul√°rio de overlay em tempo de execu√ß√£o
             using (Form overlay = new Form())
             {
                 overlay.StartPosition = FormStartPosition.Manual;
                 overlay.FormBorderStyle = FormBorderStyle.None;
-                overlay.Opacity = 0.60; // 70% de opacidade. Ajuste conforme necess·rio.
+                overlay.Opacity = 0.60; 
                 overlay.BackColor = Color.Black;
                 overlay.ShowInTaskbar = false;
 
-                // Garante que o overlay cubra o formul·rio principal inteiro
+                // overlay cubra o formul√°rio principal inteiro
                 overlay.Location = this.Location;
                 overlay.Size = this.Size;
 
-                // Exibe o overlay
                 overlay.Show();
 
-                // Define o formul·rio de di·logo como "dono" do overlay
+                // Define o formul√°rio de di√°logo como "dono" do overlay
                 dialogForm.Owner = overlay;
 
                 dialogForm.ShowDialog();
 
-                // Quando o dialogForm È fechado, o cÛdigo continua aqui.
+                // Quando o dialogForm √© fechado, o c√≥digo continua aqui.
                 overlay.Close();
             }
         }
@@ -331,7 +353,7 @@ namespace Dashboard
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, ref PARAFORMAT lParam);
 
-        private void JustifyRichText(RichTextBox box)
+        private void JustificarRichText(RichTextBox box)
         {
             PARAFORMAT fmt = new PARAFORMAT();
             fmt.cbSize = Marshal.SizeOf(fmt);
@@ -350,7 +372,7 @@ namespace Dashboard
             // Cria o form de cadastro
             Cadastrar formCadastrar = new Cadastrar();
 
-            // Esconde o FrmPerfil enquanto o formCadastrar est· aberto
+            // Esconde o FrmPerfil enquanto o formCadastrar est√° aberto
             this.Hide();
 
             // Quando o formCadastrar fechar, reexibe o FrmPerfil
@@ -365,26 +387,21 @@ namespace Dashboard
 
         private void imgConfig_Click(object sender, EventArgs e)
         {
-            // Cria a inst‚ncia do formul·rio que vocÍ quer mostrar
             using (FrmPerfil formPerfil = new FrmPerfil())
             {
-                // Centraliza o formul·rio na tela
+                // Centraliza o formul√°rio na tela
                 formPerfil.StartPosition = FormStartPosition.CenterParent;
 
-                // Chama nosso mÈtodo m·gico!
-                ShowFormWithOverlay(formPerfil);
-            }
+                AbrirFormOverlay(formPerfil);
 
-            // AtualizarInformacoesDoUsuario();
+            }
         }
 
         private void CarregarDadosDoPerfil()
         {
-            // Define valores padr„o
             string nomeAdmin = "Administrador";
-            Image imagemPerfil = null; // ComeÁa sem imagem
+            Image imagemPerfil = null; // Come√ßa sem imagem
 
-            // SQL para buscar nome e imagem de uma vez
             string sql = "SELECT nm_Administrador, imagem_perfil FROM Administrador LIMIT 1";
 
             try
@@ -411,7 +428,6 @@ namespace Dashboard
                                     if (imgBytes.Length > 0)
                                     {
                                         // Converte os bytes para uma imagem
-                                        // Usar 'new Bitmap(ms)' cria uma cÛpia independente, evitando erros
                                         using (System.IO.MemoryStream ms = new System.IO.MemoryStream(imgBytes))
                                         {
                                             imagemPerfil = new Bitmap(ms);
@@ -425,13 +441,13 @@ namespace Dashboard
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Erro ao carregar dados do perfil: {ex.Message}", "Erro de Conex„o", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro ao carregar dados do perfil: {ex.Message}", "Erro de Conex√£o", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
-                // Atualiza os controles na tela com os dados encontrados (ou os padrıes)
+                // Atualiza os controles na tela com os dados encontrados (ou os padr√µes)
                 lblNome.Text = nomeAdmin;
-                image_perfil.Image = imagemPerfil; // Assumindo que o nome do seu PictureBox È 'image_perfil'
+                image_perfil.Image = imagemPerfil; // Assumindo que o nome do seu PictureBox √© 'image_perfil'
             }
         }
 
@@ -456,13 +472,13 @@ namespace Dashboard
         {
             int borderRadius = 10;
 
-            // controle que est· sendo desenhado
+            // controle que est√° sendo desenhado
             PictureBox pictureBox = sender as PictureBox;
             if (pictureBox == null) return;
 
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            // ret‚ngulo que define a ·rea do PictureBox
+            // ret√¢ngulo que define a √°rea do PictureBox
             Rectangle rect = new Rectangle(0, 0, pictureBox.Width, pictureBox.Height);
 
             // cria o molde com cantos arredondados
@@ -471,13 +487,18 @@ namespace Dashboard
                 // Aplica o molde ao PictureBox, cortando os cantos
                 pictureBox.Region = new Region(path);
 
-                // Desenha a imagem dentro da nova regi„o arredondada
+                // Desenha a imagem dentro da nova regi√£o arredondada
                 if (pictureBox.Image != null)
                 {
-                    // Usar o ClientRectangle garante que a imagem seja desenhada na ·rea visÌvel
+                    // Usar o ClientRectangle garante que a imagem seja desenhada na √°rea vis√≠vel
                     e.Graphics.DrawImage(pictureBox.Image, pictureBox.ClientRectangle);
                 }
             }
+        }
+
+        private void btnCardMeuPerfil_MouseEnter(object sender, EventArgs e)
+        {
+            btnCardMeuPerfil.BackColor = Color.MidnightBlue;
         }
     }
 }

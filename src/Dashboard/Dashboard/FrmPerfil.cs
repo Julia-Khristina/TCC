@@ -242,9 +242,7 @@ namespace Dashboard
 
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            this.Visible = false;
-            frmDashboard_Principal objFDashboard = new frmDashboard_Principal();
-            objFDashboard.Show();
+            this.Close();
         }
 
         private void btnSalvar_Click(object sender, EventArgs e)
@@ -374,7 +372,6 @@ namespace Dashboard
             path.CloseFigure();
             return path;
         }
-
 
     }
 }
