@@ -1,4 +1,4 @@
--- drop database Db_Pontualize;
+drop database Db_Pontualize;
 CREATE DATABASE IF NOT EXISTS Db_Pontualize;
 USE Db_Pontualize;
 
@@ -93,7 +93,10 @@ BEGIN
 
     SELECT COUNT(*) INTO qtd_atrasos
     FROM RegistroAtraso
-    WHERE cd_Aluno = NEW.cd_Aluno;
+    WHERE cd_Aluno = NEW.cd_Aluno
+		AND YEAR(data_registro) = YEAR(CURDATE()) 
+		AND MONTH(data_registro) = MONTH(CURDATE()); 
+
 
     IF qtd_atrasos = 3 THEN
         SELECT GROUP_CONCAT(
@@ -103,7 +106,9 @@ BEGIN
             SELECT data_registro
             FROM RegistroAtraso
             WHERE cd_Aluno = NEW.cd_Aluno
-            ORDER BY data_registro
+				AND YEAR(data_registro) = YEAR(CURDATE())
+                AND MONTH(data_registro) = MONTH(CURDATE())
+            ORDER BY data_registro DESC
             LIMIT 3
         ) AS UltimosAtrasos;
 
@@ -111,7 +116,7 @@ BEGIN
         VALUES (
             NEW.cd_Aluno,
             CONCAT(
-                'Você acumulou 3 atrasos. Isso é um aviso: o próximo atraso resultará em advertência. ',
+                'O aluno atingiu 3 atrasos no mês atual. Próximo atraso resultará em advertência. ',
                 'Os dias dos atrasos foram: ', detalhes_atrasos, '.'
             )
         );
@@ -142,10 +147,10 @@ INSERT INTO Biometria (dados_Biometria) VALUES
 INSERT INTO Aluno (cd_aluno, nm_Aluno, gmail_aluno, telefone_aluno, Serie_Aluno, Curso_Aluno, cd_Biometria, atrasos, foto_aluno) VALUES
 -- Curso 1: Automação Industrial
 ('230060','Ana Silva', 'aluno1@gmail.com', '11999990001', 1, 1, 1, 0, 'FFD8FFE0'),
-('230061', 'Bruno Costa', 'aluno2@gmail.com', '11999990002', 1, 1, 2, 1, 'FFD8FFE0'),
+('230061', 'Bruno Costa', 'aluno2@gmail.com', '11999990002', 1, 1, 2, 6, 'FFD8FFE0'),
 
 ('240030', 'Carla Souza', 'aluno3@gmail.com', '11999990003', 2, 1, 3, 0, 'FFD8FFE0'),
-('240031', 'Diego Lima', 'aluno4@gmail.com', '11999990004', 2, 1, 4, 2, 'FFD8FFE0'),
+('240031', 'Diego Lima', 'aluno4@gmail.com', '11999990004', 2, 1, 4, 5, 'FFD8FFE0'),
 
 ('250024', 'Eduarda Alves', 'aluno5@gmail.com', '11999990005', 3, 1, 5, 0, 'FFD8FFE0'),
 ('250025', 'Felipe Torres', 'aluno6@gmail.com', '11999990006', 3, 1, 6, 1, 'FFD8FFE0'),
@@ -196,3 +201,47 @@ WHERE (
     (CURRENT_TIME() >= '15:30:00' AND CURRENT_TIME() > '18:15:59')
 );
 */
+
+USE Db_Pontualize;
+
+-- ATRASOS DE BRUNO COSTA (Automação Industrial, 1º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(230061, 'Bruno Costa', 'Primeiro ano', 'Automação Industrial', '07:55:00', '2025-10-01'),
+(230061, 'Bruno Costa', 'Primeiro ano', 'Automação Industrial', '07:58:00', '2025-10-08'),
+(230061, 'Bruno Costa', 'Primeiro ano', 'Automação Industrial', '08:00:00', '2025-10-15');
+
+-- ATRASOS DE DIEGO LIMA (Automação Industrial, 2º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(240031, 'Diego Lima', 'Segundo ano', 'Automação Industrial', '07:50:00', '2025-09-20'),
+(240031, 'Diego Lima', 'Segundo ano', 'Automação Industrial', '07:53:00', '2025-10-02'),
+(240031, 'Diego Lima', 'Segundo ano', 'Automação Industrial', '07:59:00', '2025-10-11'),
+(240031, 'Diego Lima', 'Segundo ano', 'Automação Industrial', '08:02:00', '2025-10-16');
+
+-- ATRASOS DE HENRIQUE MELO (Administração, 1º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(230071, 'Henrique Melo', 'Primeiro ano', 'Administração', '07:47:00', '2025-09-29'),
+(230071, 'Henrique Melo', 'Primeiro ano', 'Administração', '07:55:00', '2025-10-03'),
+(230071, 'Henrique Melo', 'Primeiro ano', 'Administração', '07:59:00', '2025-10-10');
+
+-- ATRASOS DE LUCAS RIBEIRO (Administração, 3º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(250069, 'Lucas Ribeiro', 'Terceiro ano', 'Administração', '07:50:00', '2025-10-05'),
+(250069, 'Lucas Ribeiro', 'Terceiro ano', 'Administração', '07:52:00', '2025-10-12');
+
+-- ATRASOS DE NICOLAS BARROS (Desenvolvimento de Sistemas, 1º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(230094, 'Nicolas Barros', 'Primeiro ano', 'Desenvolvimento de Sistemas', '07:46:00', '2025-10-07'),
+(230094, 'Nicolas Barros', 'Primeiro ano', 'Desenvolvimento de Sistemas', '07:51:00', '2025-10-09'),
+(230094, 'Nicolas Barros', 'Primeiro ano', 'Desenvolvimento de Sistemas', '07:58:00', '2025-10-16');
+
+-- ATRASOS DE THIAGO MOREIRA (Desenvolvimento de Sistemas, 3º ano)
+INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
+VALUES 
+(250049, 'Thiago Moreira', 'Terceiro ano', 'Desenvolvimento de Sistemas', '07:56:00', '2025-10-04'),
+(250049, 'Thiago Moreira', 'Terceiro ano', 'Desenvolvimento de Sistemas', '07:58:00', '2025-10-14'),
+(250049, 'Thiago Moreira', 'Terceiro ano', 'Desenvolvimento de Sistemas', '08:01:00', '2025-10-16');

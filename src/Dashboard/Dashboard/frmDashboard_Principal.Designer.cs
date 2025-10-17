@@ -894,7 +894,7 @@ namespace Dashboard
             lblNome.Name = "lblNome";
             lblNome.Size = new Size(345, 25);
             lblNome.TabIndex = 20;
-            lblNome.Text = "Regiane Moraes Silva";
+            lblNome.Text = ".";
             lblNome.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label10

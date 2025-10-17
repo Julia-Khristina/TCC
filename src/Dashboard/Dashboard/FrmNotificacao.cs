@@ -14,11 +14,47 @@ namespace Dashboard
 {
     public partial class frmNotificacao : Form
     {
+
+        //adicionar as váriaveis de controle de conexão
+        MySqlConnection conexao;
+        MySqlCommand comando;
+        MySqlDataAdapter da;
+        MySqlDataReader dr;
+        string strSQL;
+
+        private System.Windows.Forms.Timer notificationTimer;
+        public class NotificacaoAluno
+        {
+            public string NomeAluno { get; set; }
+            public string NomeSerie { get; set; }
+            public string NomeCurso { get; set; }
+            public int TotalAtrasosMes { get; set; }
+
+            public string Titulo
+            {
+                get => $"{NomeAluno} - {NomeSerie} + {NomeCurso}";
+            }
+
+            public string Descricao
+            {
+                get => $"O(a) estudante registrou {TotalAtrasosMes} faltas no mês atual.";
+            }
+        }
+
         private readonly int cursoId;
         private string nomeTurmaAtual = string.Empty;
+        private readonly string _conexao;
         public frmNotificacao()
         {
             InitializeComponent();
+
+            _conexao = "Server=localhost;Port=3306;Database=Db_Pontualize;User=root";
+
+            // Configuração do Timer
+            notificationTimer = new System.Windows.Forms.Timer();
+            notificationTimer.Interval = 300000; // 5 minutos em milissegundos
+            notificationTimer.Tick += new EventHandler(NotificationTimer_Tick);
+            notificationTimer.Start();
 
             // 1. Turma Selecionada
             menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) => {
@@ -55,12 +91,25 @@ namespace Dashboard
    
         }
 
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            if (notificationTimer != null)
+            {
+                notificationTimer.Stop();
+                notificationTimer.Dispose();
+            }
+        }
+
+        private void NotificationTimer_Tick(object sender, EventArgs e)
+        {
+            this.BeginInvoke((MethodInvoker)delegate { CarregarNotificacoes(); });
+        }
+
         private void frmNotificacao_Load(object sender, EventArgs e)
         {
             Maximizar_Tela();
-            //NOME DAS TURMAS AINDA NÃO APARECE MAS ESTÁ DIRECIONANDO CORRETAMENTE
-            //TurmaRedirecionamento.CarregarTurmas(Turmas_Direcionamento);
-            //TurmaRedirecionamento.ConfigurarRedirecionamento(Turmas_Direcionamento, lblTurma, this);
+            CarregarNotificacoes();
 
         }
 
@@ -152,48 +201,141 @@ namespace Dashboard
             // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
         }
 
-        private void VoltarParaDashboard()
+        public class Notificacao_Dados
         {
-            try
+            private readonly string _conexao;
+
+            public Notificacao_Dados(string connectionString)
             {
-                Form? parentForm = this.Owner ?? Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-
-                // Oculta o formulário atual primeiro
-                this.Hide();
-
-                if (parentForm != null && !parentForm.IsDisposed)
-                {
-                    parentForm.Show();
-                }
-                else
-                {
-                    // Se o dashboard não foi encontrado ou está fechado, pode ser necessário recriá-lo
-                    // ou simplesmente fechar este form. Ajuste conforme a lógica da sua aplicação.
-                    // Exemplo: Tentar encontrar e mostrar, ou criar um novo se não existir.
-                    var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-                    if (dashboard != null)
-                    {
-                        dashboard.Show();
-                    }
-                    else
-                    {
-                        // new frmDashboard_Principal().Show(); // Descomente se quiser criar um novo se não houver
-                    }
-                }
-
-                // Agenda o fechamento do formulário atual para ocorrer depois
-                this.BeginInvoke(new MethodInvoker(this.Close));
+                _conexao = connectionString;
             }
-            catch (Exception ex)
+            public List<NotificacaoAluno> GetNotificacoesAtrasos()
             {
-                MessageBox.Show("Erro ao voltar para o dashboard: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Tenta fechar mesmo em caso de erro
-                try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
+                List<NotificacaoAluno> notificacoes = new List<NotificacaoAluno>();
+
+                // A consulta SQL que busca os alunos com 3+ atrasos no mês atual
+                string sqlQuery = @"
+                SELECT
+                    A.nm_Aluno,
+                    S.nm_Serie,
+                    C.nm_Curso,
+                    COUNT(RA.cd_Registro) AS total_atrasos_mes
+                FROM
+                    RegistroAtraso RA
+                JOIN
+                    Aluno A ON RA.cd_Aluno = A.cd_Aluno
+                JOIN
+                    Serie S ON A.Serie_Aluno = S.cd_Serie
+                JOIN
+                    Curso C ON A.Curso_Aluno = C.cd_Curso
+                WHERE
+                    YEAR(RA.data_registro) = YEAR(CURDATE()) AND MONTH(RA.data_registro) = MONTH(CURDATE())
+                GROUP BY
+                    A.cd_Aluno, A.nm_Aluno, S.nm_Serie, C.nm_Curso
+                HAVING
+                    COUNT(RA.cd_Registro) >= 3;";
+
+                using (MySqlConnection connection = new MySqlConnection(_conexao))
+                {
+                    MySqlCommand command = new MySqlCommand(sqlQuery, connection);
+                    try
+                    {
+                        connection.Open();
+                        using (MySqlDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                notificacoes.Add(new NotificacaoAluno
+                                {
+                                    NomeAluno = reader.GetString("nm_Aluno"),
+                                    NomeSerie = reader.GetString("nm_Serie"),
+                                    NomeCurso = reader.GetString("nm_Curso"),
+                                    TotalAtrasosMes = reader.GetInt32("total_atrasos_mes")
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Em um ambiente de produção, registre o erro.
+                        MessageBox.Show("Erro ao carregar notificações: " + ex.Message, "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                return notificacoes;
             }
         }
 
+        private void CarregarNotificacoes()
+        {
+            FlowLayoutPanel flowLayoutPanelNotificacoes = this.Controls.Find("flowLayoutPanelNotificacoes", true).OfType<FlowLayoutPanel>().FirstOrDefault();
 
+            if (flowLayoutPanelNotificacoes == null)
+            {
+                MessageBox.Show("Erro: FlowLayoutPanel 'flowLayoutPanelNotificacoes' não encontrado.", "Erro de Componente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            CustomControls.ArredondamentoCard cardModelo = flowLayoutPanelNotificacoes.Controls.OfType<CustomControls.ArredondamentoCard>().FirstOrDefault(c => c.Name == "Card_Notificacao");
+
+            if (cardModelo == null)
+            {
+                MessageBox.Show("Erro: Card de modelo 'Card_Notificacao' não encontrado.", "Erro de Componente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            cardModelo.Visible = false; // Mantenha o modelo oculto
+
+            Notificacao_Dados dao = new Notificacao_Dados(_conexao);
+            List<NotificacaoAluno> listaNotificacoes = dao.GetNotificacoesAtrasos();
+
+            // 1. Limpe os cards antigos SOMENTE antes de adicionar os novos
+            //    Isso evita que o card modelo seja removido se não houver novas notificações
+            flowLayoutPanelNotificacoes.Controls.Clear();
+            flowLayoutPanelNotificacoes.Controls.Add(cardModelo); // Adicione o modelo de volta, mas invisível
+
+            if (listaNotificacoes.Count == 0)
+            {
+                // Opcional: Exibir uma mensagem de que não há notificações
+                Label lblSemNotificacoes = new Label();
+                lblSemNotificacoes.Text = "Nenhuma notificação encontrada.";
+                lblSemNotificacoes.AutoSize = true;
+                flowLayoutPanelNotificacoes.Controls.Add(lblSemNotificacoes);
+                return;
+            }
+
+            foreach (var notificacao in listaNotificacoes)
+            {
+                CustomControls.ArredondamentoCard novoCard = new CustomControls.ArredondamentoCard();
+
+                // Copie as propriedades do modelo
+                novoCard.Width = cardModelo.Width;
+                novoCard.Height = cardModelo.Height;
+                novoCard.Margin = cardModelo.Margin;
+                novoCard.BackColor = cardModelo.BackColor;
+                // ... copie outras propriedades de estilo conforme necessário
+
+                // 2. Encontre os labels dentro do novo card e preencha com os dados
+                Label lblTitulo = novoCard.Controls.Find("lblTitulo", true).OfType<Label>().FirstOrDefault();
+                Label lblDescricao = novoCard.Controls.Find("lblDescricao", true).OfType<Label>().FirstOrDefault();
+
+                if (lblTitulo != null)
+                {
+                    lblTitulo.Text = notificacao.Titulo;
+                }
+
+                if (lblDescricao != null)
+                {
+                    lblDescricao.Text = notificacao.Descricao;
+                }
+
+                // 3. Torne o novo card visível
+                novoCard.Visible = true;
+
+                // Adicione o novo card ao painel
+                flowLayoutPanelNotificacoes.Controls.Add(novoCard);
+            }
+        }
         private void label1_Click(object sender, EventArgs e)
         {
 
