@@ -62,7 +62,7 @@
             // 
             txtSenha.BackColor = SystemColors.ButtonHighlight;
             txtSenha.BorderStyle = BorderStyle.None;
-            txtSenha.Font = new Font("Microsoft Sans Serif", 11.25F);
+            txtSenha.Font = new Font("Segoe UI", 11.25F);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
             txtSenha.Location = new Point(399, 227);
             txtSenha.Name = "txtSenha";
@@ -75,7 +75,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Microsoft Sans Serif", 12F);
+            label7.Font = new Font("Segoe UI", 12F);
             label7.ForeColor = Color.Red;
             label7.Location = new Point(452, 203);
             label7.Name = "label7";
@@ -86,7 +86,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label4.Location = new Point(396, 203);
             label4.Name = "label4";
             label4.Size = new Size(60, 20);
@@ -106,11 +106,11 @@
             // lblAcesse
             // 
             lblAcesse.AutoSize = true;
-            lblAcesse.Font = new Font("Microsoft Sans Serif", 9F);
+            lblAcesse.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAcesse.ForeColor = SystemColors.ControlDarkDark;
             lblAcesse.Location = new Point(472, 81);
             lblAcesse.Name = "lblAcesse";
-            lblAcesse.Size = new Size(220, 15);
+            lblAcesse.Size = new Size(209, 15);
             lblAcesse.TabIndex = 23;
             lblAcesse.Text = "Digite a seguir as informações pedidas";
             // 
@@ -127,18 +127,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Mongolian Baiti", 24.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 22F, FontStyle.Bold);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(399, 27);
+            label1.Location = new Point(404, 27);
             label1.Name = "label1";
-            label1.Size = new Size(355, 35);
+            label1.Size = new Size(342, 41);
             label1.TabIndex = 20;
             label1.Text = "Recuperação de Acesso";
             // 
             // btnAlterar
             // 
             btnAlterar.BackColor = Color.MidnightBlue;
-            btnAlterar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnAlterar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnAlterar.ForeColor = Color.White;
             btnAlterar.Location = new Point(588, 377);
             btnAlterar.Name = "btnAlterar";
@@ -160,7 +160,7 @@
             // btnVoltar
             // 
             btnVoltar.BackColor = Color.MidnightBlue;
-            btnVoltar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnVoltar.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnVoltar.ForeColor = Color.White;
             btnVoltar.Location = new Point(412, 377);
             btnVoltar.Name = "btnVoltar";
@@ -174,7 +174,7 @@
             // 
             txtConfirmacao.BackColor = SystemColors.ButtonHighlight;
             txtConfirmacao.BorderStyle = BorderStyle.None;
-            txtConfirmacao.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtConfirmacao.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtConfirmacao.ForeColor = Color.FromArgb(64, 64, 64);
             txtConfirmacao.Location = new Point(398, 300);
             txtConfirmacao.Name = "txtConfirmacao";
@@ -196,7 +196,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Microsoft Sans Serif", 12F);
+            label6.Font = new Font("Segoe UI", 12F);
             label6.ForeColor = Color.Red;
             label6.Location = new Point(535, 276);
             label6.Name = "label6";
@@ -207,7 +207,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Microsoft Sans Serif", 12F);
+            label8.Font = new Font("Segoe UI", 12F);
             label8.Location = new Point(395, 276);
             label8.Name = "label8";
             label8.Size = new Size(138, 20);
@@ -227,7 +227,7 @@
             // lblStatusSenha
             // 
             lblStatusSenha.AutoSize = true;
-            lblStatusSenha.Font = new Font("Microsoft Sans Serif", 9F);
+            lblStatusSenha.Font = new Font("Segoe UI", 9F);
             lblStatusSenha.ForeColor = Color.Red;
             lblStatusSenha.Location = new Point(397, 339);
             lblStatusSenha.Name = "lblStatusSenha";
@@ -238,7 +238,7 @@
             // 
             txtEmail.BackColor = SystemColors.ButtonHighlight;
             txtEmail.BorderStyle = BorderStyle.None;
-            txtEmail.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtEmail.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtEmail.ForeColor = Color.FromArgb(64, 64, 64);
             txtEmail.Location = new Point(401, 140);
             txtEmail.Name = "txtEmail";
@@ -258,21 +258,21 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Microsoft Sans Serif", 12F);
+            label11.Font = new Font("Segoe UI", 12F);
             label11.ForeColor = Color.Red;
             label11.Location = new Point(447, 111);
             label11.Name = "label11";
-            label11.Size = new Size(15, 20);
+            label11.Size = new Size(17, 21);
             label11.TabIndex = 42;
             label11.Text = "*";
             // 
             // label12
             // 
             label12.AutoSize = true;
-            label12.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label12.Font = new Font("Segoe UI", 12F);
             label12.Location = new Point(397, 111);
             label12.Name = "label12";
-            label12.Size = new Size(52, 20);
+            label12.Size = new Size(51, 21);
             label12.TabIndex = 41;
             label12.Text = "Email:";
             // 
@@ -289,7 +289,7 @@
             // lblStatusEmail
             // 
             lblStatusEmail.AutoSize = true;
-            lblStatusEmail.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblStatusEmail.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblStatusEmail.ForeColor = Color.Red;
             lblStatusEmail.Location = new Point(399, 169);
             lblStatusEmail.Name = "lblStatusEmail";

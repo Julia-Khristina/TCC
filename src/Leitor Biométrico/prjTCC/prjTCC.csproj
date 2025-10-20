@@ -134,6 +134,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArredondamentoCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ArredondamentoCard.Designer.cs">
+      <DependentUpon>ArredondamentoCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArredondarPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ArredondarPicture.Designer.cs">
+      <DependentUpon>ArredondarPicture.cs</DependentUpon>
+    </Compile>
     <Compile Include="captureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +186,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Cadastrar.resx">
       <DependentUpon>Cadastrar.cs</DependentUpon>
@@ -194,6 +207,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Login_Etec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\Login_Etec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="imagens\cancelar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\A4 Eu te amo com linha Fina.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

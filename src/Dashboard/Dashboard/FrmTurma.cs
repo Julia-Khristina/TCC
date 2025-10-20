@@ -73,10 +73,6 @@ namespace Dashboard
 
             InitializeTurmaForm();
 
-            // Aplica o evento Paint para os painéis que precisam de bordas arredondadas
-            // tbAtrasoTurma.CellPainting += new DataGridViewCellPaintingEventHandler(DataGridView_CellPainting);
-
-            // Configura o DataGridView para não ter borda padrão
             tbAtrasoTurma.BorderStyle = BorderStyle.None;
         }
 
@@ -208,22 +204,25 @@ namespace Dashboard
             // --- CABEÇALHO (ORDER NO, CUSTOMER, etc.) ---
             tbAtrasoTurma.EnableHeadersVisualStyles = false; // Permite customização
             tbAtrasoTurma.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None; // Sem borda no cabeçalho
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.BackColor = Color.White; // Fundo branco, igual ao painel
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.BackColor = Color.Lavender; // Fundo branco, igual ao painel
             tbAtrasoTurma.ColumnHeadersDefaultCellStyle.ForeColor = Color.Black; // Cor do texto cinza/azulado
             tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             tbAtrasoTurma.ColumnHeadersDefaultCellStyle.Padding = new Padding(10, 10, 10, 10); // Adiciona espaço à esquerda
             tbAtrasoTurma.ColumnHeadersHeight = 70; // Aumenta a altura do cabeçalho
 
+
             // --- CÉLULAS (DADOS) ---
-            tbAtrasoTurma.DefaultCellStyle.BackColor = Color.White;
+            tbAtrasoTurma.DefaultCellStyle.BackColor = Color.Lavender;
             tbAtrasoTurma.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80); // Cor do texto principal (escuro)
             tbAtrasoTurma.DefaultCellStyle.Font = new Font("Segoe UI", 9.5F, FontStyle.Regular);
             tbAtrasoTurma.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             tbAtrasoTurma.DefaultCellStyle.Padding = new Padding(10, 0, 0, 0); // Adiciona espaço à esquerda
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Lavender;
+
 
             // --- ESTILO DA LINHA SELECIONADA ---
-            tbAtrasoTurma.DefaultCellStyle.SelectionBackColor = Color.White; // Um cinza muito claro
+            tbAtrasoTurma.DefaultCellStyle.SelectionBackColor = Color.Lavender; // Um cinza muito claro
             tbAtrasoTurma.DefaultCellStyle.SelectionForeColor = Color.FromArgb(44, 62, 80); // Mantém a cor do texto
 
             // --- ALTURA DAS LINHAS ---
@@ -275,34 +274,6 @@ namespace Dashboard
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ObterCodigoCursoERedirecionar(string nomeTurma)
-        {
-            try
-            {
-                using (var connection = new MySqlConnection(connectionString))
-                {
-                    connection.Open();
-                    string query = "SELECT cd_Curso FROM Curso WHERE nm_Curso = @nomeTurma";
-                    using (MySqlCommand cmd = new MySqlCommand(query, connection))
-                    {
-                        cmd.Parameters.AddWithValue("@nomeTurma", nomeTurma);
-                        object? result = cmd.ExecuteScalar();
-
-                        if (result != null)
-                        {
-                            int novoCursoId = Convert.ToInt32(result);
-                            AbrirNovoFormularioTurma(novoCursoId);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar turma selecionada: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                VoltarParaDashboard();
             }
         }
 
@@ -439,38 +410,6 @@ namespace Dashboard
             catch { }
         }
 
-        private void RoundControl(Control? control, PaintEventArgs e)
-        {
-            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
-                return;
-
-            try
-            {
-                e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-                using (var path = new GraphicsPath())
-                {
-                    path.AddArc(0, 0, borderRadius, borderRadius, 180, 90);
-                    path.AddArc(control.Width - borderRadius, 0, borderRadius, borderRadius, 270, 90);
-                    path.AddArc(control.Width - borderRadius, control.Height - borderRadius, borderRadius, borderRadius, 0, 90);
-                    path.AddArc(0, control.Height - borderRadius, borderRadius, borderRadius, 90, 90);
-                    path.CloseAllFigures();
-
-                    if (!control.IsDisposed && control.IsHandleCreated)
-                    {
-                        control.Region = new Region(path);
-                    }
-
-                    e.Graphics.FillPath(new SolidBrush(control.BackColor), path);
-                    e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro no RoundControl: {ex.Message}");
-            }
-        }
-
         private void tbAtrasoTurma_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0) // garante que clicou em uma linha válida
@@ -564,9 +503,23 @@ namespace Dashboard
             dashboard?.Show();
         }
 
+        private void Maximizar_Tela()
+        {
+            this.FormBorderStyle = FormBorderStyle.None;
+
+            // Obtém a área de trabalho do monitor onde a janela está.
+            Rectangle workingArea = Screen.FromHandle(this.Handle).WorkingArea;
+
+            // Define a posição e o tamanho do formulário para preencher a área de trabalho.
+            this.Location = workingArea.Location;
+            this.Size = workingArea.Size;
+
+            this.WindowState = FormWindowState.Normal;
+        }
+
         private void frmTurma_Load(object sender, EventArgs e)
         {
-
+            Maximizar_Tela();
         }
 
         private void pnGraficoTurma_Paint(object sender, PaintEventArgs e)
@@ -618,7 +571,7 @@ namespace Dashboard
             // IMPORTANTE: Renomeie os labels no seu formulário para corresponderem
             // Supondo que seus labels se chamem 'lblAtrasosDiaValor' e 'lblAtrasosTotaisValor'
             lblDiario.Text = GetAtrasosTurma(sqlDia).ToString();
-            label3.Text = GetAtrasosTurma(sqlTotal).ToString();
+            pn_Atrasos_Dia.Text = GetAtrasosTurma(sqlTotal).ToString();
         }
 
         private int GetAtrasosTurma(string sql)
@@ -873,7 +826,7 @@ namespace Dashboard
 
         private void pnAtrasos_Totais_Paint(object sender, PaintEventArgs e)
         {
-            
+
         }
 
         private void arredondamentoBtn1_Click(object sender, EventArgs e)
@@ -921,6 +874,21 @@ namespace Dashboard
             {
                 MessageBox.Show("Erro ao carregar atrasos da turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void pnConteudo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void pnAtrasos_dia_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

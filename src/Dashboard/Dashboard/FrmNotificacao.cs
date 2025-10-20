@@ -21,6 +21,8 @@ namespace Dashboard
         MySqlDataAdapter da;
         MySqlDataReader dr;
         string strSQL;
+        public event EventHandler<int> TurmaSelecionada;
+        private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
 
         private System.Windows.Forms.Timer notificationTimer;
         public class NotificacaoAluno
@@ -32,12 +34,12 @@ namespace Dashboard
 
             public string Titulo
             {
-                get => $"{NomeAluno} - {NomeSerie} + {NomeCurso}";
+                get => $"{NomeAluno} - {NomeSerie} de {NomeCurso}";
             }
 
             public string Descricao
             {
-                get => $"O(a) estudante registrou {TotalAtrasosMes} faltas no mês atual.";
+                get => $"O estudante registrou {TotalAtrasosMes} faltas no mês atual.";
             }
         }
 
@@ -48,8 +50,6 @@ namespace Dashboard
         {
             InitializeComponent();
 
-            _conexao = "Server=localhost;Port=3306;Database=Db_Pontualize;User=root";
-
             // Configuração do Timer
             notificationTimer = new System.Windows.Forms.Timer();
             notificationTimer.Interval = 300000; // 5 minutos em milissegundos
@@ -57,12 +57,14 @@ namespace Dashboard
             notificationTimer.Start();
 
             // 1. Turma Selecionada
-            menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) => {
+            menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) =>
+            {
                 AbrirNovoFormularioTurma(novoCursoId);
             };
 
             // 2. Notificação Clicada (MANTENHA APENAS ESTA)
-            menuPrincipal2.NotificacaoClicada += (sender, e) => {
+            menuPrincipal2.NotificacaoClicada += (sender, e) =>
+            {
                 frmNotificacao formNotificacao = new frmNotificacao();
                 formNotificacao.Show();
                 this.Hide();
@@ -70,12 +72,14 @@ namespace Dashboard
             };
 
             // 4. Sair Clicado
-            menuPrincipal2.SairClicado += (sender, e) => {
+            menuPrincipal2.SairClicado += (sender, e) =>
+            {
                 Application.Exit();
             };
 
             // 5. Relatório Clicado
-            menuPrincipal2.RelatorioClicado += (sender, e) => {
+            menuPrincipal2.RelatorioClicado += (sender, e) =>
+            {
                 var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
                 if (dashboard != null)
                 {
@@ -88,7 +92,9 @@ namespace Dashboard
                 this.Hide();
                 this.BeginInvoke(new MethodInvoker(this.Close));
             };
-   
+
+            ConfigureEventHandlers();
+
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -110,7 +116,7 @@ namespace Dashboard
         {
             Maximizar_Tela();
             CarregarNotificacoes();
-
+            CarregarTurmas();
         }
 
         private void Maximizar_Tela()
@@ -190,15 +196,164 @@ namespace Dashboard
             catch (Exception ex)
             {
                 MessageBox.Show("Erro ao tentar trocar de turma: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Tratamento de erro: Tenta fechar este form com segurança
                 try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
-                // E tenta restaurar a visibilidade do dashboard se ele estava visível originalmente
                 if (ownerForm != null && !ownerForm.IsDisposed && ownerWasOriginallyVisible)
                 {
                     ownerForm.Show();
                 }
             }
-            // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
+        }
+
+        private void ConfigureEventHandlers()
+        {
+            lblTurma.Click += btnTurma_Click; // Evento de clique para abrir o ComboBox
+
+            // Eventos do ComboBox real (invisível)
+            Turmas_Direcionamento.SelectedIndexChanged += Turmas_Direcionamento_SelectedIndexChanged;
+            Turmas_Direcionamento.DrawItem += ComboBox_DrawItem_Custom;
+        }
+
+        private void ComboBox_DrawItem_Custom(object? sender, DrawItemEventArgs e)
+        {
+            if (e.Index < 0 || sender is not ComboBox comboBox) return;
+
+            // Define as cores
+            Color backgroundColor = Color.MidnightBlue;
+            Color itemTextColor = Color.White;
+
+            // Muda a cor de fundo se o item estiver selecionado ou com o mouse em cima
+            if ((e.State & DrawItemState.Selected) == DrawItemState.Selected ||
+                (e.State & DrawItemState.HotLight) == DrawItemState.HotLight)
+            {
+                backgroundColor = Color.FromArgb(195, 205, 235);
+                itemTextColor = Color.MidnightBlue;
+            }
+
+            // Pinta o fundo do item
+            e.Graphics.FillRectangle(new SolidBrush(backgroundColor), e.Bounds);
+
+            // Pega o texto do item
+            string text = comboBox.Items[e.Index].ToString() ?? "";
+
+            // Desenha o texto dentro dos limites do item (e.Bounds)
+            TextRenderer.DrawText(e.Graphics, text, comboBox.Font, e.Bounds, itemTextColor,
+                TextFormatFlags.Left | TextFormatFlags.VerticalCenter);
+
+            // 6. Desenha o retângulo de foco (útil para acessibilidade)
+            e.DrawFocusRectangle();
+        }
+
+        private void Turmas_Direcionamento_KeyPress(object? sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+        private void btnTurma_Click(object? sender, EventArgs e)
+        {
+            Turmas_Direcionamento.DroppedDown = true;
+        }
+
+
+        private void Turmas_Direcionamento_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (Turmas_Direcionamento.SelectedIndex != -1 && Turmas_Direcionamento.SelectedItem != null)
+            {
+                // Atualiza o texto do botão
+                string nomeTurma = Turmas_Direcionamento.SelectedItem.ToString()!;
+                lblTurma.Text = nomeTurma;
+
+                // Altera o ícone do botão para o índice 4
+                lblTurma.ImageIndex = 4;
+
+                // Chama a lógica para abrir o formulário da turma
+                ObterCodigoCursoERedirecionar(nomeTurma);
+            }
+            else
+            {
+                // Volta o texto para o padrão
+                lblTurma.Text = "  Turmas";
+
+                // Volta o ícone para o índice da seta para baixo 
+                lblTurma.ImageIndex = 3;
+            }
+            Turmas_Direcionamento.Visible = false;
+        }
+
+        private void ObterCodigoCursoERedirecionar(string nomeTurma)
+        {
+            try
+            {
+                using (var tempConnection = new MySqlConnection(connectionString))
+                {
+                    tempConnection.Open();
+                    string query = "SELECT cd_Curso FROM Curso WHERE nm_Curso = @nomeTurma";
+                    using (MySqlCommand cmd = new MySqlCommand(query, tempConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@nomeTurma", nomeTurma);
+                        object? result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            int cd_Curso = Convert.ToInt32(result);
+                            // Dispara o evento com o ID encontrado
+                            TurmaSelecionada?.Invoke(this, cd_Curso);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Curso não encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao obter ID da turma: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CarregarTurmas()
+        {
+            try
+            {
+                using (var tempConnection = new MySqlConnection(connectionString))
+                {
+                    tempConnection.Open();
+
+                    string query = "SELECT nm_Curso FROM Curso";
+                    using (MySqlCommand cmd = new MySqlCommand(query, tempConnection))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        Turmas_Direcionamento.BeginUpdate();
+                        try
+                        {
+                            Turmas_Direcionamento.Items.Clear();
+                            while (reader.Read())
+                            {
+                                string? curso = reader["nm_Curso"]?.ToString();
+                                if (!string.IsNullOrEmpty(curso))
+                                {
+                                    Turmas_Direcionamento.Items.Add(curso);
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            Turmas_Direcionamento.EndUpdate();
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erro no MySQL: {ex.Message}", "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar turmas: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Turmas_Direcionamento_Leave(object sender, EventArgs e)
+        {
+            Turmas_Direcionamento.Visible = false;
         }
 
         public class Notificacao_Dados
@@ -213,7 +368,7 @@ namespace Dashboard
             {
                 List<NotificacaoAluno> notificacoes = new List<NotificacaoAluno>();
 
-                // A consulta SQL que busca os alunos com 3+ atrasos no mês atual
+                // consulta SQL que busca os alunos com 3+ atrasos no mês atual
                 string sqlQuery = @"
                 SELECT
                     A.nm_Aluno,
@@ -289,14 +444,12 @@ namespace Dashboard
             Notificacao_Dados dao = new Notificacao_Dados(_conexao);
             List<NotificacaoAluno> listaNotificacoes = dao.GetNotificacoesAtrasos();
 
-            // 1. Limpe os cards antigos SOMENTE antes de adicionar os novos
-            //    Isso evita que o card modelo seja removido se não houver novas notificações
+            // Limpa os cards antigos apenas antes de adicionar os novos
             flowLayoutPanelNotificacoes.Controls.Clear();
-            flowLayoutPanelNotificacoes.Controls.Add(cardModelo); // Adicione o modelo de volta, mas invisível
+            flowLayoutPanelNotificacoes.Controls.Add(cardModelo); //  o modelo de volta, mas invisível
 
             if (listaNotificacoes.Count == 0)
             {
-                // Opcional: Exibir uma mensagem de que não há notificações
                 Label lblSemNotificacoes = new Label();
                 lblSemNotificacoes.Text = "Nenhuma notificação encontrada.";
                 lblSemNotificacoes.AutoSize = true;
@@ -306,39 +459,115 @@ namespace Dashboard
 
             foreach (var notificacao in listaNotificacoes)
             {
-                CustomControls.ArredondamentoCard novoCard = new CustomControls.ArredondamentoCard();
+                CustomControls.ArredondamentoCard novoCard = CloneCard(cardModelo);
 
-                // Copie as propriedades do modelo
-                novoCard.Width = cardModelo.Width;
-                novoCard.Height = cardModelo.Height;
-                novoCard.Margin = cardModelo.Margin;
-                novoCard.BackColor = cardModelo.BackColor;
-                // ... copie outras propriedades de estilo conforme necessário
-
-                // 2. Encontre os labels dentro do novo card e preencha com os dados
-                Label lblTitulo = novoCard.Controls.Find("lblTitulo", true).OfType<Label>().FirstOrDefault();
-                Label lblDescricao = novoCard.Controls.Find("lblDescricao", true).OfType<Label>().FirstOrDefault();
+                // labels dentro do novo card e preencha com os dados
+                Label lblTitulo = novoCard.Controls.Find("lblTitulo_Notificacao", true).OfType<Label>().FirstOrDefault();
+                Label lblDescricao = novoCard.Controls.Find("lblDescricao_Notificacao", true).OfType<Label>().FirstOrDefault();
+                PictureBox pictureBoxIcone = novoCard.Controls.Find("img_sino", true).OfType<PictureBox>().FirstOrDefault();
+                ArredondamentoBtn molduraSino = novoCard.Controls.Find("molduraSino", true).OfType<ArredondamentoBtn>().FirstOrDefault();
 
                 if (lblTitulo != null)
                 {
                     lblTitulo.Text = notificacao.Titulo;
+                    lblTitulo.Visible = true;
                 }
 
                 if (lblDescricao != null)
                 {
                     lblDescricao.Text = notificacao.Descricao;
+                    lblDescricao.Visible = true;
                 }
 
-                // 3. Torne o novo card visível
+                if (pictureBoxIcone != null)
+                {
+                    pictureBoxIcone.Visible = true;
+                }
+
+                if (molduraSino != null)
+                {
+                    molduraSino.Visible = true;
+                }
+
+                // novo card visível
                 novoCard.Visible = true;
 
-                // Adicione o novo card ao painel
+                // novo card ao painel
                 flowLayoutPanelNotificacoes.Controls.Add(novoCard);
             }
         }
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private CustomControls.ArredondamentoCard CloneCard(CustomControls.ArredondamentoCard originalCard)
+        {
+            CustomControls.ArredondamentoCard newCard = new CustomControls.ArredondamentoCard();
+
+            // propriedades visuais e de layout
+            newCard.Width = originalCard.Width;
+            newCard.Height = originalCard.Height;
+            newCard.Margin = originalCard.Margin;
+            newCard.Padding = originalCard.Padding;
+            newCard.BackColor = originalCard.BackColor;
+            newCard.Dock = originalCard.Dock;
+            newCard.Anchor = originalCard.Anchor;
+            newCard.Location = originalCard.Location;
+
+            // Clona os controles filhos
+            foreach (Control control in originalCard.Controls)
+            {
+                Control newControl = null;
+                if (control is Label originalLabel)
+                {
+                    Label newLabel = new Label();
+                    newLabel.Text = originalLabel.Text;
+                    newLabel.Font = originalLabel.Font;
+                    newLabel.ForeColor = originalLabel.ForeColor;
+                    newLabel.AutoSize = originalLabel.AutoSize;
+                    newLabel.Location = originalLabel.Location;
+                    newLabel.Name = originalLabel.Name;
+                    newLabel.Visible = false;
+                    newControl = newLabel;
+                }
+                else if (control is PictureBox originalPictureBox)
+                {
+                    PictureBox newPictureBox = new PictureBox();
+                    newPictureBox.Image = originalPictureBox.Image;
+                    newPictureBox.SizeMode = originalPictureBox.SizeMode;
+                    newPictureBox.Location = originalPictureBox.Location;
+                    newPictureBox.Size = originalPictureBox.Size;
+                    newPictureBox.Name = originalPictureBox.Name;
+                    newPictureBox.Visible = false;
+                    newPictureBox.BackColor = originalPictureBox.BackColor;
+                    newControl = newPictureBox;
+                }
+
+                else if (control is ArredondamentoBtn originalBtn)
+                {
+                    ArredondamentoBtn newBtn = new ArredondamentoBtn();
+                    newBtn.Image = originalBtn.Image;
+                    newBtn.Location = originalBtn.Location;
+                    newBtn.Size = originalBtn.Size;
+                    newBtn.BackColor = originalBtn.BackColor;
+                    newBtn.Name = originalBtn.Name;
+                    newBtn.Visible = false;
+                    newControl = newBtn;
+                }
+
+                if (newControl != null)
+                {
+                    newCard.Controls.Add(newControl);
+                }
+            }
+            return newCard;
+        }
+
+        private void lblTurma_Click(object sender, EventArgs e)
+        {
+            Turmas_Direcionamento.Focus();
+            Turmas_Direcionamento.DroppedDown = true;
         }
     }
 }

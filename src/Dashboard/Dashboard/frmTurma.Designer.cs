@@ -30,36 +30,37 @@ namespace Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTurma));
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTurma));
             tableLayoutPanel1 = new TableLayoutPanel();
             menuPrincipal1 = new MenuPrincipal();
             pnConteudo = new Panel();
-            btn3Ano = new ArredondamentoBtn();
-            btn2Ano = new ArredondamentoBtn();
-            btn1Ano = new ArredondamentoBtn();
-            tableLayoutPanel3 = new TableLayoutPanel();
-            pnAtrasos_dia = new Panel();
-            pictureBox1 = new PictureBox();
-            label3 = new Label();
-            label4 = new Label();
-            pnAtrasos_Totais = new Panel();
-            lblDiario = new Label();
-            label2 = new Label();
-            pictureBox3 = new PictureBox();
+            panel8 = new Panel();
             btnExportar = new ArredondamentoBtn();
-            lblNmTurma = new Label();
+            panel4 = new Panel();
+            tableLayoutPanel4 = new TableLayoutPanel();
+            btn1Ano = new ArredondamentoBtn();
+            btn2Ano = new ArredondamentoBtn();
+            btn3Ano = new ArredondamentoBtn();
+            arredondamentoBtn1 = new ArredondamentoBtn();
+            panel5 = new Panel();
             tlpConteudoPrincipal = new TableLayoutPanel();
             pnAlunoAtrasos = new Panel();
             tbAtrasoTurma = new DataGridView();
             pnGraficoTurma = new Panel();
+            arredondamentoCard1 = new CustomControls.ArredondamentoCard();
             panel2 = new Panel();
             btnSolicitarAdvertencia = new ArredondamentoBtn();
             panel1 = new Panel();
+            pictureBoxCarometro = new CustomControls.RoundedPictureBox();
+            button5 = new Button();
+            button4 = new Button();
+            button3 = new Button();
+            button2 = new Button();
+            button1 = new Button();
             label1 = new Label();
             lblRM = new Label();
-            pictureBoxCarometro = new PictureBox();
             label8 = new Label();
             label6 = new Label();
             label7 = new Label();
@@ -69,21 +70,43 @@ namespace Dashboard
             lblEmailAluno = new Label();
             lblAnoAluno = new Label();
             arredondamentoBtn4 = new ArredondamentoBtn();
+            panel3 = new Panel();
+            lblNmTurma = new Label();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            panel7 = new Panel();
+            pnAtrasos_dia = new PanelSombra();
+            button7 = new Button();
+            label4 = new Label();
+            pn_Atrasos_Dia = new Label();
+            pictureBox1 = new PictureBox();
+            panel6 = new Panel();
+            pnAtrasos_Totais = new PanelSombra();
+            button6 = new Button();
+            pictureBox3 = new PictureBox();
+            lblDiario = new Label();
+            label2 = new Label();
             tableLayoutPanel2 = new TableLayoutPanel();
-            arredondamentoBtn1 = new ArredondamentoBtn();
             pnConteudo.SuspendLayout();
-            tableLayoutPanel3.SuspendLayout();
-            pnAtrasos_dia.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            pnAtrasos_Totais.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            panel8.SuspendLayout();
+            panel4.SuspendLayout();
+            tableLayoutPanel4.SuspendLayout();
+            panel5.SuspendLayout();
             tlpConteudoPrincipal.SuspendLayout();
             pnAlunoAtrasos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tbAtrasoTurma).BeginInit();
             pnGraficoTurma.SuspendLayout();
+            arredondamentoCard1.SuspendLayout();
             panel2.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCarometro).BeginInit();
+            panel3.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            panel7.SuspendLayout();
+            pnAtrasos_dia.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel6.SuspendLayout();
+            pnAtrasos_Totais.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
@@ -107,193 +130,30 @@ namespace Dashboard
             menuPrincipal1.Location = new Point(0, 0);
             menuPrincipal1.Margin = new Padding(0);
             menuPrincipal1.Name = "menuPrincipal1";
-            menuPrincipal1.Size = new Size(218, 630);
+            menuPrincipal1.Size = new Size(218, 788);
             menuPrincipal1.TabIndex = 6;
             // 
             // pnConteudo
             // 
-            pnConteudo.Controls.Add(arredondamentoBtn1);
-            pnConteudo.Controls.Add(btn3Ano);
-            pnConteudo.Controls.Add(btn2Ano);
-            pnConteudo.Controls.Add(btn1Ano);
-            pnConteudo.Controls.Add(tableLayoutPanel3);
-            pnConteudo.Controls.Add(btnExportar);
-            pnConteudo.Controls.Add(lblNmTurma);
-            pnConteudo.Controls.Add(tlpConteudoPrincipal);
+            pnConteudo.BackColor = Color.GhostWhite;
+            pnConteudo.Controls.Add(panel8);
+            pnConteudo.Controls.Add(panel4);
+            pnConteudo.Controls.Add(panel5);
+            pnConteudo.Controls.Add(panel3);
             pnConteudo.Dock = DockStyle.Fill;
             pnConteudo.Location = new Point(221, 3);
             pnConteudo.Name = "pnConteudo";
-            pnConteudo.Padding = new Padding(10);
-            pnConteudo.Size = new Size(867, 624);
+            pnConteudo.Size = new Size(1079, 782);
             pnConteudo.TabIndex = 1;
+            pnConteudo.Paint += pnConteudo_Paint;
             // 
-            // btn3Ano
+            // panel8
             // 
-            btn3Ano.BackColor = Color.MidnightBlue;
-            btn3Ano.BorderColor = Color.Transparent;
-            btn3Ano.BorderRadius = 10;
-            btn3Ano.BorderSize = 0;
-            btn3Ano.DisableHoverEffect = false;
-            btn3Ano.FlatAppearance.BorderSize = 0;
-            btn3Ano.FlatStyle = FlatStyle.Flat;
-            btn3Ano.ForeColor = Color.White;
-            btn3Ano.Location = new Point(267, 212);
-            btn3Ano.Margin = new Padding(2);
-            btn3Ano.Name = "btn3Ano";
-            btn3Ano.Size = new Size(118, 36);
-            btn3Ano.TabIndex = 15;
-            btn3Ano.Text = "3º Ano";
-            btn3Ano.UseVisualStyleBackColor = false;
-            btn3Ano.Click += btn3Ano_Click;
-            // 
-            // btn2Ano
-            // 
-            btn2Ano.BackColor = Color.MidnightBlue;
-            btn2Ano.BorderColor = Color.Transparent;
-            btn2Ano.BorderRadius = 10;
-            btn2Ano.BorderSize = 0;
-            btn2Ano.DisableHoverEffect = false;
-            btn2Ano.FlatAppearance.BorderSize = 0;
-            btn2Ano.FlatStyle = FlatStyle.Flat;
-            btn2Ano.ForeColor = Color.White;
-            btn2Ano.Location = new Point(145, 212);
-            btn2Ano.Margin = new Padding(2);
-            btn2Ano.Name = "btn2Ano";
-            btn2Ano.Size = new Size(118, 36);
-            btn2Ano.TabIndex = 14;
-            btn2Ano.Text = "2º Ano";
-            btn2Ano.UseVisualStyleBackColor = false;
-            btn2Ano.Click += btn2Ano_Click;
-            // 
-            // btn1Ano
-            // 
-            btn1Ano.BackColor = Color.MidnightBlue;
-            btn1Ano.BorderColor = Color.Transparent;
-            btn1Ano.BorderRadius = 10;
-            btn1Ano.BorderSize = 0;
-            btn1Ano.DisableHoverEffect = false;
-            btn1Ano.FlatAppearance.BorderSize = 0;
-            btn1Ano.FlatStyle = FlatStyle.Flat;
-            btn1Ano.ForeColor = Color.White;
-            btn1Ano.Location = new Point(19, 212);
-            btn1Ano.Margin = new Padding(2);
-            btn1Ano.Name = "btn1Ano";
-            btn1Ano.Size = new Size(118, 36);
-            btn1Ano.TabIndex = 13;
-            btn1Ano.Text = "1º Ano";
-            btn1Ano.UseVisualStyleBackColor = false;
-            btn1Ano.Click += btn1Ano_Click;
-            // 
-            // tableLayoutPanel3
-            // 
-            tableLayoutPanel3.ColumnCount = 2;
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Controls.Add(pnAtrasos_dia, 1, 0);
-            tableLayoutPanel3.Controls.Add(pnAtrasos_Totais, 0, 0);
-            tableLayoutPanel3.Location = new Point(18, 67);
-            tableLayoutPanel3.Margin = new Padding(2);
-            tableLayoutPanel3.Name = "tableLayoutPanel3";
-            tableLayoutPanel3.RowCount = 1;
-            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(671, 133);
-            tableLayoutPanel3.TabIndex = 12;
-            // 
-            // pnAtrasos_dia
-            // 
-            pnAtrasos_dia.BackColor = Color.FromArgb(168, 208, 240);
-            pnAtrasos_dia.Controls.Add(pictureBox1);
-            pnAtrasos_dia.Controls.Add(label3);
-            pnAtrasos_dia.Controls.Add(label4);
-            pnAtrasos_dia.Location = new Point(338, 2);
-            pnAtrasos_dia.Margin = new Padding(3, 2, 3, 2);
-            pnAtrasos_dia.Name = "pnAtrasos_dia";
-            pnAtrasos_dia.Size = new Size(289, 129);
-            pnAtrasos_dia.TabIndex = 12;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(180, 13);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(85, 73);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 2;
-            pictureBox1.TabStop = false;
-            // 
-            // label3
-            // 
-            label3.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.FromArgb(52, 144, 220);
-            label3.Location = new Point(17, 52);
-            label3.Name = "label3";
-            label3.Size = new Size(100, 45);
-            label3.TabIndex = 0;
-            label3.Text = "00";
-            label3.Click += label3_Click;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.BackColor = Color.FromArgb(168, 208, 240);
-            label4.Enabled = false;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.FromArgb(52, 144, 220);
-            label4.Location = new Point(17, 13);
-            label4.Name = "label4";
-            label4.Size = new Size(109, 21);
-            label4.TabIndex = 10;
-            label4.Text = "Atrasos do dia";
-            // 
-            // pnAtrasos_Totais
-            // 
-            pnAtrasos_Totais.BackColor = Color.FromArgb(168, 230, 207);
-            pnAtrasos_Totais.Controls.Add(lblDiario);
-            pnAtrasos_Totais.Controls.Add(label2);
-            pnAtrasos_Totais.Controls.Add(pictureBox3);
-            pnAtrasos_Totais.Location = new Point(3, 2);
-            pnAtrasos_Totais.Margin = new Padding(3, 2, 3, 2);
-            pnAtrasos_Totais.Name = "pnAtrasos_Totais";
-            pnAtrasos_Totais.Size = new Size(289, 129);
-            pnAtrasos_Totais.TabIndex = 8;
-            pnAtrasos_Totais.Paint += pnAtrasos_Totais_Paint;
-            // 
-            // lblDiario
-            // 
-            lblDiario.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblDiario.ForeColor = Color.FromArgb(45, 90, 61);
-            lblDiario.Location = new Point(17, 51);
-            lblDiario.Name = "lblDiario";
-            lblDiario.Size = new Size(100, 46);
-            lblDiario.TabIndex = 0;
-            lblDiario.Text = "00";
-            lblDiario.Click += lblDiario_Click;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = Color.FromArgb(168, 230, 207);
-            label2.Enabled = false;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.FromArgb(45, 90, 61);
-            label2.Location = new Point(17, 13);
-            label2.Name = "label2";
-            label2.Size = new Size(105, 21);
-            label2.TabIndex = 10;
-            label2.Text = "Atrasos Totais";
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(157, 13);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(85, 73);
-            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
-            pictureBox3.Click += pictureBox3_Click;
+            panel8.Controls.Add(btnExportar);
+            panel8.Location = new Point(772, 10);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(298, 301);
+            panel8.TabIndex = 19;
             // 
             // btnExportar
             // 
@@ -305,59 +165,162 @@ namespace Dashboard
             btnExportar.DisableHoverEffect = false;
             btnExportar.FlatAppearance.BorderSize = 0;
             btnExportar.FlatStyle = FlatStyle.Flat;
+            btnExportar.Font = new Font("Segoe UI", 11F);
             btnExportar.ForeColor = Color.White;
-            btnExportar.Location = new Point(669, 13);
+            btnExportar.Location = new Point(126, 32);
             btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(119, 34);
+            btnExportar.Size = new Size(155, 39);
             btnExportar.TabIndex = 11;
-            btnExportar.Text = "Exportar";
+            btnExportar.Text = "Exportar relatório";
             btnExportar.UseVisualStyleBackColor = false;
             // 
-            // lblNmTurma
+            // panel4
             // 
-            lblNmTurma.AutoSize = true;
-            lblNmTurma.Dock = DockStyle.Fill;
-            lblNmTurma.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            lblNmTurma.Location = new Point(10, 10);
-            lblNmTurma.Name = "lblNmTurma";
-            lblNmTurma.Size = new Size(163, 30);
-            lblNmTurma.TabIndex = 2;
-            lblNmTurma.Text = "Administração";
-            lblNmTurma.TextAlign = ContentAlignment.MiddleLeft;
-            lblNmTurma.Click += lblNmTurma_Click;
+            panel4.BackColor = Color.GhostWhite;
+            panel4.Controls.Add(tableLayoutPanel4);
+            panel4.Location = new Point(0, 261);
+            panel4.Margin = new Padding(3, 3, 3, 0);
+            panel4.Name = "panel4";
+            panel4.Padding = new Padding(5, 0, 0, 0);
+            panel4.Size = new Size(766, 51);
+            panel4.TabIndex = 18;
+            // 
+            // tableLayoutPanel4
+            // 
+            tableLayoutPanel4.ColumnCount = 4;
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25.1046028F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 24.8256626F));
+            tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel4.Controls.Add(btn1Ano, 0, 0);
+            tableLayoutPanel4.Controls.Add(btn2Ano, 1, 0);
+            tableLayoutPanel4.Controls.Add(btn3Ano, 2, 0);
+            tableLayoutPanel4.Controls.Add(arredondamentoBtn1, 3, 0);
+            tableLayoutPanel4.Location = new Point(38, 3);
+            tableLayoutPanel4.Name = "tableLayoutPanel4";
+            tableLayoutPanel4.RowCount = 1;
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel4.Size = new Size(717, 47);
+            tableLayoutPanel4.TabIndex = 17;
+            // 
+            // btn1Ano
+            // 
+            btn1Ano.BackColor = Color.MidnightBlue;
+            btn1Ano.BorderColor = Color.Transparent;
+            btn1Ano.BorderRadius = 10;
+            btn1Ano.BorderSize = 0;
+            btn1Ano.DisableHoverEffect = false;
+            btn1Ano.FlatAppearance.BorderSize = 0;
+            btn1Ano.FlatStyle = FlatStyle.Flat;
+            btn1Ano.ForeColor = Color.White;
+            btn1Ano.Location = new Point(2, 2);
+            btn1Ano.Margin = new Padding(2);
+            btn1Ano.Name = "btn1Ano";
+            btn1Ano.Size = new Size(118, 36);
+            btn1Ano.TabIndex = 13;
+            btn1Ano.Text = "1º Ano";
+            btn1Ano.UseVisualStyleBackColor = false;
+            btn1Ano.Click += btn1Ano_Click;
+            // 
+            // btn2Ano
+            // 
+            btn2Ano.BackColor = Color.MidnightBlue;
+            btn2Ano.BorderColor = Color.Transparent;
+            btn2Ano.BorderRadius = 10;
+            btn2Ano.BorderSize = 0;
+            btn2Ano.DisableHoverEffect = false;
+            btn2Ano.FlatAppearance.BorderSize = 0;
+            btn2Ano.FlatStyle = FlatStyle.Flat;
+            btn2Ano.ForeColor = Color.White;
+            btn2Ano.Location = new Point(181, 2);
+            btn2Ano.Margin = new Padding(2);
+            btn2Ano.Name = "btn2Ano";
+            btn2Ano.Size = new Size(118, 36);
+            btn2Ano.TabIndex = 14;
+            btn2Ano.Text = "2º Ano";
+            btn2Ano.UseVisualStyleBackColor = false;
+            btn2Ano.Click += btn2Ano_Click;
+            // 
+            // btn3Ano
+            // 
+            btn3Ano.BackColor = Color.MidnightBlue;
+            btn3Ano.BorderColor = Color.Transparent;
+            btn3Ano.BorderRadius = 10;
+            btn3Ano.BorderSize = 0;
+            btn3Ano.DisableHoverEffect = false;
+            btn3Ano.FlatAppearance.BorderSize = 0;
+            btn3Ano.FlatStyle = FlatStyle.Flat;
+            btn3Ano.ForeColor = Color.White;
+            btn3Ano.Location = new Point(361, 2);
+            btn3Ano.Margin = new Padding(2);
+            btn3Ano.Name = "btn3Ano";
+            btn3Ano.Size = new Size(118, 36);
+            btn3Ano.TabIndex = 15;
+            btn3Ano.Text = "3º Ano";
+            btn3Ano.UseVisualStyleBackColor = false;
+            btn3Ano.Click += btn3Ano_Click;
+            // 
+            // arredondamentoBtn1
+            // 
+            arredondamentoBtn1.BackColor = Color.MidnightBlue;
+            arredondamentoBtn1.BorderColor = Color.Transparent;
+            arredondamentoBtn1.BorderRadius = 10;
+            arredondamentoBtn1.BorderSize = 0;
+            arredondamentoBtn1.DisableHoverEffect = false;
+            arredondamentoBtn1.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn1.ForeColor = Color.White;
+            arredondamentoBtn1.Location = new Point(539, 2);
+            arredondamentoBtn1.Margin = new Padding(2);
+            arredondamentoBtn1.Name = "arredondamentoBtn1";
+            arredondamentoBtn1.Size = new Size(118, 36);
+            arredondamentoBtn1.TabIndex = 16;
+            arredondamentoBtn1.Text = "Todos";
+            arredondamentoBtn1.UseVisualStyleBackColor = false;
+            arredondamentoBtn1.Click += arredondamentoBtn1_Click;
+            // 
+            // panel5
+            // 
+            panel5.Controls.Add(tlpConteudoPrincipal);
+            panel5.Location = new Point(0, 329);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1069, 429);
+            panel5.TabIndex = 18;
             // 
             // tlpConteudoPrincipal
             // 
+            tlpConteudoPrincipal.BackColor = Color.GhostWhite;
             tlpConteudoPrincipal.ColumnCount = 2;
-            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35.7954559F));
-            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 64.2045441F));
+            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.5187378F));
+            tlpConteudoPrincipal.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 58.4812622F));
             tlpConteudoPrincipal.Controls.Add(pnAlunoAtrasos, 0, 0);
             tlpConteudoPrincipal.Controls.Add(pnGraficoTurma, 1, 0);
-            tlpConteudoPrincipal.Dock = DockStyle.Bottom;
-            tlpConteudoPrincipal.Location = new Point(10, 262);
+            tlpConteudoPrincipal.Dock = DockStyle.Fill;
+            tlpConteudoPrincipal.Location = new Point(0, 0);
             tlpConteudoPrincipal.Name = "tlpConteudoPrincipal";
+            tlpConteudoPrincipal.Padding = new Padding(35, 0, 15, 30);
             tlpConteudoPrincipal.RowCount = 1;
             tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 352F));
             tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 352F));
-            tlpConteudoPrincipal.Size = new Size(847, 352);
+            tlpConteudoPrincipal.Size = new Size(1069, 429);
             tlpConteudoPrincipal.TabIndex = 0;
             // 
             // pnAlunoAtrasos
             // 
-            pnAlunoAtrasos.BackColor = Color.White;
+            pnAlunoAtrasos.BackColor = Color.Lavender;
             pnAlunoAtrasos.Controls.Add(tbAtrasoTurma);
             pnAlunoAtrasos.Dock = DockStyle.Fill;
-            pnAlunoAtrasos.Location = new Point(3, 2);
+            pnAlunoAtrasos.Location = new Point(38, 2);
             pnAlunoAtrasos.Margin = new Padding(3, 2, 3, 2);
             pnAlunoAtrasos.Name = "pnAlunoAtrasos";
-            pnAlunoAtrasos.Size = new Size(297, 348);
+            pnAlunoAtrasos.Size = new Size(417, 395);
             pnAlunoAtrasos.TabIndex = 5;
             // 
             // tbAtrasoTurma
             // 
             tbAtrasoTurma.AllowUserToOrderColumns = true;
-            tbAtrasoTurma.BackgroundColor = Color.White;
+            tbAtrasoTurma.BackgroundColor = Color.Lavender;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(248, 249, 250);
             dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
@@ -378,34 +341,45 @@ namespace Dashboard
             tbAtrasoTurma.Dock = DockStyle.Fill;
             tbAtrasoTurma.GridColor = Color.FromArgb(233, 236, 239);
             tbAtrasoTurma.Location = new Point(0, 0);
-            tbAtrasoTurma.Margin = new Padding(3, 2, 3, 2);
+            tbAtrasoTurma.Margin = new Padding(10, 10, 15, 2);
             tbAtrasoTurma.Name = "tbAtrasoTurma";
             tbAtrasoTurma.ReadOnly = true;
             tbAtrasoTurma.RowHeadersWidth = 51;
-            tbAtrasoTurma.Size = new Size(297, 348);
+            tbAtrasoTurma.Size = new Size(417, 395);
             tbAtrasoTurma.TabIndex = 0;
             tbAtrasoTurma.CellContentClick += tbAtrasoTurma_CellContentClick;
             // 
             // pnGraficoTurma
             // 
-            pnGraficoTurma.BackColor = Color.White;
-            pnGraficoTurma.Controls.Add(panel2);
-            pnGraficoTurma.Controls.Add(panel1);
+            pnGraficoTurma.BackColor = Color.GhostWhite;
+            pnGraficoTurma.Controls.Add(arredondamentoCard1);
             pnGraficoTurma.Dock = DockStyle.Fill;
-            pnGraficoTurma.Location = new Point(306, 2);
+            pnGraficoTurma.Location = new Point(461, 2);
             pnGraficoTurma.Margin = new Padding(3, 2, 3, 2);
             pnGraficoTurma.Name = "pnGraficoTurma";
-            pnGraficoTurma.Size = new Size(538, 348);
+            pnGraficoTurma.Size = new Size(590, 395);
             pnGraficoTurma.TabIndex = 7;
             pnGraficoTurma.Paint += pnGraficoTurma_Paint;
+            // 
+            // arredondamentoCard1
+            // 
+            arredondamentoCard1.BackColor = Color.White;
+            arredondamentoCard1.BorderColor = Color.Transparent;
+            arredondamentoCard1.BorderRadius = 15;
+            arredondamentoCard1.BorderSize = 0;
+            arredondamentoCard1.Controls.Add(panel2);
+            arredondamentoCard1.Controls.Add(panel1);
+            arredondamentoCard1.Location = new Point(3, 1);
+            arredondamentoCard1.Name = "arredondamentoCard1";
+            arredondamentoCard1.Size = new Size(579, 391);
+            arredondamentoCard1.TabIndex = 1;
             // 
             // panel2
             // 
             panel2.Controls.Add(btnSolicitarAdvertencia);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(0, 296);
+            panel2.Location = new Point(6, 260);
             panel2.Name = "panel2";
-            panel2.Size = new Size(538, 52);
+            panel2.Size = new Size(567, 123);
             panel2.TabIndex = 12;
             // 
             // btnSolicitarAdvertencia
@@ -418,9 +392,9 @@ namespace Dashboard
             btnSolicitarAdvertencia.FlatAppearance.BorderSize = 0;
             btnSolicitarAdvertencia.FlatStyle = FlatStyle.Flat;
             btnSolicitarAdvertencia.ForeColor = Color.White;
-            btnSolicitarAdvertencia.Location = new Point(16, 3);
+            btnSolicitarAdvertencia.Location = new Point(16, 6);
             btnSolicitarAdvertencia.Name = "btnSolicitarAdvertencia";
-            btnSolicitarAdvertencia.Size = new Size(150, 34);
+            btnSolicitarAdvertencia.Size = new Size(164, 34);
             btnSolicitarAdvertencia.TabIndex = 0;
             btnSolicitarAdvertencia.Text = "Solicitar Advertencia";
             btnSolicitarAdvertencia.UseVisualStyleBackColor = false;
@@ -428,9 +402,14 @@ namespace Dashboard
             // 
             // panel1
             // 
+            panel1.Controls.Add(pictureBoxCarometro);
+            panel1.Controls.Add(button5);
+            panel1.Controls.Add(button4);
+            panel1.Controls.Add(button3);
+            panel1.Controls.Add(button2);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(lblRM);
-            panel1.Controls.Add(pictureBoxCarometro);
             panel1.Controls.Add(label8);
             panel1.Controls.Add(label6);
             panel1.Controls.Add(label7);
@@ -440,19 +419,82 @@ namespace Dashboard
             panel1.Controls.Add(lblEmailAluno);
             panel1.Controls.Add(lblAnoAluno);
             panel1.Controls.Add(arredondamentoBtn4);
-            panel1.Dock = DockStyle.Top;
-            panel1.Location = new Point(0, 0);
+            panel1.Location = new Point(6, 3);
             panel1.Name = "panel1";
-            panel1.Size = new Size(538, 296);
+            panel1.Size = new Size(567, 257);
             panel1.TabIndex = 11;
             panel1.Paint += panel1_Paint;
+            // 
+            // pictureBoxCarometro
+            // 
+            pictureBoxCarometro.BorderRadius = 15;
+            pictureBoxCarometro.Location = new Point(24, 33);
+            pictureBoxCarometro.Name = "pictureBoxCarometro";
+            pictureBoxCarometro.Size = new Size(149, 189);
+            pictureBoxCarometro.TabIndex = 19;
+            pictureBoxCarometro.TabStop = false;
+            // 
+            // button5
+            // 
+            button5.BackColor = Color.LightGray;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.ForeColor = Color.Silver;
+            button5.Location = new Point(209, 234);
+            button5.Name = "button5";
+            button5.Size = new Size(335, 1);
+            button5.TabIndex = 18;
+            button5.UseVisualStyleBackColor = false;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.LightGray;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.ForeColor = Color.Silver;
+            button4.Location = new Point(209, 190);
+            button4.Name = "button4";
+            button4.Size = new Size(335, 1);
+            button4.TabIndex = 17;
+            button4.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            button3.BackColor = Color.LightGray;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.Silver;
+            button3.Location = new Point(209, 141);
+            button3.Name = "button3";
+            button3.Size = new Size(335, 1);
+            button3.TabIndex = 16;
+            button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            button2.BackColor = Color.LightGray;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.ForeColor = Color.Silver;
+            button2.Location = new Point(209, 96);
+            button2.Name = "button2";
+            button2.Size = new Size(335, 1);
+            button2.TabIndex = 15;
+            button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            button1.BackColor = Color.LightGray;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Silver;
+            button1.Location = new Point(209, 53);
+            button1.Name = "button1";
+            button1.Size = new Size(335, 1);
+            button1.TabIndex = 14;
+            button1.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(108, 117, 125);
-            label1.Location = new Point(205, 19);
+            label1.Location = new Point(205, 27);
             label1.Name = "label1";
             label1.Size = new Size(37, 21);
             label1.TabIndex = 13;
@@ -461,28 +503,19 @@ namespace Dashboard
             // lblRM
             // 
             lblRM.AutoSize = true;
-            lblRM.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblRM.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblRM.ForeColor = Color.FromArgb(44, 62, 80);
-            lblRM.Location = new Point(211, 40);
+            lblRM.Location = new Point(240, 28);
             lblRM.Name = "lblRM";
-            lblRM.Size = new Size(0, 21);
+            lblRM.Size = new Size(0, 20);
             lblRM.TabIndex = 12;
-            // 
-            // pictureBoxCarometro
-            // 
-            pictureBoxCarometro.Location = new Point(25, 28);
-            pictureBoxCarometro.Name = "pictureBoxCarometro";
-            pictureBoxCarometro.Size = new Size(147, 185);
-            pictureBoxCarometro.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxCarometro.TabIndex = 3;
-            pictureBoxCarometro.TabStop = false;
             // 
             // label8
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(108, 117, 125);
-            label8.Location = new Point(206, 67);
+            label8.Location = new Point(206, 68);
             label8.Name = "label8";
             label8.Size = new Size(56, 21);
             label8.TabIndex = 10;
@@ -493,7 +526,7 @@ namespace Dashboard
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(108, 117, 125);
-            label6.Location = new Point(206, 182);
+            label6.Location = new Point(205, 160);
             label6.Name = "label6";
             label6.Size = new Size(51, 21);
             label6.TabIndex = 7;
@@ -504,7 +537,7 @@ namespace Dashboard
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(108, 117, 125);
-            label7.Location = new Point(206, 239);
+            label7.Location = new Point(206, 205);
             label7.Name = "label7";
             label7.Size = new Size(41, 21);
             label7.TabIndex = 8;
@@ -513,21 +546,21 @@ namespace Dashboard
             // lblNomeAluno
             // 
             lblNomeAluno.AutoSize = true;
-            lblNomeAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblNomeAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblNomeAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblNomeAluno.Location = new Point(209, 88);
+            lblNomeAluno.Location = new Point(259, 70);
             lblNomeAluno.Name = "lblNomeAluno";
-            lblNomeAluno.Size = new Size(0, 21);
+            lblNomeAluno.Size = new Size(0, 20);
             lblNomeAluno.TabIndex = 0;
             // 
             // lblTelAluno
             // 
             lblTelAluno.AutoSize = true;
-            lblTelAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTelAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblTelAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTelAluno.Location = new Point(209, 142);
+            lblTelAluno.Location = new Point(273, 114);
             lblTelAluno.Name = "lblTelAluno";
-            lblTelAluno.Size = new Size(0, 21);
+            lblTelAluno.Size = new Size(0, 20);
             lblTelAluno.TabIndex = 1;
             // 
             // label5
@@ -535,7 +568,7 @@ namespace Dashboard
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(108, 117, 125);
-            label5.Location = new Point(206, 121);
+            label5.Location = new Point(205, 113);
             label5.Name = "label5";
             label5.Size = new Size(70, 21);
             label5.TabIndex = 6;
@@ -544,21 +577,21 @@ namespace Dashboard
             // lblEmailAluno
             // 
             lblEmailAluno.AutoSize = true;
-            lblEmailAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblEmailAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblEmailAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblEmailAluno.Location = new Point(208, 203);
+            lblEmailAluno.Location = new Point(256, 160);
             lblEmailAluno.Name = "lblEmailAluno";
-            lblEmailAluno.Size = new Size(0, 21);
+            lblEmailAluno.Size = new Size(0, 20);
             lblEmailAluno.TabIndex = 2;
             // 
             // lblAnoAluno
             // 
             lblAnoAluno.AutoSize = true;
-            lblAnoAluno.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblAnoAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblAnoAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblAnoAluno.Location = new Point(206, 260);
+            lblAnoAluno.Location = new Point(243, 206);
             lblAnoAluno.Name = "lblAnoAluno";
-            lblAnoAluno.Size = new Size(0, 21);
+            lblAnoAluno.Size = new Size(0, 20);
             lblAnoAluno.TabIndex = 4;
             // 
             // arredondamentoBtn4
@@ -571,13 +604,197 @@ namespace Dashboard
             arredondamentoBtn4.FlatAppearance.BorderSize = 0;
             arredondamentoBtn4.FlatStyle = FlatStyle.Flat;
             arredondamentoBtn4.ForeColor = Color.White;
-            arredondamentoBtn4.Location = new Point(16, 19);
+            arredondamentoBtn4.Location = new Point(16, 27);
             arredondamentoBtn4.Margin = new Padding(2);
             arredondamentoBtn4.Name = "arredondamentoBtn4";
             arredondamentoBtn4.Size = new Size(164, 201);
             arredondamentoBtn4.TabIndex = 11;
             arredondamentoBtn4.Text = "arredondamentoBtn4";
             arredondamentoBtn4.UseVisualStyleBackColor = false;
+            // 
+            // panel3
+            // 
+            panel3.BackColor = Color.GhostWhite;
+            panel3.Controls.Add(lblNmTurma);
+            panel3.Controls.Add(tableLayoutPanel3);
+            panel3.Location = new Point(0, 0);
+            panel3.Name = "panel3";
+            panel3.Padding = new Padding(35, 0, 0, 0);
+            panel3.Size = new Size(766, 255);
+            panel3.TabIndex = 17;
+            panel3.Paint += panel3_Paint;
+            // 
+            // lblNmTurma
+            // 
+            lblNmTurma.AutoSize = true;
+            lblNmTurma.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold);
+            lblNmTurma.Location = new Point(33, 34);
+            lblNmTurma.Name = "lblNmTurma";
+            lblNmTurma.Size = new Size(194, 37);
+            lblNmTurma.TabIndex = 2;
+            lblNmTurma.Text = "Administração";
+            lblNmTurma.TextAlign = ContentAlignment.MiddleLeft;
+            lblNmTurma.Click += lblNmTurma_Click;
+            // 
+            // tableLayoutPanel3
+            // 
+            tableLayoutPanel3.ColumnCount = 2;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.31323F));
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.31323F));
+            tableLayoutPanel3.Controls.Add(panel7, 1, 0);
+            tableLayoutPanel3.Controls.Add(panel6, 0, 0);
+            tableLayoutPanel3.Dock = DockStyle.Bottom;
+            tableLayoutPanel3.Location = new Point(35, 99);
+            tableLayoutPanel3.Margin = new Padding(2);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 1;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel3.Size = new Size(731, 156);
+            tableLayoutPanel3.TabIndex = 12;
+            // 
+            // panel7
+            // 
+            panel7.Controls.Add(pnAtrasos_dia);
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(368, 3);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(360, 150);
+            panel7.TabIndex = 11;
+            // 
+            // pnAtrasos_dia
+            // 
+            pnAtrasos_dia.BackColor = Color.White;
+            pnAtrasos_dia.BorderRadius = 15;
+            pnAtrasos_dia.Controls.Add(button7);
+            pnAtrasos_dia.Controls.Add(label4);
+            pnAtrasos_dia.Controls.Add(pn_Atrasos_Dia);
+            pnAtrasos_dia.Controls.Add(pictureBox1);
+            pnAtrasos_dia.Dock = DockStyle.Left;
+            pnAtrasos_dia.Location = new Point(0, 0);
+            pnAtrasos_dia.Name = "pnAtrasos_dia";
+            pnAtrasos_dia.ShadowColor = Color.FromArgb(50, 0, 0, 0);
+            pnAtrasos_dia.ShadowSize = 5;
+            pnAtrasos_dia.Size = new Size(294, 150);
+            pnAtrasos_dia.TabIndex = 13;
+            pnAtrasos_dia.Paint += pnAtrasos_dia_Paint;
+            // 
+            // button7
+            // 
+            button7.BackColor = Color.SteelBlue;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.ForeColor = Color.SteelBlue;
+            button7.Location = new Point(27, 120);
+            button7.Name = "button7";
+            button7.Size = new Size(164, 2);
+            button7.TabIndex = 12;
+            button7.UseVisualStyleBackColor = false;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.BackColor = Color.Transparent;
+            label4.Enabled = false;
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.Black;
+            label4.Location = new Point(24, 79);
+            label4.Name = "label4";
+            label4.Size = new Size(115, 21);
+            label4.TabIndex = 10;
+            label4.Text = "Atrasos do dia";
+            // 
+            // pn_Atrasos_Dia
+            // 
+            pn_Atrasos_Dia.Font = new Font("Segoe UI", 45F, FontStyle.Bold);
+            pn_Atrasos_Dia.ForeColor = Color.MidnightBlue;
+            pn_Atrasos_Dia.Location = new Point(10, 0);
+            pn_Atrasos_Dia.Name = "pn_Atrasos_Dia";
+            pn_Atrasos_Dia.Size = new Size(127, 96);
+            pn_Atrasos_Dia.TabIndex = 0;
+            pn_Atrasos_Dia.Text = "00";
+            pn_Atrasos_Dia.Click += label3_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(146, -12);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(140, 137);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 2;
+            pictureBox1.TabStop = false;
+            // 
+            // panel6
+            // 
+            panel6.Controls.Add(pnAtrasos_Totais);
+            panel6.Dock = DockStyle.Fill;
+            panel6.Location = new Point(3, 3);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(359, 150);
+            panel6.TabIndex = 13;
+            // 
+            // pnAtrasos_Totais
+            // 
+            pnAtrasos_Totais.BackColor = Color.White;
+            pnAtrasos_Totais.BorderRadius = 15;
+            pnAtrasos_Totais.Controls.Add(button6);
+            pnAtrasos_Totais.Controls.Add(pictureBox3);
+            pnAtrasos_Totais.Controls.Add(lblDiario);
+            pnAtrasos_Totais.Controls.Add(label2);
+            pnAtrasos_Totais.Dock = DockStyle.Left;
+            pnAtrasos_Totais.Location = new Point(0, 0);
+            pnAtrasos_Totais.Name = "pnAtrasos_Totais";
+            pnAtrasos_Totais.ShadowColor = Color.FromArgb(50, 0, 0, 0);
+            pnAtrasos_Totais.ShadowSize = 5;
+            pnAtrasos_Totais.Size = new Size(299, 150);
+            pnAtrasos_Totais.TabIndex = 13;
+            // 
+            // button6
+            // 
+            button6.BackColor = Color.SteelBlue;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.ForeColor = Color.SteelBlue;
+            button6.Location = new Point(28, 120);
+            button6.Name = "button6";
+            button6.Size = new Size(164, 2);
+            button6.TabIndex = 11;
+            button6.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(181, 16);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(92, 93);
+            pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox3.TabIndex = 2;
+            pictureBox3.TabStop = false;
+            pictureBox3.Click += pictureBox3_Click;
+            // 
+            // lblDiario
+            // 
+            lblDiario.Font = new Font("Segoe UI", 45F, FontStyle.Bold);
+            lblDiario.ForeColor = Color.MidnightBlue;
+            lblDiario.Location = new Point(10, 3);
+            lblDiario.Name = "lblDiario";
+            lblDiario.Size = new Size(163, 81);
+            lblDiario.TabIndex = 0;
+            lblDiario.Text = "00";
+            lblDiario.Click += lblDiario_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.BackColor = Color.Transparent;
+            label2.Enabled = false;
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(25, 88);
+            label2.Name = "label2";
+            label2.Size = new Size(111, 21);
+            label2.TabIndex = 10;
+            label2.Text = "Atrasos Totais";
             // 
             // tableLayoutPanel2
             // 
@@ -592,56 +809,46 @@ namespace Dashboard
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1091, 630);
+            tableLayoutPanel2.Size = new Size(1303, 788);
             tableLayoutPanel2.TabIndex = 6;
-            // 
-            // arredondamentoBtn1
-            // 
-            arredondamentoBtn1.BackColor = Color.MidnightBlue;
-            arredondamentoBtn1.BorderColor = Color.Transparent;
-            arredondamentoBtn1.BorderRadius = 10;
-            arredondamentoBtn1.BorderSize = 0;
-            arredondamentoBtn1.DisableHoverEffect = false;
-            arredondamentoBtn1.FlatAppearance.BorderSize = 0;
-            arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
-            arredondamentoBtn1.ForeColor = Color.White;
-            arredondamentoBtn1.Location = new Point(389, 212);
-            arredondamentoBtn1.Margin = new Padding(2);
-            arredondamentoBtn1.Name = "arredondamentoBtn1";
-            arredondamentoBtn1.Size = new Size(118, 36);
-            arredondamentoBtn1.TabIndex = 16;
-            arredondamentoBtn1.Text = "Todos";
-            arredondamentoBtn1.UseVisualStyleBackColor = false;
-            arredondamentoBtn1.Click += arredondamentoBtn1_Click;
             // 
             // frmTurma
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1091, 630);
+            ClientSize = new Size(1303, 788);
             Controls.Add(tableLayoutPanel2);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmTurma";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmTurma";
             WindowState = FormWindowState.Maximized;
+            Load += frmTurma_Load;
             pnConteudo.ResumeLayout(false);
-            pnConteudo.PerformLayout();
-            tableLayoutPanel3.ResumeLayout(false);
-            pnAtrasos_dia.ResumeLayout(false);
-            pnAtrasos_dia.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            pnAtrasos_Totais.ResumeLayout(false);
-            pnAtrasos_Totais.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            panel8.ResumeLayout(false);
+            panel4.ResumeLayout(false);
+            tableLayoutPanel4.ResumeLayout(false);
+            panel5.ResumeLayout(false);
             tlpConteudoPrincipal.ResumeLayout(false);
             pnAlunoAtrasos.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)tbAtrasoTurma).EndInit();
             pnGraficoTurma.ResumeLayout(false);
+            arredondamentoCard1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxCarometro).EndInit();
+            panel3.ResumeLayout(false);
+            panel3.PerformLayout();
+            tableLayoutPanel3.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            pnAtrasos_dia.ResumeLayout(false);
+            pnAtrasos_dia.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel6.ResumeLayout(false);
+            pnAtrasos_Totais.ResumeLayout(false);
+            pnAtrasos_Totais.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
         }
@@ -658,13 +865,10 @@ namespace Dashboard
         private Label lblTelAluno;
         private Label lblNomeAluno;
         private Label lblDiario;
-        private PictureBox pictureBoxCarometro;
         private Label label2;
-        private Panel pnAtrasos_Totais;
         private PictureBox pictureBox3;
-        private Panel pnAtrasos_dia;
         private PictureBox pictureBox1;
-        private Label label3;
+        private Label pn_Atrasos_Dia;
         private Label label4;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tlpConteudoPrincipal;
@@ -688,5 +892,23 @@ namespace Dashboard
         private ArredondamentoBtn arredondamentoBtn4;
         private Label lblRM;
         private ArredondamentoBtn arredondamentoBtn1;
+        private Panel panel4;
+        private Panel panel3;
+        private Panel panel5;
+        private PanelSombra pnAtrasos_Totais;
+        private Panel panel7;
+        private PanelSombra pnAtrasos_dia;
+        private Panel panel6;
+        private TableLayoutPanel tableLayoutPanel4;
+        private Button button1;
+        private Button button5;
+        private Button button4;
+        private Button button3;
+        private Button button2;
+        private Button button6;
+        private Button button7;
+        private Panel panel8;
+        private CustomControls.ArredondamentoCard arredondamentoCard1;
+        private CustomControls.RoundedPictureBox pictureBoxCarometro;
     }
 }

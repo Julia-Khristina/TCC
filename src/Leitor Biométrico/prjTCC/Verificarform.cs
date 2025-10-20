@@ -13,6 +13,7 @@ using System.IO;
 using MySql.Data.MySqlClient;
 using DPFP.Processing;
 using DPFP.Verification;
+using System.Drawing.Drawing2D;
 
 
 namespace prjTCC
@@ -23,10 +24,92 @@ namespace prjTCC
         private Capture Capturador;
         private Template Template;
 
+        private const int borderRadius = 25; // Mesma constante usada no frmLogin
+        private bool isMouseOverBtnIniciar = false;
+        private bool isMouseOverbtnParar = false;
+        private bool isMouseOverbtnMoldura = false;
+
         public Verificarform()
         {
             InitializeComponent();
+
+            // Configurações do reroll
+            btnParar.FlatStyle = FlatStyle.Flat;
+            btnParar.FlatAppearance.BorderSize = 0;
+            btnParar.BackColor = ColorTranslator.FromHtml("#DDE0E3"); // Cinza claro
+            btnParar.ForeColor = ColorTranslator.FromHtml("#212529"); // Texto escuro
+            btnParar.Paint += (s, e) => RoundControl(btnParar, e, ref isMouseOverbtnParar);
+            btnParar.Resize += (s, e) => btnParar.Invalidate();
+            btnParar.MouseEnter += (s, e) => { isMouseOverbtnParar = true; btnParar.Invalidate(); };
+            btnParar.MouseLeave += (s, e) => { isMouseOverbtnParar = false; btnParar.Invalidate(); };
+
+            // Configurações do btnMoldura
+            btnMoldura.FlatStyle = FlatStyle.Flat;
+            btnMoldura.FlatAppearance.BorderSize = 0;
+            btnMoldura.BackColor = Color.GhostWhite; // Cinza claro
+            btnMoldura.ForeColor = ColorTranslator.FromHtml("#212529"); // Texto escuro
+            btnMoldura.Paint += (s, e) => RoundControl(btnMoldura, e, ref isMouseOverbtnMoldura);
+            btnMoldura.Resize += (s, e) => btnMoldura.Invalidate();
+            btnMoldura.MouseEnter += (s, e) => { isMouseOverbtnMoldura = true; btnMoldura.Invalidate(); };
+            btnMoldura.MouseLeave += (s, e) => { isMouseOverbtnMoldura = false; btnMoldura.Invalidate(); };
+
+
+            // Configurações do verify
+            btnIniciar.FlatStyle = FlatStyle.Flat;
+            btnIniciar.FlatAppearance.BorderSize = 0;
+            btnIniciar.BackColor = ColorTranslator.FromHtml("#5C6BC0"); // Azul principal
+            btnIniciar.ForeColor = Color.White;
+            btnIniciar.Paint += (s, e) => RoundControl(btnIniciar, e, ref isMouseOverBtnIniciar);
+            btnIniciar.Resize += (s, e) => btnIniciar.Invalidate();
+            btnIniciar.MouseEnter += (s, e) => { isMouseOverBtnIniciar = true; btnIniciar.Invalidate(); };
+            btnIniciar.MouseLeave += (s, e) => { isMouseOverBtnIniciar = false; btnIniciar.Invalidate(); };
+
             this.FormClosed += Verificar_FormClosed;
+        }
+
+        private void RoundControl(Control control, PaintEventArgs e, ref bool isMouseOver)
+        {
+            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
+                return;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (var path = new GraphicsPath())
+            {
+                Rectangle bounds = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
+                path.AddArc(bounds.X, bounds.Y, borderRadius, borderRadius, 180, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Y, borderRadius, borderRadius, 270, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Bottom - borderRadius, borderRadius, borderRadius, 0, 90);
+                path.AddArc(bounds.X, bounds.Bottom - borderRadius, borderRadius, borderRadius, 90, 90);
+                path.CloseAllFigures();
+
+                control.Region = new Region(path);
+
+                // Define a cor considerando MouseOver
+                Color currentBackColor = control.BackColor;
+                if (isMouseOver)
+                {
+                    if (control == btnParar)
+                        currentBackColor = ColorTranslator.FromHtml("#D6D9DC"); // MouseOver cinza
+                    
+                    else if (control == btnIniciar)
+                        currentBackColor = ColorTranslator.FromHtml("#7986CB"); // MouseOver azul mais claro
+                }
+
+                e.Graphics.FillPath(new SolidBrush(currentBackColor), path);
+                e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
+
+                if (control is Button btn)
+                {
+                    TextRenderer.DrawText(
+                        e.Graphics,
+                        btn.Text,
+                        btn.Font,
+                        control.ClientRectangle,
+                        btn.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                }
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -255,26 +338,6 @@ namespace prjTCC
             {
                 Capturador.StopCapture();
             }
-        }
-
-        private void pbDedo_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Verificarform_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
