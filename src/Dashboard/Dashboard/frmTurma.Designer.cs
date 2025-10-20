@@ -30,8 +30,8 @@ namespace Dashboard
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTurma));
             tableLayoutPanel1 = new TableLayoutPanel();
             menuPrincipal1 = new MenuPrincipal();
@@ -69,7 +69,6 @@ namespace Dashboard
             label5 = new Label();
             lblEmailAluno = new Label();
             lblAnoAluno = new Label();
-            arredondamentoBtn4 = new ArredondamentoBtn();
             panel3 = new Panel();
             lblNmTurma = new Label();
             tableLayoutPanel3 = new TableLayoutPanel();
@@ -143,6 +142,7 @@ namespace Dashboard
             pnConteudo.Dock = DockStyle.Fill;
             pnConteudo.Location = new Point(221, 3);
             pnConteudo.Name = "pnConteudo";
+            pnConteudo.Padding = new Padding(0, 0, 0, 10);
             pnConteudo.Size = new Size(1079, 782);
             pnConteudo.TabIndex = 1;
             pnConteudo.Paint += pnConteudo_Paint;
@@ -321,27 +321,27 @@ namespace Dashboard
             // 
             tbAtrasoTurma.AllowUserToOrderColumns = true;
             tbAtrasoTurma.BackgroundColor = Color.Lavender;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.FromArgb(248, 249, 250);
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            tbAtrasoTurma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(248, 249, 250);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            tbAtrasoTurma.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             tbAtrasoTurma.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(168, 230, 207);
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            tbAtrasoTurma.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(168, 230, 207);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            tbAtrasoTurma.DefaultCellStyle = dataGridViewCellStyle2;
             tbAtrasoTurma.Dock = DockStyle.Fill;
             tbAtrasoTurma.GridColor = Color.FromArgb(233, 236, 239);
             tbAtrasoTurma.Location = new Point(0, 0);
-            tbAtrasoTurma.Margin = new Padding(10, 10, 15, 2);
+            tbAtrasoTurma.Margin = new Padding(10, 10, 15, 10);
             tbAtrasoTurma.Name = "tbAtrasoTurma";
             tbAtrasoTurma.ReadOnly = true;
             tbAtrasoTurma.RowHeadersWidth = 51;
@@ -355,9 +355,9 @@ namespace Dashboard
             pnGraficoTurma.Controls.Add(arredondamentoCard1);
             pnGraficoTurma.Dock = DockStyle.Fill;
             pnGraficoTurma.Location = new Point(461, 2);
-            pnGraficoTurma.Margin = new Padding(3, 2, 3, 2);
+            pnGraficoTurma.Margin = new Padding(3, 2, 3, 10);
             pnGraficoTurma.Name = "pnGraficoTurma";
-            pnGraficoTurma.Size = new Size(590, 395);
+            pnGraficoTurma.Size = new Size(590, 387);
             pnGraficoTurma.TabIndex = 7;
             pnGraficoTurma.Paint += pnGraficoTurma_Paint;
             // 
@@ -418,7 +418,6 @@ namespace Dashboard
             panel1.Controls.Add(label5);
             panel1.Controls.Add(lblEmailAluno);
             panel1.Controls.Add(lblAnoAluno);
-            panel1.Controls.Add(arredondamentoBtn4);
             panel1.Location = new Point(6, 3);
             panel1.Name = "panel1";
             panel1.Size = new Size(567, 257);
@@ -427,10 +426,11 @@ namespace Dashboard
             // 
             // pictureBoxCarometro
             // 
+            pictureBoxCarometro.BackColor = Color.White;
             pictureBoxCarometro.BorderRadius = 15;
-            pictureBoxCarometro.Location = new Point(24, 33);
+            pictureBoxCarometro.Location = new Point(23, 33);
             pictureBoxCarometro.Name = "pictureBoxCarometro";
-            pictureBoxCarometro.Size = new Size(149, 189);
+            pictureBoxCarometro.Size = new Size(157, 193);
             pictureBoxCarometro.TabIndex = 19;
             pictureBoxCarometro.TabStop = false;
             // 
@@ -593,24 +593,6 @@ namespace Dashboard
             lblAnoAluno.Name = "lblAnoAluno";
             lblAnoAluno.Size = new Size(0, 20);
             lblAnoAluno.TabIndex = 4;
-            // 
-            // arredondamentoBtn4
-            // 
-            arredondamentoBtn4.BackColor = Color.MidnightBlue;
-            arredondamentoBtn4.BorderColor = Color.Transparent;
-            arredondamentoBtn4.BorderRadius = 10;
-            arredondamentoBtn4.BorderSize = 0;
-            arredondamentoBtn4.DisableHoverEffect = false;
-            arredondamentoBtn4.FlatAppearance.BorderSize = 0;
-            arredondamentoBtn4.FlatStyle = FlatStyle.Flat;
-            arredondamentoBtn4.ForeColor = Color.White;
-            arredondamentoBtn4.Location = new Point(16, 27);
-            arredondamentoBtn4.Margin = new Padding(2);
-            arredondamentoBtn4.Name = "arredondamentoBtn4";
-            arredondamentoBtn4.Size = new Size(164, 201);
-            arredondamentoBtn4.TabIndex = 11;
-            arredondamentoBtn4.Text = "arredondamentoBtn4";
-            arredondamentoBtn4.UseVisualStyleBackColor = false;
             // 
             // panel3
             // 
@@ -889,7 +871,6 @@ namespace Dashboard
         private ArredondamentoBtn btn3Ano;
         private ArredondamentoBtn btn2Ano;
         private ArredondamentoBtn btn1Ano;
-        private ArredondamentoBtn arredondamentoBtn4;
         private Label lblRM;
         private ArredondamentoBtn arredondamentoBtn1;
         private Panel panel4;
