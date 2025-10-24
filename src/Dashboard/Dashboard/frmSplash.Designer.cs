@@ -45,11 +45,11 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label5.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = SystemColors.ButtonShadow;
             label5.Location = new Point(268, 353);
             label5.Name = "label5";
-            label5.Size = new Size(58, 13);
+            label5.Size = new Size(59, 13);
             label5.TabIndex = 16;
             label5.Text = "Versão 1.0";
             // 
@@ -67,11 +67,11 @@
             // lblSubtitulo
             // 
             lblSubtitulo.AutoSize = true;
-            lblSubtitulo.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSubtitulo.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubtitulo.ForeColor = Color.MidnightBlue;
-            lblSubtitulo.Location = new Point(147, 115);
+            lblSubtitulo.Location = new Point(123, 112);
             lblSubtitulo.Name = "lblSubtitulo";
-            lblSubtitulo.Size = new Size(298, 20);
+            lblSubtitulo.Size = new Size(354, 25);
             lblSubtitulo.TabIndex = 14;
             lblSubtitulo.Text = "Controle de entrada de alunos atrasados";
             // 
@@ -100,11 +100,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(64, 64, 64);
             label1.Location = new Point(209, 204);
             label1.Name = "label1";
-            label1.Size = new Size(178, 18);
+            label1.Size = new Size(178, 21);
             label1.TabIndex = 17;
             label1.Text = "Preparando seu acesso...";
             label1.TextAlign = ContentAlignment.MiddleCenter;

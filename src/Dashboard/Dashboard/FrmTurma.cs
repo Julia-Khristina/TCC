@@ -650,8 +650,8 @@ namespace Dashboard
                                     { "DATA", DateTime.Now.ToString("dd/MM/yyyy")}
                                 };
 
-                                string modelo = @"C:\Users\Micro\Documents\GitHub\TCC\documentos\ModeloAdvertencia\Modelo.docx";
-                                string saida = $@"C:\Users\Micro\Documents\GitHub\TCC\documentos\SaídaAdvertencia\Aluno_{reader["nm_Aluno"]}.docx";
+                                string modelo = @"C:\Users\Jane Oliveira\Documents\GitHub\TCC\documentos\ModeloAdvertencia\Modelo.docx";
+                                string saida = $@"C:\Users\Jane Oliveira\Documents\GitHub\TCC\documentos\SaídaAdvertencia\Aluno_{reader["nm_Aluno"]}.docx";
 
                                 Directory.CreateDirectory(Path.GetDirectoryName(saida));
                                 File.Copy(modelo, saida, true);

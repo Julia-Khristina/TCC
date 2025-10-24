@@ -15,7 +15,7 @@ namespace Dashboard
     public partial class frmNotificacao : Form
     {
 
-        //adicionar as váriaveis de controle de conexão
+        // Bloco antigo com problemas
         MySqlConnection conexao;
         MySqlCommand comando;
         MySqlDataAdapter da;
@@ -23,6 +23,10 @@ namespace Dashboard
         string strSQL;
         public event EventHandler<int> TurmaSelecionada;
         private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
+
+        private readonly int cursoId;
+        private string nomeTurmaAtual = string.Empty;
+
 
         private System.Windows.Forms.Timer notificationTimer;
         public class NotificacaoAluno
@@ -43,9 +47,6 @@ namespace Dashboard
             }
         }
 
-        private readonly int cursoId;
-        private string nomeTurmaAtual = string.Empty;
-        private readonly string _conexao;
         public frmNotificacao()
         {
             InitializeComponent();
@@ -360,9 +361,9 @@ namespace Dashboard
         {
             private readonly string _conexao;
 
-            public Notificacao_Dados(string connectionString)
+            public Notificacao_Dados(string connStr)
             {
-                _conexao = connectionString;
+                _conexao = connStr; ;
             }
             public List<NotificacaoAluno> GetNotificacoesAtrasos()
             {
@@ -441,7 +442,8 @@ namespace Dashboard
 
             cardModelo.Visible = false; // Mantenha o modelo oculto
 
-            Notificacao_Dados dao = new Notificacao_Dados(_conexao);
+            // Correção
+            Notificacao_Dados dao = new Notificacao_Dados(connectionString);
             List<NotificacaoAluno> listaNotificacoes = dao.GetNotificacoesAtrasos();
 
             // Limpa os cards antigos apenas antes de adicionar os novos

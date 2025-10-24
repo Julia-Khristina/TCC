@@ -53,7 +53,7 @@
             // btnEntrar
             // 
             btnEntrar.BackColor = Color.MidnightBlue;
-            btnEntrar.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnEntrar.Font = new Font("Segoe UI", 11.25F);
             btnEntrar.ForeColor = Color.White;
             btnEntrar.Location = new Point(515, 373);
             btnEntrar.Name = "btnEntrar";
@@ -76,22 +76,22 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Mongolian Baiti", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Segoe UI Semibold", 33.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.MidnightBlue;
-            label1.Location = new Point(519, 31);
+            label1.Location = new Point(517, 21);
             label1.Name = "label1";
-            label1.Size = new Size(158, 45);
+            label1.Size = new Size(141, 61);
             label1.TabIndex = 3;
-            label1.Text = "LOGIN";
+            label1.Text = "Login";
             // 
             // lblAcesse
             // 
             lblAcesse.AutoSize = true;
-            lblAcesse.Font = new Font("Arial", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblAcesse.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblAcesse.ForeColor = SystemColors.ControlDarkDark;
             lblAcesse.Location = new Point(521, 92);
             lblAcesse.Name = "lblAcesse";
-            lblAcesse.Size = new Size(150, 15);
+            lblAcesse.Size = new Size(136, 15);
             lblAcesse.TabIndex = 6;
             lblAcesse.Text = "Acesse a sua Dashboard!";
             // 
@@ -139,11 +139,11 @@
             // 
             txtUsuario.BackColor = SystemColors.ButtonHighlight;
             txtUsuario.BorderStyle = BorderStyle.None;
-            txtUsuario.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtUsuario.Font = new Font("Segoe UI", 11.25F);
             txtUsuario.ForeColor = Color.FromArgb(64, 64, 64);
             txtUsuario.Location = new Point(438, 166);
             txtUsuario.Name = "txtUsuario";
-            txtUsuario.Size = new Size(302, 17);
+            txtUsuario.Size = new Size(302, 20);
             txtUsuario.TabIndex = 14;
             txtUsuario.KeyDown += txtUsuario_KeyDown;
             // 
@@ -151,12 +151,12 @@
             // 
             txtSenha.BackColor = SystemColors.ButtonHighlight;
             txtSenha.BorderStyle = BorderStyle.None;
-            txtSenha.Font = new Font("Microsoft Sans Serif", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtSenha.Font = new Font("Segoe UI", 11.25F);
             txtSenha.ForeColor = Color.FromArgb(64, 64, 64);
             txtSenha.Location = new Point(438, 270);
             txtSenha.Name = "txtSenha";
             txtSenha.PasswordChar = '●';
-            txtSenha.Size = new Size(302, 17);
+            txtSenha.Size = new Size(302, 20);
             txtSenha.TabIndex = 15;
             txtSenha.TextChanged += txtSenha_TextChanged;
             txtSenha.KeyDown += txtSenha_KeyDown;
@@ -164,11 +164,11 @@
             // lblEsqueciSenha
             // 
             lblEsqueciSenha.AutoSize = true;
-            lblEsqueciSenha.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblEsqueciSenha.Font = new Font("Segoe UI", 9F);
             lblEsqueciSenha.ForeColor = Color.DodgerBlue;
             lblEsqueciSenha.Location = new Point(642, 331);
             lblEsqueciSenha.Name = "lblEsqueciSenha";
-            lblEsqueciSenha.Size = new Size(101, 15);
+            lblEsqueciSenha.Size = new Size(93, 15);
             lblEsqueciSenha.TabIndex = 16;
             lblEsqueciSenha.Text = "Esqueci a senha!";
             lblEsqueciSenha.Click += lblEsqueciSenha_Click;
@@ -210,7 +210,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(575, 133);
+            label6.Location = new Point(567, 133);
             label6.Name = "label6";
             label6.Size = new Size(17, 21);
             label6.TabIndex = 9;
@@ -219,10 +219,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Segoe UI", 12F);
             label2.Location = new Point(434, 134);
             label2.Name = "label2";
-            label2.Size = new Size(139, 20);
+            label2.Size = new Size(134, 21);
             label2.TabIndex = 4;
             label2.Text = "Email Cadastrado:";
             // 

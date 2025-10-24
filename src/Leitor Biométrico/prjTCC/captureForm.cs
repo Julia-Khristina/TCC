@@ -11,6 +11,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Drawing.Drawing2D;
+using Dashboard;
+
 
 namespace prjTCC
 {
@@ -25,6 +28,10 @@ namespace prjTCC
         public string Telefone = "";
 
         private DPFP.Template Template;
+
+        private const int borderRadius = 25; // Mesma constante usada no frmLogin
+        private bool isMouseOverBtnVoltar = false;
+        private bool isMouseOverBtnScan = false;
 
         public void onTemplate(DPFP.Template template)
         {
@@ -48,6 +55,83 @@ namespace prjTCC
         public captureForm()
         {
             InitializeComponent();
+
+            // Configurações do scan
+            btnScan.FlatStyle = FlatStyle.Flat;
+            btnScan.FlatAppearance.BorderSize = 0;
+            btnScan.BackColor = ColorTranslator.FromHtml("#5C6BC0"); // Azul principal
+            btnScan.ForeColor = Color.White;
+            btnScan.Paint += (s, e) => RoundControl(btnScan, e, ref isMouseOverBtnScan);
+            btnScan.Resize += (s, e) => btnScan.Invalidate();
+            btnScan.MouseEnter += (s, e) => { isMouseOverBtnScan = true; btnScan.Invalidate(); };
+            btnScan.MouseLeave += (s, e) => { isMouseOverBtnScan = false; btnScan.Invalidate(); };
+
+            
+            // Configurações do voltar
+            btnVoltar.FlatStyle = FlatStyle.Flat;
+            btnVoltar.FlatAppearance.BorderSize = 0;
+            btnVoltar.BackColor = ColorTranslator.FromHtml("#DDE0E3"); // Cinza claro
+            btnVoltar.ForeColor = ColorTranslator.FromHtml("#212529");
+            btnVoltar.Paint += (s, e) => RoundControl(btnVoltar, e, ref isMouseOverBtnVoltar);
+            btnVoltar.Resize += (s, e) => btnVoltar.Invalidate();
+            btnVoltar.MouseEnter += (s, e) => { isMouseOverBtnVoltar = true; btnVoltar.Invalidate(); };
+            btnVoltar.MouseLeave += (s, e) => { isMouseOverBtnVoltar = false; btnVoltar.Invalidate(); };
+
+            // Configurações do voltar
+            btnSelecionarFoto.FlatAppearance.BorderSize = 0;
+            btnSelecionarFoto.BackColor = ColorTranslator.FromHtml("#DDE0E3"); // Azul principal
+            btnSelecionarFoto.ForeColor = ColorTranslator.FromHtml("#212529");
+            btnSelecionarFoto.Paint += (s, e) => RoundControl(btnSelecionarFoto, e, ref isMouseOverBtnVoltar);
+            btnSelecionarFoto.Resize += (s, e) => btnSelecionarFoto.Invalidate();
+            btnSelecionarFoto.MouseEnter += (s, e) => { isMouseOverBtnVoltar = true; btnSelecionarFoto.Invalidate(); };
+            btnSelecionarFoto.MouseLeave += (s, e) => { isMouseOverBtnVoltar = false; btnSelecionarFoto.Invalidate(); };
+        }
+
+        private void RoundControl(Control control, PaintEventArgs e, ref bool isMouseOver)
+        {
+            if (control == null || e == null || control.IsDisposed || !control.IsHandleCreated)
+                return;
+
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
+
+            using (var path = new GraphicsPath())
+            {
+                Rectangle bounds = new Rectangle(0, 0, control.Width - 1, control.Height - 1);
+                path.AddArc(bounds.X, bounds.Y, borderRadius, borderRadius, 180, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Y, borderRadius, borderRadius, 270, 90);
+                path.AddArc(bounds.Right - borderRadius, bounds.Bottom - borderRadius, borderRadius, borderRadius, 0, 90);
+                path.AddArc(bounds.X, bounds.Bottom - borderRadius, borderRadius, borderRadius, 90, 90);
+                path.CloseAllFigures();
+
+                control.Region = new Region(path);
+
+                // Define a cor considerando MouseOver
+                Color currentBackColor = control.BackColor;
+                if (isMouseOver)
+                {
+                    if (control == btnVoltar)
+                        currentBackColor = ColorTranslator.FromHtml("#D6D9DC"); // MouseOver cinza
+
+                    else if (control == btnScan)
+                        currentBackColor = ColorTranslator.FromHtml("#7986CB"); // MouseOver azul mais claro
+                    else 
+                        currentBackColor = ColorTranslator.FromHtml("#D6D9DC");
+                }
+
+                e.Graphics.FillPath(new SolidBrush(currentBackColor), path);
+                e.Graphics.DrawPath(new Pen(control.Parent?.BackColor ?? Color.Transparent, 1), path);
+
+                if (control is Button btn)
+                {
+                    TextRenderer.DrawText(
+                        e.Graphics,
+                        btn.Text,
+                        btn.Font,
+                        control.ClientRectangle,
+                        btn.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                }
+            }
         }
 
         protected void SetPrompt(string prompt)
@@ -195,10 +279,6 @@ namespace prjTCC
                 }
             }
         }
-
-
-
-
         protected void MakeReport(string message)
         {
             this.Invoke(new Function(delegate ()
@@ -225,14 +305,6 @@ namespace prjTCC
                 return null;
             }
         }
-
-
-
-
-
-
-
-
 
         public void OnComplete(object Capture, string ReaderSerialNumber, DPFP.Sample Sample)
         {
@@ -287,7 +359,7 @@ namespace prjTCC
         {
             Stop();
 
-            if (MessageBox.Show("Confirma a saída da aplicação ?",
+            if (MessageBox.Show("Confirma a saída dessa tela?",
                 "Mensagem", MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question) == DialogResult.Yes)
 
@@ -465,6 +537,21 @@ namespace prjTCC
         private void maskTxtTel_TextChanged(object sender, EventArgs e)
         {
             Telefone = maskTxtTel.Text;
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

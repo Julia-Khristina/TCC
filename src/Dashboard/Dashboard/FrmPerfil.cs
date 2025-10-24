@@ -291,6 +291,8 @@ namespace Dashboard
             {
                 MessageBox.Show("Alterações canceladas.", "Ação", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            this.DialogResult = DialogResult.OK; 
+            this.Close();
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
@@ -332,6 +334,8 @@ namespace Dashboard
         {
             CarregarDadosAdministrador(); // Restaura os dados originais
             AlternarModoEdicao(false);    // Volta ao modo de visualização
+            this.DialogResult = DialogResult.Cancel; // Define o resultado como "Cancel"
+            this.Close();
         }
 
         private void Imagem_Perfil_Paint(object sender, PaintEventArgs e)

@@ -145,7 +145,7 @@ namespace Dashboard
             lbl1_CardDiario.Text = (diferencaDia >= 0 ? "↑ " : "↓ ") + Math.Abs(diferencaDia).ToString() + " atrasos em relação a ontem";
 
             string sqlTurmaMaisAtrasadaDia = sqlTurmaMaisAtrasadaBase + " WHERE RA.data_registro = CURDATE()" + groupByTurma;
-            lbl2_CardDiario.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaDia);
+            lbl2_CardDiario.Text = "Turma mais atrasada:\n " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaDia);
 
             // Atrasos semanais 
             string sqlSemanaPassada = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEARWEEK(data_registro, 1) = YEARWEEK(CURDATE() - INTERVAL 7 DAY, 1)";
@@ -155,7 +155,7 @@ namespace Dashboard
             lbl1_CardSemanal.Text = (diferencaSemana >= 0 ? "↑ " : "↓ ") + Math.Abs(diferencaSemana).ToString() + " atrasos em relação à semana passada";
 
             string sqlTurmaMaisAtrasadaSemana = sqlTurmaMaisAtrasadaBase + " WHERE YEARWEEK(RA.data_registro, 1) = YEARWEEK(CURDATE(), 1)" + groupByTurma;
-            lbl2_CardSemanal.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaSemana);
+            lbl2_CardSemanal.Text = "Turma mais atrasada:\n" + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaSemana);
 
             // Atrasos mensais 
             string sqlMesPassado = "SELECT COUNT(*) FROM RegistroAtraso WHERE YEAR(data_registro) = YEAR(CURDATE() - INTERVAL 1 MONTH) AND MONTH(data_registro) = MONTH(CURDATE() - INTERVAL 1 MONTH)";
@@ -165,10 +165,51 @@ namespace Dashboard
             lbl1_CardMensal.Text = (diferencaMes >= 0 ? "↑ " : "↓ ") + Math.Abs(diferencaMes).ToString() + " atrasos em relação ao mês passado";
 
             string sqlTurmaMaisAtrasadaMes = sqlTurmaMaisAtrasadaBase + " WHERE YEAR(RA.data_registro) = YEAR(CURDATE()) AND MONTH(RA.data_registro) = MONTH(CURDATE())" + groupByTurma;
-            lbl2_CardMensal.Text = "Turma mais atrasada: " + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaMes);
+            lbl2_CardMensal.Text = "Turma mais atrasada:\n" + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaMes);
+
+            // Notificações
+            string sqlNotificacoesEsteMes = "SELECT COUNT(*) FROM Notificacao WHERE YEAR(data_notificacao) = YEAR(CURDATE()) AND MONTH(data_notificacao) = MONTH(CURDATE())";
+            int notificacoesEsteMes = GetContagem(sqlNotificacoesEsteMes);
+            lblNotificacao.Text = notificacoesEsteMes.ToString("D2"); // "D2" para formato "00"
+            // em relação ao mês passado
+            string sqlNotificacoesMesPassado = "SELECT COUNT(*) FROM Notificacao WHERE YEAR(data_notificacao) = YEAR(CURDATE() - INTERVAL 1 MONTH) AND MONTH(data_notificacao) = MONTH(CURDATE() - INTERVAL 1 MONTH)";
+            int notificacoesMesPassado = GetContagem(sqlNotificacoesMesPassado);
+            int diferencaMesNot = notificacoesEsteMes - notificacoesMesPassado;
+            lbl1_CardNot.Text = (diferencaMesNot >= 0 ? "↑ " : "↓ ") + Math.Abs(diferencaMesNot).ToString() + " em relação ao mês passado";
 
 
+            string sqlTurmaDestaqueMes = @"
+            SELECT CONCAT(a.nm_Serie, ' ', a.nm_Curso) AS turma_completa
+            FROM Notificacao n
+            JOIN Aluno a ON n.cd_Aluno = a.cd_Aluno
+            WHERE YEAR(n.data_notificacao) = YEAR(CURDATE()) 
+              AND MONTH(n.data_notificacao) = MONTH(CURDATE())
+            GROUP BY turma_completa
+            ORDER BY COUNT(n.cd_Notificacao) DESC
+            LIMIT 1";
+
+            string turmaDestaque = GetValorString(sqlTurmaDestaqueMes);
+
+            if (string.IsNullOrEmpty(turmaDestaque))
+            {
+                lbl2_CardNot.Text = "Turma com mais notificações: N/A";
+            }
+            else
+            {
+                lbl2_CardNot.Text = "Turma com mais notificações:\n" + turmaDestaque;
+            }
         }
+
+        public int GetContagem(string query)
+        {
+            return 0; // Apenas um placeholder
+        }
+
+        public string GetValorString(string query)
+        {
+            return ""; // Apenas um placeholder
+        }
+
 
         private void Maximizar_Tela()
         {
@@ -262,32 +303,34 @@ namespace Dashboard
             }
         }
 
-        public void AbrirFormOverlay(Form dialogForm)
+        public DialogResult AbrirFormOverlay(Form dialogForm)
         {
-            // formulário de overlay em tempo de execução
+            DialogResult result = DialogResult.Cancel; 
+
             using (Form overlay = new Form())
             {
                 overlay.StartPosition = FormStartPosition.Manual;
                 overlay.FormBorderStyle = FormBorderStyle.None;
-                overlay.Opacity = 0.60; 
+                overlay.Opacity = 0.60;
                 overlay.BackColor = Color.Black;
                 overlay.ShowInTaskbar = false;
-
-                // overlay cubra o formulário principal inteiro
+                overlay.Owner = this;
                 overlay.Location = this.Location;
                 overlay.Size = this.Size;
 
                 overlay.Show();
 
-                // Define o formulário de diálogo como "dono" do overlay
                 dialogForm.Owner = overlay;
+                dialogForm.StartPosition = FormStartPosition.CenterParent; 
 
-                dialogForm.ShowDialog();
+                result = dialogForm.ShowDialog();
 
-                // Quando o dialogForm é fechado, o código continua aqui.
                 overlay.Close();
             }
+
+            return result;
         }
+
 
 
 
@@ -370,33 +413,30 @@ namespace Dashboard
         private void btnAddAluno_Click(object sender, EventArgs e)
         {
             // Cria o form de cadastro
-            Cadastrar formCadastrar = new Cadastrar();
-
-            // Esconde o FrmPerfil enquanto o formCadastrar está aberto
-            this.Hide();
-
-            // Quando o formCadastrar fechar, reexibe o FrmPerfil
-            formCadastrar.FormClosed += (s, args) =>
+            using (Cadastrar formCadastrar = new Cadastrar())
             {
-                this.Show();
-            };
+                formCadastrar.StartPosition = FormStartPosition.CenterParent;
 
-            // Mostra o formCadastrar
-            formCadastrar.Show();
+                AbrirFormOverlay(formCadastrar);
+            }
+
         }
 
         private void imgConfig_Click(object sender, EventArgs e)
         {
-            using (FrmPerfil formPerfil = new FrmPerfil())
+            
+            using (FrmPerfil telaPerfil = new FrmPerfil())
             {
-                // Centraliza o formulário na tela
-                formPerfil.StartPosition = FormStartPosition.CenterParent;
+                    
+                    DialogResult resultado = AbrirFormOverlay(telaPerfil);
 
-                AbrirFormOverlay(formPerfil);
-
-            }
+                    if (resultado == DialogResult.OK)
+                    {
+                        CarregarDadosDoPerfil();
+                    }
+                }
+          
         }
-
         private void CarregarDadosDoPerfil()
         {
             string nomeAdmin = "Administrador";
@@ -499,6 +539,16 @@ namespace Dashboard
         private void btnCardMeuPerfil_MouseEnter(object sender, EventArgs e)
         {
             btnCardMeuPerfil.BackColor = Color.MidnightBlue;
+        }
+
+        private void frmDashboard_Principal_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+
+        private void frmDashboard_Principal_Activated(object sender, EventArgs e)
+        {
+            CarregarDadosDoPerfil();
         }
     }
 }
