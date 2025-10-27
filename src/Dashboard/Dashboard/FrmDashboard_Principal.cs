@@ -305,7 +305,7 @@ namespace Dashboard
 
         public DialogResult AbrirFormOverlay(Form dialogForm)
         {
-            DialogResult result = DialogResult.Cancel; 
+            DialogResult result = DialogResult.Cancel;
 
             using (Form overlay = new Form())
             {
@@ -321,7 +321,7 @@ namespace Dashboard
                 overlay.Show();
 
                 dialogForm.Owner = overlay;
-                dialogForm.StartPosition = FormStartPosition.CenterParent; 
+                dialogForm.StartPosition = FormStartPosition.CenterParent;
 
                 result = dialogForm.ShowDialog();
 
@@ -424,18 +424,18 @@ namespace Dashboard
 
         private void imgConfig_Click(object sender, EventArgs e)
         {
-            
+
             using (FrmPerfil telaPerfil = new FrmPerfil())
             {
-                    
-                    DialogResult resultado = AbrirFormOverlay(telaPerfil);
 
-                    if (resultado == DialogResult.OK)
-                    {
-                        CarregarDadosDoPerfil();
-                    }
+                DialogResult resultado = AbrirFormOverlay(telaPerfil);
+
+                if (resultado == DialogResult.OK)
+                {
+                    CarregarDadosDoPerfil();
                 }
-          
+            }
+
         }
         private void CarregarDadosDoPerfil()
         {
@@ -549,6 +549,15 @@ namespace Dashboard
         private void frmDashboard_Principal_Activated(object sender, EventArgs e)
         {
             CarregarDadosDoPerfil();
+        }
+
+        private void arredondamentoBtn2_Click(object sender, EventArgs e)
+        {
+            //ao clicar neste botão, fazer download do relatório geral do power bi.
+            //antes de baixar o arquivo, o power bi deve atualizar os dados para que não esteja faltando nenhum registro.
+            //powebi local, nome do arquivo:
+            //Pontualize_Powebi_TCC.pbix
+            //relatório: Geral.
         }
     }
 }

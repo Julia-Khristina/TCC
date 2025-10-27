@@ -890,5 +890,11 @@ namespace Dashboard
         {
 
         }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            //Ao clicar neste botão, fazer download do relátorio do power bi da turma selecionada.(usar o index para saber qual turma pelo nome)
+            //antes de baixar o arquivo, o power bi deve atualizar os dados para que não esteja faltando nenhum registro.
+        }
     }
 }

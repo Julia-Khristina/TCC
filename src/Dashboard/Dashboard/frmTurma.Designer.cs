@@ -129,7 +129,7 @@ namespace Dashboard
             menuPrincipal1.Location = new Point(0, 0);
             menuPrincipal1.Margin = new Padding(0);
             menuPrincipal1.Name = "menuPrincipal1";
-            menuPrincipal1.Size = new Size(218, 788);
+            menuPrincipal1.Size = new Size(249, 1051);
             menuPrincipal1.TabIndex = 6;
             // 
             // pnConteudo
@@ -140,19 +140,21 @@ namespace Dashboard
             pnConteudo.Controls.Add(panel5);
             pnConteudo.Controls.Add(panel3);
             pnConteudo.Dock = DockStyle.Fill;
-            pnConteudo.Location = new Point(221, 3);
+            pnConteudo.Location = new Point(252, 4);
+            pnConteudo.Margin = new Padding(3, 4, 3, 4);
             pnConteudo.Name = "pnConteudo";
-            pnConteudo.Padding = new Padding(0, 0, 0, 10);
-            pnConteudo.Size = new Size(1079, 782);
+            pnConteudo.Padding = new Padding(0, 0, 0, 13);
+            pnConteudo.Size = new Size(1234, 1043);
             pnConteudo.TabIndex = 1;
             pnConteudo.Paint += pnConteudo_Paint;
             // 
             // panel8
             // 
             panel8.Controls.Add(btnExportar);
-            panel8.Location = new Point(772, 10);
+            panel8.Location = new Point(882, 13);
+            panel8.Margin = new Padding(3, 4, 3, 4);
             panel8.Name = "panel8";
-            panel8.Size = new Size(298, 301);
+            panel8.Size = new Size(341, 401);
             panel8.TabIndex = 19;
             // 
             // btnExportar
@@ -167,22 +169,24 @@ namespace Dashboard
             btnExportar.FlatStyle = FlatStyle.Flat;
             btnExportar.Font = new Font("Segoe UI", 11F);
             btnExportar.ForeColor = Color.White;
-            btnExportar.Location = new Point(126, 32);
+            btnExportar.Location = new Point(144, 43);
+            btnExportar.Margin = new Padding(3, 4, 3, 4);
             btnExportar.Name = "btnExportar";
-            btnExportar.Size = new Size(155, 39);
+            btnExportar.Size = new Size(177, 52);
             btnExportar.TabIndex = 11;
             btnExportar.Text = "Exportar relatório";
             btnExportar.UseVisualStyleBackColor = false;
+            btnExportar.Click += btnExportar_Click;
             // 
             // panel4
             // 
             panel4.BackColor = Color.GhostWhite;
             panel4.Controls.Add(tableLayoutPanel4);
-            panel4.Location = new Point(0, 261);
-            panel4.Margin = new Padding(3, 3, 3, 0);
+            panel4.Location = new Point(0, 348);
+            panel4.Margin = new Padding(3, 4, 3, 0);
             panel4.Name = "panel4";
-            panel4.Padding = new Padding(5, 0, 0, 0);
-            panel4.Size = new Size(766, 51);
+            panel4.Padding = new Padding(6, 0, 0, 0);
+            panel4.Size = new Size(875, 68);
             panel4.TabIndex = 18;
             // 
             // tableLayoutPanel4
@@ -196,11 +200,12 @@ namespace Dashboard
             tableLayoutPanel4.Controls.Add(btn2Ano, 1, 0);
             tableLayoutPanel4.Controls.Add(btn3Ano, 2, 0);
             tableLayoutPanel4.Controls.Add(arredondamentoBtn1, 3, 0);
-            tableLayoutPanel4.Location = new Point(38, 3);
+            tableLayoutPanel4.Location = new Point(43, 4);
+            tableLayoutPanel4.Margin = new Padding(3, 4, 3, 4);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel4.Size = new Size(717, 47);
+            tableLayoutPanel4.Size = new Size(819, 63);
             tableLayoutPanel4.TabIndex = 17;
             // 
             // btn1Ano
@@ -213,10 +218,10 @@ namespace Dashboard
             btn1Ano.FlatAppearance.BorderSize = 0;
             btn1Ano.FlatStyle = FlatStyle.Flat;
             btn1Ano.ForeColor = Color.White;
-            btn1Ano.Location = new Point(2, 2);
-            btn1Ano.Margin = new Padding(2);
+            btn1Ano.Location = new Point(2, 3);
+            btn1Ano.Margin = new Padding(2, 3, 2, 3);
             btn1Ano.Name = "btn1Ano";
-            btn1Ano.Size = new Size(118, 36);
+            btn1Ano.Size = new Size(135, 48);
             btn1Ano.TabIndex = 13;
             btn1Ano.Text = "1º Ano";
             btn1Ano.UseVisualStyleBackColor = false;
@@ -232,10 +237,10 @@ namespace Dashboard
             btn2Ano.FlatAppearance.BorderSize = 0;
             btn2Ano.FlatStyle = FlatStyle.Flat;
             btn2Ano.ForeColor = Color.White;
-            btn2Ano.Location = new Point(181, 2);
-            btn2Ano.Margin = new Padding(2);
+            btn2Ano.Location = new Point(206, 3);
+            btn2Ano.Margin = new Padding(2, 3, 2, 3);
             btn2Ano.Name = "btn2Ano";
-            btn2Ano.Size = new Size(118, 36);
+            btn2Ano.Size = new Size(135, 48);
             btn2Ano.TabIndex = 14;
             btn2Ano.Text = "2º Ano";
             btn2Ano.UseVisualStyleBackColor = false;
@@ -251,10 +256,10 @@ namespace Dashboard
             btn3Ano.FlatAppearance.BorderSize = 0;
             btn3Ano.FlatStyle = FlatStyle.Flat;
             btn3Ano.ForeColor = Color.White;
-            btn3Ano.Location = new Point(361, 2);
-            btn3Ano.Margin = new Padding(2);
+            btn3Ano.Location = new Point(411, 3);
+            btn3Ano.Margin = new Padding(2, 3, 2, 3);
             btn3Ano.Name = "btn3Ano";
-            btn3Ano.Size = new Size(118, 36);
+            btn3Ano.Size = new Size(135, 48);
             btn3Ano.TabIndex = 15;
             btn3Ano.Text = "3º Ano";
             btn3Ano.UseVisualStyleBackColor = false;
@@ -270,10 +275,10 @@ namespace Dashboard
             arredondamentoBtn1.FlatAppearance.BorderSize = 0;
             arredondamentoBtn1.FlatStyle = FlatStyle.Flat;
             arredondamentoBtn1.ForeColor = Color.White;
-            arredondamentoBtn1.Location = new Point(539, 2);
-            arredondamentoBtn1.Margin = new Padding(2);
+            arredondamentoBtn1.Location = new Point(614, 3);
+            arredondamentoBtn1.Margin = new Padding(2, 3, 2, 3);
             arredondamentoBtn1.Name = "arredondamentoBtn1";
-            arredondamentoBtn1.Size = new Size(118, 36);
+            arredondamentoBtn1.Size = new Size(135, 48);
             arredondamentoBtn1.TabIndex = 16;
             arredondamentoBtn1.Text = "Todos";
             arredondamentoBtn1.UseVisualStyleBackColor = false;
@@ -282,9 +287,10 @@ namespace Dashboard
             // panel5
             // 
             panel5.Controls.Add(tlpConteudoPrincipal);
-            panel5.Location = new Point(0, 329);
+            panel5.Location = new Point(0, 439);
+            panel5.Margin = new Padding(3, 4, 3, 4);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1069, 429);
+            panel5.Size = new Size(1222, 572);
             panel5.TabIndex = 18;
             // 
             // tlpConteudoPrincipal
@@ -297,13 +303,14 @@ namespace Dashboard
             tlpConteudoPrincipal.Controls.Add(pnGraficoTurma, 1, 0);
             tlpConteudoPrincipal.Dock = DockStyle.Fill;
             tlpConteudoPrincipal.Location = new Point(0, 0);
+            tlpConteudoPrincipal.Margin = new Padding(3, 4, 3, 4);
             tlpConteudoPrincipal.Name = "tlpConteudoPrincipal";
-            tlpConteudoPrincipal.Padding = new Padding(35, 0, 15, 30);
+            tlpConteudoPrincipal.Padding = new Padding(40, 0, 17, 40);
             tlpConteudoPrincipal.RowCount = 1;
             tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 352F));
-            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 352F));
-            tlpConteudoPrincipal.Size = new Size(1069, 429);
+            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 532F));
+            tlpConteudoPrincipal.RowStyles.Add(new RowStyle(SizeType.Absolute, 532F));
+            tlpConteudoPrincipal.Size = new Size(1222, 572);
             tlpConteudoPrincipal.TabIndex = 0;
             // 
             // pnAlunoAtrasos
@@ -311,10 +318,9 @@ namespace Dashboard
             pnAlunoAtrasos.BackColor = Color.Lavender;
             pnAlunoAtrasos.Controls.Add(tbAtrasoTurma);
             pnAlunoAtrasos.Dock = DockStyle.Fill;
-            pnAlunoAtrasos.Location = new Point(38, 2);
-            pnAlunoAtrasos.Margin = new Padding(3, 2, 3, 2);
+            pnAlunoAtrasos.Location = new Point(43, 3);
             pnAlunoAtrasos.Name = "pnAlunoAtrasos";
-            pnAlunoAtrasos.Size = new Size(417, 395);
+            pnAlunoAtrasos.Size = new Size(477, 526);
             pnAlunoAtrasos.TabIndex = 5;
             // 
             // tbAtrasoTurma
@@ -341,11 +347,11 @@ namespace Dashboard
             tbAtrasoTurma.Dock = DockStyle.Fill;
             tbAtrasoTurma.GridColor = Color.FromArgb(233, 236, 239);
             tbAtrasoTurma.Location = new Point(0, 0);
-            tbAtrasoTurma.Margin = new Padding(10, 10, 15, 10);
+            tbAtrasoTurma.Margin = new Padding(11, 13, 17, 13);
             tbAtrasoTurma.Name = "tbAtrasoTurma";
             tbAtrasoTurma.ReadOnly = true;
             tbAtrasoTurma.RowHeadersWidth = 51;
-            tbAtrasoTurma.Size = new Size(417, 395);
+            tbAtrasoTurma.Size = new Size(477, 526);
             tbAtrasoTurma.TabIndex = 0;
             tbAtrasoTurma.CellContentClick += tbAtrasoTurma_CellContentClick;
             // 
@@ -354,10 +360,10 @@ namespace Dashboard
             pnGraficoTurma.BackColor = Color.GhostWhite;
             pnGraficoTurma.Controls.Add(arredondamentoCard1);
             pnGraficoTurma.Dock = DockStyle.Fill;
-            pnGraficoTurma.Location = new Point(461, 2);
-            pnGraficoTurma.Margin = new Padding(3, 2, 3, 10);
+            pnGraficoTurma.Location = new Point(526, 3);
+            pnGraficoTurma.Margin = new Padding(3, 3, 3, 13);
             pnGraficoTurma.Name = "pnGraficoTurma";
-            pnGraficoTurma.Size = new Size(590, 387);
+            pnGraficoTurma.Size = new Size(676, 516);
             pnGraficoTurma.TabIndex = 7;
             pnGraficoTurma.Paint += pnGraficoTurma_Paint;
             // 
@@ -370,16 +376,18 @@ namespace Dashboard
             arredondamentoCard1.Controls.Add(panel2);
             arredondamentoCard1.Controls.Add(panel1);
             arredondamentoCard1.Location = new Point(3, 1);
+            arredondamentoCard1.Margin = new Padding(3, 4, 3, 4);
             arredondamentoCard1.Name = "arredondamentoCard1";
-            arredondamentoCard1.Size = new Size(579, 391);
+            arredondamentoCard1.Size = new Size(662, 521);
             arredondamentoCard1.TabIndex = 1;
             // 
             // panel2
             // 
             panel2.Controls.Add(btnSolicitarAdvertencia);
-            panel2.Location = new Point(6, 260);
+            panel2.Location = new Point(7, 347);
+            panel2.Margin = new Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new Size(567, 123);
+            panel2.Size = new Size(648, 164);
             panel2.TabIndex = 12;
             // 
             // btnSolicitarAdvertencia
@@ -392,9 +400,10 @@ namespace Dashboard
             btnSolicitarAdvertencia.FlatAppearance.BorderSize = 0;
             btnSolicitarAdvertencia.FlatStyle = FlatStyle.Flat;
             btnSolicitarAdvertencia.ForeColor = Color.White;
-            btnSolicitarAdvertencia.Location = new Point(16, 6);
+            btnSolicitarAdvertencia.Location = new Point(18, 8);
+            btnSolicitarAdvertencia.Margin = new Padding(3, 4, 3, 4);
             btnSolicitarAdvertencia.Name = "btnSolicitarAdvertencia";
-            btnSolicitarAdvertencia.Size = new Size(164, 34);
+            btnSolicitarAdvertencia.Size = new Size(187, 45);
             btnSolicitarAdvertencia.TabIndex = 0;
             btnSolicitarAdvertencia.Text = "Solicitar Advertencia";
             btnSolicitarAdvertencia.UseVisualStyleBackColor = false;
@@ -418,9 +427,10 @@ namespace Dashboard
             panel1.Controls.Add(label5);
             panel1.Controls.Add(lblEmailAluno);
             panel1.Controls.Add(lblAnoAluno);
-            panel1.Location = new Point(6, 3);
+            panel1.Location = new Point(7, 4);
+            panel1.Margin = new Padding(3, 4, 3, 4);
             panel1.Name = "panel1";
-            panel1.Size = new Size(567, 257);
+            panel1.Size = new Size(648, 343);
             panel1.TabIndex = 11;
             panel1.Paint += panel1_Paint;
             // 
@@ -428,9 +438,10 @@ namespace Dashboard
             // 
             pictureBoxCarometro.BackColor = Color.White;
             pictureBoxCarometro.BorderRadius = 15;
-            pictureBoxCarometro.Location = new Point(23, 33);
+            pictureBoxCarometro.Location = new Point(26, 44);
+            pictureBoxCarometro.Margin = new Padding(3, 4, 3, 4);
             pictureBoxCarometro.Name = "pictureBoxCarometro";
-            pictureBoxCarometro.Size = new Size(157, 193);
+            pictureBoxCarometro.Size = new Size(179, 257);
             pictureBoxCarometro.TabIndex = 19;
             pictureBoxCarometro.TabStop = false;
             // 
@@ -439,9 +450,10 @@ namespace Dashboard
             button5.BackColor = Color.LightGray;
             button5.FlatStyle = FlatStyle.Flat;
             button5.ForeColor = Color.Silver;
-            button5.Location = new Point(209, 234);
+            button5.Location = new Point(239, 312);
+            button5.Margin = new Padding(3, 4, 3, 4);
             button5.Name = "button5";
-            button5.Size = new Size(335, 1);
+            button5.Size = new Size(383, 1);
             button5.TabIndex = 18;
             button5.UseVisualStyleBackColor = false;
             // 
@@ -450,9 +462,10 @@ namespace Dashboard
             button4.BackColor = Color.LightGray;
             button4.FlatStyle = FlatStyle.Flat;
             button4.ForeColor = Color.Silver;
-            button4.Location = new Point(209, 190);
+            button4.Location = new Point(239, 253);
+            button4.Margin = new Padding(3, 4, 3, 4);
             button4.Name = "button4";
-            button4.Size = new Size(335, 1);
+            button4.Size = new Size(383, 1);
             button4.TabIndex = 17;
             button4.UseVisualStyleBackColor = false;
             // 
@@ -461,9 +474,10 @@ namespace Dashboard
             button3.BackColor = Color.LightGray;
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.Silver;
-            button3.Location = new Point(209, 141);
+            button3.Location = new Point(239, 188);
+            button3.Margin = new Padding(3, 4, 3, 4);
             button3.Name = "button3";
-            button3.Size = new Size(335, 1);
+            button3.Size = new Size(383, 1);
             button3.TabIndex = 16;
             button3.UseVisualStyleBackColor = false;
             // 
@@ -472,9 +486,10 @@ namespace Dashboard
             button2.BackColor = Color.LightGray;
             button2.FlatStyle = FlatStyle.Flat;
             button2.ForeColor = Color.Silver;
-            button2.Location = new Point(209, 96);
+            button2.Location = new Point(239, 128);
+            button2.Margin = new Padding(3, 4, 3, 4);
             button2.Name = "button2";
-            button2.Size = new Size(335, 1);
+            button2.Size = new Size(383, 1);
             button2.TabIndex = 15;
             button2.UseVisualStyleBackColor = false;
             // 
@@ -483,9 +498,10 @@ namespace Dashboard
             button1.BackColor = Color.LightGray;
             button1.FlatStyle = FlatStyle.Flat;
             button1.ForeColor = Color.Silver;
-            button1.Location = new Point(209, 53);
+            button1.Location = new Point(239, 71);
+            button1.Margin = new Padding(3, 4, 3, 4);
             button1.Name = "button1";
-            button1.Size = new Size(335, 1);
+            button1.Size = new Size(383, 1);
             button1.TabIndex = 14;
             button1.UseVisualStyleBackColor = false;
             // 
@@ -494,9 +510,9 @@ namespace Dashboard
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label1.ForeColor = Color.FromArgb(108, 117, 125);
-            label1.Location = new Point(205, 27);
+            label1.Location = new Point(234, 36);
             label1.Name = "label1";
-            label1.Size = new Size(37, 21);
+            label1.Size = new Size(46, 28);
             label1.TabIndex = 13;
             label1.Text = "RM:";
             // 
@@ -505,9 +521,9 @@ namespace Dashboard
             lblRM.AutoSize = true;
             lblRM.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblRM.ForeColor = Color.FromArgb(44, 62, 80);
-            lblRM.Location = new Point(240, 28);
+            lblRM.Location = new Point(274, 37);
             lblRM.Name = "lblRM";
-            lblRM.Size = new Size(0, 20);
+            lblRM.Size = new Size(0, 25);
             lblRM.TabIndex = 12;
             // 
             // label8
@@ -515,9 +531,9 @@ namespace Dashboard
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label8.ForeColor = Color.FromArgb(108, 117, 125);
-            label8.Location = new Point(206, 68);
+            label8.Location = new Point(235, 91);
             label8.Name = "label8";
-            label8.Size = new Size(56, 21);
+            label8.Size = new Size(70, 28);
             label8.TabIndex = 10;
             label8.Text = "Nome:";
             // 
@@ -526,9 +542,9 @@ namespace Dashboard
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.FromArgb(108, 117, 125);
-            label6.Location = new Point(205, 160);
+            label6.Location = new Point(234, 213);
             label6.Name = "label6";
-            label6.Size = new Size(51, 21);
+            label6.Size = new Size(63, 28);
             label6.TabIndex = 7;
             label6.Text = "Email:";
             // 
@@ -537,9 +553,9 @@ namespace Dashboard
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label7.ForeColor = Color.FromArgb(108, 117, 125);
-            label7.Location = new Point(206, 205);
+            label7.Location = new Point(235, 273);
             label7.Name = "label7";
-            label7.Size = new Size(41, 21);
+            label7.Size = new Size(52, 28);
             label7.TabIndex = 8;
             label7.Text = "Ano:";
             // 
@@ -548,9 +564,9 @@ namespace Dashboard
             lblNomeAluno.AutoSize = true;
             lblNomeAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblNomeAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblNomeAluno.Location = new Point(259, 70);
+            lblNomeAluno.Location = new Point(296, 93);
             lblNomeAluno.Name = "lblNomeAluno";
-            lblNomeAluno.Size = new Size(0, 20);
+            lblNomeAluno.Size = new Size(0, 25);
             lblNomeAluno.TabIndex = 0;
             // 
             // lblTelAluno
@@ -558,9 +574,9 @@ namespace Dashboard
             lblTelAluno.AutoSize = true;
             lblTelAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblTelAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTelAluno.Location = new Point(273, 114);
+            lblTelAluno.Location = new Point(312, 152);
             lblTelAluno.Name = "lblTelAluno";
-            lblTelAluno.Size = new Size(0, 20);
+            lblTelAluno.Size = new Size(0, 25);
             lblTelAluno.TabIndex = 1;
             // 
             // label5
@@ -568,9 +584,9 @@ namespace Dashboard
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.FromArgb(108, 117, 125);
-            label5.Location = new Point(205, 113);
+            label5.Location = new Point(234, 151);
             label5.Name = "label5";
-            label5.Size = new Size(70, 21);
+            label5.Size = new Size(88, 28);
             label5.TabIndex = 6;
             label5.Text = "Telefone:";
             // 
@@ -579,9 +595,9 @@ namespace Dashboard
             lblEmailAluno.AutoSize = true;
             lblEmailAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblEmailAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblEmailAluno.Location = new Point(256, 160);
+            lblEmailAluno.Location = new Point(293, 213);
             lblEmailAluno.Name = "lblEmailAluno";
-            lblEmailAluno.Size = new Size(0, 20);
+            lblEmailAluno.Size = new Size(0, 25);
             lblEmailAluno.TabIndex = 2;
             // 
             // lblAnoAluno
@@ -589,9 +605,9 @@ namespace Dashboard
             lblAnoAluno.AutoSize = true;
             lblAnoAluno.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblAnoAluno.ForeColor = Color.FromArgb(44, 62, 80);
-            lblAnoAluno.Location = new Point(243, 206);
+            lblAnoAluno.Location = new Point(278, 275);
             lblAnoAluno.Name = "lblAnoAluno";
-            lblAnoAluno.Size = new Size(0, 20);
+            lblAnoAluno.Size = new Size(0, 25);
             lblAnoAluno.TabIndex = 4;
             // 
             // panel3
@@ -600,9 +616,10 @@ namespace Dashboard
             panel3.Controls.Add(lblNmTurma);
             panel3.Controls.Add(tableLayoutPanel3);
             panel3.Location = new Point(0, 0);
+            panel3.Margin = new Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Padding = new Padding(35, 0, 0, 0);
-            panel3.Size = new Size(766, 255);
+            panel3.Padding = new Padding(40, 0, 0, 0);
+            panel3.Size = new Size(875, 340);
             panel3.TabIndex = 17;
             panel3.Paint += panel3_Paint;
             // 
@@ -610,9 +627,9 @@ namespace Dashboard
             // 
             lblNmTurma.AutoSize = true;
             lblNmTurma.Font = new Font("Segoe UI Semibold", 20F, FontStyle.Bold);
-            lblNmTurma.Location = new Point(33, 34);
+            lblNmTurma.Location = new Point(38, 45);
             lblNmTurma.Name = "lblNmTurma";
-            lblNmTurma.Size = new Size(194, 37);
+            lblNmTurma.Size = new Size(243, 46);
             lblNmTurma.TabIndex = 2;
             lblNmTurma.Text = "Administração";
             lblNmTurma.TextAlign = ContentAlignment.MiddleLeft;
@@ -626,21 +643,22 @@ namespace Dashboard
             tableLayoutPanel3.Controls.Add(panel7, 1, 0);
             tableLayoutPanel3.Controls.Add(panel6, 0, 0);
             tableLayoutPanel3.Dock = DockStyle.Bottom;
-            tableLayoutPanel3.Location = new Point(35, 99);
-            tableLayoutPanel3.Margin = new Padding(2);
+            tableLayoutPanel3.Location = new Point(40, 132);
+            tableLayoutPanel3.Margin = new Padding(2, 3, 2, 3);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel3.Size = new Size(731, 156);
+            tableLayoutPanel3.Size = new Size(835, 208);
             tableLayoutPanel3.TabIndex = 12;
             // 
             // panel7
             // 
             panel7.Controls.Add(pnAtrasos_dia);
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(368, 3);
+            panel7.Location = new Point(420, 4);
+            panel7.Margin = new Padding(3, 4, 3, 4);
             panel7.Name = "panel7";
-            panel7.Size = new Size(360, 150);
+            panel7.Size = new Size(412, 200);
             panel7.TabIndex = 11;
             // 
             // pnAtrasos_dia
@@ -653,10 +671,11 @@ namespace Dashboard
             pnAtrasos_dia.Controls.Add(pictureBox1);
             pnAtrasos_dia.Dock = DockStyle.Left;
             pnAtrasos_dia.Location = new Point(0, 0);
+            pnAtrasos_dia.Margin = new Padding(3, 4, 3, 4);
             pnAtrasos_dia.Name = "pnAtrasos_dia";
             pnAtrasos_dia.ShadowColor = Color.FromArgb(50, 0, 0, 0);
             pnAtrasos_dia.ShadowSize = 5;
-            pnAtrasos_dia.Size = new Size(294, 150);
+            pnAtrasos_dia.Size = new Size(336, 200);
             pnAtrasos_dia.TabIndex = 13;
             pnAtrasos_dia.Paint += pnAtrasos_dia_Paint;
             // 
@@ -665,9 +684,10 @@ namespace Dashboard
             button7.BackColor = Color.SteelBlue;
             button7.FlatStyle = FlatStyle.Flat;
             button7.ForeColor = Color.SteelBlue;
-            button7.Location = new Point(27, 120);
+            button7.Location = new Point(31, 160);
+            button7.Margin = new Padding(3, 4, 3, 4);
             button7.Name = "button7";
-            button7.Size = new Size(164, 2);
+            button7.Size = new Size(187, 3);
             button7.TabIndex = 12;
             button7.UseVisualStyleBackColor = false;
             // 
@@ -678,9 +698,9 @@ namespace Dashboard
             label4.Enabled = false;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(24, 79);
+            label4.Location = new Point(27, 105);
             label4.Name = "label4";
-            label4.Size = new Size(115, 21);
+            label4.Size = new Size(142, 28);
             label4.TabIndex = 10;
             label4.Text = "Atrasos do dia";
             // 
@@ -688,9 +708,9 @@ namespace Dashboard
             // 
             pn_Atrasos_Dia.Font = new Font("Segoe UI", 45F, FontStyle.Bold);
             pn_Atrasos_Dia.ForeColor = Color.MidnightBlue;
-            pn_Atrasos_Dia.Location = new Point(10, 0);
+            pn_Atrasos_Dia.Location = new Point(11, 0);
             pn_Atrasos_Dia.Name = "pn_Atrasos_Dia";
-            pn_Atrasos_Dia.Size = new Size(127, 96);
+            pn_Atrasos_Dia.Size = new Size(145, 128);
             pn_Atrasos_Dia.TabIndex = 0;
             pn_Atrasos_Dia.Text = "00";
             pn_Atrasos_Dia.Click += label3_Click;
@@ -698,10 +718,9 @@ namespace Dashboard
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(146, -12);
-            pictureBox1.Margin = new Padding(3, 2, 3, 2);
+            pictureBox1.Location = new Point(167, -16);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(140, 137);
+            pictureBox1.Size = new Size(160, 183);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 2;
             pictureBox1.TabStop = false;
@@ -710,9 +729,10 @@ namespace Dashboard
             // 
             panel6.Controls.Add(pnAtrasos_Totais);
             panel6.Dock = DockStyle.Fill;
-            panel6.Location = new Point(3, 3);
+            panel6.Location = new Point(3, 4);
+            panel6.Margin = new Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new Size(359, 150);
+            panel6.Size = new Size(411, 200);
             panel6.TabIndex = 13;
             // 
             // pnAtrasos_Totais
@@ -725,10 +745,11 @@ namespace Dashboard
             pnAtrasos_Totais.Controls.Add(label2);
             pnAtrasos_Totais.Dock = DockStyle.Left;
             pnAtrasos_Totais.Location = new Point(0, 0);
+            pnAtrasos_Totais.Margin = new Padding(3, 4, 3, 4);
             pnAtrasos_Totais.Name = "pnAtrasos_Totais";
             pnAtrasos_Totais.ShadowColor = Color.FromArgb(50, 0, 0, 0);
             pnAtrasos_Totais.ShadowSize = 5;
-            pnAtrasos_Totais.Size = new Size(299, 150);
+            pnAtrasos_Totais.Size = new Size(342, 200);
             pnAtrasos_Totais.TabIndex = 13;
             // 
             // button6
@@ -736,19 +757,19 @@ namespace Dashboard
             button6.BackColor = Color.SteelBlue;
             button6.FlatStyle = FlatStyle.Flat;
             button6.ForeColor = Color.SteelBlue;
-            button6.Location = new Point(28, 120);
+            button6.Location = new Point(32, 160);
+            button6.Margin = new Padding(3, 4, 3, 4);
             button6.Name = "button6";
-            button6.Size = new Size(164, 2);
+            button6.Size = new Size(187, 3);
             button6.TabIndex = 11;
             button6.UseVisualStyleBackColor = false;
             // 
             // pictureBox3
             // 
             pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
-            pictureBox3.Location = new Point(181, 16);
-            pictureBox3.Margin = new Padding(3, 2, 3, 2);
+            pictureBox3.Location = new Point(207, 21);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(92, 93);
+            pictureBox3.Size = new Size(105, 124);
             pictureBox3.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
@@ -758,9 +779,9 @@ namespace Dashboard
             // 
             lblDiario.Font = new Font("Segoe UI", 45F, FontStyle.Bold);
             lblDiario.ForeColor = Color.MidnightBlue;
-            lblDiario.Location = new Point(10, 3);
+            lblDiario.Location = new Point(11, 4);
             lblDiario.Name = "lblDiario";
-            lblDiario.Size = new Size(163, 81);
+            lblDiario.Size = new Size(186, 108);
             lblDiario.TabIndex = 0;
             lblDiario.Text = "00";
             lblDiario.Click += lblDiario_Click;
@@ -772,16 +793,16 @@ namespace Dashboard
             label2.Enabled = false;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(25, 88);
+            label2.Location = new Point(29, 117);
             label2.Name = "label2";
-            label2.Size = new Size(111, 21);
+            label2.Size = new Size(137, 28);
             label2.TabIndex = 10;
             label2.Text = "Atrasos Totais";
             // 
             // tableLayoutPanel2
             // 
             tableLayoutPanel2.ColumnCount = 2;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 218F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 249F));
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(menuPrincipal1, 0, 0);
             tableLayoutPanel2.Controls.Add(pnConteudo, 1, 0);
@@ -791,16 +812,17 @@ namespace Dashboard
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(1303, 788);
+            tableLayoutPanel2.Size = new Size(1489, 1051);
             tableLayoutPanel2.TabIndex = 6;
             // 
             // frmTurma
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1303, 788);
+            ClientSize = new Size(1489, 1051);
             Controls.Add(tableLayoutPanel2);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 4, 3, 4);
             Name = "frmTurma";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "frmTurma";
