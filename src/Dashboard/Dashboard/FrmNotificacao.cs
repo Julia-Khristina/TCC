@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static Peg.Base.PegBaseParser;
+using static Dashboard.Notificacao_Dados;
 
+using static Dashboard.NotificacaoAluno;
 
 namespace Dashboard
 {
@@ -24,28 +27,9 @@ namespace Dashboard
         public event EventHandler<int> TurmaSelecionada;
         private readonly string connectionString = "Server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;";
 
-        private readonly int cursoId;
-        private string nomeTurmaAtual = string.Empty;
-
-
+        private string nomeCursoAtual = string.Empty;
+        private string nomeSerieAtual = string.Empty;
         private System.Windows.Forms.Timer notificationTimer;
-        public class NotificacaoAluno
-        {
-            public string NomeAluno { get; set; }
-            public string NomeSerie { get; set; }
-            public string NomeCurso { get; set; }
-            public int TotalAtrasosMes { get; set; }
-
-            public string Titulo
-            {
-                get => $"{NomeAluno} - {NomeSerie} de {NomeCurso}";
-            }
-
-            public string Descricao
-            {
-                get => $"O estudante registrou {TotalAtrasosMes} faltas no mês atual.";
-            }
-        }
 
         public frmNotificacao()
         {
@@ -116,8 +100,16 @@ namespace Dashboard
         private void frmNotificacao_Load(object sender, EventArgs e)
         {
             Maximizar_Tela();
+            lblTurma.Text = "  Turmas";
+            lblAno.Text = "  Anos";
+
             CarregarNotificacoes();
+
             CarregarTurmas();
+            CarregarSerie();
+
+            AtualizarLabelsNotificacoesTurma();
+
         }
 
         private void Maximizar_Tela()
@@ -212,6 +204,9 @@ namespace Dashboard
             // Eventos do ComboBox real (invisível)
             Turmas_Direcionamento.SelectedIndexChanged += Turmas_Direcionamento_SelectedIndexChanged;
             Turmas_Direcionamento.DrawItem += ComboBox_DrawItem_Custom;
+
+            cbAno.SelectedIndexChanged += cbAno_SelectedIndexChanged;
+            cbAno.DrawItem += ComboBox_DrawItem_Custom;
         }
 
         private void ComboBox_DrawItem_Custom(object? sender, DrawItemEventArgs e)
@@ -259,14 +254,10 @@ namespace Dashboard
             if (Turmas_Direcionamento.SelectedIndex != -1 && Turmas_Direcionamento.SelectedItem != null)
             {
                 // Atualiza o texto do botão
-                string nomeTurma = Turmas_Direcionamento.SelectedItem.ToString()!;
-                lblTurma.Text = nomeTurma;
+                lblTurma.Text = Turmas_Direcionamento.SelectedItem.ToString()!;
 
                 // Altera o ícone do botão para o índice 4
                 lblTurma.ImageIndex = 4;
-
-                // Chama a lógica para abrir o formulário da turma
-                ObterCodigoCursoERedirecionar(nomeTurma);
             }
             else
             {
@@ -277,7 +268,13 @@ namespace Dashboard
                 lblTurma.ImageIndex = 3;
             }
             Turmas_Direcionamento.Visible = false;
+
+            // Recarrega as notificações com o novo filtro
+            CarregarNotificacoes();
         }
+
+        // A função ObterCodigoCursoERedirecionar não é mais necessária para a filtragem de notificação
+        // e foi removida do fluxo de Turmas_Direcionamento_SelectedIndexChanged.
 
         private void ObterCodigoCursoERedirecionar(string nomeTurma)
         {
@@ -357,71 +354,6 @@ namespace Dashboard
             Turmas_Direcionamento.Visible = false;
         }
 
-        public class Notificacao_Dados
-        {
-            private readonly string _conexao;
-
-            public Notificacao_Dados(string connStr)
-            {
-                _conexao = connStr; ;
-            }
-            public List<NotificacaoAluno> GetNotificacoesAtrasos()
-            {
-                List<NotificacaoAluno> notificacoes = new List<NotificacaoAluno>();
-
-                // consulta SQL que busca os alunos com 3+ atrasos no mês atual
-                string sqlQuery = @"
-                SELECT
-                    A.nm_Aluno,
-                    S.nm_Serie,
-                    C.nm_Curso,
-                    COUNT(RA.cd_Registro) AS total_atrasos_mes
-                FROM
-                    RegistroAtraso RA
-                JOIN
-                    Aluno A ON RA.cd_Aluno = A.cd_Aluno
-                JOIN
-                    Serie S ON A.Serie_Aluno = S.cd_Serie
-                JOIN
-                    Curso C ON A.Curso_Aluno = C.cd_Curso
-                WHERE
-                    YEAR(RA.data_registro) = YEAR(CURDATE()) AND MONTH(RA.data_registro) = MONTH(CURDATE())
-                GROUP BY
-                    A.cd_Aluno, A.nm_Aluno, S.nm_Serie, C.nm_Curso
-                HAVING
-                    COUNT(RA.cd_Registro) >= 3;";
-
-                using (MySqlConnection connection = new MySqlConnection(_conexao))
-                {
-                    MySqlCommand command = new MySqlCommand(sqlQuery, connection);
-                    try
-                    {
-                        connection.Open();
-                        using (MySqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                notificacoes.Add(new NotificacaoAluno
-                                {
-                                    NomeAluno = reader.GetString("nm_Aluno"),
-                                    NomeSerie = reader.GetString("nm_Serie"),
-                                    NomeCurso = reader.GetString("nm_Curso"),
-                                    TotalAtrasosMes = reader.GetInt32("total_atrasos_mes")
-                                });
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        // Em um ambiente de produção, registre o erro.
-                        MessageBox.Show("Erro ao carregar notificações: " + ex.Message, "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-
-                return notificacoes;
-            }
-        }
-
         private void CarregarNotificacoes()
         {
             FlowLayoutPanel flowLayoutPanelNotificacoes = this.Controls.Find("flowLayoutPanelNotificacoes", true).OfType<FlowLayoutPanel>().FirstOrDefault();
@@ -442,18 +374,21 @@ namespace Dashboard
 
             cardModelo.Visible = false; // Mantenha o modelo oculto
 
-            // Correção
+            string cursoFiltro = lblTurma.Text == "  Turmas" ? null : lblTurma.Text;
+            string serieFiltro = lblAno.Text == "  Anos" ? null : lblAno.Text;
+
+            // 2. Chama a função de dados com os filtros
             Notificacao_Dados dao = new Notificacao_Dados(connectionString);
-            List<NotificacaoAluno> listaNotificacoes = dao.GetNotificacoesAtrasos();
+            List<NotificacaoAluno> listaNotificacoes = dao.GetNotificacoesAtrasos(cursoFiltro, serieFiltro);
 
             // Limpa os cards antigos apenas antes de adicionar os novos
             flowLayoutPanelNotificacoes.Controls.Clear();
-            flowLayoutPanelNotificacoes.Controls.Add(cardModelo); //  o modelo de volta, mas invisível
+            flowLayoutPanelNotificacoes.Controls.Add(cardModelo); // Adiciona o modelo de volta, mas invisível
 
             if (listaNotificacoes.Count == 0)
             {
                 Label lblSemNotificacoes = new Label();
-                lblSemNotificacoes.Text = "Nenhuma notificação encontrada.";
+                lblSemNotificacoes.Text = "Nenhuma notificação encontrada para os filtros selecionados.";
                 lblSemNotificacoes.AutoSize = true;
                 flowLayoutPanelNotificacoes.Controls.Add(lblSemNotificacoes);
                 return;
@@ -463,11 +398,11 @@ namespace Dashboard
             {
                 CustomControls.ArredondamentoCard novoCard = CloneCard(cardModelo);
 
-                // labels dentro do novo card e preencha com os dados
+                // Encontra os labels dentro do novo card e preenche com os dados
                 Label lblTitulo = novoCard.Controls.Find("lblTitulo_Notificacao", true).OfType<Label>().FirstOrDefault();
                 Label lblDescricao = novoCard.Controls.Find("lblDescricao_Notificacao", true).OfType<Label>().FirstOrDefault();
                 PictureBox pictureBoxIcone = novoCard.Controls.Find("img_sino", true).OfType<PictureBox>().FirstOrDefault();
-                ArredondamentoBtn molduraSino = novoCard.Controls.Find("molduraSino", true).OfType<ArredondamentoBtn>().FirstOrDefault();
+                Control molduraSino = novoCard.Controls.Find("molduraSino", true).FirstOrDefault();
 
                 if (lblTitulo != null)
                 {
@@ -491,13 +426,13 @@ namespace Dashboard
                     molduraSino.Visible = true;
                 }
 
-                // novo card visível
+                // Torna o novo card visível
                 novoCard.Visible = true;
-
-                // novo card ao painel
+                // Adiciona o novo card ao painel
                 flowLayoutPanelNotificacoes.Controls.Add(novoCard);
             }
         }
+
         private void label1_Click(object sender, EventArgs e)
         {
 
@@ -571,5 +506,197 @@ namespace Dashboard
             Turmas_Direcionamento.Focus();
             Turmas_Direcionamento.DroppedDown = true;
         }
+
+        private void ObterCodigoAnoERedirecionar(string nomeSerie)
+        {
+            try
+            {
+                using (var tempConnection = new MySqlConnection(connectionString))
+                {
+                    tempConnection.Open();
+                    string query = "SELECT cd_Serie FROM Serie WHERE nm_Serie = @nomeSerie";
+                    using (MySqlCommand cmd = new MySqlCommand(query, tempConnection))
+                    {
+                        cmd.Parameters.AddWithValue("@nomeSerie", nomeSerie);
+                        object? result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            int cd_Serie = Convert.ToInt32(result);
+                            // Dispara o evento com o ID encontrado
+                            TurmaSelecionada?.Invoke(this, cd_Serie);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Série não encontrado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao obter ID da série: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void CarregarSerie()
+        {
+            try
+            {
+                using (var tempConnection = new MySqlConnection(connectionString))
+                {
+                    tempConnection.Open();
+
+                    string query = "SELECT nm_Serie FROM Serie";
+                    using (MySqlCommand cmd = new MySqlCommand(query, tempConnection))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        cbAno.BeginUpdate();
+                        try
+                        {
+                            cbAno.Items.Clear();
+                            while (reader.Read())
+                            {
+                                string? curso = reader["nm_Serie"]?.ToString();
+                                if (!string.IsNullOrEmpty(curso))
+                                {
+                                    cbAno.Items.Add(curso);
+                                }
+                            }
+                        }
+                        finally
+                        {
+                            cbAno.EndUpdate();
+                        }
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Erro no MySQL: {ex.Message}", "Erro de Banco de Dados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao carregar série: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbAno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void cbAno_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbAno.SelectedIndex != -1 && cbAno.SelectedItem != null)
+            {
+                // Atualiza o texto do botão
+                lblAno.Text = cbAno.SelectedItem.ToString()!;
+
+                // Altera o ícone do botão para o índice 4
+                lblAno.ImageIndex = 4;
+            }
+            else
+            {
+                // Volta o texto para o padrão
+                lblAno.Text = "  Anos";
+
+                // Volta o ícone para o índice da seta para baixo 
+                lblAno.ImageIndex = 3;
+            }
+            cbAno.Visible = false;
+
+            // Recarrega as notificações com o novo filtro
+            CarregarNotificacoes();
+        }
+
+        // A função ObterCodigoAnoERedirecionar não é mais necessária para a filtragem de notificação
+        // e foi removida do fluxo de cbAno_SelectedIndexChanged.
+
+        private void lblAno_Click(object sender, EventArgs e)
+        {
+            cbAno.Focus();
+            cbAno.DroppedDown = true;
+        }
+
+        private void cbAno_Leave(object sender, EventArgs e)
+        {
+            cbAno.Visible = false;
+        }
+
+        private void AtualizarLabelsNotificacoesTurma()
+        {
+            // SEMANA ATUAL
+            string sqlNotificacoesSemana = @"
+            SELECT 
+                COUNT(*) 
+            FROM
+                (
+                    SELECT 
+                        A.cd_Aluno
+                    FROM
+                        RegistroAtraso RA
+                    JOIN
+                        Aluno A ON RA.cd_Aluno = A.cd_Aluno
+                    WHERE
+                        YEARWEEK(RA.data_registro, 1) = YEARWEEK(CURDATE(), 1)
+                    GROUP BY
+                        A.cd_Aluno
+                    HAVING
+                        COUNT(RA.cd_Registro) >= 3
+                ) AS AlunosNotificados";
+
+
+            string sqlNotificacoesMes = @"
+            SELECT 
+                COUNT(*) 
+            FROM
+                (
+                    SELECT 
+                        A.cd_Aluno -- Seleciona o ID do aluno
+                    FROM
+                        RegistroAtraso RA
+                    JOIN
+                        Aluno A ON RA.cd_Aluno = A.cd_Aluno
+                    WHERE
+                        YEAR(RA.data_registro) = YEAR(CURDATE()) 
+                        AND MONTH(RA.data_registro) = MONTH(CURDATE())
+                    GROUP BY
+                        A.cd_Aluno
+                    HAVING
+                        COUNT(RA.cd_Registro) >= 3
+                ) AS AlunosNotificados";
+
+
+            lblNotificacoesSemana.Text = ExecutarScalarQuery(sqlNotificacoesSemana).ToString();
+            lblNotificacoesMes.Text = ExecutarScalarQuery(sqlNotificacoesMes).ToString();
+
+        }
+
+        private int ExecutarScalarQuery(string sql)
+        {
+            int resultado = 0;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    // O parâmetro @cursoId foi removido daqui
+                    try
+                    {
+                        connection.Open();
+                        object? result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            resultado = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao executar query: " + ex.Message);
+                    }
+                }
+            }
+            return resultado;
+        }
+
+
     }
 }
