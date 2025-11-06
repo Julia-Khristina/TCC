@@ -33,6 +33,8 @@ namespace Dashboard
         private string nomeSerieAtual = string.Empty;
         private System.Windows.Forms.Timer notificationTimer;
 
+       
+
         public frmNotificacao()
         {
             InitializeComponent();
@@ -43,11 +45,15 @@ namespace Dashboard
             notificationTimer.Tick += new EventHandler(NotificationTimer_Tick);
             notificationTimer.Start();
 
+
+            
             // 1. Turma Selecionada
             menuPrincipal2.TurmaSelecionada += (sender, novoCursoId) =>
             {
                 AbrirNovoFormularioTurma(novoCursoId);
             };
+
+
 
             // 2. Notificação Clicada (MANTENHA APENAS ESTA)
             menuPrincipal2.NotificacaoClicada += (sender, e) =>
@@ -111,6 +117,11 @@ namespace Dashboard
             CarregarSerie();
 
             AtualizarLabelsNotificacoesTurma();
+
+            NotificacaoEmail notificacao = new NotificacaoEmail();
+            notificacao.VerificarNotificacoesAtrasosPendentes();
+            timer1.Interval = 300000; // 5 minutos (300.000 milissegundos)
+            timer1.Start();
 
         }
 
@@ -758,7 +769,7 @@ namespace Dashboard
                         <body style='font-family: Arial, sans-serif; color: #333;'>
                             <div style='max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;'>
                                 <div style='text-align: center; margin-bottom: 20px;'>
-                                    <img src='https://i.imgur.com/pcKJ9vV.png' alt='Pontualize Logo' width='100'>
+                                    <img src='\TCC\documentos\identidade_visual\pontualize.png' alt='Pontualize Logo' width='100'>
                                     <h2 style='color: #2c3e50;'>Sistema Pontualize</h2>
                                 </div>
                                 <p>Olá <strong>{nome}</strong>,</p>
@@ -792,20 +803,18 @@ namespace Dashboard
             {
                 try
                 {
-                    con.Close();
-                    con.Open();
-                    string sql = "INSERT INTO NotificacaoEnviada (cd_Notificacao, data_envio) VALUES (@id, NOW())";
-                    MySqlCommand cmd = new MySqlCommand(sql, con);
-                    cmd.Parameters.AddWithValue("@id", idNotificacao);
-                    cmd.ExecuteNonQuery();
+                    using (MySqlConnection conn2 = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;"))
+                    {
+                        conn2.Open();
+                        string sql = "INSERT INTO NotificacaoEnviada (cd_Notificacao, data_envio) VALUES (@id, NOW())";
+                        MySqlCommand cmd = new MySqlCommand(sql, conn2);
+                        cmd.Parameters.AddWithValue("@id", idNotificacao);
+                        cmd.ExecuteNonQuery();
+                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao marcar notificação como enviada: " + ex.Message);
-                }
-                finally
-                {
-                    con.Close();
                 }
             }
         }
