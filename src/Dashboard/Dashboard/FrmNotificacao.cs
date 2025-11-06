@@ -749,13 +749,35 @@ namespace Dashboard
                 try
                 {
                     MailMessage mail = new MailMessage();
-                    mail.From = new MailAddress("seuemail@gmail.com", "Sistema Pontualize");
+                    mail.From = new MailAddress("tcchiji@gmail.com", "Sistema Pontualize");
                     mail.To.Add(email);
                     mail.Subject = "Notificação de Atrasos - Pontualize";
-                    mail.Body = $"Olá {nome},\n\n{mensagem}\n\nAtenciosamente,\nEquipe Pontualize";
+                    // Corpo do e-mail em HTML
+                    string corpoEmail = $@"
+                        <html>
+                        <body style='font-family: Arial, sans-serif; color: #333;'>
+                            <div style='max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;'>
+                                <div style='text-align: center; margin-bottom: 20px;'>
+                                    <img src='https://i.imgur.com/pcKJ9vV.png' alt='Pontualize Logo' width='100'>
+                                    <h2 style='color: #2c3e50;'>Sistema Pontualize</h2>
+                                </div>
+                                <p>Olá <strong>{nome}</strong>,</p>
+                                <p>{mensagem}</p>
+                                <p style='margin-top: 20px;'>Pedimos que procure melhorar sua pontualidade para evitar futuras advertências.</p>
+                                <hr style='margin: 25px 0;'>
+                                <p style='font-size: 13px; color: #888; text-align: center;'>
+                                    Esta é uma mensagem automática do sistema Pontualize.<br>
+                                    Por favor, não responda este e-mail.
+                                </p>
+                            </div>
+                        </body>
+                        </html>";
+
+                    mail.Body = corpoEmail;
+                    mail.IsBodyHtml = true; // <-- ESSENCIAL para HTML funcionar
 
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-                    smtp.Credentials = new NetworkCredential("seuemail@gmail.com", "senha_app");
+                    smtp.Credentials = new NetworkCredential("tcchiji@gmail.com", "fmyd uecr rryu rzoi");
                     smtp.EnableSsl = true;
                     smtp.Send(mail);
                 }
