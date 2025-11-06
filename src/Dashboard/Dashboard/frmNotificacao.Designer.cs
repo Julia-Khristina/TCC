@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmNotificacao));
             lblDescricao_Notificacao = new Label();
             lblTitulo_Notificacao = new Label();
@@ -73,6 +74,7 @@
             Turmas_Direcionamento = new ComboBox();
             arredondamentoBtn5 = new ArredondamentoBtn();
             menuPrincipal2 = new MenuPrincipal();
+            timer1 = new System.Windows.Forms.Timer(components);
             tableLayoutPanel1.SuspendLayout();
             pnConteudo.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -651,6 +653,11 @@
             menuPrincipal2.Size = new Size(218, 550);
             menuPrincipal2.TabIndex = 6;
             // 
+            // timer1
+            // 
+            timer1.Interval = 300000;
+            timer1.Tick += timer1_Tick;
+            // 
             // frmNotificacao
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -746,5 +753,6 @@
         private CustomControls.ArredondamentoCard arredondamentoCard1;
         private Panel panel8;
         private CustomControls.ArredondamentoCard arredondamentoCard2;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -1,17 +1,19 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using OpenXmlPowerTools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using static Peg.Base.PegBaseParser;
 using static Dashboard.Notificacao_Dados;
-
 using static Dashboard.NotificacaoAluno;
+using static Peg.Base.PegBaseParser;
 
 namespace Dashboard
 {
@@ -697,6 +699,99 @@ namespace Dashboard
             return resultado;
         }
 
+        public class NotificacaoAluno
+        {
+            public MySqlConnection con = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;");
 
+            // Buscar notficações de atrasos não enviadas.
+            public void VerificarNotificacoesAtrasosPendentes()
+            {
+                try
+                {
+                    con.Open();
+                    string query = @"
+                            SELECT N.cd_Notificacao, N.cd_Aluno, N.mensagem, A.nm_Aluno, A.gmail_aluno 
+                        FROM Notificacao N
+                        JOIN Aluno A ON A.cd_Aluno = N.cd_Aluno
+                        WHERE N.cd_Notificacao NOT IN (SELECT cd_Notificacao FROM NotificacaoEnviada)";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    MySqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        string nome = reader["nm_Aluno"].ToString();
+                        string email = reader["gmail_aluno"].ToString();
+                        string mensagem = reader["mensagem"].ToString();
+                        int idNotificacao = Convert.ToInt32(reader["cd_Notificacao"]);
+
+                        // Envia o e-mail
+                        EnviarEmail(nome, email, mensagem);
+
+                        // Marca como enviada
+                        MarcarComoEnviada(idNotificacao);
+                    }
+                    reader.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao verificar notificações pendentes: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+
+
+            public void EnviarEmail(string nome, string email, string mensagem)
+            {
+                try
+                {
+                    MailMessage mail = new MailMessage();
+                    mail.From = new MailAddress("seuemail@gmail.com", "Sistema Pontualize");
+                    mail.To.Add(email);
+                    mail.Subject = "Notificação de Atrasos - Pontualize";
+                    mail.Body = $"Olá {nome},\n\n{mensagem}\n\nAtenciosamente,\nEquipe Pontualize";
+
+                    SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                    smtp.Credentials = new NetworkCredential("seuemail@gmail.com", "senha_app");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao enviar e-mail: " + ex.Message);
+                }
+
+            }
+
+            public void MarcarComoEnviada(int idNotificacao)
+            {
+                try
+                {
+                    con.Close();
+                    con.Open();
+                    string sql = "INSERT INTO NotificacaoEnviada (cd_Notificacao, data_envio) VALUES (@id, NOW())";
+                    MySqlCommand cmd = new MySqlCommand(sql, con);
+                    cmd.Parameters.AddWithValue("@id", idNotificacao);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao marcar notificação como enviada: " + ex.Message);
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            NotificacaoAluno notificacao = new NotificacaoAluno();
+            notificacao.VerificarNotificacoesAtrasosPendentes();
+        }
     }
 }

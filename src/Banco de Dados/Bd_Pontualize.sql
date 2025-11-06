@@ -45,6 +45,13 @@ CREATE TABLE Administrador (
     ult_atualizacao DATETIME
 );
 
+CREATE TABLE NotificacaoEnviada (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    cd_Notificacao INT,
+    data_envio DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (cd_Notificacao) REFERENCES Notificacao(cd_Notificacao)
+);
+
 CREATE TABLE Notificacao (
     cd_Notificacao INT AUTO_INCREMENT PRIMARY KEY,
     cd_Aluno INT,
