@@ -699,7 +699,7 @@ namespace Dashboard
             return resultado;
         }
 
-        public class NotificacaoAluno
+        public class NotificacaoEmail
         {
             public MySqlConnection con = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;");
 
@@ -790,7 +790,7 @@ namespace Dashboard
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            NotificacaoAluno notificacao = new NotificacaoAluno();
+            NotificacaoEmail notificacao = new NotificacaoEmail();
             notificacao.VerificarNotificacoesAtrasosPendentes();
         }
     }
