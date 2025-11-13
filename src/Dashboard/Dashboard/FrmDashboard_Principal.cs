@@ -131,7 +131,7 @@ namespace Dashboard
 
             lblDiario.Text = GetAtrasos(sqlDia).ToString();
             lblSemanal.Text = GetAtrasos(sqlSemana).ToString();
-            label4.Text = GetAtrasos(sqlMes).ToString();
+            lblMensal.Text = GetAtrasos(sqlMes).ToString();
 
             string sqlTurmaMaisAtrasadaBase = "SELECT CONCAT(RA.nm_Serie, ' ', RA.nm_Curso) AS TurmaCompleta FROM RegistroAtraso RA ";
             string groupByTurma = " GROUP BY TurmaCompleta ORDER BY COUNT(*) DESC LIMIT 1";
@@ -168,13 +168,51 @@ namespace Dashboard
             lbl2_CardMensal.Text = "Turma mais atrasada:\n" + GetTurmaMaisAtrasada(sqlTurmaMaisAtrasadaMes);
 
             // Notificações
-            string sqlNotificacoesEsteMes = "SELECT COUNT(*) FROM Notificacao WHERE YEAR(data_notificacao) = YEAR(CURDATE()) AND MONTH(data_notificacao) = MONTH(CURDATE())";
-            int notificacoesEsteMes = GetContagem(sqlNotificacoesEsteMes);
-            lblNotificacao.Text = notificacoesEsteMes.ToString("D2"); // "D2" para formato "00"
+            string sqlNotificacoesMes = @"
+            SELECT 
+                COUNT(*) 
+            FROM
+                (
+                    SELECT 
+                        A.cd_Aluno -- Seleciona o ID do aluno
+                    FROM
+                        RegistroAtraso RA
+                    JOIN
+                        Aluno A ON RA.cd_Aluno = A.cd_Aluno
+                    WHERE
+                        YEAR(RA.data_registro) = YEAR(CURDATE()) 
+                        AND MONTH(RA.data_registro) = MONTH(CURDATE())
+                    GROUP BY
+                        A.cd_Aluno
+                    HAVING
+                        COUNT(RA.cd_Registro) >= 3
+                ) AS AlunosNotificados";
+
+            string sqlNotificacaoMesPassado = @"
+            SELECT COUNT(*) FROM
+            (
+                SELECT 
+                    A.cd_Aluno
+                FROM
+                    RegistroAtraso RA
+                JOIN
+                    Aluno A ON RA.cd_Aluno = A.cd_Aluno
+                WHERE
+                    YEAR(RA.data_registro) = YEAR(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                    AND MONTH(RA.data_registro) = MONTH(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                GROUP BY
+                    A.cd_Aluno
+                HAVING
+                    COUNT(RA.cd_Registro) >= 3
+            ) AS AlunosNotificados";
+
+            lblNotificacao.Text = ExecutarScalarQuery(sqlNotificacoesMes).ToString();
+
             // em relação ao mês passado
-            string sqlNotificacoesMesPassado = "SELECT COUNT(*) FROM Notificacao WHERE YEAR(data_notificacao) = YEAR(CURDATE() - INTERVAL 1 MONTH) AND MONTH(data_notificacao) = MONTH(CURDATE() - INTERVAL 1 MONTH)";
-            int notificacoesMesPassado = GetContagem(sqlNotificacoesMesPassado);
-            int diferencaMesNot = notificacoesEsteMes - notificacoesMesPassado;
+            int notificacoesMes = GetContagem(sqlNotificacoesMes);
+            int notificacoesMesPassado = GetContagem(sqlNotificacaoMesPassado);
+            int diferencaMesNot = notificacoesMes - notificacoesMesPassado;
+
             lbl1_CardNot.Text = (diferencaMesNot >= 0 ? "↑ " : "↓ ") + Math.Abs(diferencaMesNot).ToString() + " em relação ao mês passado";
 
 
@@ -198,6 +236,32 @@ namespace Dashboard
             {
                 lbl2_CardNot.Text = "Turma com mais notificações:\n" + turmaDestaque;
             }
+        }
+
+        private int ExecutarScalarQuery(string sql)
+        {
+            int resultado = 0;
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                using (MySqlCommand command = new MySqlCommand(sql, connection))
+                {
+                    // O parâmetro @cursoId foi removido daqui
+                    try
+                    {
+                        connection.Open();
+                        object? result = command.ExecuteScalar();
+                        if (result != null && result != DBNull.Value)
+                        {
+                            resultado = Convert.ToInt32(result);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao executar query: " + ex.Message);
+                    }
+                }
+            }
+            return resultado;
         }
 
         public int GetContagem(string query)
@@ -580,6 +644,11 @@ namespace Dashboard
             {
                 MessageBox.Show($"Erro ao abrir o navegador: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void lblMensal_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

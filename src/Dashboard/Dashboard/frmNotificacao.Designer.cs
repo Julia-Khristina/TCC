@@ -135,7 +135,7 @@
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 1;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel1.Size = new Size(1303, 550);
+            tableLayoutPanel1.Size = new Size(1303, 731);
             tableLayoutPanel1.TabIndex = 6;
             // 
             // pnConteudo
@@ -146,7 +146,7 @@
             pnConteudo.Location = new Point(218, 0);
             pnConteudo.Margin = new Padding(0);
             pnConteudo.Name = "pnConteudo";
-            pnConteudo.Size = new Size(1085, 550);
+            pnConteudo.Size = new Size(1085, 731);
             pnConteudo.TabIndex = 7;
             // 
             // tableLayoutPanel4
@@ -163,7 +163,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 15.454545F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 84.5454559F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(362, 550);
+            tableLayoutPanel4.Size = new Size(362, 731);
             tableLayoutPanel4.TabIndex = 3;
             // 
             // tableLayoutPanel5
@@ -173,14 +173,14 @@
             tableLayoutPanel5.Controls.Add(tableLayoutPanel6, 0, 0);
             tableLayoutPanel5.Controls.Add(panel8, 0, 2);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 88);
+            tableLayoutPanel5.Location = new Point(3, 115);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.Padding = new Padding(10, 0, 10, 0);
             tableLayoutPanel5.RowCount = 3;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 37.4727669F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 1.96078432F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 60.56645F));
-            tableLayoutPanel5.Size = new Size(356, 459);
+            tableLayoutPanel5.Size = new Size(356, 613);
             tableLayoutPanel5.TabIndex = 17;
             // 
             // tableLayoutPanel6
@@ -189,7 +189,7 @@
             tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 32.31323F));
             tableLayoutPanel6.Controls.Add(panel9, 0, 0);
             tableLayoutPanel6.Dock = DockStyle.Bottom;
-            tableLayoutPanel6.Location = new Point(12, 2);
+            tableLayoutPanel6.Location = new Point(12, 59);
             tableLayoutPanel6.Margin = new Padding(2);
             tableLayoutPanel6.Name = "tableLayoutPanel6";
             tableLayoutPanel6.RowCount = 1;
@@ -280,7 +280,7 @@
             // panel8
             // 
             panel8.Controls.Add(arredondamentoCard2);
-            panel8.Location = new Point(13, 184);
+            panel8.Location = new Point(13, 244);
             panel8.Name = "panel8";
             panel8.Size = new Size(330, 170);
             panel8.TabIndex = 1;
@@ -397,19 +397,19 @@
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 3;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 15F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 19.09091F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 66F));
-            tableLayoutPanel2.Size = new Size(1085, 550);
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 14.7742815F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 70.31464F));
+            tableLayoutPanel2.Size = new Size(1085, 731);
             tableLayoutPanel2.TabIndex = 2;
             // 
             // flowLayoutPanelNotificacoes
             // 
             flowLayoutPanelNotificacoes.BackColor = Color.GhostWhite;
             flowLayoutPanelNotificacoes.Controls.Add(Card_Notificacao);
-            flowLayoutPanelNotificacoes.Location = new Point(3, 189);
+            flowLayoutPanelNotificacoes.Location = new Point(3, 219);
             flowLayoutPanelNotificacoes.Name = "flowLayoutPanelNotificacoes";
             flowLayoutPanelNotificacoes.Padding = new Padding(30, 0, 0, 0);
-            flowLayoutPanelNotificacoes.Size = new Size(672, 358);
+            flowLayoutPanelNotificacoes.Size = new Size(672, 477);
             flowLayoutPanelNotificacoes.TabIndex = 7;
             // 
             // Card_Notificacao
@@ -462,7 +462,7 @@
             panel4.Dock = DockStyle.Fill;
             panel4.Location = new Point(3, 3);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1079, 76);
+            panel4.Size = new Size(1079, 103);
             panel4.TabIndex = 18;
             // 
             // label2
@@ -480,7 +480,7 @@
             // 
             panel2.BackColor = Color.Transparent;
             panel2.Controls.Add(tableLayoutPanel3);
-            panel2.Location = new Point(3, 85);
+            panel2.Location = new Point(3, 112);
             panel2.Name = "panel2";
             panel2.Size = new Size(618, 98);
             panel2.TabIndex = 20;
@@ -650,7 +650,7 @@
             menuPrincipal2.Location = new Point(0, 0);
             menuPrincipal2.Margin = new Padding(0);
             menuPrincipal2.Name = "menuPrincipal2";
-            menuPrincipal2.Size = new Size(218, 550);
+            menuPrincipal2.Size = new Size(218, 731);
             menuPrincipal2.TabIndex = 6;
             // 
             // timer1
@@ -663,7 +663,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.GhostWhite;
-            ClientSize = new Size(1303, 550);
+            ClientSize = new Size(1303, 731);
             Controls.Add(tableLayoutPanel1);
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(1);
