@@ -238,13 +238,19 @@ namespace Dashboard
                 {
                     connection.Open();
 
-                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                                   FROM Aluno a
-                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                                   WHERE a.Curso_Aluno = @cursoId
-                                   GROUP BY a.nm_Aluno
-                                   ORDER BY `Quantidade de Atrasos` DESC";
+                    string query = @"
+                    SELECT a.nm_Aluno AS 'Nome do Aluno', 
+                           COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                    FROM Aluno a
+                    LEFT JOIN RegistroAtraso ra 
+                           ON a.cd_Aluno = ra.cd_Aluno
+                           AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                           AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                    WHERE a.Curso_Aluno = @cursoId
+                    GROUP BY a.nm_Aluno
+                    ORDER BY `Quantidade de Atrasos` DESC";
+
+
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
