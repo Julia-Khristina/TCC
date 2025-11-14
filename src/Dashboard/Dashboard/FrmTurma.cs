@@ -902,8 +902,33 @@ namespace Dashboard
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            //Ao clicar neste botão, fazer download do relátorio do power bi da turma selecionada.(usar o index para saber qual turma pelo nome)
-            //antes de baixar o arquivo, o power bi deve atualizar os dados para que não esteja faltando nenhum registro.
+            // Envia o usuário para o link no navegador.
+            string urlSharePoint = "https://etecspgov-my.sharepoint.com/:u:/r/personal/hillary_medeiros_etec_sp_gov_br/Documents/TCC/Pontualize.pbix?csf=1&web=1&e=OTz6G7";
+
+            try
+            {
+                // Cria um objeto ProcessStartInfo com a URL
+                var psi = new System.Diagnostics.ProcessStartInfo(urlSharePoint)
+                {
+                    // Define UseShellExecute como true para usar o shell do sistema
+                    // e abrir a URL no navegador padrão.
+                    UseShellExecute = true
+                };
+
+                // Inicia o processo
+                System.Diagnostics.Process.Start(psi);
+
+                MessageBox.Show(
+                    "O arquivo do Power BI foi aberto no seu navegador (SharePoint).",
+                    "Visualização do Relatório",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao abrir o navegador: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
