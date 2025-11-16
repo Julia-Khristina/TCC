@@ -208,7 +208,7 @@ namespace prjTCC
                 {
                     conn.Open();
                     // JOIN para pegar os nomes de série e curso
-                    string query = @"SELECT A.cd_Aluno, A.nm_Aluno, S.nm_Serie, C.nm_Curso, A.atrasos, B.dados_Biometria
+                    string query = @"SELECT A.cd_Aluno, A.nm_Aluno, S.nm_Serie, C.nm_Curso, A.atrasos, B.dados_Biometria, A.foto_aluno
                                      FROM Aluno A
                                      INNER JOIN Biometria B ON A.cd_Biometria = B.cd_Biometria
                                      LEFT JOIN Serie S ON A.Serie_Aluno = S.cd_Serie
@@ -242,6 +242,37 @@ namespace prjTCC
                             turmaNome = reader["nm_Serie"].ToString();
                             cursoNome = reader["nm_Curso"].ToString();
                             atrasos = reader["atrasos"] != DBNull.Value ? Convert.ToInt32(reader["atrasos"]) : 0;
+
+                            if (reader["foto_aluno"] != DBNull.Value)
+                            {
+                                byte[] fotoBytes = (byte[])reader["foto_aluno"];
+                                if (fotoBytes.Length > 0)
+                                {
+                                    // 1. Renomeie a variável para evitar o conflito de nome
+                                    using (MemoryStream fotoStream = new MemoryStream(fotoBytes))
+                                    {
+                                        try
+                                        {
+                                            // 2. Atribua a imagem ao controle correto: pbImagem_Aluno
+                                            pbImagem_Aluno.Image = Image.FromStream(fotoStream);
+                                        }
+                                        catch (ArgumentException)
+                                        {
+                                            // Se os dados no banco não forem uma imagem válida
+                                            pbImagem_Aluno.Image = null; // ou uma imagem padrão de "sem foto"
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    pbImagem_Aluno.Image = null;
+                                }
+                            }
+                            else
+                            {
+                                pbImagem_Aluno.Image = null; // Garante que a imagem anterior seja limpa se o aluno atual não tiver foto
+                            }
+
 
                             DateTime horarioLimite = DateTime.Today.AddHours(7).AddMinutes(30);
                             atrasado = horarioEntrada > horarioLimite;
@@ -308,6 +339,7 @@ namespace prjTCC
                             lblCursoValor.Text = "";
                             lblAtrasoValor.Text = "";
                             lblSituacaoValor.Text = "";
+                            pbImagem_Aluno.Image = null;
                         });
                     }
                 }

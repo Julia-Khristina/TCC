@@ -44,9 +44,9 @@
             this.button6 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.PictureBox();
             this.btnMoldura = new System.Windows.Forms.Button();
-            this.pbDedo = new CustomControls.ArredondarPicture();
+            this.pbImagem_Aluno = new CustomControls.ArredondarPicture();
             ((System.ComponentModel.ISupportInitialize)(this.button1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDedo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem_Aluno)).BeginInit();
             this.SuspendLayout();
             // 
             // lblSituacaoValor
@@ -265,15 +265,15 @@
             this.btnMoldura.TabIndex = 23;
             this.btnMoldura.UseVisualStyleBackColor = false;
             // 
-            // pbDedo
+            // pbImagem_Aluno
             // 
-            this.pbDedo.BackColor = System.Drawing.Color.Lavender;
-            this.pbDedo.BorderRadius = 15;
-            this.pbDedo.Location = new System.Drawing.Point(77, 92);
-            this.pbDedo.Name = "pbDedo";
-            this.pbDedo.Size = new System.Drawing.Size(185, 233);
-            this.pbDedo.TabIndex = 13;
-            this.pbDedo.TabStop = false;
+            this.pbImagem_Aluno.BackColor = System.Drawing.Color.Transparent;
+            this.pbImagem_Aluno.BorderRadius = 15;
+            this.pbImagem_Aluno.Location = new System.Drawing.Point(75, 90);
+            this.pbImagem_Aluno.Name = "pbImagem_Aluno";
+            this.pbImagem_Aluno.Size = new System.Drawing.Size(192, 238);
+            this.pbImagem_Aluno.TabIndex = 13;
+            this.pbImagem_Aluno.TabStop = false;
             // 
             // Verificarform
             // 
@@ -281,7 +281,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.GhostWhite;
             this.ClientSize = new System.Drawing.Size(699, 448);
-            this.Controls.Add(this.pbDedo);
+            this.Controls.Add(this.pbImagem_Aluno);
             this.Controls.Add(this.btnMoldura);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.button5);
@@ -307,7 +307,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Verificação de Aluno";
             ((System.ComponentModel.ISupportInitialize)(this.button1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbDedo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImagem_Aluno)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,7 +328,7 @@
         private System.Windows.Forms.Label lblTurma;
         private System.Windows.Forms.Label lblSituacaoValor;
         private System.Windows.Forms.Label lblSituacao;
-        private CustomControls.ArredondarPicture pbDedo;
+        private CustomControls.ArredondarPicture pbImagem_Aluno;
         private System.Windows.Forms.PictureBox button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;

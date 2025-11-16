@@ -456,7 +456,6 @@ namespace Dashboard
                                 lblAnoAluno.Text = reader["nm_Serie"].ToString();
 
                                 // Verifica se há foto
-                                // Supondo que você tenha um MySqlDataReader chamado 'reader'
                                 if (reader["foto_aluno"] != DBNull.Value)
                                 {
                                     byte[] fotoBytes = (byte[])reader["foto_aluno"];

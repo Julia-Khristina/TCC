@@ -769,12 +769,12 @@ namespace Dashboard
                         <body style='font-family: Arial, sans-serif; color: #333;'>
                             <div style='max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;'>
                                 <div style='text-align: center; margin-bottom: 20px;'>
-                                    <img src='\TCC\documentos\identidade_visual\pontualize.png' alt='Pontualize Logo' width='100'>
-                                    <h2 style='color: #2c3e50;'>Sistema Pontualize</h2>
+                                    <img src='https://raw.githubusercontent.com/Julia-Khristina/TCC/main/src/Dashboard/Dashboard/imgs/LOGO%20AZUL.png' alt='Pontualize Logo' width='150'>
+                                    <h2 style='color: #2c3e50; margin-top: -2px'>Notificação de atraso</h2>
                                 </div>
                                 <p>Olá <strong>{nome}</strong>,</p>
-                                <p>{mensagem}</p>
-                                <p style='margin-top: 20px;'>Pedimos que procure melhorar sua pontualidade para evitar futuras advertências.</p>
+                                <p style='color: #888;'>{mensagem}</p>
+                                <p style='margin-top: 20px;'>Pedimos que procure melhorar sua pontualidade para evitar futura advertência.</p>
                                 <hr style='margin: 25px 0;'>
                                 <p style='font-size: 13px; color: #888; text-align: center;'>
                                     Esta é uma mensagem automática do sistema Pontualize.<br>
