@@ -11,9 +11,11 @@
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
     <PackageReference Include="DocumentFormat.OpenXml" Version="3.3.0" />
+    <PackageReference Include="DocX" Version="5.0.0" />
     <PackageReference Include="MySql.Data" Version="9.4.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
+    <PackageReference Include="NPOI" Version="2.7.5" />
     <PackageReference Include="OpenXmlPowerTools" Version="4.5.3.2" />
     <PackageReference Include="Xceed.Words.NET" Version="5.1.25458.6676" />
   </ItemGroup>

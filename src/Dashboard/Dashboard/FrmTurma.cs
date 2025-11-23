@@ -1,5 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using OpenXmlPowerTools;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +6,10 @@ using System.DirectoryServices.ActiveDirectory;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using NPOI.XWPF.UserModel;
+using System.IO;
 using Xceed.Words.NET;
+
 
 namespace Dashboard
 {
@@ -616,78 +618,10 @@ namespace Dashboard
 
         private void btnSolicitarAdvertencia_Click_1(object sender, EventArgs e)
         {
-            Xceed.Words.NET.Licenser.LicenseKey = "WDN51-74N8A-JAYFK-24FA";
             string rmAluno = lblRM.Text;
-            string conexao = "server=localhost;database=Db_Pontualize;uid=root;pwd=;";
 
-            try
-            {
-                using (var conn = new MySqlConnection(conexao))
-                {
-                    conn.Open();
-                    string query = @"
-                        SELECT
-                            a.nm_Aluno,
-                            s.nm_Serie, 
-                            c.nm_Curso, 
-                            atrasos 
-
-                        FROM Aluno a 
-                        INNER JOIN Serie s on a.Serie_Aluno = s.cd_Serie
-                        INNER JOIN Curso c on a.Curso_Aluno = c.cd_Curso
-                        WHERE cd_Aluno = @rmAluno
-                                    ";
-
-                    using (var cmd = new MySqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@rmAluno", rmAluno);
-                        int rowsAffected = cmd.ExecuteNonQuery();
-                        using (var reader = cmd.ExecuteReader())
-                        {
-                            if (reader.Read())
-                            {
-                                var dados = new Dictionary<string, string>
-                                {
-                                    { "NomeAluno", reader["nm_Aluno"].ToString() },
-                                    { "SerieAluno", reader["nm_Serie"].ToString() },
-                                    { "CursoAluno", reader["nm_Curso"].ToString() },
-                                    { "AtrasosAluno", reader["atrasos"].ToString() },
-                                    { "DATA", DateTime.Now.ToString("dd/MM/yyyy")}
-                                };
-
-                                //string modelo = @"C:\Users\Jane Oliveira\Documents\GitHub\TCC\documentos\ModeloAdvertencia\Modelo.docx";
-                                //string saida = $@"C:\Users\Jane Oliveira\Documents\GitHub\TCC\documentos\SaídaAdvertencia\Aluno_{reader["nm_Aluno"]}.docx";
-
-                                string modelo = @"C:\Users\Micro\Documents\GitHub\TCC\documentos\ModeloAdvertencia\Modelo.docx";
-                                string saida = $@"C:\Users\Micro\Documents\GitHub\TCC\documentos\SaídaAdvertencia\Aluno_{reader["nm_Aluno"]}.docx";
-
-                                Directory.CreateDirectory(Path.GetDirectoryName(saida));
-                                File.Copy(modelo, saida, true);
-                                using (var doc = DocX.Load(saida))
-                                {
-                                    foreach (var item in dados)
-
-                                        doc.ReplaceText(item.Key, item.Value);
-
-                                    doc.Save();
-                                }
-                                MessageBox.Show("Advertência gerada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                System.Diagnostics.Process.Start("explorer.exe", Path.GetDirectoryName(saida));
-                            }
-                            else
-                            {
-                                MessageBox.Show("Aluno não encontrado.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao gerar advertência: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            AdvertenciaPreenchida.GerarAdvertencia(rmAluno, connectionString);
         }
-
         private void btn1Ano_Click(object sender, EventArgs e)
         {
             try

@@ -33,8 +33,6 @@ namespace Dashboard
         private string nomeSerieAtual = string.Empty;
         private System.Windows.Forms.Timer notificationTimer;
 
-       
-
         public frmNotificacao()
         {
             InitializeComponent();
