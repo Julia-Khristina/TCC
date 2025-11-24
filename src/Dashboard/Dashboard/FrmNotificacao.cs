@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -712,48 +713,130 @@ namespace Dashboard
         {
             public MySqlConnection con = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;");
 
-            // Buscar notficações de atrasos não enviadas.
+            public class AlunoAtraso
+            {
+                public int CodigoAluno { get; set; }
+                public string NomeAluno { get; set; }
+                public int TotalAtrasos { get; set; }
+                public string DatasAtrasosString { get; set; }
+                public string EmailAluno { get; set; }
+            }
+
+
+
             public void VerificarNotificacoesAtrasosPendentes()
             {
+                List<AlunoAtraso> alunosParaNotificar = new List<AlunoAtraso>();
+
                 try
                 {
                     con.Open();
+
+                    // SQL REVISADO:
+                    // 1. Mantém o HAVING TotalAtrasos = 2 para garantir a contagem exata.
+                    // 2. O GROUP_CONCAT é a forma mais confiável de obter as datas.
+                    // 3. O filtro NOT IN garante que o e-mail de 2 atrasos não seja reenviado.
                     string query = @"
-                            SELECT N.cd_Notificacao, N.cd_Aluno, N.mensagem, A.nm_Aluno, A.gmail_aluno 
-                        FROM Notificacao N
-                        JOIN Aluno A ON A.cd_Aluno = N.cd_Aluno
-                        WHERE N.cd_Notificacao NOT IN (SELECT cd_Notificacao FROM NotificacaoEnviada)";
+                        SELECT 
+                            RA.cd_Aluno,
+                            RA.nm_Aluno,
+                            COUNT(RA.cd_Registro) AS TotalAtrasos,
+                            GROUP_CONCAT(
+                                DATE_FORMAT(RA.data_registro, '%d/%m/%Y')
+                                ORDER BY RA.data_registro DESC
+                                SEPARATOR '|'
+                            ) AS DatasAtrasosString
+                        FROM 
+                            registroatraso RA
+                        WHERE 
+                            YEAR(RA.data_registro) = YEAR(CURDATE())
+                            AND MONTH(RA.data_registro) = MONTH(CURDATE())
+                        GROUP BY 
+                            RA.cd_Aluno, RA.nm_Aluno
+                        HAVING 
+                            TotalAtrasos = 2
+                            AND NOT EXISTS (
+                                SELECT 1
+                                FROM notificacao N
+                                WHERE N.cd_Aluno = RA.cd_Aluno
+                                AND N.mensagem LIKE '%2 atrasos%'
+                            );
+
+                    ";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     MySqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        string nome = reader["nm_Aluno"].ToString();
-                        string email = reader["gmail_aluno"].ToString();
-                        string mensagem = reader["mensagem"].ToString();
-                        int idNotificacao = Convert.ToInt32(reader["cd_Notificacao"]);
-
-                        // Envia o e-mail
-                        EnviarEmail(nome, email, mensagem);
-
-                        // Marca como enviada
-                        MarcarComoEnviada(idNotificacao);
+                        alunosParaNotificar.Add(new AlunoAtraso
+                        {
+                            CodigoAluno = Convert.ToInt32(reader["cd_Aluno"]),
+                            NomeAluno = reader["nm_Aluno"].ToString(),
+                            EmailAluno = BuscarEmailAluno(Convert.ToInt32(reader["cd_Aluno"])), // Agora correto
+                            TotalAtrasos = Convert.ToInt32(reader["TotalAtrasos"]),
+                            DatasAtrasosString = reader["DatasAtrasosString"].ToString()
+                        });
                     }
                     reader.Close();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Erro ao verificar notificações pendentes: " + ex.Message);
+                    MessageBox.Show("Erro ao verificar alunos para notificação: " + ex.Message);
+                    return;
                 }
                 finally
                 {
-                    con.Close();
+                    if (con.State == System.Data.ConnectionState.Open)
+                    {
+                        con.Close();
+                    }
+                }
+
+                // 3. Processar e-mails
+                foreach (var aluno in alunosParaNotificar)
+                {
+                    // CORREÇÃO CRÍTICA: Parsing e formatação das datas
+                    // 1. Divide a string usando o novo separador '|'
+                    var datas = aluno.DatasAtrasosString.Split('|');
+
+                    // 2. Converte as strings de data para DateTime para garantir a validade
+                    // Usando CultureInfo.InvariantCulture para o formato dd/MM/yyyy
+                    var datasValidas = datas.Select(d =>
+                        DateTime.ParseExact(d.Trim(), "dd/MM/yyyy", CultureInfo.InvariantCulture)
+                    ).ToList();
+
+                    // 3. Formata as datas para a mensagem, garantindo que apenas as 2 datas sejam usadas
+                    // O ToList() garante que o Select seja executado
+                    string datasFormatadas = string.Join(" e ", datasValidas.Select(d => d.ToString("dd/MM/yyyy")));
+
+                    // Lógica da mensagem solicitada pelo usuário
+                    string mensagemAtrasos = $"{datasFormatadas}.";
+
+                    // Envia o e-mail
+                    EnviarEmail(aluno.NomeAluno, aluno.EmailAluno, mensagemAtrasos);
+
+                    // Marca como enviada (usando a nova tabela de histórico)
+                    MarcarComoEnviada(aluno.CodigoAluno, aluno.TotalAtrasos);
+                }
+            }
+
+            private string BuscarEmailAluno(int cdAluno)
+            {
+                using (var cx = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;"))
+                {
+                    cx.Open();
+                    var cmd = new MySqlCommand(
+                        "SELECT gmail_aluno FROM aluno WHERE cd_Aluno = @id", cx);
+                    cmd.Parameters.AddWithValue("@id", cdAluno);
+                    object result = cmd.ExecuteScalar();
+                    return result?.ToString() ?? "";
                 }
             }
 
 
-            public void EnviarEmail(string nome, string email, string mensagem)
+            // O restante da classe (EnviarEmail e MarcarComoEnviada) permanece o mesmo
+            public void EnviarEmail(string nome, string email, string mensagemAtrasos)
             {
                 try
                 {
@@ -761,29 +844,57 @@ namespace Dashboard
                     mail.From = new MailAddress("tcchiji@gmail.com", "Sistema Pontualize");
                     mail.To.Add(email);
                     mail.Subject = "Notificação de Atrasos - Pontualize";
+
                     // Corpo do e-mail em HTML
                     string corpoEmail = $@"
-                        <html>
-                        <body style='font-family: Arial, sans-serif; color: #333;'>
-                            <div style='max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;'>
-                                <div style='text-align: center; margin-bottom: 20px;'>
-                                    <img src='https://raw.githubusercontent.com/Julia-Khristina/TCC/main/src/Dashboard/Dashboard/imgs/LOGO%20AZUL.png' alt='Pontualize Logo' width='150'>
-                                    <h2 style='color: #2c3e50; margin-top: -2px'>Notificação de atraso</h2>
-                                </div>
-                                <p>Olá <strong>{nome}</strong>,</p>
-                                <p style='color: #888;'>{mensagem}</p>
-                                <p style='margin-top: 20px;'>Pedimos que procure melhorar sua pontualidade para evitar futura advertência.</p>
-                                <hr style='margin: 25px 0;'>
-                                <p style='font-size: 13px; color: #888; text-align: center;'>
+                    <html>
+                    <body style='font-family: Arial, sans-serif; color: #333;'>
+                        <div style='max-width: 600px; margin: auto; border: 1px solid #e0e0e0; border-radius: 10px; padding: 20px;'>
+                           <div style='text-align: center; margin-bottom: 20px;'>
+                                <h2 style='color: #2c3e50; margin-top: -2px'>Notificação de atraso</h2>
+                            </div>
+                            <br>
+                            <p>Olá <strong>{nome}</strong>,</p>
+                            <p>
+                                Este e-mail é um <strong>aviso preventivo</strong> sobre sua pontualidade.
+                            </p>
+
+                            <p>
+                                Identificamos <strong>2 registros de atraso</strong> durante o mês atual, nas seguintes datas:
+                                <strong>{mensagemAtrasos}</strong>
+                            </p>
+
+                            <p>
+                                Gostaríamos de reforçar que, conforme as normas internas, 
+                                <strong>ao atingir 3 atrasos no mesmo mês, uma advertência será automaticamente registrada</strong> 
+                                em seu histórico.
+                            </p>
+
+                            <p>
+                                Recomendamos que fique atento aos horários de entrada para evitar consequências disciplinares.
+                            </p>
+
+                            <p>
+                                Caso tenha enfrentado alguma dificuldade ou circunstância excepcional, orientamos procurar a coordenação.
+                            </p>
+
+                            <div style='text-align: center ;'>
+                                <img src='https://raw.githubusercontent.com/Julia-Khristina/TCC/main/src/Dashboard/Dashboard/imgs/LOGO%20AZUL.png' alt='Pontualize Logo' width='130'>
+                             </div>
+
+                            <hr style='margin: 0 0;'>
+                                <p style='font-size: 10px; color: #888; text-align: center;'>
                                     Esta é uma mensagem automática do sistema Pontualize.<br>
                                     Por favor, não responda este e-mail.
                                 </p>
-                            </div>
-                        </body>
-                        </html>";
+                            
+
+                        </div>
+                    </body>
+                    </html>";
 
                     mail.Body = corpoEmail;
-                    mail.IsBodyHtml = true; // <-- ESSENCIAL para HTML funcionar
+                    mail.IsBodyHtml = true;
 
                     SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
                     smtp.Credentials = new NetworkCredential("tcchiji@gmail.com", "fmyd uecr rryu rzoi");
@@ -794,26 +905,43 @@ namespace Dashboard
                 {
                     MessageBox.Show("Erro ao enviar e-mail: " + ex.Message);
                 }
-
             }
 
-            public void MarcarComoEnviada(int idNotificacao)
+            public void MarcarComoEnviada(int codigoAluno, int totalAtrasos)
             {
                 try
                 {
-                    using (MySqlConnection conn2 = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;"))
+                    using (MySqlConnection conn = new MySqlConnection("server=localhost;Database=Db_Pontualize;Uid=root;Pwd=;"))
                     {
-                        conn2.Open();
-                        string sql = "INSERT INTO NotificacaoEnviada (cd_Notificacao, data_envio) VALUES (@id, NOW())";
-                        MySqlCommand cmd = new MySqlCommand(sql, conn2);
-                        cmd.Parameters.AddWithValue("@id", idNotificacao);
-                        cmd.ExecuteNonQuery();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao marcar notificação como enviada: " + ex.Message);
-                }
+                        conn.Open(); 
+                        string mensagem = $"{totalAtrasos} atrasos registrados no mês.";
+                        string sqlInsertNotificacao = @"
+                            INSERT INTO notificacao (
+                                cd_Aluno, 
+                                mensagem, 
+                                data_envio
+                            ) VALUES (@aluno, @msg, NOW()); SELECT LAST_INSERT_ID(); ";
+                        
+                        MySqlCommand cmd = new MySqlCommand(sqlInsertNotificacao, conn); 
+                        cmd.Parameters.AddWithValue("@aluno", codigoAluno); 
+                        cmd.Parameters.AddWithValue("@msg", mensagem); 
+                        int cdNotificacao = Convert.ToInt32(cmd.ExecuteScalar()); 
+                        
+                        // Inserir na tabela NOTIFICACAOENVIADA
+                        
+                        string sqlInsertEnvio = @"
+                            INSERT INTO notificacaoenviada (
+                                cd_Notificacao, 
+                                data_envio) VALUES (@idNotif, NOW())
+                            "; 
+                        MySqlCommand cmd2 = new MySqlCommand(sqlInsertEnvio, conn); 
+                        cmd2.Parameters.AddWithValue("@idNotif", cdNotificacao); 
+                        cmd2.ExecuteNonQuery(); 
+                    } 
+                } 
+                catch (Exception ex) { 
+                    MessageBox.Show("Erro ao marcar notificação como enviada: " + ex.Message); 
+                } 
             }
         }
 
