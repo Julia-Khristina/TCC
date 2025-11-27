@@ -650,5 +650,16 @@ namespace Dashboard
         {
 
         }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void arredondamentoBtn3_Click(object sender, EventArgs e)
+        {
+            Frm_PromoverAluno frm = new Frm_PromoverAluno();
+            frm.Show();
+        }
     }
 }
