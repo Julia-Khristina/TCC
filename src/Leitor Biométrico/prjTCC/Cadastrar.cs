@@ -28,10 +28,13 @@ namespace prjTCC
             txtNome.Text = "";
             txtRM.Text = "";
             txtEmail.Text = "";
-            
+
+            maskTxtTel.Text = "";
+            pictureBox1.Image = null;
+            picDigital.Image = null;
 
             // Limpa combos
-            cmbAno.SelectedIndex = -1;
+            cmbAno.SelectedIndex = 0;
             cmbTurma.SelectedIndex = -1;
 
             // Limpa variáveis públicas herdadas
@@ -219,7 +222,10 @@ namespace prjTCC
                                             cmdAluno.Parameters.Add("@foto", MySqlDbType.LongBlob).Value = imagem;
                                             cmdAluno.ExecuteNonQuery();
                                             Myconn1.Close();
-                                           
+
+                                            MessageBox.Show("Aluno cadastrado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
                                             Stop();
                                         }
                                         catch (Exception ex) 
@@ -227,11 +233,14 @@ namespace prjTCC
                                             MessageBox.Show("Error: "+ ex.Message);
                                         }
 
-                                        Stop();
-                                        Enroller = new DPFP.Processing.Enrollment(); // Reinicializa o Enroller
-                                        UpdateStatus();
-                                        Start();
-                                        LimparCampos();
+                                        this.Invoke(new MethodInvoker(delegate
+                                        {
+                                            Stop(); 
+                                            LimparCampos();
+                                            Enroller = new DPFP.Processing.Enrollment();
+                                            UpdateStatus();
+                                            Start();
+                                        }));
 
                                     }
                                 }

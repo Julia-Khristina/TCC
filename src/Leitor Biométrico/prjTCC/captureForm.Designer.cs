@@ -433,7 +433,7 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox picDigital;
+        protected System.Windows.Forms.PictureBox picDigital;
         private System.Windows.Forms.TextBox txtPrompt;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label lblStatus;

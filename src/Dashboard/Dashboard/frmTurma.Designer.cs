@@ -171,7 +171,7 @@ namespace Dashboard
             btnExportar.Name = "btnExportar";
             btnExportar.Size = new Size(155, 39);
             btnExportar.TabIndex = 11;
-            btnExportar.Text = "Exportar Relatório";
+            btnExportar.Text = "Acessar Relatório";
             btnExportar.UseVisualStyleBackColor = false;
             btnExportar.Click += btnExportar_Click;
             // 

@@ -152,9 +152,9 @@ namespace prjTCC
             }));
         }
 
-        
 
-        private void DrawPicture(Bitmap bitmap)
+
+        protected void DrawPicture(Bitmap bitmap)
         {
             this.Invoke(new Function(delegate ()
             {

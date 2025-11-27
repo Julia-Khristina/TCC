@@ -190,6 +190,9 @@ namespace Dashboard
 
         private void ConfigureDataGridView()
         {
+           
+            tbAtrasoTurma.CellFormatting += tbAtrasoTurma_CellFormatting;
+
             // --- ESTRUTURA E COMPORTAMENTO ---
             tbAtrasoTurma.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             tbAtrasoTurma.AllowUserToAddRows = false;
@@ -231,6 +234,30 @@ namespace Dashboard
             tbAtrasoTurma.RowTemplate.Height = 45; // Aumenta a altura para dar mais "respiro"
         }
 
+        private void tbAtrasoTurma_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            Color corPadrao = Color.FromArgb(44, 62, 80);
+            Color corAtraso = Color.Red;
+
+            if (e.RowIndex >= 0 && tbAtrasoTurma.Columns[e.ColumnIndex].Name == "Nome do Aluno")
+            {
+                object atrasosValue = tbAtrasoTurma.Rows[e.RowIndex].Cells["Quantidade de Atrasos"].Value;
+
+                // Determina a cor com base na quantidade de atrasos
+                if (atrasosValue != null && int.TryParse(atrasosValue.ToString(), out int quantidadeAtrasos) && quantidadeAtrasos > 2)
+                {
+                    e.CellStyle.ForeColor = corAtraso;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = corPadrao;
+                }
+
+                // Garante que a seleção não sobrescreva a cor
+                e.CellStyle.SelectionForeColor = e.CellStyle.ForeColor;
+                e.FormattingApplied = true;
+            }
+        }
 
         private void CarregarAtrasosDaTurma()
         {
@@ -267,12 +294,14 @@ namespace Dashboard
                                 tbAtrasoTurma.Invoke((MethodInvoker)(() =>
                                 {
                                     tbAtrasoTurma.DataSource = dt;
+                                    tbAtrasoTurma.Refresh();
                                     ConfigureDataGridView();
                                 }));
                             }
                             else
                             {
                                 tbAtrasoTurma.DataSource = dt;
+                                tbAtrasoTurma.Refresh();
                                 ConfigureDataGridView();
                             }
                         }
@@ -331,45 +360,6 @@ namespace Dashboard
             // Não reexibimos o ownerForm aqui em caso de sucesso, pois a navegação é entre Turmas.
         }
 
-        private void VoltarParaDashboard()
-        {
-            try
-            {
-                Form? parentForm = this.Owner ?? Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-
-                // Oculta o formulário atual primeiro
-                this.Hide();
-
-                if (parentForm != null && !parentForm.IsDisposed)
-                {
-                    parentForm.Show();
-                }
-                else
-                {
-                    // Se o dashboard não foi encontrado ou está fechado, pode ser necessário recriá-lo
-                    // ou simplesmente fechar este form. Ajuste conforme a lógica da sua aplicação.
-                    // Exemplo: Tentar encontrar e mostrar, ou criar um novo se não existir.
-                    var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
-                    if (dashboard != null)
-                    {
-                        dashboard.Show();
-                    }
-                    else
-                    {
-                        // new frmDashboard_Principal().Show(); // Descomente se quiser criar um novo se não houver
-                    }
-                }
-
-                // Agenda o fechamento do formulário atual para ocorrer depois
-                this.BeginInvoke(new MethodInvoker(this.Close));
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao voltar para o dashboard: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                // Tenta fechar mesmo em caso de erro
-                try { this.BeginInvoke(new MethodInvoker(this.Close)); } catch { }
-            }
-        }
         private void PaintPanel(object sender, PaintEventArgs e)
         {
             // Define a qualidade do desenho para ser suave (anti-aliasing)
@@ -618,10 +608,52 @@ namespace Dashboard
 
         private void btnSolicitarAdvertencia_Click_1(object sender, EventArgs e)
         {
+            
             string rmAluno = lblRM.Text;
 
-            AdvertenciaPreenchida.GerarAdvertencia(rmAluno, connectionString);
+            // quantidade de atrasos do aluno selecionado
+            int quantidadeAtrasos = 0;
+            if (tbAtrasoTurma.SelectedRows.Count > 0)
+            {
+                DataGridViewRow selectedRow = tbAtrasoTurma.SelectedRows[0];
+                if (selectedRow.Cells["Quantidade de Atrasos"].Value != null &&
+                    int.TryParse(selectedRow.Cells["Quantidade de Atrasos"].Value.ToString(), out int atrasos))
+                {
+                    quantidadeAtrasos = atrasos;
+                }
+            }
+
+            //  Aluno dentro do limite
+            if (quantidadeAtrasos <= 2)
+            {
+                MessageBox.Show(
+                    "O Aluno não será alvo de advertencia pois está dentro do limite estipulado (2 atrasos).",
+                    "Aviso de Advertência",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+                return; // Sai do método sem gerar a advertência
+            }
+
+            // já foi gerada
+            try
+            {
+                AdvertenciaPreenchida.GerarAdvertencia(rmAluno, connectionString);
+
+                // Mensagem de sucesso (ou a mensagem de advertência já gerada, se implementada)
+                MessageBox.Show(
+                    "Por favor, localize o documento na pasta de advertências, pois já foi exportado!",
+                    "Advertência Gerada",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+                );
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao gerar advertência: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
+
         private void btn1Ano_Click(object sender, EventArgs e)
         {
             try

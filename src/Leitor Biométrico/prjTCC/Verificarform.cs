@@ -112,6 +112,19 @@ namespace prjTCC
             }
         }
 
+        private bool VerificarAtrasoDiario(MySqlConnection conn, string cdAluno, DateTime data)
+        {
+            string select = "SELECT COUNT(*) FROM RegistroAtraso WHERE cd_Aluno = @cd AND data_registro = @data";
+            using (MySqlCommand cmd = new MySqlCommand(select, conn))
+            {
+                cmd.Parameters.AddWithValue("@cd", cdAluno);
+                cmd.Parameters.AddWithValue("@data", data.ToString("yyyy-MM-dd"));
+                int count = Convert.ToInt32(cmd.ExecuteScalar());
+                return count > 0; // Retorna true se já houver um registro
+            }
+        }
+
+
         private void button1_Click(object sender, EventArgs e)
         {
             if (Capturador != null)
@@ -124,6 +137,7 @@ namespace prjTCC
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             IniciarLeitor();
+            MessageBox.Show("Verificação iniciada com sucesso!");
         }
 
         private void btnParar_Click(object sender, EventArgs e)
@@ -134,6 +148,16 @@ namespace prjTCC
                 {
                     Capturador.StopCapture();
                     MessageBox.Show("Captura parada com sucesso.");
+
+                    this.Invoke((MethodInvoker)delegate {
+                        lblNomeValor.Text = "";
+                        lblTurmaValor.Text = "";
+                        lblCursoValor.Text = "";
+                        lblAtrasoValor.Text = "";
+                        lblSituacaoValor.Text = "";
+                        lblSituacaoValor.ForeColor = Color.Black;
+                        pbImagem_Aluno.Image = null;
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -199,6 +223,7 @@ namespace prjTCC
                 lblAtrasoValor.Text = "";
                 lblSituacaoValor.Text = "";
                 lblSituacaoValor.ForeColor = Color.Black;
+                pbImagem_Aluno.Image = null;
             });
 
             try
@@ -285,8 +310,14 @@ namespace prjTCC
 
                     if (encontrado)
                     {
-                        // Atualiza atrasos e insere registro de atraso se necessário
+                        bool jaRegistrado = false;
                         if (atrasado)
+                        {
+                            jaRegistrado = VerificarAtrasoDiario(conn, cdAluno, horarioEntrada);
+                        }
+
+                        // Atualiza atrasos e insere registro de atraso se necessário
+                        if (atrasado && !jaRegistrado)
                         {
                             string update = "UPDATE Aluno SET atrasos = atrasos + 1 WHERE cd_Aluno = @cd";
                             using (MySqlCommand updateCmd = new MySqlCommand(update, conn))
@@ -294,6 +325,7 @@ namespace prjTCC
                                 updateCmd.Parameters.AddWithValue("@cd", cdAluno);
                                 updateCmd.ExecuteNonQuery();
                             }
+
 
                             string insertAtraso = @"INSERT INTO RegistroAtraso (cd_Aluno, nm_Aluno, nm_Serie, nm_Curso, horario_entrada, data_registro)
                                                     VALUES (@cdAluno, @nome, @turma, @curso, @horario, @data)";
@@ -326,8 +358,16 @@ namespace prjTCC
                             lblTurmaValor.Text = turmaNome;
                             lblCursoValor.Text = cursoNome;
                             lblAtrasoValor.Text = atrasos.ToString();
-                            lblSituacaoValor.Text = atrasado ? "ATRASADO" : "NO HORÁRIO";
-                            lblSituacaoValor.ForeColor = atrasado ? Color.Red : Color.Green;
+                            if (atrasado)
+                            {
+                                lblSituacaoValor.Text = jaRegistrado ? "ATRASO JÁ REGISTRADO" : "ATRASADO";
+                                lblSituacaoValor.ForeColor = jaRegistrado ? Color.Blue : Color.Red;
+                            }
+                            else
+                            {
+                                lblSituacaoValor.Text = "NO HORÁRIO";
+                                lblSituacaoValor.ForeColor = Color.Green;
+                            }
                         });
                     }
                     else
@@ -353,10 +393,9 @@ namespace prjTCC
                     lblCursoValor.Text = "";
                     lblAtrasoValor.Text = "";
                     lblSituacaoValor.Text = "";
-                 });
+                });
             }
         }
-
         public void OnFingerTouch(object Capture, string ReaderSerialNumber) { }
         public void OnFingerGone(object Capture, string ReaderSerialNumber) { }
         public void OnFingerPresent(object Capture, string ReaderSerialNumber) { }

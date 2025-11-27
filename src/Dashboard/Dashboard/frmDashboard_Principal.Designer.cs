@@ -165,7 +165,7 @@ namespace Dashboard
             lbl2_CardSemanal.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardSemanal.Location = new Point(17, 125);
             lbl2_CardSemanal.Name = "lbl2_CardSemanal";
-            lbl2_CardSemanal.Size = new Size(141, 15);
+            lbl2_CardSemanal.Size = new Size(140, 15);
             lbl2_CardSemanal.TabIndex = 15;
             lbl2_CardSemanal.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -516,7 +516,7 @@ namespace Dashboard
             lbl2_CardMensal.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardMensal.Location = new Point(15, 122);
             lbl2_CardMensal.Name = "lbl2_CardMensal";
-            lbl2_CardMensal.Size = new Size(141, 15);
+            lbl2_CardMensal.Size = new Size(140, 15);
             lbl2_CardMensal.TabIndex = 13;
             lbl2_CardMensal.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -663,7 +663,7 @@ namespace Dashboard
             lbl2_CardDiario.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardDiario.Location = new Point(15, 125);
             lbl2_CardDiario.Name = "lbl2_CardDiario";
-            lbl2_CardDiario.Size = new Size(141, 15);
+            lbl2_CardDiario.Size = new Size(140, 15);
             lbl2_CardDiario.TabIndex = 13;
             lbl2_CardDiario.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -771,7 +771,7 @@ namespace Dashboard
             lbl2_CardNot.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardNot.Location = new Point(17, 120);
             lbl2_CardNot.Name = "lbl2_CardNot";
-            lbl2_CardNot.Size = new Size(154, 15);
+            lbl2_CardNot.Size = new Size(153, 15);
             lbl2_CardNot.TabIndex = 15;
             lbl2_CardNot.Text = "Turma mais notificada: N/A";
             // 
@@ -949,7 +949,7 @@ namespace Dashboard
             arredondamentoBtn2.Name = "arredondamentoBtn2";
             arredondamentoBtn2.Size = new Size(198, 40);
             arredondamentoBtn2.TabIndex = 25;
-            arredondamentoBtn2.Text = "Exportar Relatório";
+            arredondamentoBtn2.Text = "Acessar Relatório";
             arredondamentoBtn2.UseVisualStyleBackColor = false;
             arredondamentoBtn2.Click += arredondamentoBtn2_Click;
             // 

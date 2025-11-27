@@ -381,7 +381,7 @@
             btnExportar.Name = "btnExportar";
             btnExportar.Size = new Size(155, 39);
             btnExportar.TabIndex = 12;
-            btnExportar.Text = "Exportar relatório";
+            btnExportar.Text = "Acessar Relatório";
             btnExportar.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel2
