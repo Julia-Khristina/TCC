@@ -559,14 +559,13 @@ namespace Dashboard
                       JOIN Aluno a ON ra.cd_Aluno = a.cd_Aluno
                       WHERE ra.data_registro = CURDATE() AND a.Curso_Aluno = @cursoId";
 
-            // Query para contar todos os atrasos da história para a turma específica
             string sqlTotal = @"SELECT COUNT(ra.cd_Registro) 
-                        FROM RegistroAtraso ra
-                        JOIN Aluno a ON ra.cd_Aluno = a.cd_Aluno
-                        WHERE a.Curso_Aluno = @cursoId";
+                    FROM RegistroAtraso ra
+                    JOIN Aluno a ON ra.cd_Aluno = a.cd_Aluno
+                    WHERE a.Curso_Aluno = @cursoId
+                    AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                    AND YEAR(ra.data_registro) = YEAR(CURDATE())";
 
-            // IMPORTANTE: Renomeie os labels no seu formulário para corresponderem
-            // Supondo que seus labels se chamem 'lblAtrasosDiaValor' e 'lblAtrasosTotaisValor'
             lblDiario.Text = GetAtrasosTurma(sqlDia).ToString();
             pn_Atrasos_Dia.Text = GetAtrasosTurma(sqlTotal).ToString();
         }
@@ -663,13 +662,16 @@ namespace Dashboard
                     connection.Open();
 
                     string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                                   FROM Aluno a
-                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                                   WHERE a.Curso_Aluno = @cursoId
-                                      AND a.Serie_Aluno = 1
-                                   GROUP BY a.nm_Aluno
-                                   ORDER BY `Quantidade de Atrasos` DESC";
+                       COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                       FROM Aluno a
+                       LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                       WHERE a.Curso_Aluno = @cursoId
+                          AND a.Serie_Aluno = 1
+                          AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                          AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                       GROUP BY a.nm_Aluno
+                       ORDER BY `Quantidade de Atrasos` DESC";
+
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -711,13 +713,15 @@ namespace Dashboard
                     connection.Open();
 
                     string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                                   FROM Aluno a
-                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                                   WHERE a.Curso_Aluno = @cursoId
-                                      AND a.Serie_Aluno = 2
-                                   GROUP BY a.nm_Aluno
-                                   ORDER BY `Quantidade de Atrasos` DESC";
+                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                   FROM Aluno a
+                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                   WHERE a.Curso_Aluno = @cursoId
+                      AND a.Serie_Aluno = 2
+                      AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                      AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                   GROUP BY a.nm_Aluno
+                   ORDER BY `Quantidade de Atrasos` DESC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -759,13 +763,15 @@ namespace Dashboard
                     connection.Open();
 
                     string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                                   FROM Aluno a
-                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                                   WHERE a.Curso_Aluno = @cursoId
-                                      AND a.Serie_Aluno = 3
-                                   GROUP BY a.nm_Aluno
-                                   ORDER BY `Quantidade de Atrasos` DESC";
+                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                   FROM Aluno a
+                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                   WHERE a.Curso_Aluno = @cursoId
+                      AND a.Serie_Aluno = 3
+                      AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                      AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                   GROUP BY a.nm_Aluno
+                   ORDER BY `Quantidade de Atrasos` DESC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -812,12 +818,16 @@ namespace Dashboard
                     connection.Open();
 
                     string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                                   FROM Aluno a
-                                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                                   WHERE a.Curso_Aluno = @cursoId
-                                   GROUP BY a.nm_Aluno
-                                   ORDER BY `Quantidade de Atrasos` DESC";
+                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                   FROM Aluno a
+                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
+                   WHERE a.Curso_Aluno = @cursoId
+                   AND MONTH(ra.data_registro) = MONTH(CURDATE())
+                   AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                   GROUP BY a.nm_Aluno
+                   ORDER BY `Quantidade de Atrasos` DESC";
+
+
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
