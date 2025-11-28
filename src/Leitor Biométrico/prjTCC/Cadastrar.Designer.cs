@@ -33,38 +33,37 @@
             // 
             // txtNome
             // 
-            this.txtNome.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNome.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // txtRM
             // 
-            this.txtRM.Margin = new System.Windows.Forms.Padding(4);
+            this.txtRM.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // txtEmail
             // 
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // maskTxtTel
             // 
-            this.maskTxtTel.Margin = new System.Windows.Forms.Padding(4);
+            this.maskTxtTel.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             // 
             // Cadastrar
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(770, 495);
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.ClientSize = new System.Drawing.Size(1027, 609);
+            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.Name = "Cadastrar";
             this.Text = "Reroll";
             this.Load += new System.EventHandler(this.reroll_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

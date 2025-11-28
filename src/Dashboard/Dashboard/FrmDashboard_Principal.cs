@@ -658,7 +658,7 @@ namespace Dashboard
 
         private void arredondamentoBtn3_Click(object sender, EventArgs e)
         {
-            Frm_PromoverAluno frm = new Frm_PromoverAluno();
+            frmPromoverAlunos frm = new frmPromoverAlunos();
             frm.Show();
         }
     }
