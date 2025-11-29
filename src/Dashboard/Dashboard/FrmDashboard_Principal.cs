@@ -658,8 +658,11 @@ namespace Dashboard
 
         private void arredondamentoBtn3_Click(object sender, EventArgs e)
         {
-            frmPromoverAlunos frm = new frmPromoverAlunos();
-            frm.Show();
+            using (frmPromoverAlunos formPromover = new frmPromoverAlunos())
+            {
+                DialogResult resultado = AbrirFormOverlay(formPromover);
+            }
         }
+
     }
 }

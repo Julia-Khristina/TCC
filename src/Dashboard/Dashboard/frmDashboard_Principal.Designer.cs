@@ -95,6 +95,7 @@ namespace Dashboard
             label10 = new Label();
             btnAddAluno = new ArredondamentoBtn();
             arredondamentoBtn2 = new ArredondamentoBtn();
+            arredondamentoBtn3 = new ArredondamentoBtn();
             image_perfil = new CustomControls.RoundedPictureBox();
             menuPrincipal2 = new MenuPrincipal();
             button2 = new Button();
@@ -105,7 +106,6 @@ namespace Dashboard
             label14 = new Label();
             label17 = new Label();
             label20 = new Label();
-            arredondamentoBtn3 = new ArredondamentoBtn();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -166,7 +166,7 @@ namespace Dashboard
             lbl2_CardSemanal.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardSemanal.Location = new Point(17, 125);
             lbl2_CardSemanal.Name = "lbl2_CardSemanal";
-            lbl2_CardSemanal.Size = new Size(141, 15);
+            lbl2_CardSemanal.Size = new Size(140, 15);
             lbl2_CardSemanal.TabIndex = 15;
             lbl2_CardSemanal.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -517,7 +517,7 @@ namespace Dashboard
             lbl2_CardMensal.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardMensal.Location = new Point(15, 122);
             lbl2_CardMensal.Name = "lbl2_CardMensal";
-            lbl2_CardMensal.Size = new Size(141, 15);
+            lbl2_CardMensal.Size = new Size(140, 15);
             lbl2_CardMensal.TabIndex = 13;
             lbl2_CardMensal.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -664,7 +664,7 @@ namespace Dashboard
             lbl2_CardDiario.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardDiario.Location = new Point(15, 125);
             lbl2_CardDiario.Name = "lbl2_CardDiario";
-            lbl2_CardDiario.Size = new Size(141, 15);
+            lbl2_CardDiario.Size = new Size(140, 15);
             lbl2_CardDiario.TabIndex = 13;
             lbl2_CardDiario.Text = "Turma mais atrasada: 3ºB";
             // 
@@ -772,7 +772,7 @@ namespace Dashboard
             lbl2_CardNot.ForeColor = SystemColors.ControlDarkDark;
             lbl2_CardNot.Location = new Point(17, 120);
             lbl2_CardNot.Name = "lbl2_CardNot";
-            lbl2_CardNot.Size = new Size(154, 15);
+            lbl2_CardNot.Size = new Size(153, 15);
             lbl2_CardNot.TabIndex = 15;
             lbl2_CardNot.Text = "Turma mais notificada: N/A";
             // 
@@ -864,16 +864,16 @@ namespace Dashboard
             // 
             // tableLayoutPanel4
             // 
+            tableLayoutPanel4.Anchor = AnchorStyles.Left;
             tableLayoutPanel4.BackColor = Color.GhostWhite;
             tableLayoutPanel4.ColumnCount = 1;
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Controls.Add(lblNome, 0, 1);
             tableLayoutPanel4.Controls.Add(label10, 0, 3);
             tableLayoutPanel4.Controls.Add(btnAddAluno, 0, 4);
-            tableLayoutPanel4.Controls.Add(image_perfil, 0, 0);
             tableLayoutPanel4.Controls.Add(arredondamentoBtn2, 0, 5);
             tableLayoutPanel4.Controls.Add(arredondamentoBtn3, 0, 6);
-            tableLayoutPanel4.Dock = DockStyle.Fill;
+            tableLayoutPanel4.Controls.Add(image_perfil, 0, 0);
             tableLayoutPanel4.Location = new Point(0, 0);
             tableLayoutPanel4.Margin = new Padding(0);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
@@ -957,14 +957,34 @@ namespace Dashboard
             arredondamentoBtn2.UseVisualStyleBackColor = false;
             arredondamentoBtn2.Click += arredondamentoBtn2_Click;
             // 
+            // arredondamentoBtn3
+            // 
+            arredondamentoBtn3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            arredondamentoBtn3.BackColor = Color.MidnightBlue;
+            arredondamentoBtn3.BorderColor = Color.Transparent;
+            arredondamentoBtn3.BorderRadius = 10;
+            arredondamentoBtn3.BorderSize = 0;
+            arredondamentoBtn3.DisableHoverEffect = false;
+            arredondamentoBtn3.FlatAppearance.BorderSize = 0;
+            arredondamentoBtn3.FlatStyle = FlatStyle.Flat;
+            arredondamentoBtn3.ForeColor = Color.White;
+            arredondamentoBtn3.Location = new Point(70, 572);
+            arredondamentoBtn3.Margin = new Padding(70, 2, 70, 2);
+            arredondamentoBtn3.Name = "arredondamentoBtn3";
+            arredondamentoBtn3.Size = new Size(198, 40);
+            arredondamentoBtn3.TabIndex = 26;
+            arredondamentoBtn3.Text = "Promover Alunos";
+            arredondamentoBtn3.UseVisualStyleBackColor = false;
+            arredondamentoBtn3.Click += arredondamentoBtn3_Click;
+            // 
             // image_perfil
             // 
-            image_perfil.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            image_perfil.Anchor = AnchorStyles.Bottom;
             image_perfil.BorderRadius = 15;
-            image_perfil.Location = new Point(70, 100);
+            image_perfil.Location = new Point(71, 102);
             image_perfil.Margin = new Padding(70, 30, 70, 3);
             image_perfil.Name = "image_perfil";
-            image_perfil.Size = new Size(198, 221);
+            image_perfil.Size = new Size(196, 219);
             image_perfil.SizeMode = PictureBoxSizeMode.StretchImage;
             image_perfil.TabIndex = 12;
             image_perfil.TabStop = false;
@@ -1072,26 +1092,6 @@ namespace Dashboard
             label20.Size = new Size(170, 15);
             label20.TabIndex = 12;
             label20.Text = "↓ 3 atrasos em relação a ontem";
-            // 
-            // arredondamentoBtn3
-            // 
-            arredondamentoBtn3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            arredondamentoBtn3.BackColor = Color.MidnightBlue;
-            arredondamentoBtn3.BorderColor = Color.Transparent;
-            arredondamentoBtn3.BorderRadius = 10;
-            arredondamentoBtn3.BorderSize = 0;
-            arredondamentoBtn3.DisableHoverEffect = false;
-            arredondamentoBtn3.FlatAppearance.BorderSize = 0;
-            arredondamentoBtn3.FlatStyle = FlatStyle.Flat;
-            arredondamentoBtn3.ForeColor = Color.White;
-            arredondamentoBtn3.Location = new Point(70, 572);
-            arredondamentoBtn3.Margin = new Padding(70, 2, 70, 2);
-            arredondamentoBtn3.Name = "arredondamentoBtn3";
-            arredondamentoBtn3.Size = new Size(198, 40);
-            arredondamentoBtn3.TabIndex = 26;
-            arredondamentoBtn3.Text = "Promover Alunos";
-            arredondamentoBtn3.UseVisualStyleBackColor = false;
-            arredondamentoBtn3.Click += arredondamentoBtn3_Click;
             // 
             // frmDashboard_Principal
             // 

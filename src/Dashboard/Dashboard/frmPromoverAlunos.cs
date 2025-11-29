@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,46 @@ namespace Dashboard
         public frmPromoverAlunos()
         {
             InitializeComponent();
+
+            JustificarRichText(richTextBox1);
+
+            //RichTextBox
+            richTextBox1.ReadOnly = true;
+            richTextBox1.BorderStyle = BorderStyle.None; // Garante que a borda seja removida
+            richTextBox1.TabStop = false;
+        }
+
+        private const int EM_SETPARAFORMAT = 1095;
+        private const int PFM_ALIGNMENT = 0x00000008;
+        private const int PFA_JUSTIFY = 0x0004;
+
+        [StructLayout(LayoutKind.Sequential)]
+        private struct PARAFORMAT
+        {
+            public int cbSize;
+            public uint dwMask;
+            public short wNumbering;
+            public short wReserved;
+            public int dxStartIndent;
+            public int dxRightIndent;
+            public int dxOffset;
+            public short wAlignment;
+            public short cTabCount;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+            public int[] rgxTabs;
+        }
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wParam, ref PARAFORMAT lParam);
+
+        private void JustificarRichText(RichTextBox box)
+        {
+            PARAFORMAT fmt = new PARAFORMAT();
+            fmt.cbSize = Marshal.SizeOf(fmt);
+            fmt.dwMask = PFM_ALIGNMENT;
+            fmt.wAlignment = PFA_JUSTIFY;
+
+            SendMessage(box.Handle, EM_SETPARAFORMAT, IntPtr.Zero, ref fmt);
         }
 
         // Carrega os cursos na cbm
@@ -265,6 +306,21 @@ namespace Dashboard
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pnLine_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void arredondamentoCard2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
