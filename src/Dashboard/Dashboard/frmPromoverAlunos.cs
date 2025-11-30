@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Dashboard.GerenciadorDePromocao;
 
 namespace Dashboard
 {
@@ -286,7 +287,7 @@ namespace Dashboard
 
                         transacao.Commit();
                         MessageBox.Show($"Promoção concluída! {alunosPromovidos.Count} alunos promovidos e {alunosRetidos.Count} alunos retidos.");
-
+                        GerenciadorDeEventos.DispararPromocaoConcluida(idCursoAtual, idSerieAtual);
                         CarregarAlunos();
                     }
                     catch (Exception ex)

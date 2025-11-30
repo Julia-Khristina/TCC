@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using NPOI.XWPF.UserModel;
 using System.IO;
 using Xceed.Words.NET;
+using static Dashboard.GerenciadorDePromocao;
 
 
 namespace Dashboard
@@ -25,6 +26,8 @@ namespace Dashboard
         {
             InitializeComponent();
             ConfigureEventHandlers();
+
+            GerenciadorDeEventos.PromocaoConcluida += GerenciadorDeEventos_PromocaoConcluida;
 
             pnAlunoAtrasos.Paint += PaintPanel;
             pnAlunoAtrasos.BackColor = Color.White;
@@ -78,6 +81,22 @@ namespace Dashboard
             tbAtrasoTurma.BorderStyle = BorderStyle.None;
         }
 
+        private void GerenciadorDeEventos_PromocaoConcluida(int cursoIdPromovido, int serieOriginalIdPromovida)
+        {
+            // Garante que a atualização ocorra na thread da UI
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(() => GerenciadorDeEventos_PromocaoConcluida(cursoIdPromovido, serieOriginalIdPromovida)));
+                return;
+            }
+
+            // 2. Verifique se a turma atual foi afetada
+            if (this.cursoId == cursoIdPromovido)
+            {
+                LoadInitialData();
+                MessageBox.Show("Os dados da turma foram atualizados após a promoção.", "Atualização", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
 
         private void InitializeTurmaForm()
         {
@@ -268,16 +287,21 @@ namespace Dashboard
                     connection.Open();
 
                     string query = @"
-                    SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                           COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                    FROM Aluno a
-                    LEFT JOIN RegistroAtraso ra 
-                           ON a.cd_Aluno = ra.cd_Aluno
-                           AND MONTH(ra.data_registro) = MONTH(CURDATE())
-                           AND YEAR(ra.data_registro) = YEAR(CURDATE())
-                    WHERE a.Curso_Aluno = @cursoId
-                    GROUP BY a.nm_Aluno
-                    ORDER BY `Quantidade de Atrasos` DESC";
+                    SELECT 
+                        a.nm_Aluno AS 'Nome do Aluno', 
+                        COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                    FROM 
+                        Aluno a
+                    LEFT JOIN 
+                        RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno 
+                            AND MONTH(ra.data_registro) = MONTH(CURDATE()) 
+                            AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                    WHERE 
+                        a.Curso_Aluno = @cursoId
+                    GROUP BY 
+                        a.cd_Aluno, a.nm_Aluno
+                    ORDER BY 
+                        `Quantidade de Atrasos` DESC, a.nm_Aluno ASC";
 
 
 
@@ -498,6 +522,7 @@ namespace Dashboard
             // Encontra o dashboard e o mostra novamente
             var dashboard = Application.OpenForms.OfType<frmDashboard_Principal>().FirstOrDefault();
             dashboard?.Show();
+            GerenciadorDeEventos.PromocaoConcluida -= GerenciadorDeEventos_PromocaoConcluida;
         }
 
         private void Maximizar_Tela()
@@ -661,16 +686,24 @@ namespace Dashboard
                 {
                     connection.Open();
 
-                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                       COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                       FROM Aluno a
-                       LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                       WHERE a.Curso_Aluno = @cursoId
-                          AND a.Serie_Aluno = 1
-                          AND MONTH(ra.data_registro) = MONTH(CURDATE())
-                          AND YEAR(ra.data_registro) = YEAR(CURDATE())
-                       GROUP BY a.nm_Aluno
-                       ORDER BY `Quantidade de Atrasos` DESC";
+                    string query = @"
+                    SELECT 
+                        a.nm_Aluno AS 'Nome do Aluno', 
+                        COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                    FROM 
+                        Aluno a
+                    LEFT JOIN 
+                        RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno 
+                            AND MONTH(ra.data_registro) = MONTH(CURDATE()) 
+                            AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                    WHERE 
+                        a.Curso_Aluno = @cursoId 
+                        AND a.Serie_Aluno = 1
+                    GROUP BY 
+                        a.cd_Aluno, a.nm_Aluno
+                    ORDER BY 
+                        `Quantidade de Atrasos` DESC, a.nm_Aluno ASC";
+
 
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
@@ -712,16 +745,23 @@ namespace Dashboard
                 {
                     connection.Open();
 
-                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                   FROM Aluno a
-                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                   WHERE a.Curso_Aluno = @cursoId
-                      AND a.Serie_Aluno = 2
-                      AND MONTH(ra.data_registro) = MONTH(CURDATE())
-                      AND YEAR(ra.data_registro) = YEAR(CURDATE())
-                   GROUP BY a.nm_Aluno
-                   ORDER BY `Quantidade de Atrasos` DESC";
+                    string query = @"
+                    SELECT 
+                        a.nm_Aluno AS 'Nome do Aluno', 
+                        COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                    FROM 
+                        Aluno a
+                    LEFT JOIN 
+                        RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno 
+                            AND MONTH(ra.data_registro) = MONTH(CURDATE()) 
+                            AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                    WHERE 
+                        a.Curso_Aluno = @cursoId 
+                        AND a.Serie_Aluno = 2
+                    GROUP BY 
+                        a.cd_Aluno, a.nm_Aluno
+                    ORDER BY 
+                        `Quantidade de Atrasos` DESC, a.nm_Aluno ASC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
@@ -762,16 +802,23 @@ namespace Dashboard
                 {
                     connection.Open();
 
-                    string query = @"SELECT a.nm_Aluno AS 'Nome do Aluno', 
-                   COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
-                   FROM Aluno a
-                   LEFT JOIN RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno
-                   WHERE a.Curso_Aluno = @cursoId
-                      AND a.Serie_Aluno = 3
-                      AND MONTH(ra.data_registro) = MONTH(CURDATE())
-                      AND YEAR(ra.data_registro) = YEAR(CURDATE())
-                   GROUP BY a.nm_Aluno
-                   ORDER BY `Quantidade de Atrasos` DESC";
+                    string query = @"
+                    SELECT 
+                        a.nm_Aluno AS 'Nome do Aluno', 
+                        COUNT(ra.cd_Registro) AS 'Quantidade de Atrasos'
+                    FROM 
+                        Aluno a
+                    LEFT JOIN 
+                        RegistroAtraso ra ON a.cd_Aluno = ra.cd_Aluno 
+                            AND MONTH(ra.data_registro) = MONTH(CURDATE()) 
+                            AND YEAR(ra.data_registro) = YEAR(CURDATE())
+                    WHERE 
+                        a.Curso_Aluno = @cursoId 
+                        AND a.Serie_Aluno = 3
+                    GROUP BY 
+                        a.cd_Aluno, a.nm_Aluno
+                    ORDER BY 
+                        `Quantidade de Atrasos` DESC, a.nm_Aluno ASC";
 
                     using (MySqlCommand cmd = new MySqlCommand(query, connection))
                     {
