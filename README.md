@@ -20,21 +20,49 @@ O projeto visa modernizar e automatizar o controle de acesso e registro de atras
 ## 📚 Metodologia
 
 A metodologia adotada envolverá reuniões e entrevistas para levantamento de requisitos funcionais e não funcionais. Será necessária a aquisição de equipamentos de leitura biométrica. Também serão realizadas pesquisas bibliográficas e entrevistas de campo para compreender o processo de registro e monitoramento de alunos que chegam atrasados. Em seguida, testes serão aplicados a um protótipo inicial para avaliar sua viabilidade em um ambiente próximo ao real. Com base nos resultados, será desenvolvido um MVP mais completo, incorporando as melhorias solicitadas pelo cliente.
-> **Status do Projeto: Parcialmente Concluído✅**
+> **Status do Projeto: Concluído✅**
 
 <br>
 
 ## 🏆**MVP** 
 
-1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique aqui](/documents/Sprints/Sprint1)):  Concluído✅
+A definição do MVP do projeto foi fundamental para priorizar as funcionalidades mais importantes e que geram maior valor. Dessa forma, a imagem a seguir, acompanhada da descrição abaixo, apresenta o Mínimo Produto Viável do Pontualize.
 <br><br>
-2️⃣ - Comparação da Digital Processada com Banco de Dados | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Concluído✅
+<div align="center">
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/MVP.png" width="120px;" height="120px;" style="border-radius:50%;"/>
+</div>
 <br><br>
-3️⃣ - Integração entre o Sistema C# com o RaspBerry PI | 🎯 ([Clique aqui](/documents/Sprints/Sprint2)):  Em Desenvolvimento ✅
+1️⃣ - Cadastro da Digital dos Alunos | 🎯 ([Clique <a href="https://github.com/Julia-Khristina/TCC/blob/main/documentos/MVP/MVP1"><strong>aqui</strong></a>):  Concluído✅
 <br><br>
-4️⃣ - Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique aqui](/documents/Sprints/Sprint3)):  Em Desenvolvimento❎
+2️⃣ - Comparação da Digital Processada com Banco de Dados | 🎯 ([Clique <a href="https://github.com/Julia-Khristina/TCC/blob/main/documentos/MVP/MVP2"><strong>aqui</strong></a>):  Concluído✅
 <br><br>
-5️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique aqui](/documents/Sprints/Sprint4)):  Pendente❎
+3️⃣ -  Visualização de Dados de Atraso em Gráficos (Power BI) | 🎯 ([Clique <a href="https://github.com/Julia-Khristina/TCC/blob/main/documentos/MVP/MVP3"><strong>aqui</strong></a>):  Concluído✅
+<br><br>
+4️⃣ - Sistema de entrada de alunos atrasados | 🎯 ([Clique <a href="https://github.com/Julia-Khristina/TCC/blob/main/documentos/MVP/MVP4"><strong>aqui</strong></a>):  Concluído✅
+
+<br>
+
+<br>
+
+## 💻**Arquitetura do Sistema** 
+
+A imagem a seguir ilustra a arquitetura do sistema, que é composta por três camadas:
+
+1️⃣ - Camada de Aplicação Cliente: Desenvolvida em C#, esta camada é responsável por exibir as telas do sistema e atuar como intermediária entre o computador e o leitor biométrico, via USB.
+<br><br>
+2️⃣ - Camada de Servidor: Nessa camada, os dados gerados pela aplicação cliente são armazenados, garantindo a integridade e o acesso às informações.
+<br><br>
+3️⃣ - Camada de Visualização: Consiste na Dashboard em Power BI, que permite a visualização de gráficos relacionados à pontualidade dos estudantes, oferecendo uma análise clara e interativa dos dados coletados.
+<br><br>
+<div align="center">
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/arquitetura.png" width="120px;" height="120px;" style="border-radius:50%;"/>
+</div>
+
+<br>
+
+## 📋**Product Backlog**
+
+O Product Backlog é uma lista de tarefas pendentes ou itens de trabalho que ainda precisam ser desenvolvidos, implementados ou resolvidos. Ele serve como um guia para priorizar e organizar as atividades do projeto. Sendo assim, para acessar o nosso documento, clique <a href="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png"><strong>aqui</strong></a>.
 
 <br>
 
@@ -42,6 +70,9 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
 
 <table>
   <tr>
+    <td align="center">
+    <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/vs.png" width="120px;" height="120px;" style="border-radius:50%;"/>
+    </td>
     <td align="center">
     <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/C%23.png" width="120px;" height="120px;" style="border-radius:50%;"/>
     </td>
@@ -57,9 +88,6 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
     <td align="center">
       <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/leitor_biometrico.png" width="120px;" height="120px;" style="border-radius:50%;" />
     </td>
-    <td align="center">
-      <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/raspberry_pi.png" width="120px;" height="120px;" style="border-radius:50%;" />
-    </td>
   </tr>
 </table>
 
@@ -69,15 +97,15 @@ A metodologia adotada envolverá reuniões e entrevistas para levantamento de re
   <tr>
     <td align="center">
     <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Hillary.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 1"/>
-      <br /><a href="https://github.com/beaxx"><b>Hillary Medeiros</b></a>
+      <br /><a href="https://github.com/Hillary-Medeiros"><b>Hillary Medeiros</b></a>
     </td>
     <td align="center">
       <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Igor.jpeg" width="100px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 2"/>
-      <br /><a href="https://github.com/Gigiovh"><b>Igor Vinícius</b></a>
+      <br /><a href="https://github.com/IgorVinicin"><b>Igor Vinícius</b></a>
     </td>
      <td align="center">
       <img src="https://github.com/Julia-Khristina/TCC/blob/main/documentos/img/Isac.png" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
-      <br /><a href="https://github.com/Lale-Araujo"><b>Isac Euclides</b></a>
+      <br /><a href="https://github.com/isacevilla"><b>Isac Euclides</b></a>
     </td>
     <td align="center">
       <img src="https://avatars.githubusercontent.com/u/132296366?v=4" width="120px;" height="120px;" style="border-radius:50%;" alt="Nome do Colaborador 3"/>
